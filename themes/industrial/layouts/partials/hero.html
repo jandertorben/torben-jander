@@ -1,0 +1,50 @@
+<section class="hero" id="oben" aria-label="Einführung">
+
+  {{/* ─── Profilbild ─── */}}
+  <div class="hero-bild-spalte">
+    <div class="foto-rahmen">
+      <img
+        src="{{ .Site.Params.foto }}"
+        alt="Profilfoto von {{ .Site.Params.name }}"
+        class="profilfoto"
+        width="300"
+        height="375"
+        loading="eager"
+        decoding="async"
+      >
+      <div class="ort-badge">{{ .Site.Params.ort }}</div>
+    </div>
+  </div>
+
+  {{/* ─── Text & Buttons ─── */}}
+  <div class="hero-text">
+
+    <p class="hero-status">{{ .Site.Params.status }}</p>
+
+    <h1>
+      Technical<br>
+      Administrator<br>
+      &amp; <span>Process</span><br>
+      Architect
+    </h1>
+
+    <p class="hero-tagline">{{ .Site.Params.tagline }}</p>
+
+    <div class="button-gruppe">
+      <a href="#projekte" class="btn btn--gold">→ Meine Projekte</a>
+      <a href="{{ .Site.Params.linkedin }}"
+         class="btn btn--rahmen"
+         target="_blank"
+         rel="noopener noreferrer">
+        LinkedIn ↗
+      </a>
+    </div>
+
+  </div>
+
+  <div class="scroll-hinweis" aria-hidden="true">
+    <div class="scroll-linie"></div>
+    <span>Scrollen</span>
+  </div>
+
+</section>
