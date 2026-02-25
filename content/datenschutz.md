@@ -35,4 +35,4 @@ Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu b
 
 ## 6. Kontakt
 
-Bei Fragen zum Datenschutz: **hallo@nordlicht-design.de**
+Bei Fragen zum Datenschutz: **torbenjander@icloud.com**
