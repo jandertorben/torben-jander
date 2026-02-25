@@ -29,7 +29,7 @@ Diese Website verwendet **keine** Tracking-Cookies, keine Analyse-Dienste (z. B.
 
 ## 5. Ihre Rechte
 
-Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Wenden Sie sich dazu an: hallo@nordlicht-design.de
+Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Wenden Sie sich dazu an: torbenjander@icloud.com
 
 Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Behörde für Bremen ist der **Landesbeauftragte für Datenschutz und Informationsfreiheit der Freien Hansestadt Bremen**.
 
