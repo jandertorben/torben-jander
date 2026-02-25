@@ -7,11 +7,11 @@ layout: "rechtlich"
 ## Angaben gemäß § 5 TMG
 
 **Torben Jander**  
-Nordlicht Design  
+Arster Landstr.22
 Bremen, Deutschland
 
 **Kontakt**  
-E-Mail: hallo@nordlicht-design.de
+E-Mail: torbenjander@icloud.com
 
 ## Verantwortlich für den Inhalt
 
