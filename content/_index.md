@@ -50,7 +50,7 @@ projekte:
     farbe: "blau"
   - titel: "Kita-Stundenzettel"
     kategorie: "Excel / Automatisierung"
-    emoji: "📊"
+    bild: "/img/stundenzettel.jpg"
     hintergrund: "linear-gradient(135deg,#0f1a10 0%,#0a120a 100%)"
     beschreibung: "Vollautomatisierte Zeiterfassung für soziale Einrichtungen. Eliminiert manuelle Fehler und reduziert den Verwaltungsaufwand drastisch."
     kennzahl: "100 % fehlerfrei · Vollautomatisch · Sofort einsatzbereit"
