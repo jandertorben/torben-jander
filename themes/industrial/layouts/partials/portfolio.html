@@ -11,12 +11,31 @@
   <div class="projekt-raster" role="list">
     {{ range .Params.projekte }}
     <article class="projekt-karte" role="listitem">
-      <div class="projekt-vorschau" style="background: {{ .hintergrund }}">
-        <span aria-hidden="true">{{ .emoji }}</span>
-        <span class="projekt-kategorie projekt-kategorie--{{ .farbe }}">
-          {{ .kategorie }}
-        </span>
-      </div>
+
+      {{ if .bild }}
+        {{/* ── Echtes Foto ── */}}
+        <div class="projekt-vorschau projekt-vorschau--foto">
+          <img
+            src="{{ .bild }}"
+            alt="{{ .titel }}"
+            class="projekt-foto"
+            loading="lazy"
+            decoding="async"
+          >
+          <span class="projekt-kategorie projekt-kategorie--{{ .farbe }}">
+            {{ .kategorie }}
+          </span>
+        </div>
+      {{ else }}
+        {{/* ── Emoji + Farbverlauf (Fallback) ── */}}
+        <div class="projekt-vorschau" style="background: {{ .hintergrund }}">
+          <span aria-hidden="true">{{ .emoji }}</span>
+          <span class="projekt-kategorie projekt-kategorie--{{ .farbe }}">
+            {{ .kategorie }}
+          </span>
+        </div>
+      {{ end }}
+
       <div class="projekt-inhalt">
         <h3>{{ .titel }}</h3>
         <p>{{ .beschreibung }}</p>
