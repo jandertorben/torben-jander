@@ -14,14 +14,14 @@ summarylength = 20
   ort         = "Bremen, Deutschland"
   status      = "Verfügbar · Offen für neue Herausforderungen"
   linkedin    = "https://linkedin.com/in/torben-jander"
-  email       = "hallo@nordlicht-design.de"
-  firma       = "Nordlicht Design"
+  email       = "torbenjander@icloud.vom"
+  firma       = "Torben Jander"
   # Profilfoto: Datei in static/img/ ablegen, Namen hier eintragen
   foto        = "/img/torben-profil.jpg"
 
 [params.seo]
   beschreibung = "Torben Jander – Technical Administrator mit 7 Jahren Industrie-Expertise, KI-Entwicklung und Prozessautomatisierung. Bremen."
-  keywords     = "Technical Administrator, Process Architect, KI-Entwicklung, Liebherr, Bremen, Instandhaltung, Python, Hugo, Nordlicht Design"
+  keywords     = "Technical Administrator, Process Architect, KI-Entwicklung, Liebherr, Bremen, Instandhaltung, Python, Hugo,Torben Jander"
 
 [markup.goldmark.renderer]
   unsafe = true
