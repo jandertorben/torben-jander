@@ -1126,33 +1126,38 @@ blockquote {
     margin-right: auto;
   }
 }
-
-/* ── Projekt-Fotos ──────────────────────────────────────── */
-.projekt-vorschau--foto {
-  position: relative;
-  height: clamp(150px, 18vw, 210px);
-  overflow: hidden;
+@media (prefers-color-scheme: light) {
+  :root {
+    --hintergrund: #f0ede8;
+    --flaeche: #ffffff;
+    --flaeche-2: #e8e4de;
+    --rahmen: #c8c2b8;
+    --gold: #a06000;
+    --gold-hell: #b87000;
+    --text: #0f0f0f;
+    --text-weich: #2a2520;
+    --gedaempft: #504a44;
+  }
+  .nav-leiste { background: rgba(20,18,15,0.94); }
+  .nav-links a { color: rgba(255,255,255,0.6); }
+  .nav-links a:hover { color: #ffffff; }
+  .nav-links .nav-cta { color: var(--gold) !important; }
+  .hamburger span { background: #ffffff; }
+  .mobil-menue { background: rgba(20,18,15,0.98); }
+  .mobil-link { color: rgba(255,255,255,0.55); }
+  .mobil-link:hover { color: #ffffff; }
+  .bruecke-karte { background: #ffffff; }
+  .bruecke-karte p { color: var(--text-weich); }
+  .bruecke-karte li { color: var(--gedaempft); }
+  .projekt-karte { background: #ffffff; }
+  .projekt-inhalt { background: #ffffff; }
+  .projekt-inhalt p { color: var(--text-weich); }
+  .projekt-kennzahl { background: var(--flaeche-2); }
+  .referenz-zitat-bereich { background: #ffffff; }
+  blockquote { color: var(--text); }
+  .tech-tag { background: #ffffff; color: var(--text); }
 }
-.projekt-foto {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.projekt-karte:hover .projekt-foto {
-  transform: scale(1.04);
-}
-.projekt-vorschau--foto::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.65));
-  z-index: 1;
-}
-.projekt-vorschau--foto .projekt-kategorie {
-  z-index: 2;
+@media (prefers-color-scheme: light) {
+  h1, h2, h3 { color: #0f0f0f; }
+  h1 span    { color: var(--gold); }
 }
