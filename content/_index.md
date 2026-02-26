@@ -46,7 +46,7 @@ projekte:
     emoji: "🎨"
     hintergrund: "linear-gradient(135deg,#0d1117 0%,#1e1535 100%)"
     beschreibung: "Desktop-App zur KI-gestützten Bildbearbeitung. Unterstützt Fuji X-T5, Sony A7 IV, Film-Simulation und professionelle LUT-Verarbeitung."
-    kennzahl: "Electron · Python · Claude API · RAW-Verarbeitung"
+    kennzahl: "Electron · JavaScript · Claude API · RAW-Verarbeitung"
     farbe: "blau"
   - titel: "Kita-Stundenzettel"
     kategorie: "Excel / Automatisierung"
