@@ -14,7 +14,7 @@ summarylength = 20
   ort         = "Bremen, Deutschland"
   status      = "Verfügbar · Offen für neue Herausforderungen"
   linkedin    = "https://linkedin.com/in/torben-jander"
-  email       = "torbenjander@icloud.vom"
+  email       = "torbenjander@icloud.com"
   firma       = "Torben Jander"
   # Profilfoto: Datei in static/img/ ablegen, Namen hier eintragen
   foto        = "/img/torben-profil.jpg"
