@@ -7,7 +7,7 @@ layout: "rechtlich"
 ## Angaben gemäß § 5 TMG
 
 **Torben Jander**  
-Arster Landstr.22. 
+Arster Landstr.22 <br/>
 Bremen, Deutschland
 
 **Kontakt**  
