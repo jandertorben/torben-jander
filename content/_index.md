@@ -9,7 +9,7 @@ bridge:
     text: "Tiefgreifendes Verständnis für industrielle Prozesse aus dem täglichen Maschinenbetrieb bei Liebherr."
     punkte:
       - "7 Jahre Instandhaltungs-Expertise"
-      - "Liebherr Mietpartner / Kran-Technologie"
+      - "Liebherr Mietpartner"
       - "ADR 1.3 Gefahrgut-Zertifizierung"
       - "Technische Zustandsanalyse & Kundenkontakt"
   - nummer: "02"
