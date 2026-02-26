@@ -29,7 +29,7 @@ bridge:
     text: "Von der Idee zur laufenden Applikation – ich entwickle Software, die echte Probleme löst."
     punkte:
       - "KI-Entwicklung: Lume RAW-Editor"
-      - "Prozessautomatisierung & Python"
+      - "Prozessautomatisierung"
       - "Hugo / Web-Technologien"
       - "API-Integration: Claude, OpenAI"
 
