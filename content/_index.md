@@ -36,7 +36,7 @@ bridge:
 projekte:
   - titel: "Der Hof-Manager"
     kategorie: "SaaS / Tool"
-    emoji: "📋"
+    bild: "/img/hof.jpg"
     hintergrund: "linear-gradient(135deg,#111 0%,#1a1f2e 100%)"
     beschreibung: "Digitales Flottenmanagement für Maschinen- und Geräteverwaltung. Volle Transparenz über Belegung, Wartung und Einsatzhistorie."
     kennzahl: "↑ 30 % weniger Suchzeiten · Volle Belegungstransparenz"
