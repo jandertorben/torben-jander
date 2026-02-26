@@ -37,13 +37,17 @@
 /* ═══════════════════════════════════════════════════════════
    HELLMODUS – automatisch wenn Gerät auf Hell gestellt ist
 ═══════════════════════════════════════════════════════════ */
+soll ich das ersetzen?
+
+   HELLMODUS – automatisch wenn Gerät auf Hell gestellt ist
+═══════════════════════════════════════════════════════════ */
 @media (prefers-color-scheme: light) {
+
   :root {
     --hintergrund:   #f0ede8;
     --flaeche:       #ffffff;
     --flaeche-2:     #e8e4de;
     --rahmen:        #c8c2b8;
-
     --gold:          #a06000;
     --gold-hell:     #b87000;
     --blau:          #1a4db8;
@@ -51,12 +55,18 @@
     --gruen:         #1e5c22;
     --gruen-text:    #1e5c22;
 
-    /* WICHTIG: Textkontrast */
+    /* Text: deutlich dunkler für gute Lesbarkeit */
     --text:          #0f0f0f;
     --text-weich:    #2a2520;
     --gedaempft:     #504a44;
 
     --raster:        rgba(0,0,0,0.05);
+  }
+
+  /* Headings im Hellmodus dunkel */
+  h1, h2, h3 {
+    color: var(--text);
+  }
   }
   }
 
