@@ -1126,202 +1126,33 @@ blockquote {
     margin-right: auto;
   }
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    --hintergrund: #f0ede8;
-    --flaeche: #ffffff;
-    --flaeche-2: #e8e4de;
-    --rahmen: #c8c2b8;
-    --gold: #a06000;
-    --gold-hell: #b87000;
-    --text: #0f0f0f;
-    --text-weich: #2a2520;
-    --gedaempft: #504a44;
-  }
-  .nav-leiste { background: rgba(20,18,15,0.94); }
-  .nav-links a { color: rgba(255,255,255,0.6); }
-  .nav-links a:hover { color: #ffffff; }
-  .nav-links .nav-cta { color: var(--gold) !important; }
-  .hamburger span { background: #ffffff; }
-  .mobil-menue { background: rgba(20,18,15,0.98); }
-  .mobil-link { color: rgba(255,255,255,0.55); }
-  .mobil-link:hover { color: #ffffff; }
-  .bruecke-karte { background: #ffffff; }
-  .bruecke-karte p { color: var(--text-weich); }
-  .bruecke-karte li { color: var(--gedaempft); }
-  .projekt-karte { background: #ffffff; }
-  .projekt-inhalt { background: #ffffff; }
-  .projekt-inhalt p { color: var(--text-weich); }
-  .projekt-kennzahl { background: var(--flaeche-2); }
-  .referenz-zitat-bereich { background: #ffffff; }
-  blockquote { color: var(--text); }
-  .tech-tag { background: #ffffff; color: var(--text); }
-}
-@media (prefers-color-scheme: light) {
-  h1, h2, h3 { color: #0f0f0f; }
-  h1 span    { color: var(--gold); }
-}/* 2. RESET & BASIS-STILE */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-hoehe);
-  -webkit-text-size-adjust: 100%;
+/* ── Projekt-Fotos ──────────────────────────────────────── */
+.projekt-vorschau--foto {
+  position: relative;
+  height: clamp(150px, 18vw, 210px);
+  overflow: hidden;
 }
-
-body {
-  background-color: var(--hintergrund);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.65;
-  overflow-x: hidden;
-  background-image:
-    linear-gradient(var(--raster) 1px, transparent 1px),
-    linear-gradient(90deg, var(--raster) 1px, transparent 1px);
-  background-size: 60px 60px;
+.projekt-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
 }
-
-/* Typografie-Grundlagen */
-h1, h2, h3 { font-family: var(--font-titel); letter-spacing: 0.04em; line-height: 1.05; color: #fff; }
-h1 { font-size: clamp(2.8rem, 9vw, 5rem); margin-bottom: 1.2rem; }
-h1 span { color: var(--gold); }
-h2 { font-size: clamp(2.1rem, 5vw, 3.6rem); margin-bottom: 0.7rem; }
-h3 { font-size: clamp(1.3rem, 3vw, 1.65rem); margin-bottom: 0.5rem; }
-
-a { color: inherit; text-decoration: none; transition: 0.2s; }
-ul { list-style: none; }
-
-/* 3. LAYOUT-KOMPONENTEN */
-
-/* Header & Navigation */
-#kopf { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
-.nav-leiste {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 var(--rand-x); height: var(--nav-hoehe);
-  background: rgba(10, 11, 13, 0.93); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--rahmen);
+.projekt-karte:hover .projekt-foto {
+  transform: scale(1.04);
 }
-.nav-logo { font-family: var(--font-titel); font-size: 1.6rem; color: var(--gold); letter-spacing: 0.12em; }
-.nav-links { display: flex; gap: clamp(1.2rem, 3vw, 2.8rem); }
-.nav-links a { font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase; color: var(--gedaempft); }
-.nav-links a:hover, .nav-links a.aktiv { color: var(--text); }
-.nav-links .nav-cta { color: var(--gold) !important; }
-
-/* Hero-Sektion */
-.hero {
-  min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-  gap: clamp(2rem, 4vw, 4rem); padding: clamp(5.5rem, 14vh, 9.5rem) var(--rand-x) 3rem;
-  position: relative; overflow: hidden;
+.projekt-vorschau--foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.65));
+  z-index: 1;
 }
-.hero::after {
-  content: ''; position: absolute; top: -25%; right: -15%; width: 65vw; height: 65vw;
-  background: radial-gradient(ellipse, rgba(232,160,32,0.08) 0%, transparent 62%);
-  pointer-events: none; z-index: 0;
+.projekt-vorschau--foto .projekt-kategorie {
+  z-index: 2;
 }
-
-/* Profilfoto */
-.foto-rahmen {
-  width: min(300px, 78vw); aspect-ratio: 4 / 5; position: relative;
-  border: 1px solid var(--rahmen); background: var(--flaeche-2); overflow: hidden;
-}
-.profilfoto { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.ort-badge {
-  position: absolute; bottom: 0; right: 0; background: var(--gold); color: #000;
-  font-family: var(--font-mono); font-size: 0.6rem; padding: 0.4rem 0.85rem; text-transform: uppercase;
-}
-
-/* 4. BUTTONS & INTERAKTION */
-.button-gruppe { display: flex; gap: 0.9rem; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.9rem 1.8rem;
-  font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; transition: 0.22s;
-}
-.btn--gold { background: var(--gold); color: #000; font-weight: 500; }
-.btn--gold:hover { background: var(--gold-hell); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,160,32,0.28); }
-.btn--rahmen { background: transparent; color: var(--text); border: 1px solid var(--rahmen); }
-.btn--rahmen:hover { border-color: var(--gold); color: var(--gold); }
-
-/* 5. FIX: SCROLL-HINWEIS (Position & Farbe) */
-.scroll-hinweis {
-  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-  font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--gold) !important; /* Fix: Farbe auf Gold gesetzt */
-  z-index: 10;
-}
-.scroll-linie {
-  width: 1px; height: 44px;
-  background: linear-gradient(var(--gold), transparent) !important;
-  animation: scrollPuls 2.2s ease infinite;
-}
-
-/* 6. CONTENT-MODULE (Brücke, Projekte, Referenzen) */
-.abschnitt { padding: var(--abschnitt) var(--rand-x); }
-.bruecke-raster, .projekt-raster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--rahmen); }
-.bruecke-karte, .projekt-karte { background: var(--flaeche); padding: 2.5rem; transition: 0.3s; }
-.bruecke-karte:hover { background: var(--flaeche-2); }
-.bruecke-nummer { font-family: var(--font-titel); font-size: 4rem; color: var(--rahmen); line-height: 1; }
-
-/* Tech-Tags */
-.tech-liste { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-.tech-tag {
-  background: var(--hintergrund); border: 1px solid var(--rahmen);
-  padding: 0.3rem 0.7rem; font-family: var(--font-mono); font-size: 0.72rem;
-}
-.tech-tag:hover { border-color: var(--gold); color: var(--gold); }
-
-/* 7. HELLMODUS (Auto-Anpassung) */
-@media (prefers-color-scheme: light) {
-  :root {
-    --hintergrund: #f0ede8; --flaeche: #ffffff; --flaeche-2: #e8e4de;
-    --rahmen: #c8c2b8; --gold: #a06000; --text: #0f0f0f; --text-weich: #2a2520;
-    --gedaempft: #504a44; --raster: rgba(0,0,0,0.05);
-  }
-  h1, h2, h3 { color: #0f0f0f; }
-  .nav-leiste { background: rgba(20, 18, 15, 0.92); }
-  .nav-links a { color: rgba(255,255,255,0.6); }
-}
-
-/* 8. RESPONSIVE DESIGN */
-
-/* Tablet-Anpassung */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; text-align: center; }
-  .hero-bild-spalte { order: -1; }
-  .hero-text { align-items: center; }
-  .nav-links { display: none; }
-  .bruecke-raster, .projekt-raster { grid-template-columns: 1fr; }
-  
-  /* FIX: Scroll-Hinweis am iPhone wieder unten fixieren */
-  .scroll-hinweis {
-    position: absolute !important; bottom: 1.5rem !important;
-    margin: 0 !important; display: flex !important;
-  }
-}
-
-/* Kleine Smartphones */
-@media (max-width: 480px) {
-  :root { --rand-x: 1.2rem; }
-  h1 { font-size: 2.8rem; }
-  .scroll-hinweis { display: none !important; } /* Platz sparen auf Kleinstgeräten */
-}
-
-/* 9. ANIMATIONEN */
-@keyframes einblenden {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrollPuls {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
-}
-
-.hero-status, .hero h1, .hero-tagline, .button-gruppe, .foto-rahmen {
-  animation: einblenden 0.7s ease both;
-}
-.hero h1 { animation-delay: 0.1s; }
