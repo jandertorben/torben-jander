@@ -568,7 +568,7 @@ h3 {
 /* Scroll-Hinweis */
 .scroll-hinweis {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: clamp(1.5rem, 3vh, 2.5rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -606,6 +606,7 @@ h3 {
   height: 8px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 1px;
+  will-change: transform;
   /* startet kurz nach dem Einblenden des Scroll-Hinweises (1.0 + 0.65 + 0.15 ≈ 1.8s) */
   animation: scroll-licht 1.8s ease-in-out infinite 1.8s;
 }
@@ -1197,7 +1198,9 @@ blockquote {
   .scroll-hinweis {
     position: static;
     transform: none;
-    margin: 3.75rem auto 0; /* ~60px Abstand zum Meine-Projekte-Button */
+    justify-self: center;   /* grid-zentrierung */
+    width: fit-content;     /* nur so breit wie nötig */
+    margin-top: 2.5rem;     /* ~40px Abstand zum Button */
   }
 
   /* Brücke einspaltig */
@@ -1252,6 +1255,14 @@ blockquote {
   .referenz-siegel-bereich { flex-direction: column; }
   .btn            { padding: 0.82rem 1.15rem; font-size: 0.7rem; }
   .fuss-links     { gap: 1.2rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE – LANDSCAPE PHONES (kurzer Viewport ≤ 560px Höhe)
+═══════════════════════════════════════════════════════════ */
+@media (max-height: 560px) {
+  /* Scroll-Indicator ausblenden: kein Platz im kompakten Hero */
+  .scroll-hinweis { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
