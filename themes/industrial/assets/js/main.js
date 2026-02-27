@@ -75,13 +75,9 @@
   /* ── Nav-Hintergrund beim Scrollen anpassen ──────────── */
   const kopf = document.getElementById('kopf');
   if (kopf) {
+    const nav = kopf.querySelector('.nav-leiste');
     const navAktualisieren = () => {
-      const nav = kopf.querySelector('.nav-leiste');
-      if (nav) {
-        nav.style.background = window.scrollY > 30
-          ? 'rgba(10,11,13,0.98)'
-          : 'rgba(10,11,13,0.93)';
-      }
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
     };
     window.addEventListener('scroll', navAktualisieren, { passive: true });
     navAktualisieren();
@@ -93,7 +89,9 @@
     '.referenz-zitat-bereich, .tech-gruppe'
   );
 
-  if ('IntersectionObserver' in window && zielElemente.length) {
+  /* Fallback: nur wenn Browser keine Scroll-driven Animations kennt */
+  if (!CSS.supports('animation-timeline', 'view()') &&
+      'IntersectionObserver' in window && zielElemente.length) {
     const einblendBeobachter = new IntersectionObserver(eintraege => {
       eintraege.forEach(eintrag => {
         if (eintrag.isIntersecting) {
@@ -116,6 +114,15 @@
       einblendBeobachter.observe(el);
     });
   }
+
+  /* ── E-Mail Spam-Schutz ─────────────────────────────── */
+  /* mailto: wird erst beim Klick aus data-u + data-d zusammengesetzt */
+  document.querySelectorAll('a.mail-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      window.location.href = 'mailto:' + link.dataset.u + '@' + link.dataset.d;
+    });
+  });
 
   /* ── Cookie-Banner ───────────────────────────────────── */
   const banner   = document.getElementById('cookie-banner');

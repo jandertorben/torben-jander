@@ -7,7 +7,7 @@ layout: "rechtlich"
 ## Angaben gemäß § 5 TMG
 
 **Torben Jander**  
-Arster Landstr.22 <br/>
+Nordlicht Design  
 Bremen, Deutschland
 
 **Kontakt**  
