@@ -5,7 +5,13 @@
     <a href="{{ .Site.Params.linkedin }}"
        target="_blank"
        rel="noopener noreferrer">LinkedIn</a>
-    <a href="mailto:{{ .Site.Params.email }}">Kontakt</a>
+    {{/* Spam-Schutz: E-Mail wird erst beim Klick per JS zusammengesetzt */}}
+    {{ $parts := split .Site.Params.email "@" }}
+    <a href="#"
+       class="mail-link"
+       data-u="{{ index $parts 0 }}"
+       data-d="{{ index $parts 1 }}"
+       aria-label="E-Mail an Torben Jander schreiben">Kontakt</a>
     <a href="/impressum">Impressum</a>
     <a href="/datenschutz">Datenschutz</a>
   </nav>
