@@ -1,0 +1,34 @@
+<section id="referenz" class="abschnitt abschnitt--dunkel" aria-label="Referenz">
+  <div class="referenz-wrapper">
+
+    {{/* ─── Siegel ─── */}}
+    <div class="referenz-siegel-bereich">
+      <div class="siegel" aria-label="Referenz von {{ .Params.referenz.firma_lang }}">
+        <strong>{{ .Params.referenz.firma_kurz }}</strong>
+        <span>{{ .Params.referenz.firma_lang }}</span>
+      </div>
+      <p class="siegel-label">Verifizierte Referenz</p>
+      <p class="siegel-person">{{ .Params.referenz.person }}</p>
+      <ul class="siegel-stichworte" aria-label="Bewertete Kompetenzen">
+        {{ range .Params.referenz.stichworte }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+
+    {{/* ─── Zitat ─── */}}
+    <div class="referenz-zitat-bereich">
+      <p class="abschnitt-label">Validierung</p>
+      <h2>Was andere<br>sagen.</h2>
+      <span class="anfuehrungs-zeichen" aria-hidden="true">"</span>
+      <blockquote>
+        „{{ .Params.referenz.zitat }}"
+      </blockquote>
+      <footer class="zitat-autor">
+        <strong>{{ .Params.referenz.person }}</strong>
+        <span>{{ .Params.referenz.rolle }}</span>
+      </footer>
+    </div>
+
+  </div>
+</section>

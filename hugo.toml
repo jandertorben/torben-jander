@@ -1,0 +1,27 @@
+baseURL       = "https://torben-jander.de/"
+languageCode  = "de-DE"
+defaultContentLanguage = "de"
+title         = "Torben Jander – Portfolio"
+theme         = "industrial"
+enableEmoji   = true
+enableRobotsTXT = true
+
+[params]
+  name        = "Torben Jander"
+  beruf       = "Technical Administrator & Process Architect"
+  tagline     = "Vom Maschinendeck in die Cloud. Ich verbinde 7 Jahre Industrie-Expertise mit moderner KI-Softwareentwicklung."
+  ort         = "Bremen, Deutschland"
+  status      = "Verfügbar · Offen für neue Herausforderungen"
+  linkedin    = "https://linkedin.com/in/torben-jander"
+  email       = "hallo@nordlicht-design.de"
+  firma       = "Nordlicht Design"
+  # Profilfoto: Datei in static/img/ ablegen, Namen hier eintragen
+  foto        = "/img/torben-profil.jpg"
+
+[params.seo]
+  beschreibung = "Torben Jander – Technical Administrator mit 7 Jahren Industrie-Expertise, KI-Entwicklung und Prozessautomatisierung. Bremen."
+  keywords     = "Technical Administrator, Process Architect, KI-Entwicklung, Liebherr, Bremen, Instandhaltung, Python, Hugo, Nordlicht Design"
+
+[markup.goldmark.renderer]
+  unsafe = true
+

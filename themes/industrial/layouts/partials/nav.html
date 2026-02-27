@@ -1,0 +1,35 @@
+<header id="kopf">
+  <nav class="nav-leiste" role="navigation" aria-label="Hauptnavigation">
+
+    <a class="nav-logo" href="/" aria-label="Torben Jander – Startseite">
+      T.J.
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#projekte">Projekte</a></li>
+      <li><a href="#referenz">Referenz</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li>
+        <a href="{{ .Site.Params.linkedin }}"
+           class="nav-cta"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LinkedIn-Profil von Torben Jander (öffnet neues Fenster)">
+          → LinkedIn
+        </a>
+      </li>
+    </ul>
+
+    <button class="hamburger"
+            id="hamburger"
+            aria-label="Menü öffnen"
+            aria-expanded="false"
+            aria-controls="mobil-menue">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </nav>
+</header>
