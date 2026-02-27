@@ -115,6 +115,15 @@
     });
   }
 
+  /* ── E-Mail Spam-Schutz ─────────────────────────────── */
+  /* mailto: wird erst beim Klick aus data-u + data-d zusammengesetzt */
+  document.querySelectorAll('a.mail-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      window.location.href = 'mailto:' + link.dataset.u + '@' + link.dataset.d;
+    });
+  });
+
   /* ── Cookie-Banner ───────────────────────────────────── */
   const banner   = document.getElementById('cookie-banner');
   const okButton = document.getElementById('cookie-ok');
