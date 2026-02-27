@@ -6,10 +6,10 @@ layout: "rechtlich"
 
 ## Angaben gemäß § 5 TMG
 
-**Torben Jander**
+**Torben Jander**<br>
 Bremen, Deutschland
 
-**Kontakt**  
+**Kontakt**
 E-Mail: torbenjander@icloud.com
 
 ## Verantwortlich für den Inhalt
