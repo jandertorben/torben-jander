@@ -74,7 +74,7 @@ stack:
   - gruppe: "Sprachen"
     tools: ["Python", "JavaScript", "HTML / CSS"]
   - gruppe: "Frameworks & Tools"
-    tools: ["Hugo", "Electron", "GitHub", "Netlify"]
+    tools: ["Hugo", "Electron", "GitHub", "Cloudflare Pages"]
   - gruppe: "KI & APIs"
     tools: ["Claude API", "OpenAI API"]
   - gruppe: "Infrastruktur"
