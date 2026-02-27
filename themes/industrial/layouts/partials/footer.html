@@ -1,0 +1,16 @@
+<footer class="seiten-fuss" role="contentinfo">
+  <div class="fuss-logo">{{ .Site.Params.name }}</div>
+
+  <nav class="fuss-links" aria-label="Footer-Navigation">
+    <a href="{{ .Site.Params.linkedin }}"
+       target="_blank"
+       rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:{{ .Site.Params.email }}">Kontakt</a>
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutz</a>
+  </nav>
+
+  <p class="fuss-copy">
+    &copy; {{ now.Format "2006" }} {{ .Site.Params.firma }} &ndash; Alle Rechte vorbehalten
+  </p>
+</footer>

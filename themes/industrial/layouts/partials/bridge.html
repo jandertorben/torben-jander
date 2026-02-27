@@ -1,0 +1,26 @@
+<section id="profil" class="abschnitt abschnitt--dunkel" aria-label="Mein Profil">
+  <div class="abschnitt-kopf">
+    <p class="abschnitt-label">Die Brücke</p>
+    <h2>Hybride Expertise.<br>Seltene Kombination.</h2>
+    <p class="abschnitt-intro">
+      Kein reiner Techniker. Kein reiner Manager. Beides – und mehr.
+      Drei Dimensionen, die mich einzigartig machen.
+    </p>
+  </div>
+
+  <div class="bruecke-raster" role="list">
+    {{ range .Params.bridge }}
+    <article class="bruecke-karte bruecke-karte--{{ .farbe }}" role="listitem">
+      <span class="bruecke-nummer" aria-hidden="true">{{ .nummer }}</span>
+      <span class="bruecke-icon" aria-hidden="true">{{ .icon }}</span>
+      <h3>{{ .titel }}</h3>
+      <p>{{ .text }}</p>
+      <ul aria-label="Kompetenzen: {{ .titel }}">
+        {{ range .punkte }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </article>
+    {{ end }}
+  </div>
+</section>

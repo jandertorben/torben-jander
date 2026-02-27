@@ -1,0 +1,30 @@
+<section id="projekte" class="abschnitt abschnitt--mittel" aria-label="Meine Projekte">
+  <div class="abschnitt-kopf">
+    <p class="abschnitt-label">Lösungen in der Praxis</p>
+    <h2>Projekte, die<br>Ergebnisse liefern.</h2>
+    <p class="abschnitt-intro">
+      Keine Proof-of-Concepts – echte Tools, die täglich genutzt werden
+      und messbare Wirkung entfalten.
+    </p>
+  </div>
+
+  <div class="projekt-raster" role="list">
+    {{ range .Params.projekte }}
+    <article class="projekt-karte" role="listitem">
+      <div class="projekt-vorschau" style="background: {{ .hintergrund }}">
+        <span aria-hidden="true">{{ .emoji }}</span>
+        <span class="projekt-kategorie projekt-kategorie--{{ .farbe }}">
+          {{ .kategorie }}
+        </span>
+      </div>
+      <div class="projekt-inhalt">
+        <h3>{{ .titel }}</h3>
+        <p>{{ .beschreibung }}</p>
+        <div class="projekt-kennzahl projekt-kennzahl--{{ .farbe }}">
+          {{ .kennzahl }}
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>

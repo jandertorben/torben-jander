@@ -1,0 +1,17 @@
+<div id="stack" class="tech-streifen" aria-label="Technologie-Stack">
+  <div class="tech-innen">
+    {{ range $i, $gruppe := .Params.stack }}
+      {{ if gt $i 0 }}
+        <div class="tech-trenner" aria-hidden="true"></div>
+      {{ end }}
+      <div class="tech-gruppe">
+        <p class="tech-label">{{ $gruppe.gruppe }}</p>
+        <ul class="tech-liste" role="list">
+          {{ range $gruppe.tools }}
+          <li class="tech-tag">{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </div>
+</div>
