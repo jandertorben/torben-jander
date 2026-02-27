@@ -12,7 +12,15 @@
     {{ range .Params.projekte }}
     <article class="projekt-karte" role="listitem">
       <div class="projekt-vorschau" style="background: {{ .hintergrund }}">
-        <span aria-hidden="true">{{ .emoji }}</span>
+        {{ if .bild }}
+          <img src="{{ .bild }}"
+               alt="{{ .titel }}"
+               class="projekt-bild"
+               loading="lazy"
+               decoding="async">
+        {{ else }}
+          <span aria-hidden="true">{{ .emoji }}</span>
+        {{ end }}
         <span class="projekt-kategorie projekt-kategorie--{{ .farbe }}">
           {{ .kategorie }}
         </span>
