@@ -574,20 +574,40 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
-  font-family: var(--schrift-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.22em;
+  gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.48rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gedaempft);
   pointer-events: none;
   z-index: 1;
+  /* einblenden nachdem h1 + buttons fertig sind (≈ 1.0s) */
+  animation: einblenden 0.65s ease 1.0s both;
 }
 .scroll-linie {
-  width: 1px;
-  height: 44px;
-  background: linear-gradient(var(--gold), transparent);
-  animation: scrollPuls 2.2s ease infinite;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(
+    rgba(232, 160, 32, 0.65),
+    rgba(232, 160, 32, 0.04)
+  );
+  position: relative;
+  overflow: hidden;
+}
+/* Wandernder Lichtpunkt – Scroll-Richtung signalisieren */
+.scroll-linie::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -8px;
+  width: 2px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1px;
+  /* startet kurz nach dem Einblenden des Scroll-Hinweises (1.0 + 0.65 + 0.15 ≈ 1.8s) */
+  animation: scroll-licht 1.8s ease-in-out infinite 1.8s;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1062,6 +1082,12 @@ blockquote {
   0%, 100% { opacity: 0.3; }
   50%       { opacity: 1; }
 }
+@keyframes scroll-licht {
+  0%   { top: -8px; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 40px; opacity: 0; }
+}
 
 /* Eyecatcher: Hero-H1 Slide-In */
 @keyframes hero-h1-einblenden {
@@ -1171,7 +1197,7 @@ blockquote {
   .scroll-hinweis {
     position: static;
     transform: none;
-    margin: 1rem auto 0;
+    margin: 3.75rem auto 0; /* ~60px Abstand zum Meine-Projekte-Button */
   }
 
   /* Brücke einspaltig */
