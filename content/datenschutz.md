@@ -17,7 +17,7 @@ Torben Jander, Nordlicht Design, Bremen – torbenjander@icloud.com
 
 ## 2. Hosting
 
-Diese Website wird bei **Netlify** (Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, USA) gehostet. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO.
+Diese Website wird bei **Cloudflare Pages** (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA) gehostet. Beim Abruf der Website können Server-Logs mit IP-Adressen und Zugriffszeiten erfasst werden. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Cloudflare: https://www.cloudflare.com/privacypolicy/
 
 ## 3. Externe Schriftarten
 
