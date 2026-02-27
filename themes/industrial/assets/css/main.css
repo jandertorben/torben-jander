@@ -259,7 +259,10 @@ h1 {
   color: #fff;
   margin-bottom: 1.2rem;
 }
-h1 span { color: var(--gold); }
+h1 span {
+  color: var(--gold);
+  display: inline-block; /* nötig für transform im prozess-glow */
+}
 
 h2 {
   font-size: clamp(2.1rem, 5vw, 3.6rem);
@@ -1050,8 +1053,24 @@ blockquote {
   50%       { opacity: 1; }
 }
 
+/* Eyecatcher: Hero-H1 Slide-In */
+@keyframes hero-h1-einblenden {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Eyecatcher: PROCESS-Glow nach H1-Einblendung */
+@keyframes prozess-glow {
+  0%   { color: var(--gold);      text-shadow: none;                           }
+  35%  { color: var(--gold-hell); text-shadow: 0 0 28px rgba(232,160,32,0.5); transform: scale(1.04); }
+  100% { color: var(--gold);      text-shadow: none;                           transform: scale(1);    }
+}
+
 .hero-status  { animation: einblenden 0.55s ease both; }
-.hero h1      { animation: einblenden 0.65s ease 0.1s both; }
+/* Eigene Animation für H1: längere Strecke, Expo-Easing */
+.hero h1      { animation: hero-h1-einblenden 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+/* PROCESS-Glow: startet 0.15s nachdem H1 fertig ist (0.15 + 0.8 + 0.15 = 1.1s) */
+.hero h1 span { animation: prozess-glow 0.9s ease-out 1.1s both; }
 .hero-tagline { animation: einblenden 0.65s ease 0.2s both; }
 .button-gruppe{ animation: einblenden 0.65s ease 0.3s both; }
 .foto-rahmen  { animation: einblenden 0.7s ease 0.12s both; }
