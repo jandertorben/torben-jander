@@ -450,6 +450,10 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--rahmen);
   background: var(--flaeche-2);
+  transition: box-shadow 0.3s ease;
+}
+.foto-rahmen:hover {
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
 }
 .foto-rahmen::before {
   content: '';
@@ -469,6 +473,10 @@ h3 {
   object-fit: cover;
   object-position: top center;
   display: block;
+  transition: transform 0.3s ease;
+}
+.foto-rahmen:hover .profilfoto {
+  transform: scale(1.03);
 }
 
 .ort-badge {
