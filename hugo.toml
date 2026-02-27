@@ -13,7 +13,7 @@ enableRobotsTXT = true
   ort         = "Bremen, Deutschland"
   status      = "Verfügbar · Offen für neue Herausforderungen"
   linkedin    = "https://linkedin.com/in/torben-jander"
-  email       = "hallo@nordlicht-design.de"
+  email       = "torbenjander@icloud.com"
   firma       = "Nordlicht Design"
   # Profilfoto: Datei in static/img/ ablegen, Namen hier eintragen
   foto        = "/img/torben-profil.jpg"
