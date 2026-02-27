@@ -6,8 +6,7 @@ layout: "rechtlich"
 
 ## Angaben gemäß § 5 TMG
 
-**Torben Jander**  
-Nordlicht Design  
+**Torben Jander**
 Bremen, Deutschland
 
 **Kontakt**  

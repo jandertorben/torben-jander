@@ -13,7 +13,7 @@ Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
 ### Datenerfassung auf dieser Website
 
 **Wer ist verantwortlich für die Datenerfassung?**  
-Torben Jander, Nordlicht Design, Bremen – torbenjander@icloud.com
+Torben Jander, Bremen – torbenjander@icloud.com
 
 ## 2. Hosting
 
