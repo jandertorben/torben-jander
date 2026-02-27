@@ -707,9 +707,9 @@ h3 {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
-.projekt-karte:hover .projekt-bild { transform: scale(1.04); }
+.projekt-karte:hover .projekt-bild { transform: scale(1.05); }
 .projekt-kategorie {
   position: absolute;
   top: 0.8rem; right: 0.8rem;
