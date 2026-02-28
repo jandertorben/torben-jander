@@ -1111,7 +1111,7 @@ blockquote {
   100% { color: var(--gold);      text-shadow: none;                           transform: scale(1);    }
 }
 
-.hero-status  { animation: einblenden 0.55s ease both; }
+.hero-status  { animation: einblenden 0.55s ease both, gold-text-puls 9s ease-in-out 1.5s infinite; }
 /* Eigene Animation für H1: längere Strecke, Expo-Easing */
 .hero h1      { animation: hero-h1-einblenden 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
 /* PROCESS-Glow: startet 0.15s nachdem H1 fertig ist (0.15 + 0.8 + 0.15 = 1.1s) */
@@ -1180,55 +1180,66 @@ blockquote {
   z-index: 1;
 }
 
-/* Pulsierendes Akzent-Raster als Gold-Overlay */
+/* Gold-Grid: durch CSS-Maske nur in Cursornähe sichtbar */
 #raster-glow::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(232, 160, 32, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 160, 32, 0.022) 1px, transparent 1px);
+    linear-gradient(rgba(232, 160, 32, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.28) 1px, transparent 1px);
   background-size: 60px 60px;
-  animation: raster-puls 6s ease-in-out infinite;
-  will-change: opacity;
+  mask-image: radial-gradient(
+    circle 160px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, transparent 65%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 160px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, transparent 65%
+  );
 }
 
-/* Maus-Spotlight: leuchtet das Raster um den Cursor auf */
+/* Dezenter Ambient-Glow um den Cursor */
 #raster-glow::after {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    circle 300px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    rgba(232, 160, 32, 0.065) 0%,
-    rgba(232, 160, 32, 0.022) 45%,
+    circle 400px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    rgba(232, 160, 32, 0.04) 0%,
     transparent 70%
   );
 }
 
-@keyframes raster-puls {
-  0%, 100% { opacity: 0.15; }
-  50%       { opacity: 0.7; }
+/* Langsamer Puls für Gold-Text-Akzente */
+@keyframes gold-text-puls {
+  0%, 100% { text-shadow: none; }
+  50%       { text-shadow: 0 0 14px rgba(232, 160, 32, 0.38); }
 }
 
-/* Reduced motion: Animation pausieren, leichten Glow beibehalten */
+.abschnitt-label { animation: gold-text-puls 9s ease-in-out infinite; }
+
+/* Reduced motion: Masken entfernen, Pulse deaktivieren */
 @media (prefers-reduced-motion: reduce) {
-  #raster-glow::before { animation: none; opacity: 0.3; }
+  #raster-glow::before {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .abschnitt-label { animation: none; }
 }
 
 /* Hellmodus: angepasste Farben */
 @media (prefers-color-scheme: light) {
   #raster-glow::before {
     background-image:
-      linear-gradient(rgba(160, 96, 0, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(160, 96, 0, 0.035) 1px, transparent 1px);
+      linear-gradient(rgba(160, 96, 0, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(160, 96, 0, 0.25) 1px, transparent 1px);
     background-size: 60px 60px;
   }
   #raster-glow::after {
     background: radial-gradient(
-      circle 300px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-      rgba(160, 96, 0, 0.06) 0%,
-      rgba(160, 96, 0, 0.02) 45%,
+      circle 400px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+      rgba(160, 96, 0, 0.035) 0%,
       transparent 70%
     );
   }
