@@ -271,9 +271,9 @@
         p.alpha = Math.min(p.alpha + 0.05, 1); /* Einblenden */
 
         ctx.save();
-        ctx.lineWidth   = 1.5;
-        ctx.shadowColor = 'rgba(232,160,32,0.9)';
-        ctx.shadowBlur  = 8;
+        ctx.lineWidth   = 1;
+        ctx.shadowColor = 'rgba(232,160,32,0.55)';
+        ctx.shadowBlur  = 5;
 
         let grad;
         if (p.horiz) {
@@ -282,8 +282,8 @@
           const ende = kopf - p.dir * TRAIL;
           grad = ctx.createLinearGradient(ende, 0, kopf, 0);
           grad.addColorStop(0,   'rgba(232,160,32,0)');
-          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.4})`);
-          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha})`);
+          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.22})`);
+          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha * 0.6})`);
           ctx.strokeStyle = grad;
           ctx.beginPath();
           ctx.moveTo(ende, p.y);
@@ -295,8 +295,8 @@
           const ende = kopf - p.dir * TRAIL;
           grad = ctx.createLinearGradient(0, ende, 0, kopf);
           grad.addColorStop(0,   'rgba(232,160,32,0)');
-          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.4})`);
-          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha})`);
+          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.22})`);
+          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha * 0.6})`);
           ctx.strokeStyle = grad;
           ctx.beginPath();
           ctx.moveTo(p.x, ende);

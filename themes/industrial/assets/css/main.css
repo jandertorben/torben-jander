@@ -1186,17 +1186,16 @@ blockquote {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(232, 160, 32, 0.28) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 160, 32, 0.28) 1px, transparent 1px);
+    linear-gradient(rgba(232, 160, 32, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.16) 1px, transparent 1px);
   background-size: 60px 60px;
-  /* Flache Mitte + weicher Abfall = Lichtkegel-Optik */
   mask-image: radial-gradient(
-    circle 190px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    black 0%, black 18%, transparent 72%
+    circle 140px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, transparent 68%
   );
   -webkit-mask-image: radial-gradient(
-    circle 190px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    black 0%, black 18%, transparent 72%
+    circle 140px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, transparent 68%
   );
 }
 
@@ -1207,7 +1206,7 @@ blockquote {
   inset: 0;
   background: radial-gradient(
     circle 400px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    rgba(232, 160, 32, 0.04) 0%,
+    rgba(232, 160, 32, 0.025) 0%,
     transparent 70%
   );
 }
