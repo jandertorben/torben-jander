@@ -5,6 +5,7 @@ title         = "Torben Jander – Portfolio"
 theme         = "industrial"
 enableEmoji   = true
 enableRobotsTXT = true
+disableKinds  = ["taxonomy", "term"]
 
 [params]
   name        = "Torben Jander"
