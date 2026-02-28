@@ -1,25 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Torben Jander – Technical Administrator &amp; Process Architect on Torben Jander – Portfolio</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content in Torben Jander – Technical Administrator &amp; Process Architect on Torben Jander – Portfolio</description>
-    <generator>Hugo</generator>
-    <language>de-DE</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Datenschutzerklärung</title>
-      <link>http://localhost:1313/datenschutz/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datenschutz/</guid>
-      <description>&lt;h2 id=&#34;1-datenschutz-auf-einen-blick&#34;&gt;1. Datenschutz auf einen Blick&lt;/h2&gt;&#xA;&lt;h3 id=&#34;allgemeine-hinweise&#34;&gt;Allgemeine Hinweise&lt;/h3&gt;&#xA;&lt;p&gt;Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Impressum</title>
-      <link>http://localhost:1313/impressum/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/impressum/</guid>
-      <description>&lt;h2 id=&#34;angaben-gemäß--5-tmg&#34;&gt;Angaben gemäß § 5 TMG&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Torben Jander&lt;/strong&gt;&lt;br&gt;&#xA;Nordlicht Design&lt;br&gt;&#xA;Bremen, Deutschland&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Kontakt&lt;/strong&gt;&lt;br&gt;&#xA;E-Mail: &lt;a href=&#34;mailto:hallo@nordlicht-design.de&#34;&gt;hallo@nordlicht-design.de&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;verantwortlich-für-den-inhalt&#34;&gt;Verantwortlich für den Inhalt&lt;/h2&gt;&#xA;&lt;p&gt;Torben Jander (Anschrift wie oben)&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Torben Jander – Technical Administrator &amp; Process Architect on Torben Jander – Portfolio</title><link>https://torben-jander.me/</link><description>Recent content in Torben Jander – Technical Administrator &amp; Process Architect on Torben Jander – Portfolio</description><generator>Hugo</generator><language>de-DE</language><atom:link href="https://torben-jander.me/index.xml" rel="self" type="application/rss+xml"/><item><title>Datenschutzerklärung</title><link>https://torben-jander.me/datenschutz/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://torben-jander.me/datenschutz/</guid><description>&lt;h2 id="1-datenschutz-auf-einen-blick"&gt;1. Datenschutz auf einen Blick&lt;/h2&gt;
+&lt;h3 id="allgemeine-hinweise"&gt;Allgemeine Hinweise&lt;/h3&gt;
+&lt;p&gt;Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.&lt;/p&gt;
+&lt;h3 id="datenerfassung-auf-dieser-website"&gt;Datenerfassung auf dieser Website&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Wer ist verantwortlich für die Datenerfassung?&lt;/strong&gt;&lt;br&gt;
+Torben Jander, Bremen – &lt;a href="mailto:torbenjander@icloud.com"&gt;torbenjander@icloud.com&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="2-hosting"&gt;2. Hosting&lt;/h2&gt;
+&lt;p&gt;Diese Website wird bei &lt;strong&gt;Cloudflare Pages&lt;/strong&gt; (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA) gehostet. Beim Abruf der Website können Server-Logs mit IP-Adressen und Zugriffszeiten erfasst werden. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Cloudflare: &lt;a href="https://www.cloudflare.com/privacypolicy/"&gt;https://www.cloudflare.com/privacypolicy/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Impressum</title><link>https://torben-jander.me/impressum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://torben-jander.me/impressum/</guid><description>&lt;h2 id="angaben-gemäß--5-tmg"&gt;Angaben gemäß § 5 TMG&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Torben Jander&lt;/strong&gt;&lt;br&gt;
+Arster Landstraße 22&lt;br&gt;
+28279 Bremen, Deutschland&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kontakt&lt;/strong&gt;
+E-Mail: &lt;a href="mailto:torbenjander@icloud.com"&gt;torbenjander@icloud.com&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="verantwortlich-für-den-inhalt"&gt;Verantwortlich für den Inhalt&lt;/h2&gt;
+&lt;p&gt;Torben Jander (Anschrift wie oben)&lt;/p&gt;
+&lt;h2 id="haftungsausschluss"&gt;Haftungsausschluss&lt;/h2&gt;
+&lt;h3 id="haftung-für-inhalte"&gt;Haftung für Inhalte&lt;/h3&gt;
+&lt;p&gt;Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.&lt;/p&gt;
+&lt;h3 id="haftung-für-links"&gt;Haftung für Links&lt;/h3&gt;
+&lt;p&gt;Diese Website enthält Links zu externen Websites. Auf den Inhalt dieser externen Seiten haben wir keinen Einfluss und übernehmen dafür keine Gewähr.&lt;/p&gt;</description></item></channel></rss>

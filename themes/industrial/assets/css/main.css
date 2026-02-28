@@ -1189,13 +1189,14 @@ blockquote {
     linear-gradient(rgba(232, 160, 32, 0.28) 1px, transparent 1px),
     linear-gradient(90deg, rgba(232, 160, 32, 0.28) 1px, transparent 1px);
   background-size: 60px 60px;
+  /* Flache Mitte + weicher Abfall = Lichtkegel-Optik */
   mask-image: radial-gradient(
-    circle 160px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    black 0%, transparent 65%
+    circle 190px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, black 18%, transparent 72%
   );
   -webkit-mask-image: radial-gradient(
-    circle 160px at var(--maus-x, -9999px) var(--maus-y, -9999px),
-    black 0%, transparent 65%
+    circle 190px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    black 0%, black 18%, transparent 72%
   );
 }
 
@@ -1219,13 +1220,28 @@ blockquote {
 
 .abschnitt-label { animation: gold-text-puls 9s ease-in-out infinite; }
 
-/* Reduced motion: Masken entfernen, Pulse deaktivieren */
+/* Reduced motion: Masken + Canvas deaktivieren, Pulse stoppen */
 @media (prefers-reduced-motion: reduce) {
   #raster-glow::before {
     mask-image: none;
     -webkit-mask-image: none;
   }
+  #daten-puls { display: none; }
   .abschnitt-label { animation: none; }
+}
+
+/* Mobile Touch: kleinerer Glow-Radius (Finger breiter als Cursor) */
+@media (hover: none) {
+  #raster-glow::before {
+    mask-image: radial-gradient(
+      circle 110px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+      black 0%, transparent 65%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle 110px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+      black 0%, transparent 65%
+    );
+  }
 }
 
 /* Hellmodus: angepasste Farben */

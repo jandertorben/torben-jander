@@ -144,21 +144,177 @@
     });
   }
 
-  /* ── Grid-Glow: Maus-Tracking ───────────────────────── */
-  /* CSS-Variablen --maus-x / --maus-y steuern den Spotlight-  */
-  /* Radial-Gradient in #raster-glow::after (pointer-events:none) */
+  /* ── Grid-Glow: Maus + Touch Tracking ───────────────── */
+  /* CSS-Variablen --maus-x / --maus-y steuern den Spotlight-Effekt */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const root = document.documentElement;
     let rafId  = null;
 
-    document.addEventListener('mousemove', e => {
+    function positionSetzen(x, y) {
       if (rafId) return;
       rafId = requestAnimationFrame(() => {
-        root.style.setProperty('--maus-x', e.clientX + 'px');
-        root.style.setProperty('--maus-y', e.clientY + 'px');
+        root.style.setProperty('--maus-x', x + 'px');
+        root.style.setProperty('--maus-y', y + 'px');
         rafId = null;
       });
+    }
+
+    document.addEventListener('mousemove', e =>
+      positionSetzen(e.clientX, e.clientY), { passive: true }
+    );
+
+    /* Touch-Support: Glow folgt dem Finger auf Mobilgeräten */
+    document.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      positionSetzen(t.clientX, t.clientY);
     }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      const t = e.touches[0];
+      positionSetzen(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      root.style.setProperty('--maus-x', '-9999px');
+      root.style.setProperty('--maus-y', '-9999px');
+    }, { passive: true });
+  }
+
+  /* ── Daten-Puls: seltene Lichtimpulse entlang Gitterlinien ── */
+  /* Simuliert Datenfluss; auf Mobil seltener für Performance     */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const GRID  = 60;         /* muss CSS background-size entsprechen */
+    const SPEED = 2.8;        /* px pro Frame bei ~60 fps             */
+    const TRAIL = GRID * 2.8; /* Schleppfahnen-Länge in px            */
+
+    const isMobile = window.matchMedia('(hover: none)').matches;
+
+    /* Canvas erzeugen und im DOM einsetzen */
+    const canvas = document.createElement('canvas');
+    canvas.id = 'daten-puls';
+    canvas.setAttribute('aria-hidden', 'true');
+    Object.assign(canvas.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      pointerEvents: 'none', zIndex: '2',
+    });
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function groesseAnpassen() {
+      w = canvas.width  = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    groesseAnpassen();
+    window.addEventListener('resize', groesseAnpassen, { passive: true });
+
+    /* Zufällige Wartezeit zwischen zwei Pulsen */
+    function naechsteWartezeit() {
+      return isMobile
+        ? 10000 + Math.random() * 15000  /* ~10–25 s auf Mobil  */
+        :  4000 + Math.random() * 7000;  /* ~4–11 s auf Desktop */
+    }
+
+    const pulsListe = [];
+    let letzterPuls = performance.now();
+    let wartezeit   = naechsteWartezeit();
+
+    /* Neuen Puls entlang einer zufälligen Gitterlinie starten */
+    function neuerPuls() {
+      const horiz = Math.random() < 0.5;
+      if (horiz) {
+        const yOff   = (GRID - (window.scrollY % GRID)) % GRID;
+        const anzahl = Math.floor((h - yOff) / GRID) + 1;
+        const y      = yOff + Math.floor(Math.random() * anzahl) * GRID;
+        const rechts = Math.random() < 0.5;
+        pulsListe.push({
+          horiz: true, y,
+          x: rechts ? -TRAIL : w + TRAIL,
+          dir: rechts ? 1 : -1, alpha: 0,
+        });
+      } else {
+        const xAnzahl = Math.floor(w / GRID) + 1;
+        const x       = Math.floor(Math.random() * xAnzahl) * GRID;
+        const runter  = Math.random() < 0.5;
+        pulsListe.push({
+          horiz: false, x,
+          y: runter ? -TRAIL : h + TRAIL,
+          dir: runter ? 1 : -1, alpha: 0,
+        });
+      }
+    }
+
+    /* Zeichnen pausieren wenn Tab verborgen */
+    let sichtbar = !document.hidden;
+    document.addEventListener('visibilitychange', () => {
+      sichtbar = !document.hidden;
+    });
+
+    function zeichnen(now) {
+      requestAnimationFrame(zeichnen);
+      if (!sichtbar) return;
+
+      /* Neuen Puls planen */
+      if (now - letzterPuls > wartezeit) {
+        neuerPuls();
+        letzterPuls = now;
+        wartezeit   = naechsteWartezeit();
+      }
+
+      if (!pulsListe.length) return; /* nichts zu zeichnen */
+      ctx.clearRect(0, 0, w, h);
+
+      for (let i = pulsListe.length - 1; i >= 0; i--) {
+        const p = pulsListe[i];
+        p.alpha = Math.min(p.alpha + 0.05, 1); /* Einblenden */
+
+        ctx.save();
+        ctx.lineWidth   = 1.5;
+        ctx.shadowColor = 'rgba(232,160,32,0.9)';
+        ctx.shadowBlur  = 8;
+
+        let grad;
+        if (p.horiz) {
+          p.x += p.dir * SPEED;
+          const kopf = p.x;
+          const ende = kopf - p.dir * TRAIL;
+          grad = ctx.createLinearGradient(ende, 0, kopf, 0);
+          grad.addColorStop(0,   'rgba(232,160,32,0)');
+          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.4})`);
+          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha})`);
+          ctx.strokeStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(ende, p.y);
+          ctx.lineTo(kopf, p.y);
+          ctx.stroke();
+        } else {
+          p.y += p.dir * SPEED;
+          const kopf = p.y;
+          const ende = kopf - p.dir * TRAIL;
+          grad = ctx.createLinearGradient(0, ende, 0, kopf);
+          grad.addColorStop(0,   'rgba(232,160,32,0)');
+          grad.addColorStop(0.6, `rgba(232,160,32,${p.alpha * 0.4})`);
+          grad.addColorStop(1,   `rgba(255,210,60,${p.alpha})`);
+          ctx.strokeStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(p.x, ende);
+          ctx.lineTo(p.x, kopf);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+
+        /* Puls entfernen sobald vollständig außerhalb des Viewports */
+        const draussen = p.horiz
+          ? (p.dir > 0 ? p.x - TRAIL > w : p.x + TRAIL < 0)
+          : (p.dir > 0 ? p.y - TRAIL > h : p.y + TRAIL < 0);
+        if (draussen) pulsListe.splice(i, 1);
+      }
+    }
+
+    requestAnimationFrame(zeichnen);
   }
 
 })();
