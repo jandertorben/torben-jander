@@ -9,8 +9,9 @@
   <meta name="robots" content="index, follow">
 
   {{/* Open Graph */}}
+  <meta property="og:site_name" content="{{ .Site.Params.name }}">
   <meta property="og:title" content="{{ .Title }}">
-  <meta property="og:description" content="{{ .Site.Params.seo.beschreibung }}">
+  <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.seo.beschreibung }}{{ end }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:locale" content="de_DE">
@@ -23,6 +24,7 @@
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.seo.beschreibung }}{{ end }}">
   <meta name="twitter:image" content="{{ "/og-image.png" | absURL }}">
+  <meta name="twitter:image:alt" content="{{ .Site.Params.name }} – {{ .Site.Params.beruf }}">
 
   <meta name="theme-color" content="#0a0b0d">
   <link rel="canonical" href="{{ .Permalink }}">
@@ -43,6 +45,27 @@
   {{/* Haupt-CSS */}}
   {{ $css := resources.Get "css/main.css" | minify }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+  {{/* JSON-LD – Schema.org Person */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ .Site.Params.name }}",
+    "url": "{{ .Site.BaseURL }}",
+    "jobTitle": "{{ .Site.Params.beruf }}",
+    "description": "{{ .Site.Params.seo.beschreibung }}",
+    "image": "{{ .Site.Params.foto | absURL }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bremen",
+      "addressCountry": "DE"
+    },
+    "sameAs": [
+      "{{ .Site.Params.linkedin }}"
+    ]
+  }
+  </script>
 </head>
 <body>
 
