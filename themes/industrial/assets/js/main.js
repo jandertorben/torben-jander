@@ -144,4 +144,21 @@
     });
   }
 
+  /* ── Grid-Glow: Maus-Tracking ───────────────────────── */
+  /* CSS-Variablen --maus-x / --maus-y steuern den Spotlight-  */
+  /* Radial-Gradient in #raster-glow::after (pointer-events:none) */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const root = document.documentElement;
+    let rafId  = null;
+
+    document.addEventListener('mousemove', e => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        root.style.setProperty('--maus-x', e.clientX + 'px');
+        root.style.setProperty('--maus-y', e.clientY + 'px');
+        rafId = null;
+      });
+    }, { passive: true });
+  }
+
 })();

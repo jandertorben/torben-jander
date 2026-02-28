@@ -1169,6 +1169,72 @@ blockquote {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   INTERAKTIVER GRID-GLOW
+   – pointer-events: none → kein Einfluss auf Interaktion
+   – CSS-Variablen --maus-x / --maus-y → werden per JS gesetzt
+═══════════════════════════════════════════════════════════ */
+#raster-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Pulsierendes Akzent-Raster als Gold-Overlay */
+#raster-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232, 160, 32, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.022) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: raster-puls 6s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* Maus-Spotlight: leuchtet das Raster um den Cursor auf */
+#raster-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 300px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+    rgba(232, 160, 32, 0.065) 0%,
+    rgba(232, 160, 32, 0.022) 45%,
+    transparent 70%
+  );
+}
+
+@keyframes raster-puls {
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.7; }
+}
+
+/* Reduced motion: Animation pausieren, leichten Glow beibehalten */
+@media (prefers-reduced-motion: reduce) {
+  #raster-glow::before { animation: none; opacity: 0.3; }
+}
+
+/* Hellmodus: angepasste Farben */
+@media (prefers-color-scheme: light) {
+  #raster-glow::before {
+    background-image:
+      linear-gradient(rgba(160, 96, 0, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(160, 96, 0, 0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  #raster-glow::after {
+    background: radial-gradient(
+      circle 300px at var(--maus-x, -9999px) var(--maus-y, -9999px),
+      rgba(160, 96, 0, 0.06) 0%,
+      rgba(160, 96, 0, 0.02) 45%,
+      transparent 70%
+    );
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    RESPONSIVE – TABLET 2-spaltig (600 – 900 px)
 ═══════════════════════════════════════════════════════════ */
 @media (min-width: 600px) and (max-width: 900px) {
