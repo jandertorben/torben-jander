@@ -7,7 +7,8 @@ layout: "rechtlich"
 ## Angaben gemäß § 5 TMG
 
 **Torben Jander**<br>
-Bremen, Deutschland
+Arster Landstraße 22<br>
+28279 Bremen, Deutschland
 
 **Kontakt**
 E-Mail: torbenjander@icloud.com
@@ -29,3 +30,7 @@ Diese Website enthält Links zu externen Websites. Auf den Inhalt dieser externe
 ## Urheberrecht
 
 Die durch den Seitenbetreiber erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors.
+
+## Streitschlichtung
+
+Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
