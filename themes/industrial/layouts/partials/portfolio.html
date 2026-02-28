@@ -11,7 +11,7 @@
   <div class="projekt-raster" role="list">
     {{ range .Params.projekte }}
     <article class="projekt-karte" role="listitem">
-      <div class="projekt-vorschau" style="background: {{ .hintergrund }}">
+      <div class="projekt-vorschau" style="background: {{ .hintergrund | safeCSS }}">
         {{ if .bild }}
           <img src="{{ .bild }}"
                alt="{{ .titel }}"
