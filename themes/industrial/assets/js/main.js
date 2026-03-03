@@ -115,6 +115,18 @@
     });
   }
 
+  /* ── Back-to-Top Button ─────────────────────────────── */
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('sichtbar', window.scrollY > 300);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ── E-Mail Spam-Schutz ─────────────────────────────── */
   /* mailto: wird erst beim Klick aus data-u + data-d zusammengesetzt */
   document.querySelectorAll('a.mail-link').forEach(link => {
