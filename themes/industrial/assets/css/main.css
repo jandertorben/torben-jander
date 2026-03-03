@@ -1089,8 +1089,8 @@ blockquote {
 .weg-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: center;
+  gap: clamp(4rem, 7vw, 8rem);
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1725,13 +1725,6 @@ blockquote {
   /* Stack einspaltig */
   .tech-karten { grid-template-columns: 1fr; }
 
-  /* Weg: einspaltig, Cards statt Prosa + Timeline versteckt */
-  .weg-inner         { grid-template-columns: 1fr; padding-bottom: 3rem; }
-  .weg-grafik        { display: none; }
-  .weg-nur-desktop   { display: none; }
-  .weg-nur-mobil     { display: flex; }
-  #mein-weg          { padding-bottom: clamp(3rem, 8vw, 5rem); }
-
   /* Brücke einspaltig */
   .bruecke-raster { grid-template-columns: 1fr; }
   .bruecke-karte  { height: auto; }
@@ -1767,6 +1760,18 @@ blockquote {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE – MEIN WEG Breakpoint (≤ 1024 px)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  /* Cards statt Fließtext + Timeline */
+  .weg-inner       { grid-template-columns: 1fr; padding-bottom: 3rem; }
+  .weg-grafik      { display: none; }
+  .weg-nur-desktop { display: none; }
+  .weg-nur-mobil   { display: flex; }
+  #mein-weg        { padding-bottom: clamp(3rem, 8vw, 5rem); }
 }
 
 /* ═══════════════════════════════════════════════════════════
