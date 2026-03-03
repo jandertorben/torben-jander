@@ -1187,6 +1187,44 @@ blockquote {
   letter-spacing: 0.04em;
 }
 
+/* ── Aktive Linie zum Next-Step ── */
+.weg-linie--aktiv {
+  background: linear-gradient(to bottom, var(--blau), var(--lila));
+  opacity: 0.5;
+}
+
+/* ── Next-Step Stufe (hervorgehoben) ── */
+@keyframes next-puls {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(124, 77, 255, 0); }
+}
+.weg-punkt--next {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--lila);
+  background: var(--lila);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  animation: next-puls 2.5s ease-in-out infinite;
+}
+.weg-stufe--next {
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(124, 77, 255, 0.3);
+  border-left: 3px solid var(--lila);
+  background: rgba(124, 77, 255, 0.05);
+  border-radius: 2px;
+  margin-left: -1rem;
+}
+.weg-stufe-label--next {
+  color: var(--lila) !important;
+  font-weight: 600;
+}
+.weg-stufe-titel--next {
+  color: #fff !important;
+  font-size: clamp(1rem, 2.2vw, 1.2rem) !important;
+}
+
 /* ═══════════════════════════════════════════════════════════
    BACK TO TOP
 ═══════════════════════════════════════════════════════════ */
