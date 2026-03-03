@@ -1084,6 +1084,110 @@ blockquote {
 .tech-trenner { display: none; }
 
 /* ═══════════════════════════════════════════════════════════
+   MEI WEG
+═══════════════════════════════════════════════════════════ */
+.weg-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.weg-text h2 {
+  margin-bottom: 2rem;
+}
+.weg-inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.weg-inhalt p {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: var(--text-weich);
+  line-height: 1.8;
+}
+.weg-akzent--gold {
+  color: var(--gold);
+  font-weight: 500;
+}
+.weg-akzent--blau {
+  color: var(--blau);
+  font-weight: 500;
+}
+.weg-vision {
+  font-family: var(--schrift-serif);
+  font-style: italic;
+  font-size: clamp(0.98rem, 2vw, 1.08rem) !important;
+  color: var(--text) !important;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Timeline-Grafik ── */
+.weg-grafik {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weg-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 340px;
+}
+.weg-stufe {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+.weg-punkt {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+}
+.weg-punkt--gedaempft { border-color: var(--gedaempft); background: transparent; }
+.weg-punkt--gold      { border-color: var(--gold);      background: var(--gold); }
+.weg-punkt--blau      { border-color: var(--blau);      background: var(--blau); }
+.weg-linie {
+  width: 2px;
+  height: clamp(2.5rem, 4vw, 3.5rem);
+  background: linear-gradient(to bottom, var(--rahmen), var(--rahmen));
+  margin-left: 6px;
+}
+.weg-stufe-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.5rem;
+}
+.weg-stufe-label {
+  font-family: var(--schrift-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gedaempft);
+}
+.weg-stufe-titel {
+  font-family: var(--schrift-titel);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.weg-stufe-sub {
+  font-family: var(--schrift-mono);
+  font-size: 0.68rem;
+  color: var(--gedaempft);
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════ */
 .seiten-fuss {
@@ -1444,6 +1548,10 @@ blockquote {
 
   /* Stack einspaltig */
   .tech-karten { grid-template-columns: 1fr; }
+
+  /* Weg einspaltig */
+  .weg-inner { grid-template-columns: 1fr; }
+  .weg-grafik { order: -1; }
 
   /* Brücke einspaltig */
   .bruecke-raster { grid-template-columns: 1fr; }
