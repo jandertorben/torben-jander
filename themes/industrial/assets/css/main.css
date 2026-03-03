@@ -1345,8 +1345,17 @@ blockquote {
   #back-to-top {
     width: 38px;
     height: 38px;
-    bottom: 1.2rem;
-    right: 1.2rem;
+    bottom: 20px;
+    right: 20px;
+    transform: scale(0.8) translateY(12px);
+  }
+  #back-to-top.sichtbar {
+    opacity: 0.7;
+    transform: scale(0.8) translateY(0);
+  }
+  #back-to-top:hover {
+    opacity: 0.9;
+    transform: scale(0.8) translateY(-2px);
   }
   #back-to-top svg {
     width: 16px;
@@ -1764,7 +1773,10 @@ blockquote {
    RESPONSIVE – KLEINES MOBIL (≤ 480 px)
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-  :root { --rand-x: 1.2rem; }
+  :root {
+    --rand-x:    1.2rem;
+    --abschnitt: 3.5rem;   /* mehr Luft zwischen Sektionen */
+  }
 
   .foto-rahmen    { width: min(185px, 55vw); }
   .bruecke-karte  { padding: 1.7rem 1.3rem; }
