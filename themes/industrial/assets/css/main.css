@@ -261,7 +261,8 @@ h1 {
 }
 h1 span {
   color: var(--gold);
-  display: inline-block; /* nötig für transform im prozess-glow */
+  display: inline-block;
+  text-shadow: 0 0 18px rgba(232, 160, 32, 0.7), 0 0 40px rgba(232, 160, 32, 0.35);
 }
 
 h2 {
