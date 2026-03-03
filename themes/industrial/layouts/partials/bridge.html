@@ -20,6 +20,9 @@
         <li>{{ . }}</li>
         {{ end }}
       </ul>
+      {{ if .botschaft }}
+      <p class="bruecke-botschaft">{{ .botschaft }}</p>
+      {{ end }}
     </article>
     {{ end }}
   </div>

@@ -727,6 +727,17 @@ h3 {
   color: var(--gold);
 }
 
+.bruecke-botschaft {
+  margin-top: 1.2rem;
+  padding: 0.75rem 1rem;
+  border-left: 2px solid var(--lila);
+  font-family: var(--schrift-serif);
+  font-style: italic;
+  font-size: clamp(0.8rem, 1.6vw, 0.88rem);
+  color: var(--text-weich);
+  line-height: 1.6;
+}
+
 /* ═══════════════════════════════════════════════════════════
    PORTFOLIO
 ═══════════════════════════════════════════════════════════ */
