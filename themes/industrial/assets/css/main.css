@@ -821,6 +821,15 @@ h3 {
   flex: 1;
   margin-bottom: 1rem;
 }
+.projekt-subline {
+  font-family: var(--schrift-mono);
+  font-size: clamp(0.68rem, 1.4vw, 0.74rem);
+  color: var(--gedaempft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem !important;
+  flex: 0 !important;
+}
 .projekt-kennzahl {
   padding: 0.7rem 0.9rem;
   background: var(--flaeche);
@@ -833,6 +842,23 @@ h3 {
 .projekt-kennzahl--gold  { border-color: var(--gold);       color: var(--gold); }
 .projekt-kennzahl--blau  { border-color: var(--blau);       color: var(--blau); }
 .projekt-kennzahl--gruen { border-color: var(--gruen-text); color: var(--gruen-text); }
+.kennzahl-highlight {
+  color: #007AFF;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+.projekt-intern {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--rahmen);
+  border-radius: 2px;
+  font-family: var(--schrift-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gedaempft);
+}
 
 /* ═══════════════════════════════════════════════════════════
    REFERENZ

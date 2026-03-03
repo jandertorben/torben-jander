@@ -27,10 +27,12 @@
       </div>
       <div class="projekt-inhalt">
         <h3>{{ .titel }}</h3>
+        {{ if .subline }}<p class="projekt-subline">{{ .subline }}</p>{{ end }}
         <p>{{ .beschreibung }}</p>
         <div class="projekt-kennzahl projekt-kennzahl--{{ .farbe }}">
-          {{ .kennzahl }}
+          {{ .kennzahl | safeHTML }}
         </div>
+        {{ if .intern }}<span class="projekt-intern">Internes Forschungsprojekt</span>{{ end }}
       </div>
     </article>
     {{ end }}
