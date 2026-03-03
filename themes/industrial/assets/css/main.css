@@ -1088,7 +1088,7 @@ blockquote {
 ═══════════════════════════════════════════════════════════ */
 .weg-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: clamp(4rem, 7vw, 8rem);
   align-items: start;
   max-width: 1200px;
@@ -1189,7 +1189,7 @@ blockquote {
 
 /* ── Desktop/Mobile Toggle ── */
 .weg-nur-desktop { display: flex; flex-direction: column; gap: 1.2rem; }
-.weg-nur-mobil   { display: none; }
+.weg-nur-mobil   { display: none !important; }  /* !important schlägt .weg-cards { display: flex } */
 
 /* ── Mobile Cards ── */
 .weg-cards {
@@ -1763,17 +1763,7 @@ blockquote {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE – MEIN WEG Desktop (≥ 1025 px)
-═══════════════════════════════════════════════════════════ */
-@media (min-width: 1025px) {
-  /* Fließtext + Timeline – Cards strikt ausblenden */
-  .weg-nur-mobil   { display: none !important; }
-  .weg-nur-desktop { display: flex; flex-direction: column; gap: 1.2rem; }
-  .weg-grafik      { display: flex; }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE – MEIN WEG Mobile (≤ 1024 px)
+   RESPONSIVE – MEIN WEG (≤ 1024 px)
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   /* Cards statt Fließtext + Timeline */
