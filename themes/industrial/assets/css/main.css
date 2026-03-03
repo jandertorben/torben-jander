@@ -1763,14 +1763,24 @@ blockquote {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE – MEIN WEG Breakpoint (≤ 1024 px)
+   RESPONSIVE – MEIN WEG Desktop (≥ 1025 px)
+═══════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) {
+  /* Fließtext + Timeline – Cards strikt ausblenden */
+  .weg-nur-mobil   { display: none !important; }
+  .weg-nur-desktop { display: flex; flex-direction: column; gap: 1.2rem; }
+  .weg-grafik      { display: flex; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE – MEIN WEG Mobile (≤ 1024 px)
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   /* Cards statt Fließtext + Timeline */
   .weg-inner       { grid-template-columns: 1fr; padding-bottom: 3rem; }
-  .weg-grafik      { display: none; }
-  .weg-nur-desktop { display: none; }
-  .weg-nur-mobil   { display: flex; }
+  .weg-grafik      { display: none !important; }
+  .weg-nur-desktop { display: none !important; }
+  .weg-nur-mobil   { display: flex !important; }
   #mein-weg        { padding-bottom: clamp(3rem, 8vw, 5rem); }
 }
 
