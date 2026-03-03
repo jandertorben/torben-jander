@@ -10,7 +10,7 @@ disableKinds  = ["taxonomy", "term"]
 [params]
   name        = "Torben Jander"
   beruf       = "Digital Process Architect | KI-gestützte Prozessoptimierung"
-  tagline     = "Vom Maschinendeck in die Cloud. Ich verbinde 7 Jahre Industrie-Expertise mit moderner KI-gestützter Lösungsentwicklung."
+  tagline     = "Ich übersetze industrielle Komplexität in digitale Effizienz – mit 7 Jahren Praxis-Expertise und KI-gestützter Prozessoptimierung."
   ort         = "Bremen, Deutschland"
   status      = "Verfügbar · Offen für neue Herausforderungen"
   linkedin    = "https://www.linkedin.com/in/torben-jander-6a7199128/"
