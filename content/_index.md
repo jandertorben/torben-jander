@@ -74,11 +74,14 @@ referenz:
 stack:
   - gruppe: "Core Automation & Logic"
     fokus: "Stabile Backend-Prozesse"
+    farbe: "gold"
     tools: ["Python", "Linux", "Docker", "Excel VBA"]
   - gruppe: "AI Integration & Strategy"
     fokus: "Intelligente Workflows & Skalierung"
+    farbe: "blau"
     tools: ["Claude API", "OpenAI API", "GitHub"]
   - gruppe: "Solution Design & Interface"
     fokus: "Nutzerzentrierte Oberflächen"
+    farbe: "lila"
     tools: ["JavaScript", "HTML / CSS", "Hugo", "Electron", "Adobe Suite"]
 ---

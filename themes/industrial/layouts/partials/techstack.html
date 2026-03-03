@@ -5,7 +5,7 @@
 
     <div class="tech-karten">
       {{ range .Params.stack }}
-      <div class="tech-karte">
+      <div class="tech-karte tech-karte--{{ .farbe }}">
         <div class="tech-karte-kopf">
           <p class="tech-label">{{ .gruppe }}</p>
           {{ if .fokus }}<p class="tech-fokus">{{ .fokus }}</p>{{ end }}

@@ -999,7 +999,7 @@ blockquote {
   line-height: 1.7;
   max-width: 680px;
   padding-left: 1rem;
-  border-left: 2px solid #007AFF;
+  border-left: 2px solid var(--gold);
 }
 .tech-karten {
   display: grid;
@@ -1009,12 +1009,41 @@ blockquote {
 .tech-karte {
   background: var(--hintergrund);
   border: 1px solid var(--rahmen);
-  border-top: 2px solid #007AFF;
+  border-top: 2px solid var(--rahmen);
   padding: clamp(1.2rem, 2.5vw, 1.8rem);
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+  transition: box-shadow 0.3s ease;
 }
+
+/* Farbvarianten – spiegeln die Brücken-Säulen */
+.tech-karte--gold {
+  border-top-color: var(--gold);
+  box-shadow: 0 4px 24px rgba(232, 160, 32, 0.08);
+}
+.tech-karte--gold:hover {
+  box-shadow: 0 6px 32px rgba(232, 160, 32, 0.18);
+}
+.tech-karte--blau {
+  border-top-color: var(--blau);
+  box-shadow: 0 4px 24px rgba(91, 140, 255, 0.08);
+}
+.tech-karte--blau:hover {
+  box-shadow: 0 6px 32px rgba(91, 140, 255, 0.18);
+}
+.tech-karte--lila {
+  border-top-color: var(--lila);
+  box-shadow: 0 4px 24px rgba(124, 77, 255, 0.08);
+}
+.tech-karte--lila:hover {
+  box-shadow: 0 6px 32px rgba(124, 77, 255, 0.18);
+}
+
+.tech-karte--gold .tech-label { color: var(--gold); }
+.tech-karte--blau .tech-label { color: var(--blau); }
+.tech-karte--lila .tech-label { color: var(--lila); }
+
 .tech-karte-kopf {
   display: flex;
   flex-direction: column;
@@ -1025,7 +1054,6 @@ blockquote {
   font-size: clamp(0.7rem, 1.4vw, 0.78rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #007AFF;
   font-weight: 600;
 }
 .tech-fokus {
@@ -1050,10 +1078,9 @@ blockquote {
   letter-spacing: 0.03em;
   transition: border-color 0.2s, color 0.2s;
 }
-.tech-tag:hover {
-  border-color: #007AFF;
-  color: #007AFF;
-}
+.tech-karte--gold .tech-tag:hover { border-color: var(--gold); color: var(--gold); }
+.tech-karte--blau .tech-tag:hover { border-color: var(--blau); color: var(--blau); }
+.tech-karte--lila .tech-tag:hover { border-color: var(--lila); color: var(--lila); }
 .tech-trenner { display: none; }
 
 /* ═══════════════════════════════════════════════════════════
