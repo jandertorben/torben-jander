@@ -270,9 +270,21 @@ h1 span {
   letter-spacing: 0.06em;
   margin-bottom: 1.4rem;
 }
+@keyframes glow-einblenden {
+  0% {
+    text-shadow:
+      0 0 4px rgba(232, 160, 32, 1),
+      0 0 14px rgba(232, 160, 32, 0.65),
+      0 0 32px rgba(232, 160, 32, 0.3);
+  }
+  100% {
+    text-shadow: none;
+  }
+}
 .hero-subline span {
   font-weight: 700;
-  color: #fff;
+  color: var(--gold);
+  animation: glow-einblenden 2.5s ease-out forwards;
 }
 .hero-tagline {
   max-width: 600px;
