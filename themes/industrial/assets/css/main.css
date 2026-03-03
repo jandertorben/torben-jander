@@ -1187,6 +1187,84 @@ blockquote {
   letter-spacing: 0.04em;
 }
 
+/* ── Desktop/Mobile Toggle ── */
+.weg-nur-desktop { display: flex; flex-direction: column; gap: 1.2rem; }
+.weg-nur-mobil   { display: none; }
+
+/* ── Mobile Cards ── */
+.weg-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.weg-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--rahmen);
+  background: var(--flaeche);
+}
+.weg-card--gold { border-left-color: var(--gold); }
+.weg-card--blau { border-left-color: var(--blau); }
+.weg-card--next {
+  border-left-color: var(--lila);
+  background: rgba(124, 77, 255, 0.05);
+  border: 1px solid rgba(124, 77, 255, 0.25);
+  border-left: 3px solid var(--lila);
+}
+.weg-card-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+.weg-card-inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.weg-card-label {
+  font-family: var(--schrift-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gedaempft);
+}
+.weg-card-label--next { color: var(--lila); font-weight: 600; }
+.weg-card-titel {
+  font-family: var(--schrift-titel);
+  font-size: clamp(0.9rem, 4vw, 1.05rem);
+  color: #fff;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.weg-card-titel--next { color: #fff; }
+.weg-card-punkte {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 0;
+  list-style: none;
+}
+.weg-card-punkte li {
+  font-family: var(--schrift-mono);
+  font-size: 0.68rem;
+  color: var(--gedaempft);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+.weg-card-punkte li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.weg-card--blau .weg-card-punkte li::before { color: var(--blau); }
+.weg-card--next .weg-card-punkte li::before { color: var(--lila); }
+
 /* ── Aktive Linie zum Next-Step ── */
 .weg-linie--aktiv {
   background: linear-gradient(to bottom, var(--blau), var(--lila));
@@ -1638,9 +1716,12 @@ blockquote {
   /* Stack einspaltig */
   .tech-karten { grid-template-columns: 1fr; }
 
-  /* Weg einspaltig */
-  .weg-inner { grid-template-columns: 1fr; }
-  .weg-grafik { order: -1; }
+  /* Weg: einspaltig, Cards statt Prosa + Timeline versteckt */
+  .weg-inner         { grid-template-columns: 1fr; padding-bottom: 3rem; }
+  .weg-grafik        { display: none; }
+  .weg-nur-desktop   { display: none; }
+  .weg-nur-mobil     { display: flex; }
+  #mein-weg          { padding-bottom: clamp(3rem, 8vw, 5rem); }
 
   /* Brücke einspaltig */
   .bruecke-raster { grid-template-columns: 1fr; }

@@ -6,7 +6,8 @@
       <p class="abschnitt-label">Über mich</p>
       <h2>Mein Weg:<br>Der Praktiker<br>mit IT-Gehirn</h2>
 
-      <div class="weg-inhalt">
+      {{/* Desktop: Fließtext */}}
+      <div class="weg-inhalt weg-nur-desktop">
         <p>
           Ich habe nicht Informatik studiert – ich habe in der Fertigung angefangen.
           Ausbildung zum <span class="weg-akzent--gold">Industriemechaniker</span>,
@@ -34,9 +35,66 @@
           für Unternehmen, die wissen, dass echte Transformation von innen kommt.
         </p>
       </div>
+
+      {{/* Mobile: kompakte Cards mit Icons */}}
+      <div class="weg-cards weg-nur-mobil">
+
+        <div class="weg-card weg-card--gold">
+          <span class="weg-card-icon" aria-hidden="true">⚙️</span>
+          <div class="weg-card-inhalt">
+            <span class="weg-card-label">Fundament</span>
+            <strong class="weg-card-titel">Industriemechaniker & Fertigung</strong>
+            <ul class="weg-card-punkte">
+              <li>Ausbildung Industriemechaniker</li>
+              <li>Zeitarbeit Produktion & Fertigung</li>
+              <li>Operative Praxis an der Basis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weg-card weg-card--gold">
+          <span class="weg-card-icon" aria-hidden="true">🤝</span>
+          <div class="weg-card-inhalt">
+            <span class="weg-card-label">Verantwortung</span>
+            <strong class="weg-card-titel">Betriebsratsvorsitz & Change</strong>
+            <ul class="weg-card-punkte">
+              <li>15 Jahre Management-Erfahrung</li>
+              <li>IG Metall & Arbeitgeberverband</li>
+              <li>Change-Prozesse auf C-Level</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weg-card weg-card--blau">
+          <span class="weg-card-icon" aria-hidden="true">⚡</span>
+          <div class="weg-card-inhalt">
+            <span class="weg-card-label">Innovation in der Praxis</span>
+            <strong class="weg-card-titel">Digitales Hof-Management @ Liebherr</strong>
+            <ul class="weg-card-punkte">
+              <li>Konzeption & Umsetzung eigenständig</li>
+              <li>Täglich produktiv im Einsatz</li>
+              <li>Messbarer Zeitgewinn nachgewiesen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weg-card weg-card--next">
+          <span class="weg-card-icon" aria-hidden="true">🎯</span>
+          <div class="weg-card-inhalt">
+            <span class="weg-card-label weg-card-label--next">Next Step</span>
+            <strong class="weg-card-titel weg-card-titel--next">Digital Process Architect</strong>
+            <ul class="weg-card-punkte">
+              <li>KI-gestützte Prozessoptimierung</li>
+              <li>15 Jahre Praxis strategisch nutzen</li>
+              <li>Transformation von innen</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    {{/* ─── Timeline-Spalte ─── */}}
+    {{/* ─── Timeline-Spalte (nur Desktop) ─── */}}
     <div class="weg-grafik">
       <div class="weg-timeline">
 
