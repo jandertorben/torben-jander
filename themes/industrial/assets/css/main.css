@@ -438,8 +438,8 @@ h3 {
 ═══════════════════════════════════════════════════════════ */
 .hero {
   min-height: 100svh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: clamp(2rem, 4vw, 4rem);
   padding:
@@ -466,11 +466,12 @@ h3 {
   z-index: 1;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Foto-Rahmen */
 .foto-rahmen {
-  width: min(300px, 78vw);
+  width: min(240px, 32vw);
   aspect-ratio: 4 / 5;
   position: relative;
   overflow: hidden;
@@ -523,6 +524,8 @@ h3 {
 .hero-text {
   position: relative;
   z-index: 1;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1306,7 +1309,7 @@ blockquote {
 
   /* Hero → einspaltig, Bild oben */
   .hero {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     text-align: center;
     padding-top: clamp(5.5rem, 14vh, 8rem);
     gap: 2.5rem;
@@ -1324,7 +1327,7 @@ blockquote {
   .scroll-hinweis {
     position: static;
     transform: none;
-    justify-self: center;   /* grid-zentrierung */
+    align-self: center;     /* flex-zentrierung */
     width: fit-content;     /* nur so breit wie nötig */
     margin-top: 2.5rem;     /* ~40px Abstand zum Button */
   }
