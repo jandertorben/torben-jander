@@ -1,5 +1,5 @@
 ---
-title: "Torben Jander – Technical Administrator & Process Architect"
+title: "Torben Jander – Digital Process Architect | KI-gestützte Prozessoptimierung"
 
 bridge:
   - nummer: "01"

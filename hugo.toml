@@ -9,7 +9,7 @@ disableKinds  = ["taxonomy", "term"]
 
 [params]
   name        = "Torben Jander"
-  beruf       = "Technical Administrator & Process Architect"
+  beruf       = "Digital Process Architect | KI-gestützte Prozessoptimierung"
   tagline     = "Vom Maschinendeck in die Cloud. Ich verbinde 7 Jahre Industrie-Expertise mit moderner KI-gestützter Lösungsentwicklung."
   ort         = "Bremen, Deutschland"
   status      = "Verfügbar · Offen für neue Herausforderungen"
@@ -20,8 +20,8 @@ disableKinds  = ["taxonomy", "term"]
   foto        = "/img/torben-profil.jpg"
 
 [params.seo]
-  beschreibung = "Torben Jander – Technical Administrator mit 7 Jahren Industrie-Expertise, KI-Entwicklung und Prozessautomatisierung. Bremen."
-  keywords     = "Technical Administrator, Process Architect, KI-Entwicklung, Liebherr, Bremen, Instandhaltung, Python, Hugo, Torben Jander"
+  beschreibung = "Torben Jander – Digital Process Architect aus Bremen. KI-gestützte Prozessoptimierung, Automatisierung und 7 Jahre Industrie-Expertise."
+  keywords     = "Digital Process Architect, KI-gestützte Prozessoptimierung, Prozessautomatisierung, KI-Entwicklung, Liebherr, Bremen, Python, Hugo, Torben Jander"
 
 [markup.goldmark.renderer]
   unsafe = true
