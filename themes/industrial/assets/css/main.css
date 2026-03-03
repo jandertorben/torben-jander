@@ -669,12 +669,16 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5px;
   background: var(--rahmen);
+  align-items: stretch;
 }
 .bruecke-karte {
   background: var(--flaeche);
   padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
   transition: background 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .bruecke-karte:hover { background: var(--flaeche-2); }
 .bruecke-karte::before {
@@ -711,6 +715,8 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
 }
 .bruecke-karte li {
   font-family: var(--schrift-mono);
@@ -1345,6 +1351,8 @@ blockquote {
 
   /* Brücke einspaltig */
   .bruecke-raster { grid-template-columns: 1fr; }
+  .bruecke-karte  { height: auto; }
+  .bruecke-karte ul { margin-top: 1.2rem; }
 
   /* Projekte einspaltig */
   .projekt-raster { grid-template-columns: 1fr; }
