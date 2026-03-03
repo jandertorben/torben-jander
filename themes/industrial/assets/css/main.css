@@ -439,15 +439,24 @@ h3 {
 .hero {
   min-height: 100svh;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(2rem, 4vw, 4rem);
+  flex-direction: column;
+  justify-content: center;
   padding:
     clamp(5.5rem, 14vh, 9.5rem)
-    var(--rand-x)
+    0
     clamp(3rem, 6vh, 5rem);
   position: relative;
   overflow: hidden;
+}
+.hero-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 .hero::after {
   content: '';
@@ -1325,10 +1334,10 @@ blockquote {
   .mobil-menue { display: flex; }
 
   /* Hero → einspaltig, Bild oben */
-  .hero {
+  .hero { padding-top: clamp(5.5rem, 14vh, 8rem); }
+  .hero-inner {
     flex-direction: column;
     text-align: center;
-    padding-top: clamp(5.5rem, 14vh, 8rem);
     gap: 2.5rem;
   }
   .hero::after { display: none; }
