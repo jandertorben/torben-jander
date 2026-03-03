@@ -269,7 +269,7 @@ h1 span {
   color: var(--gold);
   letter-spacing: 0.06em;
   margin-bottom: 1.4rem;
-  text-shadow: 0 0 16px rgba(232, 160, 32, 0.65), 0 0 36px rgba(232, 160, 32, 0.3);
+  text-shadow: 0 0 6px rgba(232, 160, 32, 0.8), 0 0 14px rgba(232, 160, 32, 0.4);
 }
 .hero-subline span {
   font-weight: 700;
