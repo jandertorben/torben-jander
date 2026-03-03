@@ -1,17 +1,23 @@
 <div id="stack" class="tech-streifen" aria-label="Technologie-Stack">
   <div class="tech-innen">
-    {{ range $i, $gruppe := .Params.stack }}
-      {{ if gt $i 0 }}
-        <div class="tech-trenner" aria-hidden="true"></div>
-      {{ end }}
-      <div class="tech-gruppe">
-        <p class="tech-label">{{ $gruppe.gruppe }}</p>
+
+    <p class="tech-intro">Technologie ist für mich kein Selbstzweck, sondern das Werkzeug, um operative Schmerzen digital zu heilen.</p>
+
+    <div class="tech-karten">
+      {{ range .Params.stack }}
+      <div class="tech-karte">
+        <div class="tech-karte-kopf">
+          <p class="tech-label">{{ .gruppe }}</p>
+          {{ if .fokus }}<p class="tech-fokus">{{ .fokus }}</p>{{ end }}
+        </div>
         <ul class="tech-liste" role="list">
-          {{ range $gruppe.tools }}
+          {{ range .tools }}
           <li class="tech-tag">{{ . }}</li>
           {{ end }}
         </ul>
       </div>
-    {{ end }}
+      {{ end }}
+    </div>
+
   </div>
 </div>

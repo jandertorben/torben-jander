@@ -72,12 +72,13 @@ referenz:
     - "Zuverlässige Zusammenarbeit"
 
 stack:
-  - gruppe: "Sprachen"
-    tools: ["Python", "JavaScript", "HTML / CSS"]
-  - gruppe: "Frameworks & Tools"
-    tools: ["Hugo", "Electron", "GitHub", "Cloudflare Pages"]
-  - gruppe: "KI & APIs"
-    tools: ["Claude API", "OpenAI API"]
-  - gruppe: "Infrastruktur"
-    tools: ["Linux", "Docker", "Excel VBA", "Adobe Suite"]
+  - gruppe: "Core Automation & Logic"
+    fokus: "Stabile Backend-Prozesse"
+    tools: ["Python", "Linux", "Docker", "Excel VBA"]
+  - gruppe: "AI Integration & Strategy"
+    fokus: "Intelligente Workflows & Skalierung"
+    tools: ["Claude API", "OpenAI API", "GitHub"]
+  - gruppe: "Solution Design & Interface"
+    fokus: "Nutzerzentrierte Oberflächen"
+    tools: ["JavaScript", "HTML / CSS", "Hugo", "Electron", "Adobe Suite"]
 ---

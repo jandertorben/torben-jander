@@ -977,55 +977,82 @@ blockquote {
    TECH-STREIFEN
 ═══════════════════════════════════════════════════════════ */
 .tech-streifen {
-  padding: 2.8rem var(--rand-x);
+  padding: clamp(3rem, 6vw, 5rem) var(--rand-x);
   background: var(--flaeche);
   border-top:    1px solid var(--rahmen);
   border-bottom: 1px solid var(--rahmen);
 }
 .tech-innen {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  flex-wrap: wrap;
-}
-.tech-gruppe {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  min-width: 0;
+  gap: 2.5rem;
+}
+.tech-intro {
+  font-family: var(--schrift-serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  color: var(--text-weich);
+  line-height: 1.7;
+  max-width: 680px;
+  padding-left: 1rem;
+  border-left: 2px solid #007AFF;
+}
+.tech-karten {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.tech-karte {
+  background: var(--hintergrund);
+  border: 1px solid var(--rahmen);
+  border-top: 2px solid #007AFF;
+  padding: clamp(1.2rem, 2.5vw, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.tech-karte-kopf {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 .tech-label {
   font-family: var(--schrift-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.28em;
+  font-size: clamp(0.7rem, 1.4vw, 0.78rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: #007AFF;
+  font-weight: 600;
+}
+.tech-fokus {
+  font-family: var(--schrift-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
   color: var(--gedaempft);
+  text-transform: uppercase;
 }
 .tech-liste {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 .tech-tag {
-  background: var(--hintergrund);
+  background: var(--flaeche);
   border: 1px solid var(--rahmen);
-  padding: 0.3rem 0.7rem;
+  padding: 0.28rem 0.65rem;
   font-family: var(--schrift-mono);
-  font-size: 0.72rem;
-  color: var(--text);
-  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+  color: var(--text-weich);
+  letter-spacing: 0.03em;
   transition: border-color 0.2s, color 0.2s;
 }
 .tech-tag:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: #007AFF;
+  color: #007AFF;
 }
-.tech-trenner {
-  width: 1px; height: 60px;
-  background: var(--rahmen);
-  align-self: center;
-  flex-shrink: 0;
-}
+.tech-trenner { display: none; }
 
 /* ═══════════════════════════════════════════════════════════
    FOOTER
@@ -1384,6 +1411,9 @@ blockquote {
     margin-top: 2.5rem;     /* ~40px Abstand zum Button */
   }
 
+  /* Stack einspaltig */
+  .tech-karten { grid-template-columns: 1fr; }
+
   /* Brücke einspaltig */
   .bruecke-raster { grid-template-columns: 1fr; }
   .bruecke-karte  { height: auto; }
@@ -1407,7 +1437,6 @@ blockquote {
 
   /* Tech-Streifen */
   .tech-trenner { display: none; }
-  .tech-innen   { flex-direction: column; gap: 1.5rem; }
 
   /* Footer */
   .seiten-fuss {
