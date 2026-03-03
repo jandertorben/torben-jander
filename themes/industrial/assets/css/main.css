@@ -257,12 +257,25 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(2.8rem, 9vw, 5rem);
   color: #fff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.4rem;
 }
 h1 span {
   color: var(--gold);
   display: inline-block;
-  text-shadow: 0 0 18px rgba(232, 160, 32, 0.7), 0 0 40px rgba(232, 160, 32, 0.35);
+}
+.hero-subline {
+  font-family: var(--schrift-titel);
+  font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.4rem;
+  text-shadow: 0 0 16px rgba(232, 160, 32, 0.65), 0 0 36px rgba(232, 160, 32, 0.3);
+}
+.hero-subline span {
+  font-weight: 700;
+}
+.hero-tagline {
+  max-width: 600px;
 }
 
 h2 {
