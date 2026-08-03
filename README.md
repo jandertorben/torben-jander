@@ -48,7 +48,7 @@ hugo.toml
 
 ---
 
-## Netlify-Deployment
+## Deployment (Cloudflare Pages / Netlify)
 
 ```bash
 # Produktions-Build
@@ -60,6 +60,10 @@ hugo --minify
 | Build command | `hugo --minify` |
 | Publish directory | `public` |
 | Hugo Version | 0.120+ |
+
+HTTP-Header (Security & Caching) liegen in `static/_headers` – die Syntax
+ist für Cloudflare Pages und Netlify identisch. Die Datei wird beim Build
+automatisch nach `public/_headers` kopiert.
 
 ---
 

@@ -20,7 +20,7 @@ disableKinds  = ["taxonomy", "term"]
   foto        = "/img/torben-profil.jpg"
 
 [params.seo]
-  beschreibung = "Torben Jander – Digital Process Architect aus Bremen. KI-gestützte Prozessoptimierung, Automatisierung und 7 Jahre Industrie-Expertise."
+  beschreibung = "Torben Jander – Digital Process Architect aus Bremen. KI-gestützte Prozessoptimierung, Automatisierung und 20 Jahre Industrie-Expertise."
   keywords     = "Digital Process Architect, KI-gestützte Prozessoptimierung, Prozessautomatisierung, KI-Entwicklung, Liebherr, Bremen, Python, Hugo, Torben Jander"
 
 [markup.goldmark.renderer]

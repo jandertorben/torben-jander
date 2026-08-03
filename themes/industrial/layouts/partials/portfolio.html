@@ -12,8 +12,14 @@
     {{ range .Params.projekte }}
     <article class="projekt-karte" role="listitem">
       <div class="projekt-vorschau" style="background: {{ .hintergrund | safeCSS }}">
-        {{ if .bild }}
-          <img src="{{ .bild }}"
+        {{ $bild := "" }}
+        {{ with .bild }}{{ $bild = resources.Get (printf "img/%s" (path.Base .)) }}{{ end }}
+        {{ if $bild }}
+          {{/* WebP + Downscale auf max. 800px (kein Upscaling) */}}
+          {{ if gt $bild.Width 800 }}{{ $bild = $bild.Resize "800x webp q80" }}{{ else }}{{ $bild = $bild.Process "webp q80" }}{{ end }}
+          <img src="{{ $bild.RelPermalink }}"
+               width="{{ $bild.Width }}"
+               height="{{ $bild.Height }}"
                alt="{{ .titel }}"
                class="projekt-bild"
                loading="lazy"

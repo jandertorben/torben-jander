@@ -19,9 +19,9 @@ Torben Jander, Bremen – torbenjander@icloud.com
 
 Diese Website wird bei **Cloudflare Pages** (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA) gehostet. Beim Abruf der Website können Server-Logs mit IP-Adressen und Zugriffszeiten erfasst werden. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Cloudflare: https://www.cloudflare.com/privacypolicy/
 
-## 3. Externe Schriftarten
+## 3. Schriftarten
 
-Diese Website lädt Schriftarten von **Google Fonts** (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei wird Ihre IP-Adresse an Google übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+Alle Schriftarten werden **lokal von diesem Server** ausgeliefert. Es werden **keine** externen Schrift-Dienste (z. B. Google Fonts) eingebunden. Dabei wird **keine** Verbindung zu Servern Dritter aufgebaut und **keine** IP-Adresse an Dritte übertragen.
 
 ## 4. Keine Analyse-Tools
 

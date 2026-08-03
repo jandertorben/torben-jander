@@ -5,15 +5,31 @@
   {{/* ─── Profilbild ─── */}}
   <div class="hero-bild-spalte">
     <div class="foto-rahmen">
-      <img
-        src="{{ .Site.Params.foto }}"
-        alt="Profilfoto von {{ .Site.Params.name }}"
-        class="profilfoto"
-        width="300"
-        height="375"
-        loading="eager"
-        decoding="async"
-      >
+      {{ $foto := resources.Get (printf "img/%s" (path.Base .Site.Params.foto)) }}
+      {{ if $foto }}
+        {{ $foto = $foto.Resize "600x webp q82" }}
+        <img
+          src="{{ $foto.RelPermalink }}"
+          alt="Profilfoto von {{ .Site.Params.name }}"
+          class="profilfoto"
+          width="{{ $foto.Width }}"
+          height="{{ $foto.Height }}"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        >
+      {{ else }}
+        <img
+          src="{{ .Site.Params.foto }}"
+          alt="Profilfoto von {{ .Site.Params.name }}"
+          class="profilfoto"
+          width="300"
+          height="375"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        >
+      {{ end }}
       <div class="ort-badge">{{ .Site.Params.ort }}</div>
     </div>
   </div>

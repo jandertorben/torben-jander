@@ -1,0 +1,21 @@
+{{ define "title" }}Seite nicht gefunden (404) · {{ .Site.Params.name }}{{ end }}
+{{ define "inhalt" }}
+<div class="rechts-seite">
+  <div class="rechts-inhalt fehler-404">
+    <p class="fehler-code" aria-hidden="true">404</p>
+    <h1>Seite nicht gefunden</h1>
+    <div class="rechts-text">
+      <p>
+        Diese Seite existiert nicht (mehr) oder wurde verschoben.
+        Vielleicht hilft einer dieser Wege weiter:
+      </p>
+      <ul>
+        <li><a href="/">Zur Startseite</a></li>
+        <li><a href="/#projekte">Meine Projekte</a></li>
+        <li><a href="/#stack">Tech-Stack</a></li>
+      </ul>
+    </div>
+    <a href="/" class="zurueck-link">← Zurück zur Startseite</a>
+  </div>
+</div>
+{{ end }}

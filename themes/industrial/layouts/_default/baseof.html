@@ -31,23 +31,20 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <title>{{ .Title }}</title>
+  <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
 
-  {{/* Inter: lokal gehostet – kein Google-Request nötig */}}
+  {{/* Schriften: vollständig lokal gehostet – keine externen Requests (DSGVO-konform) */}}
+  {{/* Nur die above-the-fold-kritischen Schnitte werden vorgeladen */}}
   <link rel="preload" href="/fonts/inter-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/inter-roman-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  {{/* Google Fonts – nur noch Überschriften- und Mono-Schriften */}}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  {{/* Haupt-CSS */}}
-  {{ $css := resources.Get "css/main.css" | minify }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{/* Haupt-CSS – minifiziert & mit Content-Hash (Cache-Busting + SRI) */}}
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
   {{/* JSON-LD – Schema.org Person */}}
   <script type="application/ld+json">
+  {{- $fotoRes := resources.Get (printf "img/%s" (path.Base .Site.Params.foto)) -}}
   {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -55,12 +52,20 @@
     "url": "{{ .Site.BaseURL }}",
     "jobTitle": "{{ .Site.Params.beruf }}",
     "description": "{{ .Site.Params.seo.beschreibung }}",
-    "image": "{{ .Site.Params.foto | absURL }}",
+    "image": "{{ with $fotoRes }}{{ (.Resize "600x webp q82").Permalink }}{{ else }}{{ $.Site.Params.foto | absURL }}{{ end }}",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bremen",
       "addressCountry": "DE"
     },
+    "knowsAbout": [
+      "KI-gestützte Prozessoptimierung",
+      "Prozessautomatisierung",
+      "Low-Code-Entwicklung",
+      "Solution Design",
+      "Python",
+      "Digitale Transformation"
+    ],
     "sameAs": [
       "{{ .Site.Params.linkedin }}"
     ]
@@ -68,6 +73,8 @@
   </script>
 </head>
 <body>
+
+  <a href="#inhalt" class="skip-link">Zum Inhalt springen</a>
 
   <div id="raster-glow" aria-hidden="true"></div>
 
@@ -92,9 +99,9 @@
     </svg>
   </button>
 
-  {{/* Haupt-JS */}}
-  {{ $js := resources.Get "js/main.js" | minify }}
-  <script src="{{ $js.RelPermalink }}" defer></script>
+  {{/* Haupt-JS – minifiziert & mit Content-Hash (Cache-Busting + SRI) */}}
+  {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 
 </body>
 </html>
