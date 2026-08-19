@@ -42,6 +42,8 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   {{ $personal := resources.Get "css/personal.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $personal.RelPermalink }}" integrity="{{ $personal.Data.Integrity }}">
+  {{ $refresh := resources.Get "css/light-refresh.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $refresh.RelPermalink }}" integrity="{{ $refresh.Data.Integrity }}">
 
   <script type="application/ld+json">
   {
@@ -51,46 +53,23 @@
     "url": "{{ .Site.BaseURL }}",
     "description": "{{ .Site.Params.seo.beschreibung }}",
     "image": "{{ .Site.Params.foto | absURL }}",
-    "homeLocation": {
-      "@type": "Place",
-      "name": "Bremen, Deutschland"
-    },
-    "knowsAbout": [
-      "App-Entwicklung",
-      "iOS und macOS",
-      "Digitalisierung",
-      "Künstliche Intelligenz",
-      "Fotografie",
-      "Fujifilm",
-      "Industrieprozesse"
-    ],
-    "sameAs": [
-      "{{ .Site.Params.linkedin }}",
-      "{{ .Site.Params.github }}"
-    ]
+    "homeLocation": {"@type":"Place","name":"Bremen, Deutschland"},
+    "knowsAbout": ["App-Entwicklung","iOS und macOS","Digitalisierung","Künstliche Intelligenz","Fotografie","Fujifilm","Industrieprozesse"],
+    "sameAs": ["{{ .Site.Params.linkedin }}","{{ .Site.Params.github }}"]
   }
   </script>
 </head>
 <body>
   <a href="#inhalt" class="skip-link">Zum Inhalt springen</a>
   <div id="raster-glow" aria-hidden="true"></div>
-
   {{ partial "nav.html" . }}
   {{ partial "mobile-menu.html" . }}
-
-  <main id="inhalt">
-    {{ block "inhalt" . }}{{ end }}
-  </main>
-
+  <main id="inhalt">{{ block "inhalt" . }}{{ end }}</main>
   {{ partial "footer.html" . }}
   {{ partial "cookie-banner.html" . }}
-
   <button id="back-to-top" aria-label="Zurück nach oben" title="Zurück nach oben">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
-
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 </body>
