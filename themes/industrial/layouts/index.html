@@ -1,6 +1,6 @@
 {{ define "inhalt" }}
-{{ $hero := resources.Get "img/header-duenen.webp" }}
-<section class="pj-hero pj-hero--photo" id="home" aria-label="Torben Jander – persönliche Homepage"{{ with $hero }} style="background-image:url('{{ .RelPermalink }}')"{{ end }}>
+<section class="pj-hero pj-hero--photo" id="home" aria-label="Torben Jander – persönliche Homepage">
+  <img class="pj-hero-bg" src="/img/header-duenen.webp" alt="Dünen und Strand an der Küste" width="1536" height="705" loading="eager" fetchpriority="high">
   <div class="pj-hero-overlay" aria-hidden="true"></div>
   <div class="pj-wrap pj-hero-inner">
     <div class="pj-hero-copy">
