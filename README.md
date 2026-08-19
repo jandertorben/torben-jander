@@ -1,57 +1,73 @@
-# Torben Jander – Portfolio
-**Hugo-Theme: industrial | Version 2.0**
+# Torben Jander – Persönliche Homepage
 
----
+Hugo-basierte persönliche Website für **torben-jander.me**. Die Seite verbindet Projekte, Fotografie, Notizen und persönliche Themen in einem leichten, redaktionellen Layout.
 
-## Schnellstart
+## Lokal starten
 
 ```bash
-# 1. In den Projektordner wechseln
 cd torben-jander
-
-# 2. Lokalen Vorschau-Server starten
 hugo server
-
-# Browser öffnen: http://localhost:1313
 ```
 
----
+Danach: `http://localhost:1313`
 
-## Profilfoto einbinden
+## Inhalte pflegen
 
-1. Foto als `torben-profil.jpg` in diesen Ordner legen:
-   ```
-   torben-jander/static/img/torben-profil.jpg
-   ```
-2. Empfohlene Maße: **600 × 750 px** (Verhältnis 4:5), JPG oder WebP
-3. Hugo lädt beim nächsten Build automatisch neu
+Die Inhalte der Startseite liegen bewusst zentral in:
 
----
-
-## Inhalte bearbeiten
-
-**Alle Texte** stehen in einer einzigen Datei:
-```
+```text
 content/_index.md
 ```
 
-Dort lassen sich im YAML-Bereich oben bearbeiten:
-- `bridge` → Die drei Profil-Karten
-- `projekte` → Portfolio-Projekte
-- `referenz` → Zitat & Referenzgeber
-- `stack` → Technologie-Gruppen
+Dort können ohne Änderungen am HTML gepflegt werden:
 
-**Globale Einstellungen** (Name, E-Mail, LinkedIn):
-```
+- `hero` – Einstiegstext
+- `aktuell` – „Gerade bei mir“
+- `projekte` – Projekte und Apps
+- `fotografie` – Fotografie-Serien
+- `notizen` – Journal-/Notiz-Karten
+
+Globale Angaben wie Name, Standort, Social Links und SEO-Metadaten liegen in:
+
+```text
 hugo.toml
 ```
 
----
+## Bilder
 
-## Deployment (Cloudflare Pages / Netlify)
+Vorhandene Bilder liegen in `assets/img/` bzw. werden über die bestehende Hugo-Struktur eingebunden. Das Profilbild wird über `params.foto` in `hugo.toml` gesteuert.
+
+## Design
+
+Das Basistheme bleibt `industrial`. Das persönliche Editorial-Redesign liegt als eigene Override-Datei in:
+
+```text
+themes/industrial/assets/css/personal.css
+```
+
+Dadurch bleibt das bestehende Theme erhalten und das neue Design ist klar davon getrennt.
+
+## SEO
+
+Enthalten sind unter anderem:
+
+- individuelle Meta Description
+- Canonical URL
+- Open Graph
+- Twitter Cards
+- Schema.org `Person` als JSON-LD
+- `robots.txt` über Hugo
+- XML-Sitemap über Hugo
+- semantische Überschriftenstruktur
+- beschreibende Alt-Texte
+- lokal gehostete Fonts
+- responsive Darstellung
+
+## Deployment
+
+Für Cloudflare Pages oder Netlify:
 
 ```bash
-# Produktions-Build
 hugo --minify
 ```
 
@@ -59,53 +75,6 @@ hugo --minify
 |---|---|
 | Build command | `hugo --minify` |
 | Publish directory | `public` |
-| Hugo Version | 0.120+ |
+| Hugo Version | `0.120+` |
 
-HTTP-Header (Security & Caching) liegen in `static/_headers` – die Syntax
-ist für Cloudflare Pages und Netlify identisch. Die Datei wird beim Build
-automatisch nach `public/_headers` kopiert.
-
----
-
-## Ordnerstruktur
-
-```
-torben-jander/
-│
-├── hugo.toml                         ← Konfiguration & globale Parameter
-│
-├── content/
-│   ├── _index.md                     ← Alle Seiteninhalte (YAML)
-│   ├── impressum.md                  ← Pflichtangaben § 5 TMG
-│   └── datenschutz.md                ← DSGVO-Erklärung
-│
-├── static/
-│   └── img/
-│       └── torben-profil.jpg         ← Profilfoto hier ablegen
-│
-└── themes/
-    └── industrial/
-        ├── assets/
-        │   ├── css/
-        │   │   └── main.css          ← Komplettes Stylesheet
-        │   └── js/
-        │       └── main.js           ← Navigation, Animationen, Cookie
-        │
-        └── layouts/
-            ├── index.html            ← Homepage-Aufbau
-            ├── _default/
-            │   ├── baseof.html       ← HTML-Grundgerüst
-            │   └── rechtlich.html    ← Layout für Impressum/Datenschutz
-            ├── taxonomy/
-            │   └── taxonomy.html     ← Hugo-Pflichtlayout
-            └── partials/
-                ├── nav.html          ← Navigation
-                ├── mobile-menu.html  ← Mobiles Menü
-                ├── hero.html         ← Kopfbereich mit Foto
-                ├── bridge.html       ← Profil-Karten
-                ├── portfolio.html    ← Projektübersicht
-                ├── referenz.html     ← Kundenstimme
-                ├── techstack.html    ← Technologien
-                ├── footer.html       ← Fußzeile
-                └── cookie-banner.html ← DSGVO-Hinweis
-```
+Die Security- und Cache-Header liegen weiterhin in `static/_headers`.
