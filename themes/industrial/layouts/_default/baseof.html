@@ -3,105 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.seo.beschreibung }}{{ end }}">
+  {{ $description := .Site.Params.seo.beschreibung }}
+  {{ with .Params.description }}{{ $description = . }}{{ end }}
+  <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ .Site.Params.seo.keywords }}">
   <meta name="author" content="{{ .Site.Params.name }}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
 
-  {{/* Open Graph */}}
   <meta property="og:site_name" content="{{ .Site.Params.name }}">
   <meta property="og:title" content="{{ .Title }}">
-  <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.seo.beschreibung }}{{ end }}">
+  <meta property="og:description" content="{{ $description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:locale" content="de_DE">
   <meta property="og:image" content="{{ "/og-image.png" | absURL }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ .Site.Params.name }} – {{ .Site.Params.beruf }}">
+  <meta property="og:image:alt" content="Torben Jander – Projekte, Fotografie und Notizen">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title }}">
-  <meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.seo.beschreibung }}{{ end }}">
+  <meta name="twitter:description" content="{{ $description }}">
   <meta name="twitter:image" content="{{ "/og-image.png" | absURL }}">
-  <meta name="twitter:image:alt" content="{{ .Site.Params.name }} – {{ .Site.Params.beruf }}">
+  <meta name="twitter:image:alt" content="Torben Jander – Projekte, Fotografie und Notizen">
 
-  <meta name="theme-color" content="#0a0b0d">
+  <meta name="theme-color" content="#f3f0e8">
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">{{ end }}
 
   <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
 
-  {{/* Schriften: vollständig lokal gehostet – keine externen Requests (DSGVO-konform) */}}
-  {{/* Nur die above-the-fold-kritischen Schnitte werden vorgeladen */}}
   <link rel="preload" href="/fonts/inter-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  {{/* Haupt-CSS – minifiziert & mit Content-Hash (Cache-Busting + SRI) */}}
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ $personal := resources.Get "css/personal.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $personal.RelPermalink }}" integrity="{{ $personal.Data.Integrity }}">
 
-  {{/* JSON-LD – Schema.org Person */}}
   <script type="application/ld+json">
-  {{- $fotoRes := resources.Get (printf "img/%s" (path.Base .Site.Params.foto)) -}}
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "{{ .Site.Params.name }}",
     "url": "{{ .Site.BaseURL }}",
-    "jobTitle": "{{ .Site.Params.beruf }}",
     "description": "{{ .Site.Params.seo.beschreibung }}",
-    "image": "{{ with $fotoRes }}{{ (.Resize "600x webp q82").Permalink }}{{ else }}{{ $.Site.Params.foto | absURL }}{{ end }}",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bremen",
-      "addressCountry": "DE"
+    "image": "{{ .Site.Params.foto | absURL }}",
+    "homeLocation": {
+      "@type": "Place",
+      "name": "Bremen, Deutschland"
     },
     "knowsAbout": [
-      "KI-gestützte Prozessoptimierung",
-      "Prozessautomatisierung",
-      "Low-Code-Entwicklung",
-      "Solution Design",
-      "Python",
-      "Digitale Transformation"
+      "App-Entwicklung",
+      "iOS und macOS",
+      "Digitalisierung",
+      "Künstliche Intelligenz",
+      "Fotografie",
+      "Fujifilm",
+      "Industrieprozesse"
     ],
     "sameAs": [
-      "{{ .Site.Params.linkedin }}"
+      "{{ .Site.Params.linkedin }}",
+      "{{ .Site.Params.github }}"
     ]
   }
   </script>
 </head>
 <body>
-
   <a href="#inhalt" class="skip-link">Zum Inhalt springen</a>
-
   <div id="raster-glow" aria-hidden="true"></div>
 
-  {{ partial "nav.html"          . }}
-  {{ partial "mobile-menu.html"  . }}
+  {{ partial "nav.html" . }}
+  {{ partial "mobile-menu.html" . }}
 
   <main id="inhalt">
     {{ block "inhalt" . }}{{ end }}
   </main>
 
-  {{ partial "footer.html"       . }}
+  {{ partial "footer.html" . }}
   {{ partial "cookie-banner.html" . }}
 
-  <button id="back-to-top"
-          aria-label="Zurück nach oben"
-          title="Zurück nach oben">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2.2"
-         stroke-linecap="round" stroke-linejoin="round"
-         aria-hidden="true" width="20" height="20">
+  <button id="back-to-top" aria-label="Zurück nach oben" title="Zurück nach oben">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="20" height="20">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
-  {{/* Haupt-JS – minifiziert & mit Content-Hash (Cache-Busting + SRI) */}}
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-
 </body>
 </html>
