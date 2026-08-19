@@ -1,12 +1,6 @@
 {{ define "inhalt" }}
-{{ $p1 := resources.Get "hero/part1.txt" }}
-{{ $p2 := resources.Get "hero/part2.txt" }}
-{{ $p3 := resources.Get "hero/part3.txt" }}
-{{ $p4 := resources.Get "hero/part4.txt" }}
-{{ $heroData := printf "%s%s%s%s" $p1.Content $p2.Content $p3.Content $p4.Content }}
-{{ $heroSrc := printf "data:image/webp;base64,%s" $heroData }}
 <section class="pj-hero pj-hero--photo" id="home" aria-label="Torben Jander – persönliche Homepage">
-  <img class="pj-hero-bg" src="{{ $heroSrc | safeURL }}" alt="Dünen und Strand an der Küste" width="600" height="276" loading="eager" fetchpriority="high">
+  <img class="pj-hero-bg" src="/img/header-duenen-hq.webp" alt="Dünen und Strand an der Küste" width="1536" height="666" loading="eager" fetchpriority="high" decoding="async">
   <div class="pj-hero-overlay" aria-hidden="true"></div>
   <div class="pj-wrap pj-hero-inner">
     <div class="pj-hero-copy">
