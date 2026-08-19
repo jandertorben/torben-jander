@@ -1,19 +1,22 @@
 <header id="kopf" class="pj-header">
-  <nav class="nav-leiste pj-nav" role="navigation" aria-label="Hauptnavigation">
+  <nav class="pj-nav" role="navigation" aria-label="Hauptnavigation">
     <a class="pj-brand" href="#home" aria-label="Torben Jander – Startseite">
       <span class="pj-brand-mark">TJ</span>
-      <span class="pj-brand-copy"><strong>Torben Jander</strong><small>Technik. Fotografie. Ideen.</small></span>
+      <span class="pj-brand-copy"><strong>Torben Jander</strong><small>Technik · Fotografie · Ideen</small></span>
     </a>
 
-    <ul class="nav-links pj-nav-links" role="list">
+    <ul class="pj-nav-links" role="list">
       <li><a href="#home">Home</a></li>
       <li><a href="#projekte">Projekte</a></li>
       <li><a href="#fotografie">Fotografie</a></li>
       <li><a href="#journal">Journal</a></li>
       <li><a href="#ueber-mich">Über mich</a></li>
-      <li><a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn-Profil von Torben Jander">in</a></li>
-      <li><a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub-Profil von Torben Jander">GitHub</a></li>
     </ul>
+
+    <div class="pj-nav-social">
+      <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn-Profil von Torben Jander">in</a>
+      <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub-Profil von Torben Jander">GH</a>
+    </div>
 
     <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobil-menue">
       <span></span><span></span><span></span>
