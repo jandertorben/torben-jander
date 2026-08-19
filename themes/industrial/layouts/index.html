@@ -1,8 +1,121 @@
 {{ define "inhalt" }}
-  {{ partial "hero.html"        . }}
-  {{ partial "bridge.html"      . }}
-  {{ partial "portfolio.html"   . }}
-  {{ partial "referenz.html"    . }}
-  {{ partial "techstack.html"   . }}
-  {{ partial "weg.html"         . }}
+<section class="pj-hero" id="home">
+  <div class="pj-wrap pj-hero-grid">
+    <div class="pj-hero-copy">
+      <p class="pj-eyebrow">{{ .Params.hero.eyebrow }}</p>
+      <h1>{{ .Params.hero.title }}</h1>
+      <p class="pj-lead">{{ .Params.hero.text }}</p>
+      <a class="pj-button" href="#ueber-mich">{{ .Params.hero.cta }} <span>→</span></a>
+    </div>
+    <div class="pj-hero-image">
+      <img src="{{ .Site.Params.foto }}" alt="Porträt von Torben Jander" width="900" height="1000" loading="eager" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<section class="pj-now" aria-labelledby="now-title">
+  <div class="pj-wrap pj-now-grid">
+    <div class="pj-section-intro compact">
+      <p class="pj-eyebrow" id="now-title">Gerade bei mir</p>
+      <p>Ein paar Dinge, die mich aktuell beschäftigen.</p>
+    </div>
+    {{ range .Params.aktuell }}
+    <article class="pj-now-card">
+      <div class="pj-icon" aria-hidden="true">{{ .icon }}</div>
+      <div>
+        <h3>{{ .titel }}</h3>
+        <p>{{ .text }}</p>
+        <a href="{{ .link }}">{{ .label }} →</a>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+
+<section class="pj-section" id="projekte">
+  <div class="pj-wrap">
+    <div class="pj-section-head">
+      <div>
+        <p class="pj-eyebrow">Eigene Ideen</p>
+        <h2>Projekte</h2>
+      </div>
+      <p>Digitale Werkzeuge, die Probleme lösen und Freude machen sollen.</p>
+    </div>
+    <div class="pj-card-grid">
+      {{ range .Params.projekte }}
+      <article class="pj-card">
+        <div class="pj-card-image"><img src="{{ .bild }}" alt="{{ .titel }}" loading="lazy"></div>
+        <div class="pj-card-body">
+          <h3>{{ .titel }}</h3>
+          <p>{{ .text }}</p>
+          <span class="pj-link">{{ .label }} →</span>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="pj-section pj-photo-section" id="fotografie">
+  <div class="pj-wrap">
+    <div class="pj-section-head">
+      <div>
+        <p class="pj-eyebrow">Mit der Kamera</p>
+        <h2>Fotografie</h2>
+      </div>
+      <p>Momente, die bleiben. Meistens mit meiner Fujifilm X-T5 unterwegs.</p>
+    </div>
+    <div class="pj-photo-grid">
+      {{ range .Params.fotografie }}
+      <figure class="pj-photo-card">
+        <img src="{{ .bild }}" alt="Fotografie – {{ .titel }}" loading="lazy">
+        <figcaption><strong>{{ .titel }}</strong><span>{{ .meta }}</span></figcaption>
+      </figure>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="pj-section" id="journal">
+  <div class="pj-wrap">
+    <div class="pj-section-head">
+      <div>
+        <p class="pj-eyebrow">Gedanken & Erfahrungen</p>
+        <h2>Notizen</h2>
+      </div>
+      <p>Dinge, die ich lerne, ausprobiere oder einfach festhalten möchte.</p>
+    </div>
+    <div class="pj-card-grid">
+      {{ range .Params.notizen }}
+      <article class="pj-card pj-note">
+        <div class="pj-card-image"><img src="{{ .bild }}" alt="{{ .titel }}" loading="lazy"></div>
+        <div class="pj-card-body">
+          <time>{{ .datum }}</time>
+          <h3>{{ .titel }}</h3>
+          <p>{{ .text }}</p>
+          <span class="pj-link">Artikel lesen →</span>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="pj-about" id="ueber-mich">
+  <div class="pj-wrap pj-about-grid">
+    <div class="pj-about-image"><img src="{{ .Site.Params.foto }}" alt="Torben Jander aus Bremen" loading="lazy"></div>
+    <div class="pj-about-copy">
+      <p class="pj-eyebrow">Über mich</p>
+      <h2>Hi, ich bin Torben.</h2>
+      <p>Ich komme aus Bremen und arbeite seit vielen Jahren in der Industrie. Mich interessieren vor allem die Punkte, an denen Technik reale Probleme lösen kann.</p>
+      <p>Wenn ich nicht gerade an irgendeiner Softwareidee arbeite, bin ich meistens mit meiner Kamera, dem Gravelbike oder einfach mit meiner Familie unterwegs.</p>
+      <div class="pj-facts">
+        <span>⌖ Bremen, Deutschland</span>
+        <span>◎ Fujifilm X-T5</span>
+        <span>○ Gravelbike</span>
+        <span>⌘ macOS & iOS</span>
+      </div>
+    </div>
+  </div>
+</section>
 {{ end }}
