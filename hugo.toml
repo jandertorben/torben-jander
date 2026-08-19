@@ -1,7 +1,7 @@
 baseURL       = "https://torben-jander.me/"
 languageCode  = "de-DE"
 defaultContentLanguage = "de"
-title         = "Torben Jander – Portfolio"
+title         = "Torben Jander – Projekte, Fotografie & Notizen"
 theme         = "industrial"
 enableEmoji   = true
 enableRobotsTXT = true
@@ -9,19 +9,19 @@ disableKinds  = ["taxonomy", "term"]
 
 [params]
   name        = "Torben Jander"
-  beruf       = "Digital Process Architect | KI-gestützte Prozessoptimierung"
-  tagline     = "Vom Maschinendeck in die Cloud. 20 Jahre Industrie-Expertise trifft KI-gestützte Automatisierung. Ich baue digitale Werkzeuge, die reale Probleme lösen – keine Konzepte für die Schublade."
+  beruf       = "Macher zwischen Industrie, Digitalisierung und eigenen Projekten"
+  tagline     = "Ich entwickle digitale Dinge, fotografiere gerne und habe meistens irgendein neues Projekt im Kopf."
   ort         = "Bremen, Deutschland"
-  status      = "Verfügbar · Offen für neue Herausforderungen"
+  status      = "Technik · Fotografie · Ideen"
   linkedin    = "https://www.linkedin.com/in/torben-jander-6a7199128/"
+  github      = "https://github.com/jandertorben"
   email       = "torbenjander@icloud.com"
   firma       = "Torben Jander"
-  # Profilfoto: Datei in static/img/ ablegen, Namen hier eintragen
   foto        = "/img/torben-profil.jpg"
 
 [params.seo]
-  beschreibung = "Torben Jander – Digital Process Architect aus Bremen. KI-gestützte Prozessoptimierung, Automatisierung und 20 Jahre Industrie-Expertise."
-  keywords     = "Digital Process Architect, KI-gestützte Prozessoptimierung, Prozessautomatisierung, KI-Entwicklung, Liebherr, Bremen, Python, Hugo, Torben Jander"
+  beschreibung = "Die private Homepage von Torben Jander aus Bremen: eigene App-Projekte wie TidTil, Fotografie mit Fujifilm, Digitalisierung, Technik, Gravelbike und persönliche Notizen."
+  keywords     = "Torben Jander, Bremen, TidTil, App Entwicklung, iOS Entwicklung, macOS, Fujifilm, Fotografie, Gravelbike, Digitalisierung, KI, private Homepage"
 
 [markup.goldmark.renderer]
   unsafe = true
