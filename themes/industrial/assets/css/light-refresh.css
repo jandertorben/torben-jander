@@ -1,6 +1,8 @@
 /* Light, friendly visual refresh */
-.pj-hero--photo{background-color:#efe9dd!important}
-.pj-hero-overlay{background:linear-gradient(90deg,rgba(251,249,244,.94) 0%,rgba(251,249,244,.78) 38%,rgba(251,249,244,.28) 66%,rgba(251,249,244,.04) 100%)!important}
+.pj-hero--photo{background-color:#efe9dd!important;position:relative!important;overflow:hidden!important}
+.pj-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;z-index:0}
+.pj-hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(251,249,244,.94) 0%,rgba(251,249,244,.78) 38%,rgba(251,249,244,.28) 66%,rgba(251,249,244,.04) 100%)!important}
+.pj-hero-inner{position:relative!important;z-index:2!important}
 .pj-hero-copy{background:transparent!important}
 .pj-hero h1{color:#111315!important;text-shadow:none!important}
 .pj-lead{color:#2f312f!important}
@@ -25,8 +27,8 @@
 @media(max-width:680px){
   .pj-header{background:#fbf9f4!important}
   .pj-hero,.pj-hero-inner{min-height:560px!important}
-  .pj-hero--photo{background-position:center center!important}
-  .pj-hero-overlay{background:linear-gradient(180deg,rgba(251,249,244,.96) 0%,rgba(251,249,244,.84) 45%,rgba(251,249,244,.42) 72%,rgba(251,249,244,.08) 100%)!important}
+  .pj-hero-bg{object-position:center center}
+  .pj-hero-overlay{background:linear-gradient(180deg,rgba(251,249,244,.90) 0%,rgba(251,249,244,.72) 45%,rgba(251,249,244,.28) 72%,rgba(251,249,244,.03) 100%)!important}
   .pj-hero-copy{max-width:100%!important;padding:58px 0 48px!important}
   .pj-hero h1{font-size:68px!important;line-height:.92!important}
   .pj-lead{font-size:16px!important;max-width:29rem!important}
