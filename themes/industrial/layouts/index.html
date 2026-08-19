@@ -1,14 +1,12 @@
 {{ define "inhalt" }}
-<section class="pj-hero" id="home">
-  <div class="pj-wrap pj-hero-grid">
+<section class="pj-hero pj-hero--photo" id="home" aria-label="Torben Jander – persönliche Homepage">
+  <div class="pj-hero-overlay" aria-hidden="true"></div>
+  <div class="pj-wrap pj-hero-inner">
     <div class="pj-hero-copy">
       <p class="pj-eyebrow">{{ .Params.hero.eyebrow }}</p>
       <h1>{{ .Params.hero.title }}</h1>
       <p class="pj-lead">{{ .Params.hero.text }}</p>
       <a class="pj-button" href="#ueber-mich">{{ .Params.hero.cta }} <span>→</span></a>
-    </div>
-    <div class="pj-hero-image">
-      <img src="{{ .Site.Params.foto }}" alt="Porträt von Torben Jander" width="900" height="1000" loading="eager" fetchpriority="high">
     </div>
   </div>
 </section>
