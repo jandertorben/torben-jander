@@ -1,0 +1,196 @@
+[nav_numbers]
+other = "Numbers"
+[nav_recent]
+other = "Latest"
+[nav_gravel]
+other = "Gravel"
+[nav_run]
+other = "Running"
+[nav_about]
+other = "About"
+[skip]
+other = "Skip to content"
+[lang_switch]
+other = "Auf Deutsch lesen"
+
+[hero_eyebrow]
+other = "Running & Gravel · Bremen"
+[hero_line1]
+other = "Bremen is flat."
+[hero_line2]
+other = "I ride anyway."
+[hero_sub]
+other = "%s km in %d, %s metres of climbing. Most of it headwind."
+[hero_cta]
+other = "The numbers"
+[hero_map_caption]
+other = "Every route of the year, drawn from Strava. Start and finish of each track are trimmed."
+[hero_scroll]
+other = "Scroll"
+
+[numbers_eyebrow]
+other = "The year in numbers"
+[numbers_title]
+other = "What has added up since January."
+[stat_ride_km]
+other = "Kilometres on the bike"
+[stat_run_km]
+other = "Kilometres run"
+[stat_hours]
+other = "Hours moving"
+[stat_elev]
+other = "Metres of climbing"
+[stat_elev_note]
+other = "That is %s metres per kilometre. Flatland."
+[stat_days]
+other = "Active days"
+[stat_streak]
+other = "Days in a row, longest streak"
+[stat_earliest]
+other = "Earliest start"
+[stat_activities]
+other = "Activities"
+[weekly_title]
+other = "Kilometres per week"
+[weekly_legend_ride]
+other = "Ride"
+[weekly_legend_run]
+other = "Run"
+[week_short]
+other = "Wk"
+[hours_title]
+other = "When I head out"
+[hours_note]
+other = "Two peaks: before work and after. The commute is the base, everything else comes on top."
+[lifetime_note]
+other = "On Strava since %s: %s km in total."
+
+[recent_eyebrow]
+other = "Latest"
+[recent_title]
+other = "The last few sessions."
+[recent_note]
+other = "As of %s. Data comes from Strava and is rewritten whenever the site is updated."
+[view_on_strava]
+other = "View on Strava"
+
+[gravel_eyebrow]
+other = "Gravel"
+[gravel_title]
+other = "Dykes, farm tracks, headwind."
+[gravel_text]
+other = "There are no mountains around Bremen, but plenty of tracks nobody ever paved. The Weser dyke, the Blockland, the Wümme meadows. The gravel bike is commuter and weekend machine in one."
+[gravel_longest]
+other = "Longest gravel ride of the year"
+[ride_longest]
+other = "Longest ride of the year"
+[gravel_count]
+other = "Gravel rides in %d"
+[gravel_km]
+other = "km on gravel"
+
+[run_eyebrow]
+other = "Running"
+[run_title]
+other = "Slow, but regular."
+[run_text]
+other = "Running balances out the bike. No races, no plan taken too seriously. Instead, loops through the Neustadt and around the Werdersee that slowly get longer."
+[run_longest]
+other = "Longest run of the year"
+[run_count]
+other = "Runs in %d"
+[run_pace]
+other = "Average"
+
+[gear_title]
+other = "Gear"
+[gear_bike]
+other = "Gravel bike"
+[gear_shoes]
+other = "Running shoes"
+[gear_km]
+other = "km total"
+[gear_shoe_life]
+other = "of roughly %s km before the cushioning fades"
+[gear_weight]
+other = "%s kg"
+
+[about_eyebrow]
+other = "About"
+[about_title]
+other = "Hi, I'm Torben."
+[about_cta_strava]
+other = "Follow me on Strava"
+[about_cta_mail]
+other = "Send an email"
+
+[footer_imprint]
+other = "Imprint (German)"
+[footer_privacy]
+other = "Privacy (German)"
+[footer_data]
+other = "Numbers and routes from Strava, as of %s."
+[footer_built]
+other = "Built with Hugo. No tracking, no cookies."
+[back_home]
+other = "Back to the start"
+[not_found_title]
+other = "The track ends here."
+[not_found_text]
+other = "This page does not exist, or not any more. Back to the main route:"
+
+[unit_km]
+other = "km"
+[unit_m]
+other = "m"
+[unit_h]
+other = "h"
+[label_distance]
+other = "Distance"
+[label_time]
+other = "Time"
+[label_elev]
+other = "Climbing"
+[label_speed]
+other = "Pace"
+
+[sport_Ride]
+other = "Ride"
+[sport_GravelRide]
+other = "Gravel"
+[sport_EBikeRide]
+other = "E-bike"
+[sport_Run]
+other = "Run"
+[sport_Walk]
+other = "Walk"
+[sport_Hike]
+other = "Hike"
+
+[month_1]
+other = "Jan"
+[month_2]
+other = "Feb"
+[month_3]
+other = "Mar"
+[month_4]
+other = "Apr"
+[month_5]
+other = "May"
+[month_6]
+other = "Jun"
+[month_7]
+other = "Jul"
+[month_8]
+other = "Aug"
+[month_9]
+other = "Sep"
+[month_10]
+other = "Oct"
+[month_11]
+other = "Nov"
+[month_12]
+other = "Dec"
+
+[portrait_alt]
+other = "Torben Jander on the gravel bike and running"

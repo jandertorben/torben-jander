@@ -7,3 +7,9 @@ resources/
 
 # macOS
 .DS_Store
+
+# Strava-Rohdaten (enthalten ungekürzte GPS-Spuren) bleiben lokal
+strava-raw/
+
+# Lokale Strava-Zugangsdaten
+.env

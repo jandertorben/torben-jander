@@ -1,0 +1,196 @@
+[nav_numbers]
+other = "Zahlen"
+[nav_recent]
+other = "Zuletzt"
+[nav_gravel]
+other = "Gravel"
+[nav_run]
+other = "Laufen"
+[nav_about]
+other = "Über mich"
+[skip]
+other = "Zum Inhalt springen"
+[lang_switch]
+other = "Switch to English"
+
+[hero_eyebrow]
+other = "Laufen & Gravel · Bremen"
+[hero_line1]
+other = "Bremen ist flach."
+[hero_line2]
+other = "Ich fahr trotzdem."
+[hero_sub]
+other = "%s km in %d, %s Höhenmeter. Das meiste davon Gegenwind."
+[hero_cta]
+other = "Die Zahlen"
+[hero_map_caption]
+other = "Alle Routen des Jahres, aus Strava gezeichnet. Start und Ziel jeder Strecke sind gekürzt."
+[hero_scroll]
+other = "Scrollen"
+
+[numbers_eyebrow]
+other = "Das Jahr in Zahlen"
+[numbers_title]
+other = "Was seit Januar zusammengekommen ist."
+[stat_ride_km]
+other = "Kilometer auf dem Rad"
+[stat_run_km]
+other = "Kilometer gelaufen"
+[stat_hours]
+other = "Stunden in Bewegung"
+[stat_elev]
+other = "Höhenmeter"
+[stat_elev_note]
+other = "Das sind %s Meter pro Kilometer. Flachland eben."
+[stat_days]
+other = "Tage mit Aktivität"
+[stat_streak]
+other = "Tage in Folge, längste Serie"
+[stat_earliest]
+other = "Frühester Start"
+[stat_activities]
+other = "Aktivitäten"
+[weekly_title]
+other = "Kilometer pro Woche"
+[weekly_legend_ride]
+other = "Rad"
+[weekly_legend_run]
+other = "Lauf"
+[week_short]
+other = "KW"
+[hours_title]
+other = "Wann ich losfahre"
+[hours_note]
+other = "Zwei Spitzen: vor der Arbeit und danach. Der Arbeitsweg ist die Grundlage, alles andere kommt obendrauf."
+[lifetime_note]
+other = "Seit %s auf Strava: %s km insgesamt."
+
+[recent_eyebrow]
+other = "Zuletzt unterwegs"
+[recent_title]
+other = "Die letzten Einheiten."
+[recent_note]
+other = "Stand %s. Die Daten kommen aus Strava und werden beim Aktualisieren der Seite neu geschrieben."
+[view_on_strava]
+other = "Auf Strava ansehen"
+
+[gravel_eyebrow]
+other = "Gravel"
+[gravel_title]
+other = "Deiche, Feldwege, Gegenwind."
+[gravel_text]
+other = "Rund um Bremen gibt es keine Berge, aber jede Menge Wege, die niemand asphaltiert hat. Weserdeich, Blockland, Wümmewiesen. Das Gravelbike ist Pendelfahrzeug und Wochenendtour zugleich."
+[gravel_longest]
+other = "Längste Gravel-Tour des Jahres"
+[ride_longest]
+other = "Längste Fahrt des Jahres"
+[gravel_count]
+other = "Gravel-Touren in %d"
+[gravel_km]
+other = "km auf Schotter"
+
+[run_eyebrow]
+other = "Laufen"
+[run_title]
+other = "Langsam, aber regelmäßig."
+[run_text]
+other = "Laufen ist der Ausgleich zum Rad. Keine Wettkämpfe, kein Plan, der zu ernst genommen wird. Dafür Runden durch die Neustadt und am Werdersee, die mit der Zeit länger werden."
+[run_longest]
+other = "Längster Lauf des Jahres"
+[run_count]
+other = "Läufe in %d"
+[run_pace]
+other = "Schnitt"
+
+[gear_title]
+other = "Ausrüstung"
+[gear_bike]
+other = "Gravelbike"
+[gear_shoes]
+other = "Laufschuhe"
+[gear_km]
+other = "km gesamt"
+[gear_shoe_life]
+other = "von etwa %s km, bevor die Dämpfung nachlässt"
+[gear_weight]
+other = "%s kg"
+
+[about_eyebrow]
+other = "Über mich"
+[about_title]
+other = "Hallo, ich bin Torben."
+[about_cta_strava]
+other = "Mir auf Strava folgen"
+[about_cta_mail]
+other = "E-Mail schreiben"
+
+[footer_imprint]
+other = "Impressum"
+[footer_privacy]
+other = "Datenschutz"
+[footer_data]
+other = "Zahlen und Routen aus Strava, Stand %s."
+[footer_built]
+other = "Gebaut mit Hugo, ohne Tracking, ohne Cookies."
+[back_home]
+other = "Zurück zur Startseite"
+[not_found_title]
+other = "Hier geht der Weg nicht weiter."
+[not_found_text]
+other = "Die Seite gibt es nicht oder nicht mehr. Zurück auf die Hauptstrecke:"
+
+[unit_km]
+other = "km"
+[unit_m]
+other = "m"
+[unit_h]
+other = "h"
+[label_distance]
+other = "Distanz"
+[label_time]
+other = "Zeit"
+[label_elev]
+other = "Höhenmeter"
+[label_speed]
+other = "Tempo"
+
+[sport_Ride]
+other = "Rad"
+[sport_GravelRide]
+other = "Gravel"
+[sport_EBikeRide]
+other = "E-Bike"
+[sport_Run]
+other = "Lauf"
+[sport_Walk]
+other = "Spaziergang"
+[sport_Hike]
+other = "Wanderung"
+
+[month_1]
+other = "Jan"
+[month_2]
+other = "Feb"
+[month_3]
+other = "Mär"
+[month_4]
+other = "Apr"
+[month_5]
+other = "Mai"
+[month_6]
+other = "Jun"
+[month_7]
+other = "Jul"
+[month_8]
+other = "Aug"
+[month_9]
+other = "Sep"
+[month_10]
+other = "Okt"
+[month_11]
+other = "Nov"
+[month_12]
+other = "Dez"
+
+[portrait_alt]
+other = "Torben Jander auf dem Gravelbike und beim Laufen"

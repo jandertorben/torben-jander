@@ -1,0 +1,22 @@
+{{- $home := .Site.Home.RelPermalink }}
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="{{ $home }}" aria-label="{{ .Site.Params.name }}">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24 C9 22 8 12 14 11 S18 21 24 17 26 8 28 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span>{{ .Site.Params.name }}</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="{{ $home }}#zahlen">{{ T "nav_numbers" }}</a>
+      <a href="{{ $home }}#zuletzt">{{ T "nav_recent" }}</a>
+      <a href="{{ $home }}#gravel">{{ T "nav_gravel" }}</a>
+      <a href="{{ $home }}#laufen">{{ T "nav_run" }}</a>
+      <a href="{{ $home }}#ueber">{{ T "nav_about" }}</a>
+    </nav>
+    {{- $other := "" }}
+    {{- range .Translations }}{{ $other = .RelPermalink }}{{ end }}
+    {{- if not $other }}{{ range .Site.Home.Translations }}{{ $other = .RelPermalink }}{{ end }}{{ end }}
+    {{- if $other }}
+    <a class="lang" href="{{ $other }}" lang="{{ if eq .Site.Language.Lang "de" }}en{{ else }}de{{ end }}" aria-label="{{ T "lang_switch" }}">{{ if eq .Site.Language.Lang "de" }}EN{{ else }}DE{{ end }}</a>
+    {{- end }}
+  </div>
+</header>

@@ -1,0 +1,12 @@
+{{- $d := .Site.Data.strava }}
+<footer class="footer">
+  <div class="wrap foot-in">
+    <p class="foot-data">{{ printf (T "footer_data") (time.Format ":date_long" (time $d.generated_at)) }} {{ T "footer_built" }}</p>
+    <nav class="foot-links" aria-label="Legal">
+      <a href="/impressum/">{{ T "footer_imprint" }}</a>
+      <a href="/datenschutz/">{{ T "footer_privacy" }}</a>
+      <a href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">Strava</a>
+      <a href="{{ .Site.Params.github }}" rel="me noopener" target="_blank">GitHub</a>
+    </nav>
+  </div>
+</footer>

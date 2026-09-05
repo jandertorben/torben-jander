@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="sec legal">
+  <div class="wrap">
+    <p class="eyebrow">{{ .Site.Params.name }}</p>
+    <h1 class="sec-h">{{ .Title }}</h1>
+    <div class="prose">{{ .Content }}</div>
+    <p><a class="btn btn-ghost" href="{{ .Site.Home.RelPermalink }}">← {{ T "back_home" }}</a></p>
+  </div>
+</article>
+{{ end }}

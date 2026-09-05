@@ -1,0 +1,184 @@
+{{ define "main" }}
+{{- $d := .Site.Data.strava }}
+{{- $t := $d.totals }}
+{{- $y := int $t.year }}
+
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-map" aria-hidden="true">
+    <svg viewBox="0 0 {{ $d.map.width }} {{ $d.map.height }}" preserveAspectRatio="xMidYMid slice">
+      {{- range $i, $p := $d.map.paths }}
+      <path d="{{ $p.d | safeHTMLAttr }}" class="r r-{{ $p.group }}{{ if ge $p.km 12.0 }} r-long{{ end }}" pathLength="1" style="--i:{{ $i }}"/>
+      {{- end }}
+    </svg>
+  </div>
+  <div class="wrap hero-in">
+    <p class="eyebrow eyebrow-hero">{{ T "hero_eyebrow" }}</p>
+    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_line1" }}</span></span><span class="hero-l hero-l2"><span>{{ T "hero_line2" }}</span></span></h1>
+    <p class="hero-sub">{{ printf (T "hero_sub") (lang.FormatNumber 0 $t.all.km) $y (lang.FormatNumber 0 $t.all.elevation) }}</p>
+    <div class="hero-actions">
+      <a class="btn" href="#zahlen">{{ T "hero_cta" }} <span aria-hidden="true">↓</span></a>
+      <a class="btn btn-ghost" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">Strava</a>
+    </div>
+    <p class="hero-cap">{{ T "hero_map_caption" }}</p>
+  </div>
+</section>
+
+<section class="sec" id="zahlen" aria-labelledby="zahlen-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "numbers_eyebrow" }} · {{ $y }}</p>
+    <h2 id="zahlen-h" class="sec-h reveal">{{ T "numbers_title" }}</h2>
+
+    <div class="ledger reveal">
+      <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
+      <div class="led led-run"><strong class="num" data-count="{{ $t.run.km }}">{{ lang.FormatNumber 0 $t.run.km }}</strong><span>{{ T "stat_run_km" }}</span></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.hours }}">{{ lang.FormatNumber 0 $t.all.hours }}</strong><span>{{ T "stat_hours" }}</span></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small></div>
+      <div class="led"><strong class="num" data-count="{{ $d.highlights.active_days }}">{{ $d.highlights.active_days }}</strong><span>{{ T "stat_days" }}</span></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.count }}">{{ $t.all.count }}</strong><span>{{ T "stat_activities" }}</span></div>
+      <div class="led"><strong class="num" data-count="{{ $d.highlights.longest_streak_days }}">{{ $d.highlights.longest_streak_days }}</strong><span>{{ T "stat_streak" }}</span></div>
+      <div class="led"><strong class="num num-time">{{ $d.highlights.earliest_start }}</strong><span>{{ T "stat_earliest" }}</span></div>
+    </div>
+
+    <div class="charts">
+      {{- $w := $d.weekly }}
+      {{- $max := 1.0 }}{{ range $w }}{{ $s := add .ride .run }}{{ if gt $s $max }}{{ $max = $s }}{{ end }}{{ end }}
+      {{- $n := len $w }}
+      <figure class="chart reveal">
+        <figcaption><span>{{ T "weekly_title" }}</span><span class="legend"><i class="sw sw-ride"></i>{{ T "weekly_legend_ride" }} <i class="sw sw-run"></i>{{ T "weekly_legend_run" }}</span></figcaption>
+        <div class="chart-scroll">
+        <svg viewBox="0 0 {{ mul $n 14 }} 132" class="bars" role="img" aria-label="{{ T "weekly_title" }}" preserveAspectRatio="none">
+          <line x1="0" y1="110.5" x2="{{ mul $n 14 }}" y2="110.5" class="axis"/>
+          {{- range $i, $wk := $w }}
+          {{- $x := add (mul $i 14) 2 }}
+          {{- $hr := div (mul $wk.ride 92) $max }}{{ $hn := div (mul $wk.run 92) $max }}
+          <g class="bar" style="--i:{{ $i }}">
+            <rect x="{{ $x }}" y="{{ sub 110 $hr }}" width="10" height="{{ $hr }}" class="b-ride"/>
+            <rect x="{{ $x }}" y="{{ sub (sub 110 $hr) $hn }}" width="10" height="{{ $hn }}" class="b-run"/>
+            <title>{{ T "week_short" }} {{ $wk.week }}: {{ lang.FormatNumber 0 $wk.ride }} km {{ T "weekly_legend_ride" }}, {{ lang.FormatNumber 0 $wk.run }} km {{ T "weekly_legend_run" }}</title>
+          </g>
+          {{- if eq (mod $wk.week 4) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ T "week_short" }} {{ $wk.week }}</text>{{ end }}
+          {{- end }}
+          <text x="{{ sub (mul $n 14) 2 }}" y="10" class="tick" text-anchor="end">{{ lang.FormatNumber 0 $max }} km</text>
+        </svg>
+        </div>
+      </figure>
+
+      {{- $h := $d.start_hours }}
+      {{- $hm := 1 }}{{ range $h }}{{ if gt . $hm }}{{ $hm = . }}{{ end }}{{ end }}
+      <figure class="chart chart-hours reveal">
+        <figcaption><span>{{ T "hours_title" }}</span></figcaption>
+        <svg viewBox="0 0 336 132" class="bars" role="img" aria-label="{{ T "hours_title" }}" preserveAspectRatio="none">
+          <line x1="0" y1="110.5" x2="336" y2="110.5" class="axis"/>
+          {{- range $i, $c := $h }}
+          {{- $x := add (mul $i 14) 2 }}{{ $hh := div (mul (float $c) 92) (float $hm) }}
+          <g class="bar" style="--i:{{ $i }}"><rect x="{{ $x }}" y="{{ sub 110 $hh }}" width="10" height="{{ $hh }}" class="b-neutral"/><title>{{ printf "%02d:00" $i }} – {{ $c }}</title></g>
+          {{- if eq (mod $i 6) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ printf "%02d" $i }}</text>{{ end }}
+          {{- end }}
+        </svg>
+        <p class="chart-note">{{ T "hours_note" }}</p>
+      </figure>
+    </div>
+    <p class="lifetime reveal">{{ printf (T "lifetime_note") (time.Format ":date_long" (time $t.lifetime.since)) (lang.FormatNumber 0 $t.lifetime.all.km) }}</p>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="zuletzt" aria-labelledby="zuletzt-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "recent_eyebrow" }}</p>
+    <h2 id="zuletzt-h" class="sec-h reveal">{{ T "recent_title" }}</h2>
+    <div class="act-grid">
+      {{- range $d.recent }}
+      <div class="reveal">{{ partial "activity-card.html" (dict "a" .) }}</div>
+      {{- end }}
+    </div>
+    <p class="note">{{ printf (T "recent_note") (time.Format ":date_long" (time $d.generated_at)) }}</p>
+  </div>
+</section>
+
+<section class="sec sec-sport sec-gravel" id="gravel" aria-labelledby="gravel-h">
+  <div class="wrap sport-grid">
+    <div class="sport-text">
+      <p class="eyebrow">{{ T "gravel_eyebrow" }}</p>
+      <h2 id="gravel-h" class="sec-h reveal">{{ T "gravel_title" }}</h2>
+      <p class="lead reveal">{{ T "gravel_text" }}</p>
+      <div class="mini-ledger reveal">
+        <div><strong class="num" data-count="{{ $t.gravel.count }}">{{ $t.gravel.count }}</strong><span>{{ printf (T "gravel_count") $y }}</span></div>
+        <div><strong class="num" data-count="{{ $t.gravel.km }}">{{ lang.FormatNumber 0 $t.gravel.km }}</strong><span>{{ T "gravel_km" }}</span></div>
+      </div>
+      {{- range $d.gear.bikes }}
+      <div class="gear reveal">
+        <p class="gear-k">{{ T "gear_bike" }}</p>
+        <p class="gear-n">{{ .name }}{{ with .frame }} <span class="gear-sub">{{ . }}{{ with $.Site.Params }}{{ end }}</span>{{ end }}</p>
+        <p class="gear-v"><strong class="num" data-count="{{ .km }}">{{ lang.FormatNumber 0 .km }}</strong> {{ T "gear_km" }}{{ with .weight }} · {{ printf (T "gear_weight") (lang.FormatNumber 0 .) }}{{ end }}</p>
+      </div>
+      {{- end }}
+    </div>
+    <div class="sport-feature reveal">
+      {{- with $d.highlights.longest_gravel }}
+      <p class="feature-k">{{ T "gravel_longest" }}</p>
+      {{ partial "activity-card.html" (dict "a" . "big" true) }}
+      {{- end }}
+      {{- with $d.highlights.longest_ride }}
+      <p class="feature-k">{{ T "ride_longest" }}</p>
+      {{ partial "activity-card.html" (dict "a" . "big" true) }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-sport sec-run" id="laufen" aria-labelledby="laufen-h">
+  <div class="wrap sport-grid sport-grid-rev">
+    <div class="sport-text">
+      <p class="eyebrow">{{ T "run_eyebrow" }}</p>
+      <h2 id="laufen-h" class="sec-h reveal">{{ T "run_title" }}</h2>
+      <p class="lead reveal">{{ T "run_text" }}</p>
+      <div class="mini-ledger reveal">
+        <div><strong class="num" data-count="{{ $t.run.count }}">{{ $t.run.count }}</strong><span>{{ printf (T "run_count") $y }}</span></div>
+        <div><strong class="num" data-count="{{ $t.run.hours }}">{{ $t.run.hours }}</strong><span>{{ T "stat_hours" }}</span></div>
+      </div>
+      <div class="gear reveal">
+        <p class="gear-k">{{ T "gear_shoes" }}</p>
+        {{- $life := .Site.Params.schuhLebensdauer }}
+        {{- range $d.gear.shoes }}
+        {{- $pct := math.Min 100 (div (mul (float .km) 100) (float $life)) }}
+        <div class="shoe">
+          <p class="gear-n">{{ .name }} <span class="gear-v"><strong class="num" data-count="{{ .km }}">{{ lang.FormatNumber 0 .km }}</strong> km</span></p>
+          <div class="meter" role="img" aria-label="{{ .km }} km {{ printf (T "gear_shoe_life") $life }}"><i style="--w:{{ lang.FormatNumber 0 $pct }}%"></i></div>
+          <p class="gear-sub">{{ printf (T "gear_shoe_life") (lang.FormatNumber 0 $life) }}</p>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+    <div class="sport-feature reveal">
+      {{- with $d.highlights.longest_run }}
+      <p class="feature-k">{{ T "run_longest" }}</p>
+      {{ partial "activity-card.html" (dict "a" . "big" true) }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-about" id="ueber" aria-labelledby="ueber-h">
+  <div class="wrap about-grid">
+    <div class="about-side">
+      <p class="eyebrow">{{ T "about_eyebrow" }}</p>
+      <h2 id="ueber-h" class="sec-h reveal">{{ T "about_title" }}</h2>
+      {{- /* Porträt: Datei als assets/img/portrait.jpg (oder .png/.webp) ablegen, Hochformat 3:4 */ -}}
+      {{- $img := or (resources.Get "img/portrait.jpg") (resources.Get "img/portrait.png") (resources.Get "img/portrait.webp") }}
+      {{- with $img }}
+      {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1080x webp q82" }}
+      <figure class="portrait reveal">
+        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 720w, {{ $w2.RelPermalink }} 1080w" sizes="(max-width: 900px) 100vw, 40vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ T "portrait_alt" }}" loading="lazy" decoding="async">
+      </figure>
+      {{- end }}
+    </div>
+    <div class="about-text reveal">
+      {{- range .Params.about }}<p>{{ . }}</p>{{ end }}
+      <div class="hero-actions">
+        <a class="btn" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">{{ T "about_cta_strava" }}</a>
+        <a class="btn btn-ghost" href="mailto:{{ .Site.Params.email }}">{{ T "about_cta_mail" }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
