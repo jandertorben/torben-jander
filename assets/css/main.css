@@ -185,6 +185,7 @@ p{margin:0}
 .tag{font-weight:500;padding:.15rem .45rem;border-radius:2px;text-transform:uppercase;letter-spacing:.08em}
 .tag-ride{background:var(--gravel-dim);color:var(--gravel-2)}
 .tag-run{background:var(--run-dim);color:var(--run-2)}
+.tag-both{background:linear-gradient(90deg,var(--gravel-dim),var(--run-dim));color:var(--ink)}
 .act-name{font-size:1.35rem;font-weight:600;line-height:1.1}
 .act-stats{margin:.3rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem}
 .act-stats div{display:grid}
@@ -242,6 +243,7 @@ p{margin:0}
 @media (max-width:900px){.equip-slide{grid-template-columns:1fr;gap:1.2rem}}
 .equip-slide-img{position:relative;display:grid;place-items:center;min-height:clamp(200px,32vw,420px)}
 .equip-slide-img::before{content:"";position:absolute;inset:8% 4%;border-radius:50%;background:radial-gradient(50% 50% at 50% 55%,rgba(211,155,90,.16),rgba(211,155,90,.05) 55%,transparent 75%);pointer-events:none}
+.equip-both .equip-slide-img::before{background:radial-gradient(50% 50% at 50% 55%,rgba(180,185,150,.14),rgba(180,185,150,.04) 55%,transparent 75%)}
 .equip-run .equip-slide-img::before{background:radial-gradient(50% 50% at 50% 55%,rgba(142,211,195,.14),rgba(142,211,195,.04) 55%,transparent 75%)}
 .equip-slide-img img,.equip-fallback{position:relative}
 .equip-slide-img img{display:block;max-width:100%;max-height:clamp(200px,32vw,420px);width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,0,0,.6))}
@@ -270,6 +272,7 @@ p{margin:0}
 .equip-name{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;line-height:1;letter-spacing:-.01em}
 .equip-brand{display:block;font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gravel-2);margin-bottom:.45rem}
 .equip-run .equip-brand{color:var(--run-2)}
+.equip-both .equip-brand{color:var(--ink-2)}
 .equip-note{color:var(--ink-2);max-width:44ch;text-wrap:pretty}
 .equip-km{display:flex;align-items:baseline;gap:.5rem;color:var(--ink-2);font-size:.9rem}
 .equip-km .num{font-size:clamp(2.2rem,3.5vw,3rem);line-height:1;color:var(--ink)}

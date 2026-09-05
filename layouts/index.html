@@ -164,7 +164,7 @@
             {{- end }}
           </div>
           <div class="equip-slide-body">
-            <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
+            <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else if eq $g.category "both" }}both{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
             <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
             <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
             {{- if $g.strava_gear }}

@@ -25,6 +25,13 @@ items:
     spec: "Radcomputer"
     note_de: "Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
     note_en: "Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
+  - name: Fenix 8
+    brand: Garmin
+    category: both
+    image: garmin-fenix-8.png
+    spec: "Sportuhr"
+    note_de: "Läuft beim Laufen mit, zeichnet auf dem Rad parallel zum Edge auf und zählt dazwischen die Tage. Puls, Schlaf, Erholung, alles an einem Ort."
+    note_en: "Comes along on every run, records alongside the Edge on the bike and counts the days in between. Heart rate, sleep, recovery, all in one place."
   - name: Novus Boost EVO Gravel Superflow
     brand: Selle Italia
     category: bike
