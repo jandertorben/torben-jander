@@ -232,15 +232,16 @@ p{margin:0}
 
 /* ─── Über mich ────────────────────────────────────────────────── */
 .sec-about{border-top:1px solid var(--line)}
-.about-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,5vw,5rem)}
-@media (max-width:900px){.about-grid{grid-template-columns:1fr}}
-.about-side{display:grid;gap:1.5rem;align-content:start}
-.about-side .sec-h{margin-bottom:0}
+.about-grid{display:grid;gap:clamp(2rem,5vw,5rem);align-items:stretch}
+.about-grid.has-portrait{grid-template-columns:minmax(0,420px) 1fr}
+@media (max-width:900px){.about-grid.has-portrait{grid-template-columns:1fr}}
 .portrait{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--bg-3);max-width:420px}
 .portrait img{display:block;width:100%;height:auto;filter:saturate(.9) contrast(1.02);transition:filter .5s,transform .8s var(--ease)}
 .portrait:hover img{filter:none;transform:scale(1.02)}
-.about-text{display:grid;gap:1.2rem;align-content:start;font-size:1.12rem;color:var(--ink-2);max-width:62ch;text-wrap:pretty}
-.about-text .hero-actions{margin-top:.8rem}
+.about-text{display:grid;grid-template-rows:1fr auto;gap:2rem;align-content:start;min-height:0}
+.about-copy{display:grid;gap:1.2rem;align-content:start;font-size:1.12rem;color:var(--ink-2);max-width:62ch;text-wrap:pretty}
+.about-text .hero-actions{margin-top:0;align-self:end}
+@media (max-width:900px){.about-text{grid-template-rows:auto auto}}
 
 /* ─── Footer ───────────────────────────────────────────────────── */
 .footer{border-top:1px solid var(--line);padding:2.5rem 0 3rem;background:var(--bg-2)}

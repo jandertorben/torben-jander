@@ -159,24 +159,26 @@
 </section>
 
 <section class="sec sec-about" id="ueber" aria-labelledby="ueber-h">
-  <div class="wrap about-grid">
-    <div class="about-side">
-      <p class="eyebrow">{{ T "about_eyebrow" }}</p>
-      <h2 id="ueber-h" class="sec-h reveal">{{ T "about_title" }}</h2>
-      {{- /* Porträt: Datei als assets/img/portrait.jpg (oder .png/.webp) ablegen, Hochformat 3:4 */ -}}
-      {{- $img := or (resources.Get "img/portrait.jpg") (resources.Get "img/portrait.png") (resources.Get "img/portrait.webp") }}
+  <div class="wrap">
+    <p class="eyebrow">{{ T "about_eyebrow" }}</p>
+    <h2 id="ueber-h" class="sec-h reveal">{{ T "about_title" }}</h2>
+    {{- /* Porträt: Datei als assets/img/portrait.jpg (oder .png/.webp) ablegen, Hochformat 3:4 */ -}}
+    {{- $img := or (resources.Get "img/portrait.jpg") (resources.Get "img/portrait.png") (resources.Get "img/portrait.webp") }}
+    <div class="about-grid{{ if $img }} has-portrait{{ end }}">
       {{- with $img }}
       {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1080x webp q82" }}
       <figure class="portrait reveal">
         <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 720w, {{ $w2.RelPermalink }} 1080w" sizes="(max-width: 900px) 100vw, 40vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ T "portrait_alt" }}" loading="lazy" decoding="async">
       </figure>
       {{- end }}
-    </div>
-    <div class="about-text reveal">
-      {{- range .Params.about }}<p>{{ . }}</p>{{ end }}
-      <div class="hero-actions">
-        <a class="btn" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">{{ T "about_cta_strava" }}</a>
-        <a class="btn btn-ghost" href="mailto:{{ .Site.Params.email }}">{{ T "about_cta_mail" }}</a>
+      <div class="about-text reveal">
+        <div class="about-copy">
+          {{- range .Params.about }}<p>{{ . }}</p>{{ end }}
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">{{ T "about_cta_strava" }}</a>
+          <a class="btn btn-ghost" href="mailto:{{ .Site.Params.email }}">{{ T "about_cta_mail" }}</a>
+        </div>
       </div>
     </div>
   </div>
