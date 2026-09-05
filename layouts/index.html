@@ -166,9 +166,9 @@
       {{- /* Porträt: Datei als assets/img/portrait.jpg (oder .png/.webp) ablegen, Hochformat 3:4 */ -}}
       {{- $img := or (resources.Get "img/portrait.jpg") (resources.Get "img/portrait.png") (resources.Get "img/portrait.webp") }}
       {{- with $img }}
-      {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1200x webp q82" }}
+      {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1080x webp q82" }}
       <figure class="portrait reveal">
-        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 720w, {{ $w2.RelPermalink }} 1200w" sizes="(max-width: 900px) 100vw, 40vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ T "portrait_alt" }}" loading="lazy" decoding="async">
+        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 720w, {{ $w2.RelPermalink }} 1080w" sizes="(max-width: 900px) 100vw, 40vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ T "portrait_alt" }}" loading="lazy" decoding="async">
       </figure>
       {{- end }}
     </div>
