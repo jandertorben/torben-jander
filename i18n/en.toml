@@ -191,3 +191,6 @@ other = "Oct"
 other = "Nov"
 [month_12]
 other = "Dec"
+
+[portrait_alt]
+other = "Torben Jander on the gravel bike and running"

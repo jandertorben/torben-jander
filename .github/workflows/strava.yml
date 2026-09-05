@@ -1,0 +1,45 @@
+name: Strava-Daten aktualisieren
+
+on:
+  schedule:
+    - cron: "17 4 * * *"      # täglich 04:17 UTC (06:17 Sommerzeit)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: strava-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Aktivitäten und Ausrüstung von Strava holen
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        run: python3 scripts/strava_fetch.py
+
+      - name: data/strava.json erzeugen
+        run: python3 scripts/build_strava_data.py
+
+      - name: Änderungen committen
+        run: |
+          git config user.name "strava-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/strava.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "data: Strava-Daten vom $(date -u +%Y-%m-%d)"
+            git push
+          fi

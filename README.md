@@ -30,19 +30,30 @@ Vorschau unter http://localhost:1313. Produktions-Build mit `hugo --gc --minify`
 
 Die Website ruft **nie** Strava auf. Die Zahlen werden vorab erzeugt und als `data/strava.json` mit ausgeliefert.
 
-1. Rohdaten in `strava-raw/` ablegen (der Ordner ist per `.gitignore` ausgeschlossen, weil er ungekürzte GPS-Spuren enthält):
-   - `activities-*.json`: Antworten von Stravas Aktivitätsliste inklusive `reduced_polyline`
-   - `history-*.csv`: ältere Aktivitäten ohne Route (`date,sport_type,distance,moving_time,elevation_gain`)
-   - `gear.json`: Räder und Schuhe mit Gesamtkilometern
-2. Skript ausführen:
+### Automatisch (GitHub Action, kostenlos)
 
-   ```bash
-   python3 scripts/build_strava_data.py
-   ```
+`.github/workflows/strava.yml` läuft täglich um 04:17 UTC, holt alle Aktivitäten seit 2025 über die Strava-API,
+baut `data/strava.json` neu und committet nur diese Datei, wenn sich etwas geändert hat. Der Push löst den
+Cloudflare-Build aus. Manuell starten: GitHub, Reiter „Actions“, „Strava-Daten aktualisieren“, „Run workflow“.
 
-3. `data/strava.json` committen und pushen.
+Einmalige Einrichtung (etwa 10 Minuten):
 
-Am einfachsten geht das mit Claude Code und der Strava-Anbindung: „Aktualisiere die Strava-Daten der Website“ holt die Aktivitäten, schreibt die Rohdaten und führt das Skript aus.
+1. Auf https://www.strava.com/settings/api eine API-Anwendung anlegen. Callback-Domain: `localhost`.
+2. Lokal `python3 scripts/strava_auth.py` ausführen und den Anweisungen folgen. Das Skript gibt einen Refresh-Token aus.
+3. Im GitHub-Repo unter Settings, Secrets and variables, Actions drei Secrets anlegen:
+   `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`.
+4. Den Workflow einmal von Hand starten und prüfen, ob ein Commit `data: Strava-Daten vom …` entsteht.
+
+Strava erlaubt 200 Anfragen pro 15 Minuten und 2.000 pro Tag; der tägliche Lauf braucht unter zehn.
+
+### Von Hand
+
+`scripts/strava_fetch.py` funktioniert auch lokal, wenn die drei Werte in einer `.env`-Datei im Projektordner stehen
+(die Datei ist per `.gitignore` ausgeschlossen). Danach `python3 scripts/build_strava_data.py` und `data/strava.json` committen.
+
+Alternativ ohne API: Rohdaten in `strava-raw/` ablegen (ebenfalls ignoriert, weil sie ungekürzte GPS-Spuren enthalten):
+`activities-*.json` mit `reduced_polyline`, optional `history-*.csv` (`date,sport_type,distance,moving_time,elevation_gain`)
+und `gear.json`. Dann das Build-Skript ausführen.
 
 Datenschutz: Das Skript kürzt jede Route um 600 m am Start und am Ziel und zeichnet nur Strecken ab 5 km. Von den vielen fast identischen Pendelstrecken landet nur eine Auswahl auf der Karte.
 
