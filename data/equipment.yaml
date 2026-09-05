@@ -8,6 +8,7 @@
 #   spec               kurze Zeile mit Fakten (Gewicht, Reifen, Modelljahr …), optional
 #   image              Dateiname in assets/img/, optional
 #   photo              true = Bild als gerahmtes Foto zeigen statt als freigestelltes Objekt
+#   size               small = Bild kleiner zeigen (für kleine Vorlagen, damit nichts hochgerechnet wird)
 #   featured           true = großes Element mit Bild oben in der Rubrik
 items:
   - name: Grizl
@@ -52,7 +53,7 @@ items:
     brand: Van Rysel
     category: bike
     image: brille.png
-    photo: true
+    size: small
     spec: "Brille · Kategorie 3 · Weiß"
     note_de: "Großes Glas, kein Rahmen im Blickfeld. Hält Wind, Mücken und Schotter von den Augen fern."
     note_en: "Big lens, no frame in the field of view. Keeps wind, midges and gravel out of my eyes."
