@@ -147,53 +147,51 @@
     {{- $eq := .Site.Data.equipment.items }}
     {{- $km := $d.gear.by_id }}
     {{- $lang := .Site.Language.Lang }}
+    {{- $n := len $eq }}
     {{- $total := 0 }}{{ range $eq }}{{ with .strava_gear }}{{ $total = add $total (index $km . | default 0) }}{{ end }}{{ end }}
-    {{- range $eq }}{{ if .featured }}
-    {{- $g := . }}
-    {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
-    <article class="equip-hero equip-{{ $g.category }} reveal">
-      <div class="equip-hero-img">
+    <div class="equip-slider reveal" aria-roledescription="carousel" aria-label="{{ T "equip_eyebrow" }}">
+      <div class="equip-track" tabindex="0">
+        {{- range $i, $g := $eq }}
+        {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
         {{- $img := "" }}{{ with $g.image }}{{ $img = resources.Get (printf "img/%s" .) }}{{ end }}
-        {{- with $img }}
-        {{- $w1 := .Resize "800x webp q85" }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
-        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 800w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async">
-        {{- else }}<div class="equip-noimg" aria-hidden="true"><span>{{ T "equip_image_missing" }}</span></div>{{ end }}
-        <svg class="equip-road" viewBox="0 0 600 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H600" pathLength="1"/></svg>
-      </div>
-      <div class="equip-hero-body">
-        <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
-        <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
-        <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
-        {{- if $g.strava_gear }}
-        <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
+        <article class="equip-slide equip-{{ $g.category }}{{ if eq $i 0 }} is-active{{ end }}" role="group" aria-roledescription="slide" aria-label="{{ add $i 1 }} / {{ $n }}" data-index="{{ $i }}">
+          <div class="equip-slide-img">
+            {{- with $img }}
+            {{- $w1 := .Resize (printf "%dx webp q85" (math.Min .Width 800 | int)) }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
+            <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} {{ $w1.Width }}w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async">
+            {{- else }}
+            <div class="equip-fallback" aria-hidden="true"><span>{{ $g.brand }}</span></div>
+            {{- end }}
+          </div>
+          <div class="equip-slide-body">
+            <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
+            <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
+            <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
+            {{- if $g.strava_gear }}
+            <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
+            {{- with $g.life_km }}
+            {{- $pct := math.Min 100 (div (mul (float $gkm) 100) (float .)) }}
+            <div class="meter" role="img" aria-label="{{ $gkm }} km {{ printf (T "equip_life") (lang.FormatNumber 0 .) }}"><i style="--w:{{ lang.FormatNumber 0 $pct }}%"></i></div>
+            <p class="equip-life">{{ printf (T "equip_life") (lang.FormatNumber 0 .) }}</p>
+            {{- end }}
+            {{- end }}
+          </div>
+        </article>
         {{- end }}
       </div>
-    </article>
-    {{- end }}{{ end }}
-    <div class="equip-grid">
-      {{- $i := 0 }}
-      {{- range $eq }}{{ if not .featured }}
-      {{- $g := . }}
-      {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
-      <article class="equip equip-{{ $g.category }} reveal" style="--i:{{ $i }}">
-        {{- $ti := "" }}{{ with $g.image }}{{ $ti = resources.Get (printf "img/%s" .) }}{{ end }}
-        {{- with $ti }}{{ $t1 := .Resize (printf "%dx webp q85" (math.Min .Width 900 | int)) }}
-        <div class="equip-thumb"><img src="{{ $t1.RelPermalink }}" width="{{ $t1.Width }}" height="{{ $t1.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async"></div>
-        {{- end }}
-        <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
-        <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
-        <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
-        {{- if $g.strava_gear }}
-        <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
-        {{- with $g.life_km }}
-        {{- $pct := math.Min 100 (div (mul (float $gkm) 100) (float .)) }}
-        <div class="meter" role="img" aria-label="{{ $gkm }} km {{ printf (T "equip_life") (lang.FormatNumber 0 .) }}"><i style="--w:{{ lang.FormatNumber 0 $pct }}%"></i></div>
-        <p class="equip-life">{{ printf (T "equip_life") (lang.FormatNumber 0 .) }}</p>
-        {{- end }}
-        {{- end }}
-      </article>
-      {{- $i = add $i 1 }}
-      {{- end }}{{ end }}
+      <svg class="equip-road" viewBox="0 0 600 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H600" pathLength="1"/></svg>
+      <div class="equip-controls">
+        <div class="equip-dots" role="tablist" aria-label="{{ T "equip_eyebrow" }}">
+          {{- range $i, $g := $eq }}
+          <button type="button" class="equip-dot{{ if eq $i 0 }} is-active{{ end }}" role="tab" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" aria-label="{{ $g.brand }} {{ $g.name }}" data-go="{{ $i }}"></button>
+          {{- end }}
+        </div>
+        <p class="equip-count" aria-hidden="true"><span class="equip-current">1</span> / {{ $n }}</p>
+        <div class="equip-arrows">
+          <button type="button" class="equip-arrow" data-dir="-1" aria-label="{{ T "equip_prev" }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" class="equip-arrow" data-dir="1" aria-label="{{ T "equip_next" }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
     </div>
     <p class="note reveal">{{ printf (T "equip_total") (lang.FormatNumber 0 $total) }}</p>
   </div>

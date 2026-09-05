@@ -220,3 +220,8 @@ other = "of roughly %s km lifespan"
 other = "%s km together on bike and shoes."
 [equip_image_missing]
 other = "Image to follow"
+
+[equip_prev]
+other = "Previous item"
+[equip_next]
+other = "Next item"

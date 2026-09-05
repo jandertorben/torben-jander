@@ -73,6 +73,76 @@
     document.querySelectorAll('.reveal, .chart').forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* Ausrüstungs-Slider: Scroll-Snap plus Pfeile, Punkte, Tastatur und sanftes Autoplay */
+  var slider = document.querySelector('.equip-slider');
+  if (slider) {
+    var track = slider.querySelector('.equip-track');
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.equip-slide'));
+    var dots = Array.prototype.slice.call(slider.querySelectorAll('.equip-dot'));
+    var counter = slider.querySelector('.equip-current');
+    var current = 0, timer = null, userTouched = false;
+
+    function setActive(i) {
+      current = i;
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle('is-active', k === i);
+        d.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      });
+      if (counter) counter.textContent = String(i + 1);
+      slides[i].querySelectorAll('[data-count]').forEach(function (n) {
+        if (n.dataset.done) return;
+        n.dataset.done = '1';
+        countUp(n);
+      });
+    }
+    function go(i, manual) {
+      var n = slides.length;
+      i = ((i % n) + n) % n;
+      if (manual) { userTouched = true; stop(); }
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
+      setActive(i);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      if (reduce || userTouched || timer) return;
+      timer = setInterval(function () { go(current + 1, false); }, 7000);
+    }
+
+    slider.querySelectorAll('.equip-arrow').forEach(function (b) {
+      b.addEventListener('click', function () { go(current + parseInt(b.getAttribute('data-dir'), 10), true); });
+    });
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () { go(parseInt(d.getAttribute('data-go'), 10), true); });
+    });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1, true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1, true); }
+    });
+    /* Wischen oder Scrollen im Track: aktive Folie aus der Scrollposition ableiten */
+    var scrollTimer;
+    track.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        var i = Math.round(track.scrollLeft / track.clientWidth);
+        if (i !== current && slides[i]) setActive(i);
+      }, 80);
+    }, { passive: true });
+    ['pointerdown', 'touchstart', 'focusin'].forEach(function (ev) {
+      track.addEventListener(ev, function () { userTouched = true; stop(); }, { passive: true });
+    });
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) start(); else stop(); });
+      }, { threshold: 0.4 }).observe(slider);
+    }
+    /* Beim Laden bereits gescrollt (z. B. Reload): Position übernehmen */
+    if (track.scrollLeft > 0) setActive(Math.round(track.scrollLeft / track.clientWidth));
+  }
+
   /* Sicherheitsnetz: Falls der Observer nicht auslöst (z. B. Sprung per Anker), nach 2 s alles zeigen */
   setTimeout(function () {
     document.querySelectorAll('.reveal:not(.in), .chart:not(.in)').forEach(function (el) {

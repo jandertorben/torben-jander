@@ -220,3 +220,8 @@ other = "von etwa %s km Lebensdauer"
 other = "Zusammen %s km auf Rad und Schuhen."
 [equip_image_missing]
 other = "Bild folgt"
+
+[equip_prev]
+other = "Vorheriges Teil"
+[equip_next]
+other = "Nächstes Teil"
