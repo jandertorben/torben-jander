@@ -10,6 +10,10 @@
 {{ block "main" . }}{{ end }}
 </main>
 {{ partial "footer.html" . }}
+<button class="totop" type="button" aria-label="{{ T "to_top" }}" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V6M6 12l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span>{{ T "to_top" }}</span>
+</button>
 {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 </body>

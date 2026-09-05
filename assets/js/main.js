@@ -18,8 +18,25 @@
     }
   }
   var map = document.querySelector('.hero-map svg');
-  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Nach-oben-Button: erscheint, sobald der Hero aus dem Bild ist */
+  var totop = document.querySelector('.totop');
+  if (totop) {
+    totop.hidden = false;
+    totop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var brand = document.querySelector('.brand');
+      if (brand) brand.focus({ preventScroll: true });
+    });
+  }
+  var showAfter = window.innerHeight * 0.9;
+  window.addEventListener('scroll', function () {
+    onScroll();
+    if (totop) totop.classList.toggle('show', window.scrollY > showAfter);
+  }, { passive: true });
+  window.addEventListener('resize', function () { showAfter = window.innerHeight * 0.9; }, { passive: true });
   onScroll();
+  if (totop) totop.classList.toggle('show', window.scrollY > showAfter);
 
   /* Zähler: von 0 auf den Zielwert, lokal formatiert */
   function countUp(el) {
