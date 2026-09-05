@@ -41,6 +41,20 @@ items:
     spec: "Sensoren · Nabe & Kurbel"
     note_de: "Sitzen an Nabe und Kurbel und liefern dem Edge Geschwindigkeit und Trittfrequenz, auch wenn das GPS unter Bäumen schwächelt."
     note_en: "Sit on the hub and the crank and feed speed and cadence to the Edge, even when GPS struggles under trees."
+  - name: RCR-R 900 Mips
+    brand: Van Rysel
+    category: bike
+    image: van-rysel-rcr-r900.png
+    spec: "Helm · Mips · Weiß"
+    note_de: "Leicht, gut belüftet, mit Mips-System gegen Rotationskräfte. Weiß, damit man mich auf dem Deich auch im Gegenlicht sieht."
+    note_en: "Light, well ventilated, Mips protection against rotational forces. White, so I show up on the dyke even against the light."
+  - name: XC3
+    brand: Shimano
+    category: bike
+    image: shimano-xc3.png
+    spec: "Gravel-Schuh · BOA"
+    note_de: "Steife Sohle für die Kraft, griffiges Profil für die Schiebepassagen. Der BOA-Drehverschluss sitzt auch mit Handschuhen."
+    note_en: "Stiff sole for power, grippy tread for the hike-a-bike bits. The BOA dial works even with gloves on."
   - name: Novus Boost EVO Gravel Superflow
     brand: Selle Italia
     category: bike
