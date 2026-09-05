@@ -247,10 +247,11 @@ def main():
         "recent": recent, "highlights": highlights,
         "map": {"width": box[0], "height": box[1], "paths": map_paths},
         "gear": {
-            "bikes": [{"name": g.get("name", "").strip() or "Rad", "km": round(g["total_distance"] / 1000),
+            "bikes": [{"id": g["gear_id"]["id"], "name": g.get("name", "").strip() or "Rad", "km": round(g["total_distance"] / 1000),
                        "frame": g.get("frame_type", ""), "weight": g.get("weight")} for g in bikes],
-            "shoes": [{"name": f"{g.get('brand','')} {g.get('model_name','')}".strip(), "km": round(g["total_distance"] / 1000)}
+            "shoes": [{"id": g["gear_id"]["id"], "name": f"{g.get('brand','')} {g.get('model_name','')}".strip(), "km": round(g["total_distance"] / 1000)}
                       for g in shoes],
+            "by_id": {g["gear_id"]["id"]: round(g["total_distance"] / 1000) for g in gear},
         },
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

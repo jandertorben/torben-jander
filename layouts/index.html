@@ -105,13 +105,6 @@
         <div><strong class="num" data-count="{{ $t.gravel.count }}">{{ $t.gravel.count }}</strong><span>{{ printf (T "gravel_count") $y }}</span></div>
         <div><strong class="num" data-count="{{ $t.gravel.km }}">{{ lang.FormatNumber 0 $t.gravel.km }}</strong><span>{{ T "gravel_km" }}</span></div>
       </div>
-      {{- range $d.gear.bikes }}
-      <div class="gear reveal">
-        <p class="gear-k">{{ T "gear_bike" }}</p>
-        <p class="gear-n">{{ .name }}{{ with .frame }} <span class="gear-sub">{{ . }}{{ with $.Site.Params }}{{ end }}</span>{{ end }}</p>
-        <p class="gear-v"><strong class="num" data-count="{{ .km }}">{{ lang.FormatNumber 0 .km }}</strong> {{ T "gear_km" }}{{ with .weight }} · {{ printf (T "gear_weight") (lang.FormatNumber 0 .) }}{{ end }}</p>
-      </div>
-      {{- end }}
     </div>
     <div class="sport-feature reveal">
       {{- with $d.highlights.longest_gravel }}
@@ -136,18 +129,6 @@
         <div><strong class="num" data-count="{{ $t.run.count }}">{{ $t.run.count }}</strong><span>{{ printf (T "run_count") $y }}</span></div>
         <div><strong class="num" data-count="{{ $t.run.hours }}">{{ $t.run.hours }}</strong><span>{{ T "stat_hours" }}</span></div>
       </div>
-      <div class="gear reveal">
-        <p class="gear-k">{{ T "gear_shoes" }}</p>
-        {{- $life := .Site.Params.schuhLebensdauer }}
-        {{- range $d.gear.shoes }}
-        {{- $pct := math.Min 100 (div (mul (float .km) 100) (float $life)) }}
-        <div class="shoe">
-          <p class="gear-n">{{ .name }} <span class="gear-v"><strong class="num" data-count="{{ .km }}">{{ lang.FormatNumber 0 .km }}</strong> km</span></p>
-          <div class="meter" role="img" aria-label="{{ .km }} km {{ printf (T "gear_shoe_life") $life }}"><i style="--w:{{ lang.FormatNumber 0 $pct }}%"></i></div>
-          <p class="gear-sub">{{ printf (T "gear_shoe_life") (lang.FormatNumber 0 $life) }}</p>
-        </div>
-        {{- end }}
-      </div>
     </div>
     <div class="sport-feature reveal">
       {{- with $d.highlights.longest_run }}
@@ -155,6 +136,62 @@
       {{ partial "activity-card.html" (dict "a" . "big" true) }}
       {{- end }}
     </div>
+  </div>
+</section>
+
+<section class="sec sec-equip" id="ausruestung" aria-labelledby="equip-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "equip_eyebrow" }}</p>
+    <h2 id="equip-h" class="sec-h reveal">{{ T "equip_title" }}</h2>
+    <p class="lead reveal">{{ T "equip_text" }}</p>
+    {{- $eq := .Site.Data.equipment.items }}
+    {{- $km := $d.gear.by_id }}
+    {{- $lang := .Site.Language.Lang }}
+    {{- $total := 0 }}{{ range $eq }}{{ with .strava_gear }}{{ $total = add $total (index $km . | default 0) }}{{ end }}{{ end }}
+    {{- range $eq }}{{ if .featured }}
+    {{- $g := . }}
+    {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
+    <article class="equip-hero equip-{{ $g.category }} reveal">
+      <div class="equip-hero-img">
+        {{- $img := "" }}{{ with $g.image }}{{ $img = resources.Get (printf "img/%s" .) }}{{ end }}
+        {{- with $img }}
+        {{- $w1 := .Resize "900x webp q85" }}{{ $w2 := .Resize "1600x webp q85" }}
+        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 900w, {{ $w2.RelPermalink }} 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async">
+        {{- else }}<div class="equip-noimg" aria-hidden="true"><span>{{ T "equip_image_missing" }}</span></div>{{ end }}
+        <svg class="equip-road" viewBox="0 0 600 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H600" pathLength="1"/></svg>
+      </div>
+      <div class="equip-hero-body">
+        <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
+        <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
+        <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
+        {{- if $g.strava_gear }}
+        <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
+        {{- end }}
+      </div>
+    </article>
+    {{- end }}{{ end }}
+    <div class="equip-grid">
+      {{- $i := 0 }}
+      {{- range $eq }}{{ if not .featured }}
+      {{- $g := . }}
+      {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
+      <article class="equip equip-{{ $g.category }} reveal" style="--i:{{ $i }}">
+        <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
+        <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
+        <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
+        {{- if $g.strava_gear }}
+        <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
+        {{- with $g.life_km }}
+        {{- $pct := math.Min 100 (div (mul (float $gkm) 100) (float .)) }}
+        <div class="meter" role="img" aria-label="{{ $gkm }} km {{ printf (T "equip_life") (lang.FormatNumber 0 .) }}"><i style="--w:{{ lang.FormatNumber 0 $pct }}%"></i></div>
+        <p class="equip-life">{{ printf (T "equip_life") (lang.FormatNumber 0 .) }}</p>
+        {{- end }}
+        {{- end }}
+      </article>
+      {{- $i = add $i 1 }}
+      {{- end }}{{ end }}
+    </div>
+    <p class="note reveal">{{ printf (T "equip_total") (lang.FormatNumber 0 $total) }}</p>
   </div>
 </section>
 

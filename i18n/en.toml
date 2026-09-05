@@ -197,3 +197,26 @@ other = "Torben Jander on the gravel bike and running"
 
 [to_top]
 other = "Back to top"
+
+[nav_gear]
+other = "Gear"
+[equip_eyebrow]
+other = "Gear"
+[equip_title]
+other = "What comes along."
+[equip_text]
+other = "No gear obsession, just a few things I rely on. The kilometres come straight from Strava."
+[equip_cat_bike]
+other = "Bike"
+[equip_cat_run]
+other = "Running"
+[equip_cat_both]
+other = "Bike & running"
+[equip_km_strava]
+other = "km according to Strava"
+[equip_life]
+other = "of roughly %s km lifespan"
+[equip_total]
+other = "%s km together on bike and shoes."
+[equip_image_missing]
+other = "Image to follow"

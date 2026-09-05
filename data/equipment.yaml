@@ -1,0 +1,39 @@
+# Ausrüstung für die Rubrik „Ausrüstung“ auf der Startseite.
+# Reihenfolge = Reihenfolge auf der Seite. Felder:
+#   name, brand        Pflicht
+#   category           bike | run | both   (bestimmt Farbe und Rubrik-Label)
+#   strava_gear        Strava-Gear-ID → Kilometer werden automatisch aus data/strava.json gezogen
+#   life_km            Richtwert für Lebensdauer (Laufschuhe), zeigt eine Füllanzeige
+#   note_de, note_en   ein Satz, warum genau dieses Teil
+#   spec               kurze Zeile mit Fakten (Gewicht, Reifen, Modelljahr …), optional
+#   image              Dateiname in assets/img/, optional (nur beim Hauptstück nötig)
+#   featured           true = großes Element mit Bild oben in der Rubrik
+items:
+  - name: Grizl
+    brand: Canyon
+    category: bike
+    featured: true
+    image: bike.png
+    strava_gear: "16232514"
+    spec: "Gravel · 11 kg"
+    note_de: "Pendelrad und Wochenendmaschine in einem. Fährt fast jeden Tag, egal ob Deich oder Bürgersteig."
+    note_en: "Commuter and weekend machine in one. Rides almost every day, dyke or pavement."
+  - name: Gel-Kayano 32
+    brand: ASICS
+    category: run
+    strava_gear: "31334309"
+    life_km: 800
+    note_de: "Der neue Schuh für die langen, langsamen Runden. Viel Dämpfung, wenig Diskussion."
+    note_en: "The new shoe for the long, slow loops. Plenty of cushioning, no arguments."
+  - name: Supernova Solution 2
+    brand: Adidas
+    category: run
+    strava_gear: "29620084"
+    life_km: 800
+    note_de: "Der erste ernsthafte Laufschuh. Hat die ersten hundert Kilometer getragen und trägt weiter."
+    note_en: "The first serious running shoe. Carried the first hundred kilometres and keeps going."
+  - name: Laufweste mit Soft Flask
+    brand: Salomon
+    category: run
+    note_de: "Ab zehn Kilometern kommt sie mit. Wasser, Schlüssel, Handy, nichts wackelt."
+    note_en: "Comes along from ten kilometres up. Water, keys, phone, nothing bounces."

@@ -197,3 +197,26 @@ other = "Torben Jander auf dem Gravelbike und beim Laufen"
 
 [to_top]
 other = "Nach oben"
+
+[nav_gear]
+other = "Ausrüstung"
+[equip_eyebrow]
+other = "Ausrüstung"
+[equip_title]
+other = "Was mitfährt."
+[equip_text]
+other = "Kein Materialfetisch, aber ein paar Dinge, auf die ich mich verlasse. Die Kilometer kommen direkt aus Strava."
+[equip_cat_bike]
+other = "Rad"
+[equip_cat_run]
+other = "Laufen"
+[equip_cat_both]
+other = "Rad & Laufen"
+[equip_km_strava]
+other = "km laut Strava"
+[equip_life]
+other = "von etwa %s km Lebensdauer"
+[equip_total]
+other = "Zusammen %s km auf Rad und Schuhen."
+[equip_image_missing]
+other = "Bild folgt"
