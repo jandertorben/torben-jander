@@ -176,6 +176,10 @@
       {{- $g := . }}
       {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
       <article class="equip equip-{{ $g.category }} reveal" style="--i:{{ $i }}">
+        {{- $ti := "" }}{{ with $g.image }}{{ $ti = resources.Get (printf "img/%s" .) }}{{ end }}
+        {{- with $ti }}{{ $t1 := .Resize (printf "%dx webp q85" (math.Min .Width 900 | int)) }}
+        <div class="equip-thumb"><img src="{{ $t1.RelPermalink }}" width="{{ $t1.Width }}" height="{{ $t1.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async"></div>
+        {{- end }}
         <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
         <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
         <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>

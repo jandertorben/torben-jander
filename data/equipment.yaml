@@ -18,6 +18,13 @@ items:
     spec: "Gravel · 11 kg"
     note_de: "Pendelrad und Wochenendmaschine in einem. Fährt fast jeden Tag, egal ob Deich oder Bürgersteig."
     note_en: "Commuter and weekend machine in one. Rides almost every day, dyke or pavement."
+  - name: Edge 1040
+    brand: Garmin
+    category: bike
+    image: garmin-edge-1040.png
+    spec: "Radcomputer"
+    note_de: "Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
+    note_en: "Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
   - name: Gel-Kayano 32
     brand: ASICS
     category: run
