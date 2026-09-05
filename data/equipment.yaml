@@ -32,9 +32,17 @@ items:
     spec: "Sattel · Gravel"
     note_de: "Kurze Nase, breiter Ausschnitt, für lange Tage auf Schotter gemacht. Nach hundert Kilometern merkt man den Unterschied."
     note_en: "Short nose, wide cut-out, built for long days on gravel. After a hundred kilometres you notice the difference."
+  - name: Icon Gravel Bibshorts
+    brand: Bioracer
+    category: bike
+    image: bib-icon-gravel.png
+    spec: "Trägerhose · Gravel"
+    note_de: "Die Hose für alles ab einer Stunde im Sattel. Polster, das auch nach dem Deich noch Freude macht."
+    note_en: "The shorts for anything over an hour in the saddle. A pad that still feels good after the dyke."
   - name: Gel-Kayano 32
     brand: ASICS
     category: run
+    image: asics-gel-kayano-32.png
     strava_gear: "31334309"
     life_km: 800
     note_de: "Der neue Schuh für die langen, langsamen Runden. Viel Dämpfung, wenig Diskussion."
