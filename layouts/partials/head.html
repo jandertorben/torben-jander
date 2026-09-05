@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := .Site.Title }}{{ if not .IsHome }}{{ $title = printf "%s – %s" .Title .Site.Params.name }}{{ end }}
+<title>{{ $title }}</title>
+{{- $desc := .Site.Params.description }}{{ with .Description }}{{ $desc = . }}{{ end }}
+<meta name="description" content="{{ $desc }}">
+<meta name="author" content="{{ .Site.Params.name }}">
+<meta name="robots" content="{{ if .IsHome }}index, follow{{ else }}noindex, follow{{ end }}">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0a08">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{- if .IsTranslated }}<link rel="alternate" hreflang="x-default" href="{{ .Site.Home.Permalink | absLangURL }}">{{ end }}
+<meta property="og:site_name" content="{{ .Site.Params.name }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="{{ .Site.Language.LanguageCode | replaceRE "-" "_" }}">
+<meta property="og:image" content="{{ "og-image.png" | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

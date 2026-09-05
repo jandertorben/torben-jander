@@ -1,80 +1,57 @@
-# Torben Jander – Persönliche Homepage
+# torben-jander.me
 
-Hugo-basierte persönliche Website für **torben-jander.me**. Die Seite verbindet Projekte, Fotografie, Notizen und persönliche Themen in einem leichten, redaktionellen Layout.
+Persönliche Website von Torben Jander: Laufen und Gravel rund um Bremen, mit echten Zahlen aus Strava.
+Statisch gebaut mit [Hugo](https://gohugo.io), zweisprachig (Deutsch unter `/`, Englisch unter `/en/`), ohne Tracking und ohne Cookies.
 
 ## Lokal starten
 
 ```bash
-cd torben-jander
 hugo server
 ```
 
-Danach: `http://localhost:1313`
+Vorschau unter http://localhost:1313. Produktions-Build mit `hugo --gc --minify`, Ausgabe in `public/`.
 
-## Inhalte pflegen
+## Aufbau
 
-Die Inhalte der Startseite liegen bewusst zentral in:
+| Pfad | Inhalt |
+|---|---|
+| `hugo.toml` | Konfiguration, Sprachen, Kontaktdaten, Strava-Link |
+| `content/_index.de.md`, `content/_index.en.md` | Startseite: Absätze für „Über mich“ |
+| `content/impressum.md`, `content/datenschutz.md` | Rechtliches (nur Deutsch) |
+| `i18n/de.toml`, `i18n/en.toml` | Alle Texte der Startseite in beiden Sprachen |
+| `data/strava.json` | Aufbereitete Sportdaten: Jahreszahlen, Wochen, Routen, Ausrüstung |
+| `layouts/` | Templates (Startseite, Rechtsseiten, 404, Partials) |
+| `assets/css/main.css`, `assets/js/main.js` | Gestaltung und Animationen (werden von Hugo minimiert und gehasht) |
+| `static/fonts/` | Barlow Condensed, Barlow, JetBrains Mono (lokal, kein Google-Fonts-Aufruf) |
+| `static/_headers` | Security-Header für Cloudflare Pages |
+| `scripts/build_strava_data.py` | Erzeugt `data/strava.json` aus den Rohdaten |
 
-```text
-content/_index.md
-```
+## Strava-Daten aktualisieren
 
-Dort können ohne Änderungen am HTML gepflegt werden:
+Die Website ruft **nie** Strava auf. Die Zahlen werden vorab erzeugt und als `data/strava.json` mit ausgeliefert.
 
-- `hero` – Einstiegstext
-- `aktuell` – „Gerade bei mir“
-- `projekte` – Projekte und Apps
-- `fotografie` – Fotografie-Serien
-- `notizen` – Journal-/Notiz-Karten
+1. Rohdaten in `strava-raw/` ablegen (der Ordner ist per `.gitignore` ausgeschlossen, weil er ungekürzte GPS-Spuren enthält):
+   - `activities-*.json`: Antworten von Stravas Aktivitätsliste inklusive `reduced_polyline`
+   - `history-*.csv`: ältere Aktivitäten ohne Route (`date,sport_type,distance,moving_time,elevation_gain`)
+   - `gear.json`: Räder und Schuhe mit Gesamtkilometern
+2. Skript ausführen:
 
-Globale Angaben wie Name, Standort, Social Links und SEO-Metadaten liegen in:
+   ```bash
+   python3 scripts/build_strava_data.py
+   ```
 
-```text
-hugo.toml
-```
+3. `data/strava.json` committen und pushen.
 
-## Bilder
+Am einfachsten geht das mit Claude Code und der Strava-Anbindung: „Aktualisiere die Strava-Daten der Website“ holt die Aktivitäten, schreibt die Rohdaten und führt das Skript aus.
 
-Vorhandene Bilder liegen in `assets/img/` bzw. werden über die bestehende Hugo-Struktur eingebunden. Das Profilbild wird über `params.foto` in `hugo.toml` gesteuert.
-
-## Design
-
-Das Basistheme bleibt `industrial`. Das persönliche Editorial-Redesign liegt als eigene Override-Datei in:
-
-```text
-themes/industrial/assets/css/personal.css
-```
-
-Dadurch bleibt das bestehende Theme erhalten und das neue Design ist klar davon getrennt.
-
-## SEO
-
-Enthalten sind unter anderem:
-
-- individuelle Meta Description
-- Canonical URL
-- Open Graph
-- Twitter Cards
-- Schema.org `Person` als JSON-LD
-- `robots.txt` über Hugo
-- XML-Sitemap über Hugo
-- semantische Überschriftenstruktur
-- beschreibende Alt-Texte
-- lokal gehostete Fonts
-- responsive Darstellung
+Datenschutz: Das Skript kürzt jede Route um 600 m am Start und am Ziel und zeichnet nur Strecken ab 5 km. Von den vielen fast identischen Pendelstrecken landet nur eine Auswahl auf der Karte.
 
 ## Deployment
 
-Für Cloudflare Pages oder Netlify:
-
-```bash
-hugo --minify
-```
+Cloudflare Pages, verbunden mit diesem Repository (Branch `main`).
 
 | Einstellung | Wert |
 |---|---|
-| Build command | `hugo --minify` |
+| Build command | `hugo --gc --minify` |
 | Publish directory | `public` |
-| Hugo Version | `0.120+` |
-
-Die Security- und Cache-Header liegen weiterhin in `static/_headers`.
+| Umgebungsvariable | `HUGO_VERSION` = `0.164.0` (mindestens 0.146) |

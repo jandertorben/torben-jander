@@ -1,27 +1,46 @@
-baseURL       = "https://torben-jander.me/"
-languageCode  = "de-DE"
+baseURL                = "https://torben-jander.me/"
+title                  = "Torben Jander"
 defaultContentLanguage = "de"
-title         = "Torben Jander – Projekte, Fotografie & Notizen"
-theme         = "industrial"
-enableEmoji   = true
-enableRobotsTXT = true
-disableKinds  = ["taxonomy", "term"]
+defaultContentLanguageInSubdir = false
+enableRobotsTXT        = true
+disableKinds           = ["taxonomy", "term", "rss"]
+timeZone               = "Europe/Berlin"
+
+[languages]
+  [languages.de]
+    languageCode = "de-DE"
+    languageName = "Deutsch"
+    weight       = 1
+    title        = "Torben Jander – Laufen & Gravel aus Bremen"
+    [languages.de.params]
+      description = "Torben Jander läuft und fährt Gravel rund um Bremen. Echte Zahlen aus Strava: Kilometer, Höhenmeter, Routen, Ausrüstung."
+  [languages.en]
+    languageCode = "en-GB"
+    languageName = "English"
+    weight       = 2
+    title        = "Torben Jander – Running & Gravel from Bremen"
+    [languages.en.params]
+      description = "Torben Jander runs and rides gravel around Bremen. Real numbers from Strava: kilometres, climbing, routes, gear."
 
 [params]
-  name        = "Torben Jander"
-  beruf       = "Macher zwischen Industrie, Digitalisierung und eigenen Projekten"
-  tagline     = "Ich entwickle digitale Dinge, fotografiere gerne und habe meistens irgendein neues Projekt im Kopf."
-  ort         = "Bremen, Deutschland"
-  status      = "Technik · Fotografie · Ideen"
-  linkedin    = "https://www.linkedin.com/in/torben-jander-6a7199128/"
-  github      = "https://github.com/jandertorben"
-  email       = "torbenjander@icloud.com"
-  firma       = "Torben Jander"
-  foto        = "/img/torben-profil.jpg"
-
-[params.seo]
-  beschreibung = "Die private Homepage von Torben Jander aus Bremen: eigene App-Projekte wie TidTil, Fotografie mit Fujifilm, Digitalisierung, Technik, Gravelbike und persönliche Notizen."
-  keywords     = "Torben Jander, Bremen, TidTil, App Entwicklung, iOS Entwicklung, macOS, Fujifilm, Fotografie, Gravelbike, Digitalisierung, KI, private Homepage"
+  name     = "Torben Jander"
+  ort      = "Bremen"
+  email    = "torbenjander@icloud.com"
+  strava   = "https://www.strava.com/athletes/165488129"
+  github   = "https://github.com/jandertorben"
+  linkedin = "https://www.linkedin.com/in/torben-jander-6a7199128/"
+  # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
+  schuhLebensdauer = 800
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[minify]
+  minifyOutput = true
+  [minify.tdewolff.html]
+    keepQuotes = true
+
+[outputs]
+  home    = ["HTML"]
+  page    = ["HTML"]
+  section = ["HTML"]

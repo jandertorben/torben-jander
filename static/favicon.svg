@@ -1,18 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- T: horizontale Leiste + vertikaler Stamm -->
-  <line x1="5"  y1="14" x2="43" y2="14" stroke="#e8a020" stroke-width="9" stroke-linecap="square"/>
-  <line x1="24" y1="14" x2="24" y2="88" stroke="#e8a020" stroke-width="9" stroke-linecap="square"/>
-
-  <!-- J: vertikaler Stamm + 90-Grad-Haken nach links -->
-  <polyline points="78,14 78,74 57,74"
-            stroke="#e8a020" stroke-width="9"
-            stroke-linecap="square" stroke-linejoin="miter"
-            fill="none"/>
-
-  <!-- Schaltkreis-Lötpunkte an den Endpunkten -->
-  <circle cx="5"  cy="14" r="5" fill="#e8a020"/>
-  <circle cx="43" cy="14" r="5" fill="#e8a020"/>
-  <circle cx="24" cy="88" r="5" fill="#e8a020"/>
-  <circle cx="78" cy="14" r="5" fill="#e8a020"/>
-  <circle cx="57" cy="74" r="5" fill="#e8a020"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0b0a08"/><path d="M10 46c9-4 8-22 18-24s8 20 18 14 6-18 10-18" fill="none" stroke="#d39b5a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>

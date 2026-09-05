@@ -1,0 +1,4 @@
+{{- /* Erwartet dict: "path" (SVG-Pfad im 100x100-Raster), "group" (ride|run), "class" (optional) */ -}}
+<svg class="route route-{{ .group }} {{ .class }}" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+  <path d="{{ .path | safeHTMLAttr }}" pathLength="1"/>
+</svg>
