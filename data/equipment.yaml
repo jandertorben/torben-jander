@@ -25,6 +25,13 @@ items:
     spec: "Radcomputer"
     note_de: "Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
     note_en: "Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
+  - name: Novus Boost EVO Gravel Superflow
+    brand: Selle Italia
+    category: bike
+    image: selle-italia-novus.png
+    spec: "Sattel · Gravel"
+    note_de: "Kurze Nase, breiter Ausschnitt, für lange Tage auf Schotter gemacht. Nach hundert Kilometern merkt man den Unterschied."
+    note_en: "Short nose, wide cut-out, built for long days on gravel. After a hundred kilometres you notice the difference."
   - name: Gel-Kayano 32
     brand: ASICS
     category: run
