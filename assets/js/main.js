@@ -55,4 +55,16 @@
   } else {
     document.querySelectorAll('.reveal, .chart').forEach(function (el) { el.classList.add('in'); });
   }
+
+  /* Sicherheitsnetz: Falls der Observer nicht auslöst (z. B. Sprung per Anker), nach 2 s alles zeigen */
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.in), .chart:not(.in)').forEach(function (el) {
+      el.classList.add('in');
+      el.querySelectorAll('[data-count]').forEach(function (n) {
+        if (n.dataset.done) return;
+        n.dataset.done = '1';
+        n.textContent = fmt.format(parseFloat(n.getAttribute('data-count')));
+      });
+    });
+  }, 2000);
 })();
