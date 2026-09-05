@@ -48,6 +48,13 @@ items:
     spec: "Helm · Mips · Weiß"
     note_de: "Leicht, gut belüftet, mit Mips-System gegen Rotationskräfte. Weiß, damit man mich auf dem Deich auch im Gegenlicht sieht."
     note_en: "Light, well ventilated, Mips protection against rotational forces. White, so I show up on the dyke even against the light."
+  - name: Sportbrille
+    brand: Van Rysel
+    category: bike
+    image: brille.png
+    spec: "Brille · verspiegelt"
+    note_de: "Großes Glas, kein Rahmen im Blickfeld. Hält Wind, Mücken und Schotter von den Augen fern."
+    note_en: "Big lens, no frame in the field of view. Keeps wind, midges and gravel out of my eyes."
   - name: XC3
     brand: Shimano
     category: bike
