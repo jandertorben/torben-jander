@@ -56,6 +56,14 @@ items:
     spec: "Brille · Kategorie 3 · Weiß"
     note_de: "Großes Glas, kein Rahmen im Blickfeld. Hält Wind, Mücken und Schotter von den Augen fern."
     note_en: "Big lens, no frame in the field of view. Keeps wind, midges and gravel out of my eyes."
+  - name: Perf 500 Light
+    brand: Van Rysel
+    category: bike
+    image: brille-perf-500.png
+    photo: true
+    spec: "Brille · photochrom · Kategorie 1 bis 3"
+    note_de: "Die Brille für früh morgens und trübe Tage: Das Glas tönt sich mit dem Licht selbst. Auf dem Weg zur Arbeit um sechs ist das Gold wert."
+    note_en: "The glasses for early mornings and grey days: the lens tints itself with the light. On the six o'clock commute that is worth gold."
   - name: XC3
     brand: Shimano
     category: bike
