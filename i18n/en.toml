@@ -225,3 +225,36 @@ other = "Image to follow"
 other = "Previous item"
 [equip_next]
 other = "Next item"
+
+[goal_eyebrow]
+other = "Goal for %d"
+[goal_ride]
+other = "Ride"
+[goal_run]
+other = "Run"
+[goal_of]
+other = "of %s km"
+[goal_ahead]
+other = "%s km ahead of pace"
+[goal_behind]
+other = "%s km behind pace"
+[goal_reached]
+other = "Goal reached"
+[goal_note]
+other = "The marker shows where the pace should be by calendar day: day %d of %d."
+[cal_title]
+other = "Every day of the year"
+[cal_note]
+other = "One square per day, weeks as columns. Ochre for rides, mint for runs, the stronger the further. %d active days."
+[cal_legend_less]
+other = "less"
+[cal_legend_more]
+other = "more"
+[wd_mo]
+other = "Mon"
+[wd_mi]
+other = "Wed"
+[wd_fr]
+other = "Fri"
+[cal_rest]
+other = "Rest day"

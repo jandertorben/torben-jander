@@ -163,6 +163,37 @@ def main():
     monthly = [{"month": m, "ride": round(months.get(m, {}).get("ride", 0)), "run": round(months.get(m, {}).get("run", 0))}
                for m in range(1, date.today().month + 1)]
 
+    # Kalender: jeder Tag des Jahres bis heute, Wochen als Spalten (Mo–So), km Rad / Lauf / zu Fuß
+    per_day = {}
+    for a in this_year:
+        d = a["start_local"][:10]; g = group(a["sport_type"])
+        if g not in ("ride", "run", "foot"): continue
+        per_day.setdefault(d, {"ride": 0.0, "run": 0.0, "foot": 0.0})
+        per_day[d][g] += a["summary"]["distance"] / 1000
+    jan1 = date(year, 1, 1); today = date.today()
+    start = jan1 - timedelta(days=jan1.weekday())          # Montag der ersten Woche
+    weeks = []
+    cur = start
+    while cur <= today:
+        wk = []
+        for i in range(7):
+            d = cur + timedelta(days=i)
+            if d < jan1 or d > today:
+                wk.append(None)
+            else:
+                v = per_day.get(d.isoformat())
+                wk.append({"d": d.isoformat(), "r": round(v["ride"], 1) if v else 0, "k": round(v["run"], 1) if v else 0,
+                           "f": round(v["foot"], 1) if v else 0, "m": d.day == 1 and d.month or 0})
+        weeks.append(wk)
+        cur += timedelta(days=7)
+    month_starts = []
+    for wi, wk in enumerate(weeks):
+        for day in wk:
+            if day and day["m"]:
+                month_starts.append({"week": wi, "month": day["m"]})
+    calendar = {"weeks": weeks, "month_starts": month_starts, "day_of_year": today.timetuple().tm_yday,
+                "days_in_year": (date(year, 12, 31) - jan1).days + 1, "active_days": len(per_day)}
+
     # Uhrzeiten-Verteilung (Stunde des Starts) – "Frühaufsteher"
     hours = [0] * 24
     for a in acts.values():
@@ -243,7 +274,7 @@ def main():
     bikes = [g for g in gear if g["gear_id"]["gear_type"] == "Bike"]
     out = {
         "generated_at": datetime.now().strftime("%Y-%m-%d"),
-        "totals": totals, "weekly": weekly, "monthly": monthly, "start_hours": hours,
+        "totals": totals, "weekly": weekly, "monthly": monthly, "start_hours": hours, "calendar": calendar,
         "recent": recent, "highlights": highlights,
         "map": {"width": box[0], "height": box[1], "paths": map_paths},
         "gear": {

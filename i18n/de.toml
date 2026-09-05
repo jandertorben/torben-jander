@@ -225,3 +225,36 @@ other = "Bild folgt"
 other = "Vorheriges Teil"
 [equip_next]
 other = "Nächstes Teil"
+
+[goal_eyebrow]
+other = "Jahresziel %d"
+[goal_ride]
+other = "Rad"
+[goal_run]
+other = "Laufen"
+[goal_of]
+other = "von %s km"
+[goal_ahead]
+other = "%s km vor dem Soll"
+[goal_behind]
+other = "%s km hinter dem Soll"
+[goal_reached]
+other = "Ziel erreicht"
+[goal_note]
+other = "Die Marke zeigt den Soll-Stand nach Kalendertagen: Tag %d von %d."
+[cal_title]
+other = "Jeder Tag des Jahres"
+[cal_note]
+other = "Ein Kästchen pro Tag, Wochen als Spalten. Ocker für Rad, Mint für Laufen, je kräftiger, desto weiter. %d Tage mit Aktivität."
+[cal_legend_less]
+other = "wenig"
+[cal_legend_more]
+other = "viel"
+[wd_mo]
+other = "Mo"
+[wd_mi]
+other = "Mi"
+[wd_fr]
+other = "Fr"
+[cal_rest]
+other = "Ruhetag"

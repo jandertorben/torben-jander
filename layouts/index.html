@@ -39,6 +39,39 @@
       <div class="led"><strong class="num num-time">{{ $d.highlights.earliest_start }}</strong><span>{{ T "stat_earliest" }}</span></div>
     </div>
 
+
+    {{- /* Jahresziel: Fortschritt gegen Soll-Stand nach Kalendertagen */ -}}
+    {{- $cal := $d.calendar }}
+    {{- $frac := div (float $cal.day_of_year) (float $cal.days_in_year) }}
+    <div class="goals reveal">
+      <p class="eyebrow">{{ printf (T "goal_eyebrow") $y }}</p>
+      <div class="goal-grid">
+        {{- range $g := slice (dict "key" "ride" "km" $t.ride.km "goal" .Site.Params.ziele.rad "label" (T "goal_ride")) (dict "key" "run" "km" $t.run.km "goal" .Site.Params.ziele.lauf "label" (T "goal_run")) }}
+        {{- $pct := math.Min 100 (div (mul (float $g.km) 100) (float $g.goal)) }}
+        {{- $soll := mul (float $g.goal) $frac }}
+        {{- $sollpct := math.Min 100 (mul $frac 100) }}
+        {{- $diff := sub (float $g.km) $soll }}
+        <div class="goal goal-{{ $g.key }}">
+          <div class="goal-head">
+            <span class="goal-label">{{ $g.label }}</span>
+            <span class="goal-nums"><strong class="num" data-count="{{ $g.km }}">{{ lang.FormatNumber 0 $g.km }}</strong> <span>{{ printf (T "goal_of") (lang.FormatNumber 0 $g.goal) }}</span></span>
+          </div>
+          <div class="goal-bar" role="img" aria-label="{{ lang.FormatNumber 0 $g.km }} {{ printf (T "goal_of") (lang.FormatNumber 0 $g.goal) }}">
+            <i class="goal-fill" style="--w:{{ printf "%.1f" $pct }}%"></i>
+            <b class="goal-mark" style="--x:{{ printf "%.1f" $sollpct }}%"></b>
+          </div>
+          <p class="goal-foot">
+            <span class="goal-pct">{{ lang.FormatNumber 0 $pct }} %</span>
+            {{- if ge (float $g.km) (float $g.goal) }}<span class="goal-diff is-ahead">{{ T "goal_reached" }}</span>
+            {{- else if ge $diff 0.0 }}<span class="goal-diff is-ahead">{{ printf (T "goal_ahead") (lang.FormatNumber 0 $diff) }}</span>
+            {{- else }}<span class="goal-diff is-behind">{{ printf (T "goal_behind") (lang.FormatNumber 0 (mul $diff -1.0)) }}</span>{{ end }}
+          </p>
+        </div>
+        {{- end }}
+      </div>
+      <p class="chart-note goal-note">{{ printf (T "goal_note") (int $cal.day_of_year) (int $cal.days_in_year) }}</p>
+    </div>
+
     <div class="charts">
       {{- $w := $d.weekly }}
       {{- $max := 1.0 }}{{ range $w }}{{ $s := add .ride .run }}{{ if gt $s $max }}{{ $max = $s }}{{ end }}{{ end }}
@@ -78,6 +111,38 @@
         <p class="chart-note">{{ T "hours_note" }}</p>
       </figure>
     </div>
+
+    {{- /* Aktivitätskalender: Wochen als Spalten, Mo–So als Zeilen */ -}}
+    {{- $nw := len $cal.weeks }}{{ $cs := 14 }}{{ $gap := 3 }}{{ $left := 30 }}{{ $top := 18 }}
+    {{- $W := add $left (mul $nw (add $cs $gap)) }}{{ $H := add $top (mul 7 (add $cs $gap)) }}
+    <figure class="cal reveal">
+      <figcaption><span>{{ T "cal_title" }}</span><span class="legend"><span class="cal-less">{{ T "cal_legend_less" }}</span><i class="sw cal-l1"></i><i class="sw cal-l2"></i><i class="sw cal-l3"></i><span>{{ T "cal_legend_more" }}</span></span></figcaption>
+      <div class="chart-scroll">
+      <svg viewBox="0 0 {{ $W }} {{ $H }}" class="cal-svg" role="img" aria-label="{{ T "cal_title" }}" style="min-width:{{ $W }}px">
+        <defs><linearGradient id="calboth" x1="0" y1="0" x2="1" y2="1"><stop offset="0.5" stop-color="#f0c07a"/><stop offset="0.5" stop-color="#b9ece0"/></linearGradient></defs>
+        {{- range $cal.month_starts }}<text x="{{ add $left (mul .week (add $cs $gap)) }}" y="11" class="tick">{{ T (printf "month_%d" (int .month)) }}</text>{{ end }}
+        <text x="0" y="{{ add $top 11 }}" class="tick">{{ T "wd_mo" }}</text>
+        <text x="0" y="{{ add $top (add 11 (mul 2 (add $cs $gap))) }}" class="tick">{{ T "wd_mi" }}</text>
+        <text x="0" y="{{ add $top (add 11 (mul 4 (add $cs $gap))) }}" class="tick">{{ T "wd_fr" }}</text>
+        {{- $i := 0 }}
+        {{- range $wi, $wk := $cal.weeks }}{{ range $di, $day := $wk }}
+        {{- if $day }}
+        {{- $x := add $left (mul $wi (add $cs $gap)) }}{{ $yy := add $top (mul $di (add $cs $gap)) }}
+        {{- $tot := add $day.r $day.k }}
+        {{- $lvl := 0 }}{{ if gt $tot 0.0 }}{{ $lvl = 1 }}{{ end }}{{ if ge $tot 15.0 }}{{ $lvl = 2 }}{{ end }}{{ if ge $tot 30.0 }}{{ $lvl = 3 }}{{ end }}
+        {{- $kind := "rest" }}{{ if and (gt $day.r 0.0) (gt $day.k 0.0) }}{{ $kind = "both" }}{{ else if gt $day.r 0.0 }}{{ $kind = "ride" }}{{ else if gt $day.k 0.0 }}{{ $kind = "run" }}{{ else if gt $day.f 0.0 }}{{ $kind = "foot" }}{{ end }}
+        <g class="cd cd-{{ $kind }} cd-l{{ $lvl }}" style="--i:{{ $i }}">
+          <rect x="{{ $x }}" y="{{ $yy }}" width="{{ $cs }}" height="{{ $cs }}" rx="2"/>
+          <title>{{ time.Format ":date_medium" (time $day.d) }}{{ if gt $day.r 0.0 }} · {{ lang.FormatNumber 1 $day.r }} km {{ T "weekly_legend_ride" }}{{ end }}{{ if gt $day.k 0.0 }} · {{ lang.FormatNumber 1 $day.k }} km {{ T "weekly_legend_run" }}{{ end }}{{ if eq $kind "rest" }} · {{ T "cal_rest" }}{{ end }}</title>
+        </g>
+        {{- $i = add $i 1 }}
+        {{- end }}
+        {{- end }}{{ end }}
+      </svg>
+      </div>
+      <p class="chart-note">{{ printf (T "cal_note") (int $cal.active_days) }}</p>
+    </figure>
+
     <p class="lifetime reveal">{{ printf (T "lifetime_note") (time.Format ":date_long" (time $t.lifetime.since)) (lang.FormatNumber 0 $t.lifetime.all.km) }}</p>
   </div>
 </section>

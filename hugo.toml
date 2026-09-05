@@ -31,6 +31,10 @@ timeZone               = "Europe/Berlin"
   linkedin = "https://www.linkedin.com/in/torben-jander-6a7199128/"
   # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
   schuhLebensdauer = 800
+  # Jahresziele in Kilometern
+  [params.ziele]
+    rad  = 2000
+    lauf = 300
 
 [markup.goldmark.renderer]
   unsafe = true

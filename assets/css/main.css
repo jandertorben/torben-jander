@@ -138,6 +138,52 @@ p{margin:0}
 .num-time{font-variant-numeric:tabular-nums}
 @media (max-width:900px){.ledger{grid-template-columns:repeat(2,1fr);gap:0 1.5rem}}
 
+/* ─── Jahresziel ───────────────────────────────────────────────── */
+.goals{margin-top:3.5rem}
+.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem 3rem}
+@media (max-width:760px){.goal-grid{grid-template-columns:1fr}}
+.goal{display:grid;gap:.6rem}
+.goal-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.goal-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.goal-nums{display:flex;align-items:baseline;gap:.45rem;color:var(--ink-2);font-size:.9rem}
+.goal-nums .num{font-size:clamp(1.8rem,3vw,2.4rem);line-height:1;color:var(--ink)}
+.goal-ride .goal-nums .num{color:var(--gravel-2)}
+.goal-run .goal-nums .num{color:var(--run-2)}
+.goal-bar{position:relative;height:12px;background:var(--bg-3);border:1px solid var(--line);border-radius:6px}
+.goal-fill{position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:6px;background:linear-gradient(90deg,var(--gravel),var(--gravel-2));transform-origin:left;transform:scaleX(0);transition:transform 1.6s var(--ease) .2s}
+.goal-run .goal-fill{background:linear-gradient(90deg,var(--run),var(--run-2))}
+.in .goal-fill,.no-js .goal-fill{transform:none}
+.goal-mark{position:absolute;top:-6px;bottom:-6px;left:var(--x);width:2px;background:var(--ink);opacity:.85;transform:translateX(-1px)}
+.goal-mark::after{content:"";position:absolute;left:-3px;top:-4px;border:4px solid transparent;border-top-color:var(--ink)}
+.goal-foot{display:flex;justify-content:space-between;gap:1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--muted)}
+.goal-pct{color:var(--ink-2)}
+.goal-diff.is-ahead{color:var(--run-2)}
+.goal-diff.is-behind{color:var(--gravel-2)}
+.goal-note{margin-top:1.2rem}
+
+/* ─── Aktivitätskalender ───────────────────────────────────────── */
+.cal{margin:3.5rem 0 0;display:grid;gap:.8rem}
+.cal figcaption{display:flex;justify-content:space-between;gap:1rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.cal .legend{gap:.3rem}
+.cal-less{margin-right:.2rem}
+.cal-l1{background:var(--gravel-dim)}.cal-l2{background:rgba(211,155,90,.55)}.cal-l3{background:var(--gravel-2)}
+.cal-svg{display:block;height:auto;width:100%;overflow:visible}
+.cd rect{fill:var(--bg-3);stroke:var(--line);stroke-width:.6;transition:fill .3s,opacity .6s var(--ease),transform .6s var(--ease)}
+.cd-ride.cd-l1 rect{fill:rgba(211,155,90,.32);stroke:none}
+.cd-ride.cd-l2 rect{fill:rgba(211,155,90,.62);stroke:none}
+.cd-ride.cd-l3 rect{fill:var(--gravel-2);stroke:none}
+.cd-run.cd-l1 rect{fill:rgba(142,211,195,.32);stroke:none}
+.cd-run.cd-l2 rect{fill:rgba(142,211,195,.62);stroke:none}
+.cd-run.cd-l3 rect{fill:var(--run-2);stroke:none}
+.cd-both rect{fill:url(#calboth);stroke:none}
+.cd-both.cd-l1 rect{opacity:.5}.cd-both.cd-l2 rect{opacity:.8}
+.cd-foot rect{fill:var(--line-2);stroke:none}
+.cd:hover rect{stroke:var(--ink);stroke-width:1}
+@media (prefers-reduced-motion:no-preference){
+  .js .cal .cd{opacity:0;transform:translateY(4px);transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:calc(var(--i)*2ms)}
+  .js .cal.in .cd{opacity:1;transform:none}
+}
+
 /* ─── Charts ───────────────────────────────────────────────────── */
 .charts{display:grid;grid-template-columns:3fr 2fr;gap:2.5rem;margin-top:3.5rem}
 @media (max-width:900px){.charts{grid-template-columns:1fr}}
