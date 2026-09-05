@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Stellt ein Produktfoto mit einfarbigem (meist weißem) Hintergrund sauber frei.
 
-Aufruf: python3 scripts/prepare_product_image.py <quelle> <ziel.png>
+Aufruf: python3 scripts/prepare_product_image.py <quelle> <ziel.png> [--vision-only]
+
+--vision-only: nur die Motivmaske verwenden. Sinnvoll bei Objekten ohne Durchblick-Löcher
+(z. B. Schuhe mit heller Sohle), bei denen die Hintergrund-Erkennung helle Flächen im Motiv anfressen würde.
 
 Zwei Masken werden kombiniert:
   1. Motivmaske aus Apples Vision-Framework (scripts/remove_background.swift) für saubere Außenkanten
@@ -14,6 +17,7 @@ import numpy as np
 from PIL import Image
 
 src, dst = sys.argv[1], sys.argv[2]
+vision_only = "--vision-only" in sys.argv[3:]
 here = os.path.dirname(os.path.abspath(__file__))
 
 src_im = Image.open(src)
@@ -51,7 +55,7 @@ lo, hi = 10.0, 34.0                       # bis lo: Hintergrund, ab hi: Motiv, d
 key = np.clip((dist - lo) / (hi - lo), 0, 1)
 key = key * key * (3 - 2 * key)           # Smoothstep für ruhige Kanten
 
-alpha = np.minimum(vision, key)
+alpha = vision if vision_only else np.minimum(vision, key)
 
 # 3) Hintergrundfarbe aus Kantenpixeln herausrechnen: C = a*F + (1-a)*B  =>  F = (C - (1-a)*B) / a
 a = alpha[..., None]

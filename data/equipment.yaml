@@ -50,6 +50,7 @@ items:
   - name: Supernova Solution 2
     brand: Adidas
     category: run
+    image: adidas-supernova.png
     strava_gear: "29620084"
     life_km: 800
     note_de: "Der erste ernsthafte Laufschuh. Hat die ersten hundert Kilometer getragen und trägt weiter."
@@ -57,5 +58,6 @@ items:
   - name: Laufweste mit Soft Flask
     brand: Salomon
     category: run
+    image: salomon-weste.png
     note_de: "Ab zehn Kilometern kommt sie mit. Wasser, Schlüssel, Handy, nichts wackelt."
     note_en: "Comes along from ten kilometres up. Water, keys, phone, nothing bounces."
