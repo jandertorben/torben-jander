@@ -36,13 +36,15 @@ Die Website ruft **nie** Strava auf. Die Zahlen werden vorab erzeugt und als `da
 baut `data/strava.json` neu und committet nur diese Datei, wenn sich etwas geändert hat. Der Push löst den
 Cloudflare-Build aus. Manuell starten: GitHub, Reiter „Actions“, „Strava-Daten aktualisieren“, „Run workflow“.
 
-Einmalige Einrichtung (etwa 10 Minuten):
+Einmalige Einrichtung (etwa 5 Minuten):
 
-1. Auf https://www.strava.com/settings/api eine API-Anwendung anlegen. Callback-Domain: `localhost`.
-2. Lokal `python3 scripts/strava_auth.py` ausführen und den Anweisungen folgen. Das Skript gibt einen Refresh-Token aus.
-3. Im GitHub-Repo unter Settings, Secrets and variables, Actions drei Secrets anlegen:
-   `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`.
-4. Den Workflow einmal von Hand starten und prüfen, ob ein Commit `data: Strava-Daten vom …` entsteht.
+1. Auf https://www.strava.com/settings/api liegt die Anwendung „torben-jander.me“ (Client-ID 277243, Callback-Domain `localhost`).
+   Dort neben „Geheimer Clientschlüssel“ auf „Anzeigen“ klicken und den Wert kopieren.
+2. Im Projektordner `python3 scripts/strava_auth.py` ausführen und das Secret einfügen. Das Skript öffnet die
+   Strava-Freigabe im Browser, fängt die Rückleitung auf localhost ab, holt den Refresh-Token, legt die drei
+   GitHub-Secrets `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN` per `gh` an, schreibt eine
+   lokale `.env` und startet den Workflow einmal.
+3. Auf GitHub unter „Actions“ prüfen, ob ein Commit `data: Strava-Daten vom …` entsteht.
 
 Strava erlaubt 200 Anfragen pro 15 Minuten und 2.000 pro Tag; der tägliche Lauf braucht unter zehn.
 
