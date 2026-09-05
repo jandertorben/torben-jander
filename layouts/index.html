@@ -155,8 +155,8 @@
       <div class="equip-hero-img">
         {{- $img := "" }}{{ with $g.image }}{{ $img = resources.Get (printf "img/%s" .) }}{{ end }}
         {{- with $img }}
-        {{- $w1 := .Resize "900x webp q85" }}{{ $w2 := .Resize "1600x webp q85" }}
-        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 900w, {{ $w2.RelPermalink }} 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async">
+        {{- $w1 := .Resize "800x webp q85" }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
+        <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 800w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="lazy" decoding="async">
         {{- else }}<div class="equip-noimg" aria-hidden="true"><span>{{ T "equip_image_missing" }}</span></div>{{ end }}
         <svg class="equip-road" viewBox="0 0 600 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 H600" pathLength="1"/></svg>
       </div>
