@@ -6,7 +6,8 @@
 #   life_km            Richtwert für Lebensdauer (Laufschuhe), zeigt eine Füllanzeige
 #   note_de, note_en   ein Satz, warum genau dieses Teil
 #   spec               kurze Zeile mit Fakten (Gewicht, Reifen, Modelljahr …), optional
-#   image              Dateiname in assets/img/, optional (nur beim Hauptstück nötig)
+#   image              Dateiname in assets/img/, optional
+#   photo              true = Bild als gerahmtes Foto zeigen statt als freigestelltes Objekt
 #   featured           true = großes Element mit Bild oben in der Rubrik
 items:
   - name: Grizl
@@ -32,6 +33,14 @@ items:
     spec: "Sportuhr"
     note_de: "Läuft beim Laufen mit, zeichnet auf dem Rad parallel zum Edge auf und zählt dazwischen die Tage. Puls, Schlaf, Erholung, alles an einem Ort."
     note_en: "Comes along on every run, records alongside the Edge on the bike and counts the days in between. Heart rate, sleep, recovery, all in one place."
+  - name: Speed Sensor 2 & Trittfrequenzsensor 2
+    brand: Garmin
+    category: bike
+    image: garmin-sensoren.png
+    photo: true
+    spec: "Sensoren · Nabe & Kurbel"
+    note_de: "Sitzen an Nabe und Kurbel und liefern dem Edge Geschwindigkeit und Trittfrequenz, auch wenn das GPS unter Bäumen schwächelt."
+    note_en: "Sit on the hub and the crank and feed speed and cadence to the Edge, even when GPS struggles under trees."
   - name: Novus Boost EVO Gravel Superflow
     brand: Selle Italia
     category: bike

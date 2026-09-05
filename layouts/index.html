@@ -154,7 +154,7 @@
         {{- range $i, $g := $eq }}
         {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
         {{- $img := "" }}{{ with $g.image }}{{ $img = resources.Get (printf "img/%s" .) }}{{ end }}
-        <article class="equip-slide equip-{{ $g.category }}{{ if eq $i 0 }} is-active{{ end }}" role="group" aria-roledescription="slide" aria-label="{{ add $i 1 }} / {{ $n }}" data-index="{{ $i }}">
+        <article class="equip-slide equip-{{ $g.category }}{{ if $g.photo }} equip-photo{{ end }}{{ if eq $i 0 }} is-active{{ end }}" role="group" aria-roledescription="slide" aria-label="{{ add $i 1 }} / {{ $n }}" data-index="{{ $i }}">
           <div class="equip-slide-img">
             {{- with $img }}
             {{- $w1 := .Resize (printf "%dx webp q85" (math.Min .Width 800 | int)) }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
