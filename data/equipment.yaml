@@ -85,6 +85,13 @@ items:
     spec: "Trägerhose · Gravel"
     note_de: "Die Hose für alles ab einer Stunde im Sattel. Polster, das auch nach dem Deich noch Freude macht."
     note_en: "The shorts for anything over an hour in the saddle. A pad that still feels good after the dyke."
+  - name: Tour of Honor 2026
+    brand: Battlefield Cyclists
+    category: bike
+    image: trikot-tour-of-honor.png
+    spec: "Trikot · Good Friday Battle 2026"
+    note_de: "Das Trikot der Battlefield Cyclists zur Tour of Honor 2026. Auf dem Rücken stehen die Namen derer, für die gefahren wird. Kein Trikot für Bestzeiten, eins fürs Erinnern."
+    note_en: "The Battlefield Cyclists jersey for the Tour of Honor 2026. The back carries the names of those it is ridden for. Not a jersey for personal bests, one for remembering."
   - name: Gel-Kayano 32
     brand: ASICS
     category: run
