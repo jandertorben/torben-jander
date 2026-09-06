@@ -249,6 +249,7 @@ def main():
     lat0 = 53.07
     allxy = {}
     for aid, pts in routes.items():
+        if not acts[aid]["start_local"].startswith(str(year)): continue  # Karte zeigt nur das laufende Jahr
         if any(p[0] > 54.5 for p in pts): continue  # Urlaubsspaziergänge (DK) nicht in die Bremen-Karte
         allxy[aid] = project(pts, lat0)
     xs = [x for v in allxy.values() for x, _ in v]; ys = [y for v in allxy.values() for _, y in v]
@@ -262,9 +263,14 @@ def main():
                           "km": round(a["summary"]["distance"] / 1000, 1), "d": to_path(xy, box, bounds, pad=0.03)})
     # Pendelstrecken überlagern sich fast vollständig: davon reicht eine Auswahl.
     # Alle Routen ab LONG_KM bleiben drin, kürzere werden gleichmäßig auf MAX_SHORT reduziert.
-    LONG_KM, MAX_SHORT = 12.0, 40
+    LONG_KM, MAX_SHORT, MAX_LONG = 12.0, 40, 40
     long_p = [p for p in map_paths if p["km"] >= LONG_KM]
     short_p = [p for p in map_paths if p["km"] < LONG_KM]
+    # auch lange Touren begrenzen: die jüngsten MAX_LONG bleiben, damit die Karte über Jahre nicht anschwillt
+    if len(long_p) > MAX_LONG:
+        newest = sorted(long_p, key=lambda p: acts[p["id"]]["start_local"], reverse=True)[:MAX_LONG]
+        keep = {p["id"] for p in newest}
+        long_p = [p for p in long_p if p["id"] in keep]
     if len(short_p) > MAX_SHORT:
         step = len(short_p) / MAX_SHORT
         short_p = [short_p[int(i * step)] for i in range(MAX_SHORT)]
