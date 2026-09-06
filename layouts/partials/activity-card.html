@@ -16,4 +16,5 @@
     </dl>
     {{- with $a.location }}<p class="act-loc">{{ . }}</p>{{ end }}
   </div>
+  <a class="act-link" href="https://www.strava.com/activities/{{ $a.id }}" target="_blank" rel="noopener" aria-label="{{ T "view_on_strava" }}: {{ $a.name }}"><span class="act-hint">{{ T "view_on_strava" }} ↗</span></a>
 </article>
