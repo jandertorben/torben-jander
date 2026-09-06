@@ -222,7 +222,12 @@ def main():
         return card
 
     ordered = sorted(acts.values(), key=lambda a: a["start_local"], reverse=True)
-    recent = [activity_card(a) for a in ordered if group(a["sport_type"]) in ("ride", "run")][:8]
+    # „Zuletzt unterwegs“: Kurzstrecken (Bäcker, Kita) bleiben draußen, zählen aber in allen Summen
+    MIN_RECENT_KM = {"ride": 5.0, "run": 2.0}
+    def worth_showing(a):
+        g = group(a["sport_type"])
+        return g in MIN_RECENT_KM and a["summary"]["distance"] >= MIN_RECENT_KM[g] * 1000
+    recent = [activity_card(a) for a in ordered if worth_showing(a)][:8]
 
     def longest(items):
         items = [a for a in items if a["id"] in routes]
