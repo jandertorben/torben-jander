@@ -38,7 +38,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
         threading.Thread(target=self.server.shutdown, daemon=True).start()
     def log_message(self, *a): pass
 
-srv = http.server.HTTPServer(("127.0.0.1", PORT), Handler)
+http.server.HTTPServer.allow_reuse_address = True
+srv = None
+for port in range(PORT, PORT + 20):
+    try:
+        srv = http.server.HTTPServer(("127.0.0.1", port), Handler)
+        PORT = port
+        break
+    except OSError:
+        continue
+if srv is None:
+    sys.exit("Kein freier Port zwischen 8765 und 8784 gefunden.")
+REDIRECT = f"http://localhost:{PORT}/exchange_token"
 params = {"client_id": cid, "response_type": "code", "redirect_uri": REDIRECT,
           "approval_prompt": "force", "scope": "read,activity:read_all,profile:read_all"}
 url = "https://www.strava.com/oauth/authorize?" + urllib.parse.urlencode(params)
