@@ -2,7 +2,8 @@ name: Strava-Daten aktualisieren
 
 on:
   schedule:
-    - cron: "17 4 * * *"      # täglich 04:17 UTC (06:17 Sommerzeit)
+    - cron: "17 4 * * *"      # morgens 04:17 UTC (06:17 Sommerzeit)
+    - cron: "17 18 * * *"     # abends 18:17 UTC (20:17 Sommerzeit)
   workflow_dispatch:
 
 permissions:

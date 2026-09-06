@@ -293,7 +293,9 @@ def main():
                        "frame": g.get("frame_type", ""), "weight": g.get("weight")} for g in bikes],
             "shoes": [{"id": g["gear_id"]["id"], "name": f"{g.get('brand','')} {g.get('model_name','')}".strip(), "km": round(g["total_distance"] / 1000)}
                       for g in shoes],
-            "by_id": {g["gear_id"]["id"]: round(g["total_distance"] / 1000) for g in gear},
+            # Zuordnung sowohl über die API-ID (b…/g…) als auch über die reine Ziffernfolge
+            "by_id": {**{g["gear_id"]["id"]: round(g["total_distance"] / 1000) for g in gear},
+                      **{"".join(ch for ch in g["gear_id"]["id"] if ch.isdigit()): round(g["total_distance"] / 1000) for g in gear}},
         },
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
