@@ -2,6 +2,8 @@
 title: "Datenschutzerklärung"
 description: "Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO"
 layout: "rechtlich"
+sitemap:
+  disable: true
 ---
 
 ## 1. Datenschutz auf einen Blick
