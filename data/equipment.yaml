@@ -117,6 +117,8 @@ items:
   - name: OpenRun Pro 2
     brand: Shokz
     category: both
+    image: shokz-openrun-pro-2.webp
+    size: small
     spec: "Kopfhörer · Open-Ear · Schwarz"
     note_de: "Musik und Podcast auf dem Ohr, die Ohren bleiben frei. Auf dem Rad höre ich den Verkehr, beim Laufen die eigenen Schritte. Schwarz, weil es zu allem passt."
     note_en: "Music and podcasts on the ear, ears left open. On the bike I hear the traffic, on the run my own footsteps. Black, because it goes with everything."
