@@ -12,7 +12,7 @@
 {{- range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
 {{- end }}
-{{- if .IsTranslated }}<link rel="alternate" hreflang="x-default" href="{{ .Site.Home.Permalink | absLangURL }}">{{ end }}
+{{- if .IsTranslated }}<link rel="alternate" hreflang="x-default" href="{{ site.Sites.Default.Home.Permalink }}">{{ end }}
 <meta property="og:site_name" content="{{ .Site.Params.name }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
@@ -23,6 +23,20 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+{{- if .IsHome }}
+{{- $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" .Site.Params.name
+  "url" site.Sites.Default.Home.Permalink
+  "image" ("og-image.png" | absURL)
+  "email" (printf "mailto:%s" .Site.Params.email)
+  "address" (dict "@type" "PostalAddress" "addressLocality" .Site.Params.ort "addressCountry" "DE")
+  "sameAs" (slice .Site.Params.strava .Site.Params.github .Site.Params.linkedin)
+  "description" $desc
+}}
+<script type="application/ld+json">{{ $person | jsonify (dict "noHTMLEscape" true) | safeJS }}</script>
+{{- end }}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">

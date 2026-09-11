@@ -2,6 +2,8 @@
 title: "Impressum"
 description: "Rechtliche Pflichtangaben gemäß § 5 TMG"
 layout: "rechtlich"
+sitemap:
+  disable: true
 ---
 
 ## Angaben gemäß § 5 TMG
