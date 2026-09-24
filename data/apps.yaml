@@ -17,3 +17,18 @@ items:
       Open it and see what's happening today. Events can be assigned to family members, including children without their own device.
     appstore: https://apps.apple.com/app/id6780019857
     website: https://tidtil.app/
+
+  - name: VeloCue
+    own: false
+    icon: ""
+    platform: iOS & Android
+    tagline_de: Routen planen. Menschen treffen.
+    tagline_en: Plan routes. Meet people.
+    text_de: >-
+      Die Feierabendrunde, ein neuer Anstieg oder einfach zum besten Kaffee.
+      Mit VeloCue planst du deine Route und findest Leute, die mitfahren. Kostenlos für iOS und Android.
+    text_en: >-
+      An after-work loop, a new climb or just a ride to the best coffee.
+      VeloCue lets you plan your route and find people to ride with. Free for iOS and Android.
+    appstore: https://apps.apple.com/app/id6762764971
+    website: https://velocue.com/

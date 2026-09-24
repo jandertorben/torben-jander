@@ -283,7 +283,7 @@
           {{- end }}
           <div>
             <h3 class="app-name">{{ .name }}</h3>
-            <p class="app-meta">{{ if not .own }}<span class="tag tag-run">{{ T "apps_rec" }}</span>{{ end }}{{ with .platform }}<span>{{ . }}</span>{{ end }}{{ with (cond $en .tagline_en .tagline_de) }}<span aria-hidden="true">·</span><span>{{ . }}</span>{{ end }}</p>
+            <p class="app-meta"><span class="tag {{ if .own }}tag-ride{{ else }}tag-run{{ end }}">{{ T (cond .own "apps_own" "apps_rec") }}</span>{{ with .platform }}<span>{{ . }}</span>{{ end }}{{ with (cond $en .tagline_en .tagline_de) }}<span aria-hidden="true">·</span><span>{{ . }}</span>{{ end }}</p>
           </div>
         </div>
         {{- with (cond $en .text_en .text_de) }}
