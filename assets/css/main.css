@@ -358,7 +358,7 @@ p{margin:0}
 
 /* ─── Apps ─────────────────────────────────────────────────────── */
 .sec-apps .lead{margin-bottom:3rem}
-.app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(1rem,2.5vw,1.8rem)}
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:clamp(1rem,2.5vw,1.8rem)}
 .app{display:grid;grid-template-rows:auto 1fr auto;gap:1.2rem;padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--line);border-radius:6px;background:linear-gradient(160deg,var(--bg-3),var(--bg));transition:border-color .3s}
 .app:hover{border-color:var(--line-2)}
 .app-head{display:flex;align-items:center;gap:1.1rem}
