@@ -273,17 +273,17 @@
       {{- $icon := "" }}{{ with .icon }}{{ $icon = resources.Get (printf "img/apps/%s" .) }}{{ end }}
       <article class="app reveal">
         <div class="app-head">
-          {{- if and $icon (eq $icon.MediaType.SubType "svg") }}
-          <img class="app-icon" src="{{ $icon.RelPermalink }}" width="72" height="72" alt="" loading="lazy" decoding="async">
-          {{- else if $icon }}{{ with $icon }}
+          {{- with $icon }}
+          {{- if eq .MediaType.SubType "svg" }}
+          <img class="app-icon" src="{{ .RelPermalink }}" width="72" height="72" alt="" loading="lazy" decoding="async">
+          {{- else }}
           {{- $i1 := .Resize "72x72 webp q90" }}{{ $i2 := .Resize "144x144 webp q90" }}
           <img class="app-icon" src="{{ $i1.RelPermalink }}" srcset="{{ $i1.RelPermalink }} 1x, {{ $i2.RelPermalink }} 2x" width="72" height="72" alt="" loading="lazy" decoding="async">
-          {{- else }}
-          <span class="app-icon app-icon-fallback" aria-hidden="true">{{ substr .name 0 1 }}</span>
-          {{- end }}{{ end }}
+          {{- end }}
+          {{- end }}
           <div>
             <h3 class="app-name">{{ .name }}</h3>
-            <p class="app-meta">{{ with .platform }}<span class="tag tag-ride">{{ . }}</span>{{ end }}{{ with (cond $en .tagline_en .tagline_de) }} <span>{{ . }}</span>{{ end }}</p>
+            <p class="app-meta"><span class="tag {{ if .own }}tag-ride{{ else }}tag-run{{ end }}">{{ T (cond .own "apps_own" "apps_rec") }}</span>{{ with .platform }}<span>{{ . }}</span>{{ end }}{{ with (cond $en .tagline_en .tagline_de) }}<span aria-hidden="true">·</span><span>{{ . }}</span>{{ end }}</p>
           </div>
         </div>
         {{- with (cond $en .text_en .text_de) }}

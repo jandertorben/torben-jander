@@ -363,7 +363,6 @@ p{margin:0}
 .app:hover{border-color:var(--line-2)}
 .app-head{display:flex;align-items:center;gap:1.1rem}
 .app-icon{flex:none;width:72px;height:72px;border-radius:22.5%;border:1px solid var(--line-2);box-shadow:0 12px 24px rgba(0,0,0,.4)}
-.app-icon-fallback{display:grid;place-items:center;background:var(--bg-2);font-family:var(--display);font-weight:700;font-size:2.4rem;color:var(--gravel-2)}
 .app-name{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;line-height:1;letter-spacing:-.01em}
 .app-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.45rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted)}
 .app-text{color:var(--ink-2);max-width:52ch;text-wrap:pretty}

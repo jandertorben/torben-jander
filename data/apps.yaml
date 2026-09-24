@@ -1,8 +1,10 @@
 # Apps, die ich gebaut habe. Reihenfolge = Reihenfolge auf der Seite.
-# icon: Datei unter assets/img/apps/ (quadratisch, mind. 180 px). Ohne icon erscheint der Anfangsbuchstabe.
+# icon: Datei unter assets/img/apps/ (quadratisch, mind. 180 px, oder SVG). Leer lassen = kein Icon.
 # appstore / website: leer lassen, dann wird der Button nicht angezeigt.
+# own: true = selbst gebaut, false = Empfehlung (App eines anderen Entwicklers).
 items:
   - name: TidTil
+    own: true
     icon: tidtil.png
     platform: iPhone
     tagline_de: Der ruhige Familienkalender
@@ -17,7 +19,8 @@ items:
     website: https://tidtil.app/
 
   - name: VeloCue
-    icon: velocue.svg
+    own: false
+    icon: ""
     platform: iOS & Android
     tagline_de: Routen planen. Menschen treffen.
     tagline_en: Plan routes. Meet people.

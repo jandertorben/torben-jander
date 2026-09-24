@@ -264,10 +264,14 @@ other = "Apps"
 [apps_eyebrow]
 other = "Apps"
 [apps_title]
-other = "What I build."
+other = "What I build and use."
 [apps_text]
-other = "Besides bikes and running shoes, I make small smartphone apps. Calm and uncluttered."
+other = "I built TidTil myself. Plus a cycling recommendation from another developer."
 [apps_appstore]
 other = "App Store"
 [apps_website]
 other = "Website"
+[apps_own]
+other = "My app"
+[apps_rec]
+other = "Recommendation"
