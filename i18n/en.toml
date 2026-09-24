@@ -266,7 +266,7 @@ other = "Apps"
 [apps_title]
 other = "What I build and use."
 [apps_text]
-other = "I built TidTil myself. Plus a cycling recommendation from another developer."
+other = "I built TidTil myself. Plus a cycling app recommendation from another developer."
 [apps_appstore]
 other = "App Store"
 [apps_website]
@@ -274,4 +274,4 @@ other = "Website"
 [apps_own]
 other = "My app"
 [apps_rec]
-other = "Recommendation"
+other = "App recommendation"
