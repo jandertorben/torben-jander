@@ -258,3 +258,16 @@ other = "Mi"
 other = "Fr"
 [cal_rest]
 other = "Ruhetag"
+
+[nav_apps]
+other = "Apps"
+[apps_eyebrow]
+other = "Apps"
+[apps_title]
+other = "Was ich baue."
+[apps_text]
+other = "Neben Rad und Laufschuhen entstehen kleine Apps fürs iPhone. Ruhig und aufgeräumt."
+[apps_appstore]
+other = "App Store"
+[apps_website]
+other = "Website"

@@ -356,6 +356,19 @@ p{margin:0}
 .equip-arrow:hover{border-color:var(--gravel);color:var(--gravel-2);transform:translateY(-1px)}
 @media (max-width:560px){.equip-dot{width:1.2rem}.equip-dot.is-active{width:2rem}}
 
+/* ─── Apps ─────────────────────────────────────────────────────── */
+.sec-apps .lead{margin-bottom:3rem}
+.app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(1rem,2.5vw,1.8rem)}
+.app{display:grid;grid-template-rows:auto 1fr auto;gap:1.2rem;padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--line);border-radius:6px;background:linear-gradient(160deg,var(--bg-3),var(--bg));transition:border-color .3s}
+.app:hover{border-color:var(--line-2)}
+.app-head{display:flex;align-items:center;gap:1.1rem}
+.app-icon{flex:none;width:72px;height:72px;border-radius:22.5%;border:1px solid var(--line-2);box-shadow:0 12px 24px rgba(0,0,0,.4)}
+.app-icon-fallback{display:grid;place-items:center;background:var(--bg-2);font-family:var(--display);font-weight:700;font-size:2.4rem;color:var(--gravel-2)}
+.app-name{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;line-height:1;letter-spacing:-.01em}
+.app-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.45rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted)}
+.app-text{color:var(--ink-2);max-width:52ch;text-wrap:pretty}
+.app .hero-actions{margin-top:0}
+
 /* ─── Über mich ────────────────────────────────────────────────── */
 .sec-about{border-top:1px solid var(--line)}
 .about-grid{display:grid;gap:clamp(2rem,5vw,5rem);align-items:stretch}

@@ -258,3 +258,16 @@ other = "Wed"
 other = "Fri"
 [cal_rest]
 other = "Rest day"
+
+[nav_apps]
+other = "Apps"
+[apps_eyebrow]
+other = "Apps"
+[apps_title]
+other = "What I build."
+[apps_text]
+other = "Besides bikes and running shoes, I make small iPhone apps. Calm and uncluttered."
+[apps_appstore]
+other = "App Store"
+[apps_website]
+other = "Website"
