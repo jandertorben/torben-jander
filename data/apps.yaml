@@ -16,13 +16,16 @@ items:
     appstore: https://apps.apple.com/app/id6780019857
     website: https://tidtil.app/
 
-  # TODO: Beschreibung und Link für VeloCue ergänzen
   - name: VeloCue
-    icon: ""
-    platform: iPhone
-    tagline_de: ""
-    tagline_en: ""
-    text_de: ""
-    text_en: ""
+    icon: velocue.svg
+    platform: iOS & Android
+    tagline_de: Routen planen. Menschen treffen.
+    tagline_en: Plan routes. Meet people.
+    text_de: >-
+      Die Feierabendrunde, ein neuer Anstieg oder einfach zum besten Kaffee.
+      Mit VeloCue planst du deine Route und findest Leute, die mitfahren. Kostenlos für iOS und Android.
+    text_en: >-
+      An after-work loop, a new climb or just a ride to the best coffee.
+      VeloCue lets you plan your route and find people to ride with. Free for iOS and Android.
     appstore: ""
-    website: ""
+    website: https://velocue.com/
