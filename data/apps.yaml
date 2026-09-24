@@ -20,7 +20,7 @@ items:
 
   - name: VeloCue
     own: false
-    icon: ""
+    icon: velocue.svg
     platform: iOS & Android
     tagline_de: Routen planen. Menschen treffen.
     tagline_en: Plan routes. Meet people.
