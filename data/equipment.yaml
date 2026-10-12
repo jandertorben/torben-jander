@@ -74,8 +74,8 @@ items:
   - name: Velosamba
     brand: Adidas
     category: bike
-    image: adidas-velosamba.jpg
-    photo: true
+    image: adidas-velosamba.png
+    size: small
     spec: "Rad-Schuh · 2-Loch-Cleat · Schwarz"
     note_de: "Klickschuh im Samba-Look. Fürs Pendeln, wenn man nach dem Absteigen nicht wie auf Stollen durchs Büro laufen will."
     note_en: "A clip-in shoe that looks like a Samba. For the commute, when you don't want to clatter through the office on cleats."
