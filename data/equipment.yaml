@@ -71,6 +71,14 @@ items:
     spec: "Gravel-Schuh · BOA"
     note_de: "Steife Sohle für die Kraft, griffiges Profil für die Schiebepassagen. Der BOA-Drehverschluss sitzt auch mit Handschuhen."
     note_en: "Stiff sole for power, grippy tread for the hike-a-bike bits. The BOA dial works even with gloves on."
+  - name: Velosamba
+    brand: Adidas
+    category: bike
+    image: adidas-velosamba.jpg
+    photo: true
+    spec: "Rad-Schuh · 2-Loch-Cleat · Schwarz"
+    note_de: "Klickschuh im Samba-Look. Fürs Pendeln, wenn man nach dem Absteigen nicht wie auf Stollen durchs Büro laufen will."
+    note_en: "A clip-in shoe that looks like a Samba. For the commute, when you don't want to clatter through the office on cleats."
   - name: Novus Boost EVO Gravel Superflow
     brand: Selle Italia
     category: bike
