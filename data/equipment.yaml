@@ -10,6 +10,8 @@
 #   photo              true = Bild als gerahmtes Foto zeigen statt als freigestelltes Objekt
 #   size               small = Bild kleiner zeigen (für kleine Vorlagen, damit nichts hochgerechnet wird)
 #   featured           true = großes Element mit Bild oben in der Rubrik
+#   glow               [x, y] Position der Linse im Bild in Prozent, z. B. ["78%", "51%"]
+#                      → Lampe leuchtet beim ersten Anschauen kurz auf
 items:
   - name: Grizl
     brand: Canyon
@@ -46,6 +48,7 @@ items:
     brand: Lupine
     category: bike
     image: lupine-sl-grano.png
+    glow: ["78.4%", "51.4%"]
     spec: "Frontlicht · StVZO · 900 Lumen"
     note_de: "Sitzt mittig am Vorbau und macht den Deich um sechs Uhr morgens hell. Die alte Lampe war zu dunkel, die hier blendet trotzdem niemanden."
     note_en: "Sits centred on the stem and lights up the dyke at six in the morning. The old lamp was too dim, this one still dazzles nobody."

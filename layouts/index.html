@@ -223,7 +223,9 @@
           <div class="equip-slide-img">
             {{- with $img }}
             {{- $w1 := .Resize (printf "%dx webp q85" (math.Min .Width 800 | int)) }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
+            {{- if $g.glow }}<span class="equip-glow-wrap" style="--gx:{{ index $g.glow 0 }};--gy:{{ index $g.glow 1 }}">{{ end }}
             <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} {{ $w1.Width }}w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async">
+            {{- if $g.glow }}<i class="equip-glow" aria-hidden="true"></i></span>{{ end }}
             {{- else }}
             <div class="equip-fallback" aria-hidden="true"><span>{{ $g.brand }}</span></div>
             {{- end }}

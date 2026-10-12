@@ -90,6 +90,11 @@
         d.setAttribute('aria-selected', k === i ? 'true' : 'false');
       });
       if (counter) counter.textContent = String(i + 1);
+      /* Lampe leuchtet nur beim ersten Anschauen kurz auf */
+      if (!slides[i].dataset.lit && slides[i].querySelector('.equip-glow')) {
+        slides[i].dataset.lit = '1';
+        slides[i].classList.add('is-lit');
+      }
       slides[i].querySelectorAll('[data-count]').forEach(function (n) {
         if (n.dataset.done) return;
         n.dataset.done = '1';
