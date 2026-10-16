@@ -307,15 +307,25 @@
   <div class="wrap">
     <p class="eyebrow">{{ T "about_eyebrow" }}</p>
     <h2 id="ueber-h" class="sec-h reveal">{{ T "about_title" }}</h2>
-    {{- /* Porträt: Datei als assets/img/portrait.jpg (oder .png/.webp) ablegen, Hochformat 3:4 */ -}}
+    {{- /* Porträt: Video unter assets/video/portrait.mp4 (stumm, Schleife) hat Vorrang,
+           Standbild dafür als assets/img/portrait-poster.jpg.
+           Sonst Foto als assets/img/portrait.jpg (oder .png/.webp), Hochformat 3:4 */ -}}
+    {{- $vid := resources.Get "video/portrait.mp4" }}
     {{- $img := or (resources.Get "img/portrait.jpg") (resources.Get "img/portrait.png") (resources.Get "img/portrait.webp") }}
-    <div class="about-grid{{ if $img }} has-portrait{{ end }}">
-      {{- with $img }}
+    <div class="about-grid{{ if or $vid $img }} has-portrait{{ end }}">
+      {{- if $vid }}
+      {{- $v := $vid | fingerprint }}
+      {{- $poster := resources.Get "img/portrait-poster.jpg" }}
+      {{- with $poster }}{{ $poster = .Process "webp q82" }}{{ end }}
+      <figure class="portrait portrait-video reveal">
+        <video src="{{ $v.RelPermalink }}"{{ with $poster }} poster="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"{{ end }} autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-label="{{ T "portrait_alt" }}"></video>
+      </figure>
+      {{- else }}{{ with $img }}
       {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1080x webp q82" }}
       <figure class="portrait reveal">
         <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} 720w, {{ $w2.RelPermalink }} 1080w" sizes="(max-width: 900px) 100vw, 40vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ T "portrait_alt" }}" loading="lazy" decoding="async">
       </figure>
-      {{- end }}
+      {{- end }}{{ end }}
       <div class="about-text reveal">
         <div class="about-copy">
           {{- range .Params.about }}<p>{{ . }}</p>{{ end }}

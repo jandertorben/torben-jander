@@ -8,6 +8,22 @@
   var lang = root.lang || 'de';
   var fmt = new Intl.NumberFormat(lang, { maximumFractionDigits: 0 });
 
+  /* Porträt-Video: bei „Bewegung reduzieren“ nur Standbild, sonst nur abspielen, wenn sichtbar */
+  var pv = document.querySelector('.portrait-video video');
+  if (pv) {
+    if (reduce) {
+      pv.removeAttribute('autoplay');
+      pv.pause();
+    } else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { var p = pv.play(); if (p && p.catch) p.catch(function () {}); }
+          else pv.pause();
+        });
+      }, { threshold: 0.1 }).observe(pv);
+    }
+  }
+
   /* Navigation: Hintergrund nach dem ersten Scrollen */
   var nav = document.querySelector('.nav');
   function onScroll() {
