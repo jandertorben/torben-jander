@@ -147,18 +147,7 @@
   </div>
 </section>
 
-<section class="sec sec-alt" id="zuletzt" aria-labelledby="zuletzt-h">
-  <div class="wrap">
-    <p class="eyebrow">{{ T "recent_eyebrow" }}</p>
-    <h2 id="zuletzt-h" class="sec-h reveal">{{ T "recent_title" }}</h2>
-    <div class="act-grid">
-      {{- range $d.recent }}
-      <div class="reveal">{{ partial "activity-card.html" (dict "a" .) }}</div>
-      {{- end }}
-    </div>
-    <p class="note">{{ printf (T "recent_note") (time.Format ":date_long" (time $d.generated_at)) }}</p>
-  </div>
-</section>
+{{ partial "recent.html" . }}
 
 <section class="sec sec-sport sec-gravel" id="gravel" aria-labelledby="gravel-h">
   <div class="wrap sport-grid">
@@ -218,21 +207,23 @@
       <div class="equip-track" tabindex="0">
         {{- range $i, $g := $eq }}
         {{- $gkm := 0 }}{{ with $g.strava_gear }}{{ $gkm = index $km . | default 0 }}{{ end }}
+        {{- $ename := $g.name }}{{ if and (eq $lang "en") $g.name_en }}{{ $ename = $g.name_en }}{{ end }}
+        {{- $espec := $g.spec }}{{ if and (eq $lang "en") $g.spec_en }}{{ $espec = $g.spec_en }}{{ end }}
         {{- $img := "" }}{{ with $g.image }}{{ $img = resources.Get (printf "img/%s" .) }}{{ end }}
         <article class="equip-slide equip-{{ $g.category }}{{ if $g.photo }} equip-photo{{ end }}{{ if eq $g.size "small" }} equip-small{{ end }}{{ if eq $i 0 }} is-active{{ end }}" role="group" aria-roledescription="slide" aria-label="{{ add $i 1 }} / {{ $n }}" data-index="{{ $i }}">
           <div class="equip-slide-img">
             {{- with $img }}
             {{- $w1 := .Resize (printf "%dx webp q85" (math.Min .Width 800 | int)) }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width 1400 | int)) }}
             {{- if $g.glow }}<span class="equip-glow-wrap" style="--gx:{{ index $g.glow 0 }};--gy:{{ index $g.glow 1 }}">{{ end }}
-            <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} {{ $w1.Width }}w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $g.name }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async">
+            <img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} {{ $w1.Width }}w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $g.brand }} {{ $ename }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async">
             {{- if $g.glow }}<i class="equip-glow" aria-hidden="true"></i></span>{{ end }}
             {{- else }}
             <div class="equip-fallback" aria-hidden="true"><span>{{ $g.brand }}</span></div>
             {{- end }}
           </div>
           <div class="equip-slide-body">
-            <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else if eq $g.category "both" }}both{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $g.spec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
-            <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $g.name }}</h3>
+            <p class="equip-meta"><span class="tag tag-{{ if eq $g.category "run" }}run{{ else if eq $g.category "both" }}both{{ else }}ride{{ end }}">{{ T (printf "equip_cat_%s" $g.category) }}</span>{{ with $espec }} <span class="equip-spec">{{ . }}</span>{{ end }}</p>
+            <h3 class="equip-name"><span class="equip-brand">{{ $g.brand }}</span> {{ $ename }}</h3>
             <p class="equip-note">{{ if eq $lang "en" }}{{ $g.note_en }}{{ else }}{{ $g.note_de }}{{ end }}</p>
             {{- if $g.strava_gear }}
             <p class="equip-km"><strong class="num" data-count="{{ $gkm }}">{{ lang.FormatNumber 0 $gkm }}</strong> <span>{{ T "equip_km_strava" }}</span></p>
@@ -250,7 +241,8 @@
       <div class="equip-controls">
         <div class="equip-dots" role="tablist" aria-label="{{ T "equip_eyebrow" }}">
           {{- range $i, $g := $eq }}
-          <button type="button" class="equip-dot{{ if eq $i 0 }} is-active{{ end }}" role="tab" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" aria-label="{{ $g.brand }} {{ $g.name }}" data-go="{{ $i }}"></button>
+          {{- $dotName := $g.name }}{{ if and (eq $lang "en") $g.name_en }}{{ $dotName = $g.name_en }}{{ end }}
+          <button type="button" class="equip-dot{{ if eq $i 0 }} is-active{{ end }}" role="tab" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" aria-label="{{ $g.brand }} {{ $dotName }}" data-go="{{ $i }}"></button>
           {{- end }}
         </div>
         <p class="equip-count" aria-hidden="true"><span class="equip-current">1</span> / {{ $n }}</p>
@@ -299,6 +291,17 @@
         {{- end }}
       </article>
       {{- end }}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-collab" id="kooperationen" aria-labelledby="koop-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "collab_eyebrow" }}</p>
+    <h2 id="koop-h" class="sec-h reveal">{{ T "collab_title" }}</h2>
+    <p class="lead reveal">{{ T "collab_text_before" }}<a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>{{ T "collab_text_after" }}</p>
+    <div class="hero-actions reveal">
+      <a class="btn" href="mailto:{{ .Site.Params.email }}">{{ T "about_cta_mail" }}</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,8 @@
+{{- /* Tempo-String aus data/strava.json ("23.5 km/h" oder "6:44 /km") in der Seitensprache. */ -}}
+{{- $t := . -}}
+{{- if in $t "km/h" -}}
+{{- $n := float (replace (replaceRE `\s*km/h\s*$` "" $t) "," ".") -}}
+{{- printf "%s km/h" (lang.FormatNumber 1 $n) -}}
+{{- else -}}
+{{- $t -}}
+{{- end -}}

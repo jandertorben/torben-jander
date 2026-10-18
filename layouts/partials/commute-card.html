@@ -1,0 +1,43 @@
+{{- /* Wochenbündel der Arbeitswege. Erwartet dict "items" (Aktivitäten einer ISO-Woche). */ -}}
+{{- $items := .items -}}
+{{- $km := 0.0 -}}
+{{- $sec := 0 -}}
+{{- $elev := 0 -}}
+{{- $path := "" -}}
+{{- $minDate := "" -}}
+{{- $maxDate := "" -}}
+{{- $morn := 0 -}}
+{{- $aft := 0 -}}
+{{- $sport := (index $items 0).sport -}}
+{{- range $items -}}
+  {{- $km = add $km (float .km) -}}
+  {{- $sec = add $sec (int .moving_time) -}}
+  {{- $elev = add $elev (int .elevation) -}}
+  {{- if and (not $path) .path }}{{ $path = .path }}{{ end -}}
+  {{- if or (not $minDate) (lt .date $minDate) }}{{ $minDate = .date }}{{ end -}}
+  {{- if gt .date $maxDate }}{{ $maxDate = .date }}{{ end -}}
+  {{- if ne .sport $sport }}{{ $sport = "Ride" }}{{ end -}}
+  {{- $hh := int (substr .time 0 2) -}}
+  {{- if lt $hh 11 }}{{ $morn = add $morn 1 }}{{ else if ge $hh 14 }}{{ $aft = add $aft 1 }}{{ end -}}
+{{- end -}}
+{{- $h := div $sec 3600 -}}
+{{- $m := div (mod $sec 3600) 60 -}}
+{{- $dur := printf "%d min" $m -}}
+{{- if gt $h 0 }}{{ $dur = printf "%d:%02d h" $h $m }}{{ end -}}
+<article class="act act-ride act-summary">
+  <div class="act-thumb">
+    {{- if $path }}{{ partial "route.html" (dict "path" $path "group" "ride") }}
+    {{- else }}<span class="act-nopath" aria-hidden="true"></span>{{ end }}
+  </div>
+  <div class="act-body">
+    <p class="act-meta"><span class="tag tag-ride">{{ T (printf "sport_%s" $sport) }}</span> <span>{{ if eq $minDate $maxDate }}<time datetime="{{ $minDate }}">{{ time.Format ":date_medium" (time $minDate) }}</time>{{ else }}<time datetime="{{ $minDate }}">{{ time.Format ":date_medium" (time $minDate) }}</time> – <time datetime="{{ $maxDate }}">{{ time.Format ":date_medium" (time $maxDate) }}</time>{{ end }}</span></p>
+    <h3 class="act-name">{{ T "recent_commute_name" }}</h3>
+    <p class="act-sum">{{ if and (gt $morn 0) (gt $aft 0) }}{{ T "recent_commute_both" }}{{ else }}{{ printf (T "recent_commute_plain") (len $items) }}{{ end }}</p>
+    <dl class="act-stats">
+      <div><dt>{{ T "recent_label_count" }}</dt><dd>{{ len $items }}</dd></div>
+      <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $km }} km</dd></div>
+      <div><dt>{{ T "label_time" }}</dt><dd>{{ $dur }}</dd></div>
+      <div><dt>{{ T "label_elev" }}</dt><dd>{{ lang.FormatNumber 0 $elev }} m</dd></div>
+    </dl>
+  </div>
+</article>

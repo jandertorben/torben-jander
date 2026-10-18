@@ -1,0 +1,110 @@
+{{- /* „Zuletzt“: Arbeitswege einer ISO-Woche zu einer Karte bündeln, daneben die auffällige Einheit.
+     data/strava.json hat kein Commute-Flag (das Format bleibt unangetastet). Erkannt wird der Arbeitsweg
+     an den automatischen Strava-Namen plus einem engen Distanz-Cluster in den letzten Einheiten.
+     Weniger als drei solche Fahrten: nur die drei neuesten Karten, unverändert im Aufbau. */ -}}
+{{- $d := .Site.Data.strava -}}
+{{- $recent := $d.recent -}}
+{{- $generic := slice "Fahrt am Morgen" "Fahrt am Vormittag" "Fahrt zur Mittagszeit" "Fahrt am Nachmittag" "Fahrt am Abend" "Nachtfahrt" "Morning Ride" "Afternoon Ride" "Evening Ride" "Lunch Ride" "Night Ride" -}}
+{{- $candidates := slice -}}
+{{- range $recent -}}
+  {{- $low := lower .name -}}
+  {{- $explicit := or (in $low "arbeitsweg") (or (eq $low "commute") (hasPrefix $low "commute ") (in $low " commute")) (eq $low "pendeln") (eq $low "heimweg") (eq $low "heimfahrt") (eq $low "zur arbeit") -}}
+  {{- if and (eq .group "ride") (or $explicit (in $generic .name)) -}}
+    {{- $candidates = $candidates | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $comms := slice -}}
+{{- $median := 0.0 -}}
+{{- $tol := 1.5 -}}
+{{- if ge (len $candidates) 3 -}}
+  {{- $sorted := sort $candidates "km" -}}
+  {{- $median = float (index $sorted (div (len $sorted) 2)).km -}}
+  {{- $tol = math.Max 1.5 (mul $median 0.15) -}}
+  {{- range $candidates -}}
+    {{- $low := lower .name -}}
+    {{- $explicit := or (in $low "arbeitsweg") (or (eq $low "commute") (hasPrefix $low "commute ") (in $low " commute")) (eq $low "pendeln") (eq $low "heimweg") (eq $low "heimfahrt") (eq $low "zur arbeit") -}}
+    {{- $near := le (math.Abs (sub (float .km) $median)) $tol -}}
+    {{- if or $explicit $near -}}
+      {{- $comms = $comms | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $bundled := ge (len $comms) 3 -}}
+{{- $weeks := dict -}}
+{{- if $bundled -}}
+  {{- range $comms -}}
+    {{- $key := partial "weekstart.html" .date -}}
+    {{- $cur := index $weeks $key | default (slice) -}}
+    {{- $weeks = merge $weeks (dict $key ($cur | append .)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $weekKeys := slice -}}
+{{- range $key, $_ := $weeks -}}
+  {{- if ge (len (index $weeks $key)) 2 -}}
+    {{- $weekKeys = $weekKeys | append $key -}}
+  {{- end -}}
+{{- end -}}
+{{- /* YYYY-MM-DD sortiert lexikografisch; der letzte Eintrag ist die jüngste Woche. */ -}}
+{{- $weekKeys = sort $weekKeys -}}
+{{- $bundled = ge (len $weekKeys) 1 -}}
+{{- $bundledIDs := slice -}}
+{{- if $bundled -}}
+  {{- range $weekKeys -}}
+    {{- range index $weeks . -}}
+      {{- $bundledIDs = $bundledIDs | append (string .id) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $others := slice -}}
+{{- if $bundled -}}
+  {{- range $recent -}}
+    {{- if not (in $bundledIDs (string .id)) -}}
+      {{- $others = $others | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $highlight := dict -}}
+{{- if and $bundled (eq (len $others) 0) -}}
+  {{- $pool := slice -}}
+  {{- with $d.highlights.longest_ride }}{{ $pool = $pool | append . }}{{ end -}}
+  {{- with $d.highlights.longest_gravel }}{{ $pool = $pool | append . }}{{ end -}}
+  {{- with $d.highlights.longest_run }}{{ $pool = $pool | append . }}{{ end -}}
+  {{- $bestKm := -1.0 -}}
+  {{- range $pool -}}
+    {{- $likeCommute := and (eq .group "ride") (in $generic .name) (le (math.Abs (sub (float .km) $median)) $tol) -}}
+    {{- if and (not $likeCommute) (gt (float .km) $bestKm) -}}
+      {{- $highlight = . -}}
+      {{- $bestKm = float .km -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<section class="sec sec-alt" id="zuletzt" aria-labelledby="zuletzt-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "recent_eyebrow" }}</p>
+    <h2 id="zuletzt-h" class="sec-h reveal">{{ T "recent_title" }}</h2>
+    <div class="act-grid{{ if $bundled }} act-recent{{ end }}">
+      {{- if $bundled -}}
+        {{- $latestKey := index $weekKeys (sub (len $weekKeys) 1) -}}
+        <div class="reveal">{{ partial "commute-card.html" (dict "items" (index $weeks $latestKey)) }}</div>
+        {{- range $others -}}
+        <div class="reveal">{{ partial "activity-card.html" (dict "a" .) }}</div>
+        {{- end -}}
+        {{- if and (eq (len $others) 0) $highlight.id -}}
+        <div class="reveal">{{ partial "activity-card.html" (dict "a" $highlight "kicker" (T "recent_highlight_k")) }}</div>
+        {{- end -}}
+        {{- $nWeeks := len $weekKeys -}}
+        {{- if gt $nWeeks 1 -}}
+          {{- range $i := seq 2 $nWeeks -}}
+          {{- $key := index $weekKeys (sub $nWeeks $i) -}}
+          <div class="reveal">{{ partial "commute-card.html" (dict "items" (index $weeks $key)) }}</div>
+          {{- end -}}
+        {{- end -}}
+      {{- else -}}
+        {{- range first 3 $recent -}}
+        <div class="reveal">{{ partial "activity-card.html" (dict "a" .) }}</div>
+        {{- end -}}
+      {{- end -}}
+    </div>
+    <p class="note">{{ printf (T "recent_note") (time.Format ":date_long" (time $d.generated_at)) }}</p>
+  </div>
+</section>
