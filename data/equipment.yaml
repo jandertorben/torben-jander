@@ -1,13 +1,13 @@
 # Ausrüstung für die Rubrik „Ausrüstung“ auf der Startseite.
 # Reihenfolge = Reihenfolge auf der Seite. Felder:
 #   name, brand        Pflicht
+#   name_en            englischer Produktname, optional (sonst name). Nur übersetzen, Markennamen bleiben.
 #   category           bike | run | both   (bestimmt Farbe und Rubrik-Label)
 #   strava_gear        Strava-Gear-ID → Kilometer werden automatisch aus data/strava.json gezogen
 #   life_km            Richtwert für Lebensdauer (Laufschuhe), zeigt eine Füllanzeige
 #   note_de, note_en   ein Satz, warum genau dieses Teil
 #   spec               kurze Zeile mit Fakten (Gewicht, Reifen, Modelljahr …), optional
-#   spec_en            englische Spec-Zeile, optional (sonst spec)
-#   name_en            englischer Produktname, optional (sonst name)
+#   spec_en            dieselbe Zeile auf Englisch, optional (sonst spec)
 #   image              Dateiname in assets/img/, optional. Fehlt das Bild, zeigt die Karte den Platzhalter.
 #   photo              true = Bild als gerahmtes Foto zeigen statt als freigestelltes Objekt
 #   size               small = Bild kleiner zeigen (für kleine Vorlagen, damit nichts hochgerechnet wird)
@@ -22,6 +22,7 @@ items:
     image: bike.png
     strava_gear: "16232514"
     spec: "Gravel · 11 kg"
+    spec_en: "Gravel · 11 kg"
     note_de: "Pendelrad und Wochenendmaschine in einem. Fährt fast jeden Tag, egal ob Deich oder Bürgersteig."
     note_en: "Commuter and weekend machine in one. Rides almost every day, dyke or pavement."
   - name: Edge 1040
@@ -29,6 +30,7 @@ items:
     category: bike
     image: garmin-edge-1040.png
     spec: "Radcomputer"
+    spec_en: "Bike computer"
     note_de: "Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
     note_en: "Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
   - name: Fenix 8
@@ -36,14 +38,17 @@ items:
     category: both
     image: garmin-fenix-8.png
     spec: "Sportuhr"
+    spec_en: "Sports watch"
     note_de: "Läuft beim Laufen mit, zeichnet auf dem Rad parallel zum Edge auf und zählt dazwischen die Tage. Puls, Schlaf, Erholung, alles an einem Ort."
     note_en: "Comes along on every run, records alongside the Edge on the bike and counts the days in between. Heart rate, sleep, recovery, all in one place."
   - name: Speed Sensor 2 & Trittfrequenzsensor 2
+    name_en: Speed Sensor 2 & Cadence Sensor 2
     brand: Garmin
     category: bike
     image: garmin-sensoren.png
     photo: true
     spec: "Sensoren · Nabe & Kurbel"
+    spec_en: "Sensors · hub & crank"
     note_de: "Sitzen an Nabe und Kurbel und liefern dem Edge Geschwindigkeit und Trittfrequenz, auch wenn das GPS unter Bäumen schwächelt."
     note_en: "Sit on the hub and the crank and feed speed and cadence to the Edge, even when GPS struggles under trees."
   - name: SL Grano
@@ -52,6 +57,7 @@ items:
     image: lupine-sl-grano.png
     glow: ["78.4%", "51.4%"]
     spec: "Frontlicht · StVZO · 900 Lumen"
+    spec_en: "Front light · StVZO · 900 lumens"
     note_de: "Sitzt mittig am Vorbau und macht den Deich um sechs Uhr morgens hell. Die alte Lampe war zu dunkel, die hier blendet trotzdem niemanden."
     note_en: "Sits centred on the stem and lights up the dyke at six in the morning. The old lamp was too dim, this one still dazzles nobody."
   - name: RCR-R 900 Mips
@@ -59,6 +65,7 @@ items:
     category: bike
     image: van-rysel-rcr-r900.png
     spec: "Helm · Mips · Weiß"
+    spec_en: "Helmet · Mips · white"
     note_de: "Leicht, gut belüftet, mit Mips-System gegen Rotationskräfte. Weiß, damit man mich auf dem Deich auch im Gegenlicht sieht."
     note_en: "Light, well ventilated, Mips protection against rotational forces. White, so I show up on the dyke even against the light."
   - name: Perf 900 UCI World Tour
@@ -67,6 +74,7 @@ items:
     image: brille.png
     size: small
     spec: "Brille · Kategorie 3 · Weiß"
+    spec_en: "Glasses · category 3 · white"
     note_de: "Großes Glas, kein Rahmen im Blickfeld. Hält Wind, Mücken und Schotter von den Augen fern."
     note_en: "Big lens, no frame in the field of view. Keeps wind, midges and gravel out of my eyes."
   - name: Perf 500 Light
@@ -74,6 +82,7 @@ items:
     category: bike
     image: brille-perf-500.png
     spec: "Brille · photochrom · Kategorie 1 bis 3"
+    spec_en: "Glasses · photochromic · category 1 to 3"
     note_de: "Die Brille für früh morgens und trübe Tage: Das Glas tönt sich mit dem Licht selbst. Auf dem Weg zur Arbeit um sechs ist das Gold wert."
     note_en: "The glasses for early mornings and grey days: the lens tints itself with the light. On the six o'clock commute that is worth gold."
   - name: XC3
@@ -81,6 +90,7 @@ items:
     category: bike
     image: shimano-xc3.png
     spec: "Gravel-Schuh · BOA"
+    spec_en: "Gravel shoe · BOA"
     note_de: "Steife Sohle für die Kraft, griffiges Profil für die Schiebepassagen. Der BOA-Drehverschluss sitzt auch mit Handschuhen."
     note_en: "Stiff sole for power, grippy tread for the hike-a-bike bits. The BOA dial works even with gloves on."
   - name: Velosamba
@@ -89,6 +99,7 @@ items:
     image: adidas-velosamba.png
     size: small
     spec: "Rad-Schuh · 2-Loch-Cleat · Schwarz"
+    spec_en: "Cycling shoe · 2-hole cleat · black"
     note_de: "Klickschuh im Samba-Look. Fürs Pendeln, wenn man nach dem Absteigen nicht wie auf Stollen durchs Büro laufen will."
     note_en: "A clip-in shoe that looks like a Samba. For the commute, when you don't want to clatter through the office on cleats."
   - name: Novus Boost EVO Gravel Superflow
@@ -96,6 +107,7 @@ items:
     category: bike
     image: selle-italia-novus.png
     spec: "Sattel · Gravel"
+    spec_en: "Saddle · gravel"
     note_de: "Kurze Nase, breiter Ausschnitt, für lange Tage auf Schotter gemacht. Nach hundert Kilometern merkt man den Unterschied."
     note_en: "Short nose, wide cut-out, built for long days on gravel. After a hundred kilometres you notice the difference."
   - name: Icon Gravel Bibshorts
@@ -103,6 +115,7 @@ items:
     category: bike
     image: bib-icon-gravel.png
     spec: "Trägerhose · Gravel"
+    spec_en: "Bib shorts · gravel"
     note_de: "Die Hose für alles ab einer Stunde im Sattel. Polster, das auch nach dem Deich noch Freude macht."
     note_en: "The shorts for anything over an hour in the saddle. A pad that still feels good after the dyke."
   - name: Tour of Honor 2026
@@ -110,6 +123,7 @@ items:
     category: bike
     image: trikot-tour-of-honor.png
     spec: "Trikot · Good Friday Battle 2026"
+    spec_en: "Jersey · Good Friday Battle 2026"
     note_de: "Das Trikot der Battlefield Cyclists zur Tour of Honor 2026. Auf dem Rücken stehen die Namen derer, für die gefahren wird. Kein Trikot für Bestzeiten, eins fürs Erinnern."
     note_en: "The Battlefield Cyclists jersey for the Tour of Honor 2026. The back carries the names of those it is ridden for. Not a jersey for personal bests, one for remembering."
   # Nicht in Strava als Gear erfasst. Produktfoto fehlt, deshalb Platzhalter.
@@ -142,6 +156,7 @@ items:
     note_de: "Der erste ernsthafte Laufschuh. Hat die ersten hundert Kilometer getragen und trägt weiter."
     note_en: "The first serious running shoe. Carried the first hundred kilometres and keeps going."
   - name: Laufweste mit Soft Flask
+    name_en: Running vest with Soft Flask
     brand: Salomon
     category: run
     image: salomon-weste.png
@@ -153,5 +168,6 @@ items:
     image: shokz-openrun-pro-2.webp
     size: small
     spec: "Kopfhörer · Open-Ear · Schwarz"
+    spec_en: "Headphones · open-ear · black"
     note_de: "Musik und Podcast auf dem Ohr, die Ohren bleiben frei. Auf dem Rad höre ich den Verkehr, beim Laufen die eigenen Schritte. Schwarz, weil es zu allem passt."
     note_en: "Music and podcasts on the ear, ears left open. On the bike I hear the traffic, on the run my own footsteps. Black, because it goes with everything."

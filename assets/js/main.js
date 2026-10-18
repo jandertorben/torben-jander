@@ -121,8 +121,15 @@
       var n = slides.length;
       i = ((i % n) + n) % n;
       if (manual) { userTouched = true; stop(); }
-      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
-      setActive(i);
+      var left = slides[i].offsetLeft - track.offsetLeft;
+      /* Erst aktiv schalten, wenn die Folie wirklich im Bild ist. Sonst zeigt der
+         Zähler schon die neue Karte, während die sichtbare Folie leer ausgeblendet ist. */
+      if (reduce || Math.abs(track.scrollLeft - left) < 2) {
+        track.scrollTo({ left: left, behavior: 'auto' });
+        setActive(i);
+        return;
+      }
+      track.scrollTo({ left: left, behavior: 'smooth' });
     }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function start() {

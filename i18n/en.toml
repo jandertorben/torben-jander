@@ -275,3 +275,25 @@ other = "Website"
 other = "My app"
 [apps_rec]
 other = "App recommendation"
+
+[nav_collab]
+other = "Collaborations"
+[collab_eyebrow]
+other = "Collaborations"
+[collab_title]
+other = "When it fits."
+[collab_text_before]
+other = "Now and then I work with someone. On the bike, running, or the apps. Rarely, and only when it fits. An email to "
+[collab_text_after]
+other = " is enough."
+
+[recent_commute_name]
+other = "Commute"
+[recent_commute_both]
+other = "Out in the morning, back in the afternoon."
+[recent_commute_plain]
+other = "%d rides, similar distance."
+[recent_label_count]
+other = "Rides"
+[recent_highlight_k]
+other = "Away from the commute"
