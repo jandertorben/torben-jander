@@ -106,6 +106,15 @@
         d.setAttribute('aria-selected', k === i ? 'true' : 'false');
       });
       if (counter) counter.textContent = String(i + 1);
+      /* Aktiven Punkt in der Punktleiste halten, ohne Vorfahren mitzuscrollen. */
+      if (dots[i] && dots[i].parentElement) {
+        var rail = dots[i].parentElement;
+        var target = dots[i].offsetLeft - (rail.clientWidth - dots[i].offsetWidth) / 2;
+        if (target < 0) target = 0;
+        var max = rail.scrollWidth - rail.clientWidth;
+        if (target > max) target = max;
+        if (Math.abs(rail.scrollLeft - target) > 2) rail.scrollLeft = target;
+      }
       /* Lampe leuchtet nur beim ersten Anschauen kurz auf */
       if (!slides[i].dataset.lit && slides[i].querySelector('.equip-glow')) {
         slides[i].dataset.lit = '1';
@@ -121,8 +130,15 @@
       var n = slides.length;
       i = ((i % n) + n) % n;
       if (manual) { userTouched = true; stop(); }
-      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
-      setActive(i);
+      var left = slides[i].offsetLeft - track.offsetLeft;
+      /* Erst aktiv schalten, wenn die Folie wirklich im Bild ist. Sonst zeigt der
+         Zähler schon die neue Karte, während die sichtbare Folie leer ausgeblendet ist. */
+      if (reduce || Math.abs(track.scrollLeft - left) < 2) {
+        track.scrollTo({ left: left, behavior: 'auto' });
+        setActive(i);
+        return;
+      }
+      track.scrollTo({ left: left, behavior: 'smooth' });
     }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function start() {

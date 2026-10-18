@@ -8,7 +8,7 @@
 #   note_de, note_en   ein Satz, warum genau dieses Teil
 #   spec               kurze Zeile mit Fakten (Gewicht, Reifen, Modelljahr …), optional
 #   spec_en            dieselbe Zeile auf Englisch, optional (sonst spec)
-#   image              Dateiname in assets/img/, optional
+#   image              Dateiname in assets/img/, optional. Fehlt das Bild, zeigt die Karte den Platzhalter.
 #   photo              true = Bild als gerahmtes Foto zeigen statt als freigestelltes Objekt
 #   size               small = Bild kleiner zeigen (für kleine Vorlagen, damit nichts hochgerechnet wird)
 #   featured           true = großes Element mit Bild oben in der Rubrik
@@ -126,6 +126,19 @@ items:
     spec_en: "Jersey · Good Friday Battle 2026"
     note_de: "Das Trikot der Battlefield Cyclists zur Tour of Honor 2026. Auf dem Rücken stehen die Namen derer, für die gefahren wird. Kein Trikot für Bestzeiten, eins fürs Erinnern."
     note_en: "The Battlefield Cyclists jersey for the Tour of Honor 2026. The back carries the names of those it is ridden for. Not a jersey for personal bests, one for remembering."
+  # Nicht in Strava als Gear erfasst. Produktfoto fehlt, deshalb Platzhalter.
+  - name: X5
+    name_en: X5
+    brand: Insta360
+    category: bike
+    spec: "360°-Kamera"
+    spec_en: "360° camera"
+  - name: Luna Ultra
+    name_en: Luna Ultra
+    brand: Insta360
+    category: bike
+    spec: "Gimbal-Kamera mit zwei Objektiven"
+    spec_en: "Dual-lens gimbal camera"
   - name: Gel-Kayano 32
     brand: ASICS
     category: run

@@ -29,6 +29,7 @@ timeZone               = "Europe/Berlin"
   strava   = "https://www.strava.com/athletes/165488129"
   github   = "https://github.com/jandertorben"
   linkedin = "https://www.linkedin.com/in/torben-jander-6a7199128/"
+  youtube  = "https://www.youtube.com/@TorbenJander"
   # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
   schuhLebensdauer = 800
   # Jahresziele in Kilometern

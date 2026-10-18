@@ -32,7 +32,7 @@
   "image" ("og-image.png" | absURL)
   "email" (printf "mailto:%s" .Site.Params.email)
   "address" (dict "@type" "PostalAddress" "addressLocality" .Site.Params.ort "addressCountry" "DE")
-  "sameAs" (slice .Site.Params.strava .Site.Params.github .Site.Params.linkedin)
+  "sameAs" (slice .Site.Params.strava .Site.Params.github .Site.Params.linkedin .Site.Params.youtube)
   "description" $desc
 }}
 <script type="application/ld+json">{{ $person | jsonify (dict "noHTMLEscape" true) | safeJS }}</script>
