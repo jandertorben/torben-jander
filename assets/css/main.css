@@ -294,7 +294,7 @@ p{margin:0}
 /* ─── Ausrüstung (Slider) ─────────────────────────────────────── */
 .sec-equip{border-top:1px solid var(--line);background:radial-gradient(70% 50% at 70% 20%,rgba(211,155,90,.07),transparent 70%),var(--bg)}
 .sec-equip .lead{margin-bottom:3rem}
-.equip-slider{position:relative;border:1px solid var(--line);border-radius:6px;background:linear-gradient(160deg,var(--bg-3),var(--bg-2));overflow:hidden}
+.equip-slider{position:relative;border:1px solid var(--line);border-radius:6px;background:linear-gradient(160deg,var(--bg-3),var(--bg-2));overflow:clip}
 .equip-slider::before{content:"";position:absolute;inset:auto -10% -40% -10%;height:70%;background:radial-gradient(50% 50% at 50% 50%,rgba(211,155,90,.16),transparent 70%);pointer-events:none;z-index:0}
 .equip-track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;position:relative;z-index:1;outline-offset:-4px}
 .equip-track::-webkit-scrollbar{display:none}
@@ -356,14 +356,17 @@ p{margin:0}
 .equip-bike .meter i{background:linear-gradient(90deg,var(--gravel),var(--gravel-2))}
 .equip-slide.is-active .meter i{transform:none}
 .equip-life{font-family:var(--mono);font-size:.8rem;color:var(--muted);letter-spacing:.02em}
-.equip-controls{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem clamp(1.2rem,3vw,2.5rem) clamp(1rem,2.5vw,1.6rem)}
+.equip-controls{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem clamp(1.2rem,3vw,2.5rem) clamp(1rem,2.5vw,1.6rem);min-width:0;max-width:100%}
 .no-js .equip-controls{display:none}
-.equip-dots{display:flex;gap:.5rem;align-items:center}
+/* Punkte laufen in der eigenen Zeile über, sonst schieben sie die Pfeile aus der Karte
+   und der Slider selbst scrollt mit. Dann liegt die Folie neben dem sichtbaren Ausschnitt. */
+.equip-dots{display:flex;gap:.5rem;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
 .equip-dot{width:2rem;height:4px;padding:0;border:0;border-radius:2px;background:var(--line-2);cursor:pointer;transition:background .3s,width .3s var(--ease)}
 .equip-dot.is-active{background:var(--gravel-2);width:3rem}
 .equip-dot:hover{background:var(--ink-2)}
-.equip-count{font-family:var(--mono);font-size:.8125rem;color:var(--muted);letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.equip-arrows{display:flex;gap:.5rem}
+.equip-dots::-webkit-scrollbar{display:none}
+.equip-count{flex:none;font-family:var(--mono);font-size:.8125rem;color:var(--muted);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.equip-arrows{display:flex;gap:.5rem;flex:none}
 .equip-arrow{width:2.6rem;height:2.6rem;display:grid;place-items:center;padding:0;border:1px solid var(--line-2);border-radius:3px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .2s,color .2s,transform .2s var(--ease)}
 .equip-arrow svg{width:1.1rem;height:1.1rem}
 .equip-arrow:hover{border-color:var(--gravel);color:var(--gravel-2);transform:translateY(-1px)}
