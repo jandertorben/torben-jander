@@ -6,13 +6,14 @@
     {{- else }}<span class="act-nopath" aria-hidden="true"></span>{{ end }}
   </div>
   <div class="act-body">
+    {{- with .kicker }}<p class="feature-k">{{ . }}</p>{{ end }}
     <p class="act-meta"><span class="tag tag-{{ $a.group }}">{{ T (printf "sport_%s" $a.sport) }}</span> <time datetime="{{ $a.date }}">{{ time.Format ":date_medium" (time $a.date) }}</time> · {{ $a.time }}</p>
     <h3 class="act-name">{{ $a.name }}</h3>
     <dl class="act-stats">
       <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $a.km }} km</dd></div>
       <div><dt>{{ T "label_time" }}</dt><dd>{{ $a.duration }}</dd></div>
-      <div><dt>{{ T "label_speed" }}</dt><dd>{{ $a.tempo }}</dd></div>
-      <div><dt>{{ T "label_elev" }}</dt><dd>{{ $a.elevation }} m</dd></div>
+      <div><dt>{{ T "label_speed" }}</dt><dd>{{ partial "tempo.html" $a.tempo }}</dd></div>
+      <div><dt>{{ T "label_elev" }}</dt><dd>{{ lang.FormatNumber 0 $a.elevation }} m</dd></div>
     </dl>
     {{- with $a.location }}<p class="act-loc">{{ . }}</p>{{ end }}
   </div>
