@@ -390,8 +390,6 @@ p{margin:0}
 .sec-community .sec-h{max-width:24ch}
 .community-copy{display:grid;gap:1rem;max-width:62ch}
 .community-copy p{font-size:1.15rem;color:var(--ink-2);text-wrap:pretty}
-.community-open{list-style:none;margin:.35rem 0 0;padding:0;display:grid;gap:.55rem}
-.community-open li{font-family:var(--mono);font-size:.92rem;line-height:1.45;color:var(--gravel-2);background:var(--gravel-dim);border:1px solid var(--gravel);border-radius:2px;padding:.55rem .8rem}
 .sec-community .hero-actions{margin-top:1.6rem}
 .sec-collab{border-top:1px solid var(--line)}
 .sec-collab .lead{max-width:62ch}

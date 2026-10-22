@@ -287,15 +287,7 @@ other = "That is the name of my gravel community in south Bremen."
 [community_text]
 other = "Out on the gravel tracks. Everyone is welcome."
 [community_open]
-other = "You can come along. The rest is still open."
-[community_q_join]
-other = "[QUESTION FOR TORBEN: How do you join?]"
-[community_q_meet]
-other = "[QUESTION FOR TORBEN: Meeting point?]"
-[community_q_rhythm]
-other = "[QUESTION FOR TORBEN: How often?]"
-[community_q_level]
-other = "[QUESTION FOR TORBEN: What level?]"
+other = "Want to ride along? Message me on TikTok. The rest sorts itself out."
 [community_cta]
 other = "Join in"
 
