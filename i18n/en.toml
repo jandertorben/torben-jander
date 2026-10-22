@@ -276,6 +276,29 @@ other = "My app"
 [apps_rec]
 other = "App recommendation"
 
+[nav_community]
+other = "Community"
+[community_eyebrow]
+other = "Community south Bremen"
+[community_title]
+other = "Pace, Puls, Panorama."
+[community_lead]
+other = "That is the name of my gravel community in south Bremen."
+[community_text]
+other = "Out on the gravel tracks. Everyone is welcome."
+[community_open]
+other = "You can come along. The rest is still open."
+[community_q_join]
+other = "[QUESTION FOR TORBEN: How do you join?]"
+[community_q_meet]
+other = "[QUESTION FOR TORBEN: Meeting point?]"
+[community_q_rhythm]
+other = "[QUESTION FOR TORBEN: How often?]"
+[community_q_level]
+other = "[QUESTION FOR TORBEN: What level?]"
+[community_cta]
+other = "Join in"
+
 [nav_collab]
 other = "Collaborations"
 [collab_eyebrow]

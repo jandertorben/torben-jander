@@ -276,6 +276,29 @@ other = "Meine App"
 [apps_rec]
 other = "App-Empfehlung"
 
+[nav_community]
+other = "Community"
+[community_eyebrow]
+other = "Community Bremen Süden"
+[community_title]
+other = "Pace, Puls, Panorama."
+[community_lead]
+other = "So heißt meine Gravel-Community im Bremer Süden."
+[community_text]
+other = "Raus auf die Schotterwege. Alle willkommen."
+[community_open]
+other = "Mitfahren geht. Der Rest steht noch nicht fest."
+[community_q_join]
+other = "[FRAGE AN TORBEN: Wie meldet man sich?]"
+[community_q_meet]
+other = "[FRAGE AN TORBEN: Treffpunkt?]"
+[community_q_rhythm]
+other = "[FRAGE AN TORBEN: Wie oft?]"
+[community_q_level]
+other = "[FRAGE AN TORBEN: Welches Niveau?]"
+[community_cta]
+other = "Jetzt dabei sein"
+
 [nav_collab]
 other = "Kooperationen"
 [collab_eyebrow]
