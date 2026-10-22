@@ -276,6 +276,21 @@ other = "My app"
 [apps_rec]
 other = "App recommendation"
 
+[nav_community]
+other = "Community"
+[community_eyebrow]
+other = "Community south Bremen"
+[community_title]
+other = "Pace, Puls, Panorama."
+[community_lead]
+other = "That is the name of my gravel community in south Bremen."
+[community_text]
+other = "Out on the gravel tracks. Everyone is welcome."
+[community_open]
+other = "Want to ride along? Join the WhatsApp community. Meeting points and dates are posted there. The rest sorts itself out."
+[community_whatsapp]
+other = "Join the WhatsApp community"
+
 [nav_collab]
 other = "Collaborations"
 [collab_eyebrow]

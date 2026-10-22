@@ -19,6 +19,7 @@
       <a class="btn" href="#zahlen">{{ T "hero_cta" }} <span aria-hidden="true">↓</span></a>
       <a class="btn btn-ghost" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">Strava</a>
       <a class="btn btn-ghost" href="{{ .Site.Params.youtube }}" rel="me noopener" target="_blank">{{ partial "icon-youtube.html" . -}}YouTube</a>
+      <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
     </div>
     <p class="hero-cap">{{ T "hero_map_caption" }}</p>
   </div>
@@ -297,6 +298,22 @@
   </div>
 </section>
 
+<section class="sec sec-community" id="community" aria-labelledby="community-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "community_eyebrow" }}</p>
+    <h2 id="community-h" class="sec-h reveal">{{ T "community_title" }}</h2>
+    <div class="community-copy reveal">
+      <p>{{ T "community_lead" }}</p>
+      <p>{{ T "community_text" }}</p>
+      <p>{{ T "community_open" }}</p>
+    </div>
+    <div class="hero-actions reveal">
+      <a class="btn" href="{{ .Site.Params.whatsapp_community }}" rel="noopener" target="_blank">{{ partial "icon-chat.html" . -}}{{ T "community_whatsapp" }}</a>
+      <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
+    </div>
+  </div>
+</section>
+
 <section class="sec sec-collab" id="kooperationen" aria-labelledby="koop-h">
   <div class="wrap">
     <p class="eyebrow">{{ T "collab_eyebrow" }}</p>
@@ -338,6 +355,7 @@
         <div class="hero-actions">
           <a class="btn" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">{{ T "about_cta_strava" }}</a>
           <a class="btn btn-ghost" href="{{ .Site.Params.youtube }}" rel="me noopener" target="_blank">{{ partial "icon-youtube.html" . -}}YouTube</a>
+          <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
           <a class="btn btn-ghost" href="mailto:{{ .Site.Params.email }}">{{ T "about_cta_mail" }}</a>
         </div>
       </div>
