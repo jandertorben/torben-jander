@@ -31,6 +31,8 @@ timeZone               = "Europe/Berlin"
   linkedin = "https://www.linkedin.com/in/torben-jander-6a7199128/"
   youtube  = "https://www.youtube.com/@TorbenJander"
   tiktok   = "https://www.tiktok.com/@breity79"
+  # Einladung zur Community. Nur im Community-Abschnitt, nicht in sameAs.
+  whatsapp_community = "https://chat.whatsapp.com/EF7EvsZqAF15vB4CjHzQUY"
   # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
   schuhLebensdauer = 800
   # Jahresziele in Kilometern

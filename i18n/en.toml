@@ -287,9 +287,9 @@ other = "That is the name of my gravel community in south Bremen."
 [community_text]
 other = "Out on the gravel tracks. Everyone is welcome."
 [community_open]
-other = "Want to ride along? Message me on TikTok. The rest sorts itself out."
-[community_cta]
-other = "Join in"
+other = "Want to ride along? Join the WhatsApp community. Meeting points and dates are posted there. The rest sorts itself out."
+[community_whatsapp]
+other = "Join the WhatsApp community"
 
 [nav_collab]
 other = "Collaborations"
