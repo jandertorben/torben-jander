@@ -76,7 +76,7 @@ other = "View on Strava"
 [gpx_download]
 other = "Download GPX"
 [gpx_note]
-other = "GPS track to ride or run yourself. Start and finish are trimmed for privacy."
+other = "GPS track to ride yourself. Start and finish are trimmed for privacy."
 
 [gravel_eyebrow]
 other = "Gravel"

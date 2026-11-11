@@ -3,7 +3,8 @@
 
 Läuft nach build_strava_data.py. Berücksichtigt nur Aktivitäten, die auf der Seite
 als Karte erscheinen (recent + highlights in data/strava.json) und die diese Regeln erfüllen:
-  - Rad oder Lauf, mindestens MIN_GPX_KM lang (Arbeitswege mit ~9 km fallen damit raus)
+  - nur Gravel-Touren (sport_type GravelRide), mindestens MIN_GPX_KM lang
+    (Arbeitswege, Läufe und kurze Strecken bekommen keinen Download)
   - auf Strava öffentlich ("everyone"), nicht privat, nicht als Pendelfahrt markiert
 
 Datenschutz: Die Strava-API liefert dem Besitzer die volle Spur, Privatsphäre-Zonen gelten
@@ -25,6 +26,7 @@ from build_strava_data import haversine, group  # noqa: E402
 
 GPX_PRIVACY_M = 1000   # Radius um Start und Ziel, der komplett entfällt
 MIN_GPX_KM = 15.0      # kürzere Strecken bekommen keinen Download
+GPX_SPORTS = {"GravelRide"}   # nur Gravel-Touren gibt es als Download
 MIN_STEP_M = 4.0       # Punkte, die näher als das am vorigen liegen, entfallen (kleinere Dateien)
 MIN_SEG_PTS = 10       # Mini-Segmente (kurzer Abstecher in die Sperrzone) entfallen
 VERSION = f"v1-r{GPX_PRIVACY_M}"   # ändert sich der Wert, werden alle Dateien neu erzeugt
@@ -51,7 +53,7 @@ def raw_activities():
 
 
 def eligible(a):
-    if group(a["sport_type"]) not in ("ride", "run"):
+    if a["sport_type"] not in GPX_SPORTS:
         return False
     if a["summary"]["distance"] < MIN_GPX_KM * 1000:
         return False
