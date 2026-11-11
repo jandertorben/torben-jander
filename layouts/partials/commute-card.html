@@ -32,7 +32,7 @@
   <div class="act-body">
     <p class="act-meta"><span class="tag tag-ride">{{ T (printf "sport_%s" $sport) }}</span> <span>{{ if eq $minDate $maxDate }}<time datetime="{{ $minDate }}">{{ time.Format ":date_medium" (time $minDate) }}</time>{{ else }}<time datetime="{{ $minDate }}">{{ time.Format ":date_medium" (time $minDate) }}</time> – <time datetime="{{ $maxDate }}">{{ time.Format ":date_medium" (time $maxDate) }}</time>{{ end }}</span></p>
     <h3 class="act-name">{{ T "recent_commute_name" }}</h3>
-    <p class="act-sum">{{ if and (gt $morn 0) (gt $aft 0) }}{{ T "recent_commute_both" }}{{ else }}{{ printf (T "recent_commute_plain") (len $items) }}{{ end }}</p>
+    <p class="act-sum">{{ if and (gt $morn 0) (gt $aft 0) }}{{ T "recent_commute_both" }}{{ else if eq (len $items) 1 }}{{ T "recent_commute_one" }}{{ else }}{{ printf (T "recent_commute_plain") (len $items) }}{{ end }}</p>
     <dl class="act-stats">
       <div><dt>{{ T "recent_label_count" }}</dt><dd>{{ len $items }}</dd></div>
       <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $km }} km</dd></div>

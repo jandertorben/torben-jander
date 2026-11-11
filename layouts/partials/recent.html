@@ -4,7 +4,7 @@
      Weniger als drei solche Fahrten: nur die drei neuesten Karten, unverändert im Aufbau. */ -}}
 {{- $d := .Site.Data.strava -}}
 {{- $recent := $d.recent -}}
-{{- $generic := slice "Fahrt am Morgen" "Fahrt am Vormittag" "Fahrt zur Mittagszeit" "Fahrt am Nachmittag" "Fahrt am Abend" "Nachtfahrt" "Morning Ride" "Afternoon Ride" "Evening Ride" "Lunch Ride" "Night Ride" -}}
+{{- $generic := slice "Fahrt am Morgen" "Fahrt am Vormittag" "Fahrt zur Mittagszeit" "Fahrt am Nachmittag" "Fahrt am Abend" "Nachtfahrt" "Morgenradfahrt" "Mittagsradfahrt" "Nachmittagsradfahrt" "Abendradfahrt" "Morning Ride" "Afternoon Ride" "Evening Ride" "Lunch Ride" "Night Ride" -}}
 {{- $candidates := slice -}}
 {{- range $recent -}}
   {{- $low := lower .name -}}
@@ -40,7 +40,8 @@
 {{- end -}}
 {{- $weekKeys := slice -}}
 {{- range $key, $_ := $weeks -}}
-  {{- if ge (len (index $weeks $key)) 2 -}}
+  {{- /* auch eine einzelne Fahrt bildet eine Wochenkarte, sonst steht sie als normale Karte daneben */ -}}
+  {{- if ge (len (index $weeks $key)) 1 -}}
     {{- $weekKeys = $weekKeys | append $key -}}
   {{- end -}}
 {{- end -}}

@@ -322,6 +322,8 @@ other = "Arbeitsweg"
 other = "Morgens hin, nachmittags zurück."
 [recent_commute_plain]
 other = "%d Fahrten, ähnliche Distanz."
+[recent_commute_one]
+other = "Eine Fahrt in dieser Woche."
 [recent_label_count]
 other = "Fahrten"
 [recent_highlight_k]

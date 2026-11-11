@@ -322,6 +322,8 @@ other = "Commute"
 other = "Out in the morning, back in the afternoon."
 [recent_commute_plain]
 other = "%d rides, similar distance."
+[recent_commute_one]
+other = "One ride this week."
 [recent_label_count]
 other = "Rides"
 [recent_highlight_k]
