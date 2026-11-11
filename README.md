@@ -57,7 +57,18 @@ Alternativ ohne API: Rohdaten in `strava-raw/` ablegen (ebenfalls ignoriert, wei
 `activities-*.json` mit `reduced_polyline`, optional `history-*.csv` (`date,sport_type,distance,moving_time,elevation_gain`)
 und `gear.json`. Dann das Build-Skript ausführen.
 
-Datenschutz: Das Skript kürzt jede Route um 600 m am Start und am Ziel und zeichnet nur Strecken ab 5 km. Von den vielen fast identischen Pendelstrecken landet nur eine Auswahl auf der Karte.
+Datenschutz: Das Skript kürzt jede Route am Start und am Ziel um 1.000 bis 1.800 m (zufällig je Route, damit sich der Wohnort nicht aus mehreren Routen zurückrechnen lässt) und zeichnet nur Strecken ab 5 km. Von den vielen fast identischen Pendelstrecken landet nur eine Auswahl auf der Karte.
+
+### GPX-Downloads
+
+`scripts/strava_gpx.py` läuft in der Action nach dem Build und legt für Touren auf der Startseite (Zuletzt + Highlights)
+gekürzte Spuren unter `static/gpx/<id>.gpx` ab. Die Karte zeigt dann einen Button „GPX laden“.
+
+- Nur Gravel-Touren (Strava-Sportart „Gravel-Fahrt“) ab 15 km, auf Strava öffentlich, nicht privat, nicht als Pendelfahrt markiert.
+- Alle Punkte im Umkreis von 1.000 bis 1.800 m um Start und Ziel fallen weg (Radius zufällig je Tour und je Ende, dieselben Werte wie für die Karte). Die API liefert die volle Spur, Strava-Privatsphäre-Zonen greifen hier nicht.
+- Keine Zeitstempel, nur Position und Höhe.
+- Werte stehen oben im Skript (`GPX_PRIVACY_M`, `MIN_GPX_KM`). Wird der Radius geändert, erzeugt der nächste Lauf alle Dateien neu.
+- Dateien von Touren, die nicht mehr auf der Seite stehen, werden gelöscht.
 
 ## Deployment
 

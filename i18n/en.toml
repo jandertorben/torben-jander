@@ -73,6 +73,10 @@ other = "The last few sessions."
 other = "As of %s. Data comes from Strava and is rewritten whenever the site is updated."
 [view_on_strava]
 other = "View on Strava"
+[gpx_download]
+other = "Download GPX"
+[gpx_note]
+other = "GPS track to ride yourself. Start and finish are trimmed for privacy."
 
 [gravel_eyebrow]
 other = "Gravel"

@@ -13,3 +13,6 @@ strava-raw/
 
 # Lokale Strava-Zugangsdaten
 .env
+
+# Python
+__pycache__/

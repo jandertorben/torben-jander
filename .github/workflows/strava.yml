@@ -33,11 +33,18 @@ jobs:
       - name: data/strava.json erzeugen
         run: python3 scripts/build_strava_data.py
 
+      - name: Gekürzte GPX-Dateien erzeugen
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        run: python3 scripts/strava_gpx.py
+
       - name: Änderungen committen
         run: |
           git config user.name "strava-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/strava.json
+          git add -A data/strava.json static/gpx
           if git diff --cached --quiet; then
             echo "Keine Änderungen."
           else

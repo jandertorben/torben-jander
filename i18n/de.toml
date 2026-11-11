@@ -73,6 +73,10 @@ other = "Die letzten Einheiten."
 other = "Stand %s. Die Daten kommen aus Strava und werden beim Aktualisieren der Seite neu geschrieben."
 [view_on_strava]
 other = "Auf Strava ansehen"
+[gpx_download]
+other = "GPX laden"
+[gpx_note]
+other = "GPS-Spur zum Nachfahren. Start und Ziel sind aus Datenschutzgründen gekürzt."
 
 [gravel_eyebrow]
 other = "Gravel"

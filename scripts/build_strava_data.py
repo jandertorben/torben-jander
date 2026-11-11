@@ -6,18 +6,19 @@ Eingaben:
   strava-raw/history-*.csv       Ältere Aktivitäten ohne Route (date,sport_type,distance,moving_time,elevation_gain)
   strava-raw/gear.json           Antwort von get_gear
 
-Datenschutz: Von jeder Route werden Start und Ende um PRIVACY_M Meter gekürzt,
+Datenschutz: Von jeder Route werden Start und Ende um 1.000 bis 1.800 m gekürzt (zufällig je Route),
 damit Wohn- und Arbeitsort nicht exakt sichtbar sind. Kurze Routen (< MIN_ROUTE_KM)
 erhalten keine Zeichnung.
 """
-import csv, glob, json, math, os, sys
+import csv, glob, json, math, os, random, sys
 from datetime import date, datetime, timedelta
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "strava-raw")
 OUT = os.path.join(ROOT, "data", "strava.json")
 
-PRIVACY_M = 600
+PRIVACY_M = 1000          # Mindest-Radius um Start und Ziel, der aus jeder Route entfällt
+PRIVACY_JITTER_M = 800    # zufälliger Aufschlag je Aktivität und je Ende (1.000–1.800 m)
 MIN_ROUTE_KM = 5.0
 RIDE = {"Ride", "GravelRide", "EBikeRide", "MountainBikeRide", "VirtualRide"}
 RUN = {"Run", "TrailRun", "VirtualRun"}
@@ -45,10 +46,19 @@ def haversine(a, b):
     h = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
     return 2*R*math.asin(math.sqrt(h))
 
-def trim(pts, meters):
+def privacy_radii(aid):
+    """Zufälliger, aber pro Aktivität fester Radius für Start und Ziel.
+    Bei immer gleichem Radius lägen alle Schnittpunkte auf einem Kreis um die Haustür;
+    aus drei Routen ließe sich der Mittelpunkt (= Wohnort) ausrechnen. Der Zufall verwischt das.
+    Wird auch von strava_gpx.py benutzt, damit Karte und GPX gleich gekürzt sind."""
+    rnd = random.Random(f"{aid}-{PRIVACY_JITTER_M}-{os.environ.get('GPX_SALT', '')}")
+    return (PRIVACY_M + rnd.uniform(0, PRIVACY_JITTER_M), PRIVACY_M + rnd.uniform(0, PRIVACY_JITTER_M))
+
+def trim(pts, aid):
     if len(pts) < 4: return []
     start, end = pts[0], pts[-1]
-    keep = [p for p in pts if haversine(p, start) > meters and haversine(p, end) > meters]
+    r_start, r_end = privacy_radii(aid)
+    keep = [p for p in pts if haversine(p, start) > r_start and haversine(p, end) > r_end]
     return keep if len(keep) >= 4 else []
 
 def project(pts, lat0):
@@ -204,7 +214,7 @@ def main():
     for a in acts.values():
         pl = a.get("reduced_polyline")
         if not pl or a["summary"]["distance"] < MIN_ROUTE_KM * 1000: continue
-        pts = trim(decode_polyline(pl), PRIVACY_M)
+        pts = trim(decode_polyline(pl), a["id"])
         if pts: routes[a["id"]] = pts
 
     def activity_card(a):
