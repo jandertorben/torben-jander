@@ -330,6 +330,7 @@
     </div>
     <div class="hero-actions reveal">
       <a class="btn" href="{{ .Site.Params.whatsapp_community }}" rel="noopener" target="_blank">{{ partial "icon-chat.html" . -}}{{ T "community_whatsapp" }}</a>
+      {{- with .Site.Params.strava_club }}<a class="btn btn-ghost" href="{{ . }}" rel="noopener" target="_blank">{{ T "community_strava" }}</a>{{ end }}
       <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
     </div>
   </div>

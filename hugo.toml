@@ -33,6 +33,8 @@ timeZone               = "Europe/Berlin"
   tiktok   = "https://www.tiktok.com/@breity79"
   # Einladung zur Community. Nur im Community-Abschnitt, nicht in sameAs.
   whatsapp_community = "https://chat.whatsapp.com/EF7EvsZqAF15vB4CjHzQUY"
+  # Strava-Club „Puls, Pace & Panorama“
+  strava_club = "https://www.strava.com/clubs/2156230"
   # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
   schuhLebensdauer = 800
   # Jahresziele in Kilometern

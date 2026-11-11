@@ -301,7 +301,9 @@ other = "That is the name of my gravel community in south Bremen."
 [community_text]
 other = "Out on the gravel tracks. Everyone is welcome."
 [community_open]
-other = "Want to ride along? Join the WhatsApp community. Meeting points and dates are posted there. The rest sorts itself out."
+other = "Want to ride along? Join the WhatsApp community. Meeting points and dates are posted there, the rides themselves end up in the Strava club. The rest sorts itself out."
+[community_strava]
+other = "Strava club"
 [community_whatsapp]
 other = "Join the WhatsApp community"
 
