@@ -130,6 +130,14 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     acts = raw_activities()
     wanted = [i for i in shown_ids() if i in acts and eligible(acts[i])]
+    for i in GPX_EXTRA_IDS - set(wanted):
+        a = acts.get(i)
+        if not a:
+            print(f"Ausnahme {i}: nicht in den Strava-Daten")
+        elif i not in shown_ids():
+            print(f"Ausnahme {i}: steht nicht auf der Seite")
+        else:
+            print(f"Ausnahme {i} übersprungen: Sichtbarkeit={a.get('visibility')}, privat={a.get('private')}, Pendeln={a.get('commute')}")
     todo = [i for i in wanted if not current(os.path.join(OUT_DIR, f"{i}.gpx"))]
 
     token = access_token() if todo else None
