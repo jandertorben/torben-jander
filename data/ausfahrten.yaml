@@ -1,0 +1,12 @@
+# Geplante gemeinsame Ausfahrten. Die Seite zeigt automatisch die nächste, die noch nicht vorbei ist
+# (die Seite wird zweimal täglich neu gebaut). Treffpunkt nie als genaue Adresse, nur grob.
+- date: "2026-11-15"
+  title: "Blockland & Wümme"
+  start: ""                 # leer = "Startzeit folgt"
+  start_hint: "zwischen 10:30 und 12:00 Uhr"
+  meet: "Bremen-Süd"
+  km: 64
+  hm: 110
+  duration: "ca. 3 h"
+  pace: "locker, um 20 km/h"
+  note: "Gravelrad empfohlen. Findet statt, wenn nichts dazwischenkommt. Genaue Zeit, Treffpunkt und eventuelle Absage gibt es in der WhatsApp-Community."
