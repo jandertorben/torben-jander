@@ -18,6 +18,6 @@
         "dates" (dict "date" (time .date))
         "summary" ($info.summary | default "")
         "content" (dict "mediaType" "text/markdown" "value" $text)
-        "params" (dict "tour" . "photo" ($info.photo | default "") "photo_alt" ($info.photo_alt | default $title) "described" (ne $text ""))
+        "params" (dict "tour" . "photo" ($info.photo | default "") "photo_kind" ($info.photo_kind | default "") "photo_alt" ($info.photo_alt | default $title) "described" (ne $text ""))
       ) -}}
 {{- end -}}
