@@ -59,6 +59,17 @@ und `gear.json`. Dann das Build-Skript ausführen.
 
 Datenschutz: Das Skript kürzt jede Route um 600 m am Start und am Ziel und zeichnet nur Strecken ab 5 km. Von den vielen fast identischen Pendelstrecken landet nur eine Auswahl auf der Karte.
 
+### GPX-Downloads
+
+`scripts/strava_gpx.py` läuft in der Action nach dem Build und legt für Touren auf der Startseite (Zuletzt + Highlights)
+gekürzte Spuren unter `static/gpx/<id>.gpx` ab. Die Karte zeigt dann einen Button „GPX laden“.
+
+- Nur Rad/Lauf ab 15 km, auf Strava öffentlich, nicht privat, nicht als Pendelfahrt markiert.
+- Alle Punkte im Umkreis von 1.000 m um Start und Ziel fallen weg (die API liefert die volle Spur, Strava-Privatsphäre-Zonen greifen hier nicht).
+- Keine Zeitstempel, nur Position und Höhe.
+- Werte stehen oben im Skript (`GPX_PRIVACY_M`, `MIN_GPX_KM`). Wird der Radius geändert, erzeugt der nächste Lauf alle Dateien neu.
+- Dateien von Touren, die nicht mehr auf der Seite stehen, werden gelöscht.
+
 ## Deployment
 
 Cloudflare Pages, verbunden mit diesem Repository (Branch `main`).

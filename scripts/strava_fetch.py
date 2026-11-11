@@ -62,6 +62,10 @@ def to_raw(a):
         "start_local": a["start_date_local"][:19],
         "location_summary": "",
         "gear_id": a.get("gear_id"),
+        # für strava_gpx.py: nur öffentliche, nicht als Pendelfahrt markierte Touren gibt es als Download
+        "visibility": a.get("visibility") or ("only_me" if a.get("private") else None),
+        "private": bool(a.get("private", False)),
+        "commute": bool(a.get("commute", False)),
         "summary": {
             "distance": a.get("distance", 0) or 0,
             "moving_time": a.get("moving_time", 0) or 0,

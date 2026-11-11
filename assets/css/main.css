@@ -252,6 +252,10 @@ p{margin:0}
 .act-stats dt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .act-stats dd{margin:0;font-family:var(--display);font-weight:600;font-size:1.25rem;font-variant-numeric:tabular-nums}
 .act-loc{font-size:.85rem;color:var(--muted)}
+.act-gpx{position:relative;z-index:3;justify-self:start;margin-top:.35rem;padding:.3rem .6rem;border:1px solid var(--line-2);border-radius:2px;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;transition:border-color .25s var(--ease),color .25s var(--ease)}
+.act-gpx:hover{color:var(--ink)}
+.act-ride .act-gpx:hover{border-color:var(--gravel)}.act-run .act-gpx:hover{border-color:var(--run)}
+.act-gpx:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .act-sum{color:var(--ink-2);text-wrap:pretty}
 .act-big{grid-template-columns:1fr 1fr;grid-template-rows:none}
 .act-big .act-thumb{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line)}

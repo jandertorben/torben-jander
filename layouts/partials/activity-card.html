@@ -16,6 +16,12 @@
       <div><dt>{{ T "label_elev" }}</dt><dd>{{ lang.FormatNumber 0 $a.elevation }} m</dd></div>
     </dl>
     {{- with $a.location }}<p class="act-loc">{{ . }}</p>{{ end }}
+    {{- /* GPX gibt es nur, wenn scripts/strava_gpx.py eine gekürzte Datei erzeugt hat */ -}}
+    {{- if os.FileExists (printf "static/gpx/%s.gpx" $a.id) }}
+    <a class="act-gpx" href="/gpx/{{ $a.id }}.gpx" download="torben-jander-{{ $a.date }}-{{ $a.id }}.gpx" title="{{ T "gpx_note" }}">
+      <span aria-hidden="true">↓</span> {{ T "gpx_download" }}
+    </a>
+    {{- end }}
   </div>
   <a class="act-link" href="https://www.strava.com/activities/{{ $a.id }}" target="_blank" rel="noopener" aria-label="{{ T "view_on_strava" }}: {{ $a.name }}"><span class="act-hint">{{ T "view_on_strava" }} ↗</span></a>
 </article>
