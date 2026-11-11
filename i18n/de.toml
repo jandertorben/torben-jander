@@ -352,3 +352,9 @@ other = "Neuere Tour"
 other = "Die GPX-Datei lässt sich in Komoot, Strava, Garmin Connect oder direkt auf den Radcomputer laden."
 [tours_more]
 other = "Alle Touren ansehen"
+[tour_view]
+other = "Ansicht"
+[tour_tab_route]
+other = "Route"
+[tour_tab_photo]
+other = "Foto"

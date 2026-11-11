@@ -27,6 +27,32 @@
   /* Navigation: Hintergrund nach dem ersten Scrollen */
   var nav = document.querySelector('.nav');
 
+  /* Tourenseite: Reiter Route / Foto */
+  var tabs = document.querySelector('.tour-tabs');
+  if (tabs) {
+    var btns = tabs.querySelectorAll('[role="tab"]');
+    function show(i) {
+      btns.forEach(function (b, j) {
+        var on = i === j;
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+        var p = document.getElementById(b.getAttribute('aria-controls'));
+        if (p) p.hidden = !on;
+      });
+    }
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { show(i); });
+      b.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + btns.length) % btns.length;
+          show(n); btns[n].focus(); e.preventDefault();
+        }
+      });
+    });
+    tabs.hidden = false;
+    show(0);
+  }
+
   /* Burgermenü */
   var burger = document.querySelector('.burger');
   var menu = document.getElementById('menu');

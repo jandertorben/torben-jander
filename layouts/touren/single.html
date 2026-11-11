@@ -8,22 +8,30 @@
 
     <div class="tour-grid-2">
       <div class="tour-main">
+        {{- $photo := "" }}
+        {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $photo = . }}{{ end }}{{ end }}
+        {{- if $photo }}
+        <div class="tour-tabs" role="tablist" aria-label="{{ T "tour_view" }}" hidden>
+          <button type="button" role="tab" id="tab-route" aria-controls="panel-route" aria-selected="true">{{ T "tour_tab_route" }}</button>
+          <button type="button" role="tab" id="tab-photo" aria-controls="panel-photo" aria-selected="false" tabindex="-1">{{ T "tour_tab_photo" }}</button>
+        </div>
+        {{- end }}
         {{- with $t.route }}
-        <figure class="tour-route route-{{ $t.group }}">
+        <figure class="tour-route route-{{ $t.group }}" id="panel-route" role="tabpanel" aria-labelledby="tab-route">
           <svg viewBox="0 0 {{ .w }} {{ .h }}" role="img" aria-label="{{ T "tour_route_label" }}">
             <path d="{{ .d | safeHTMLAttr }}" pathLength="1"/>
           </svg>
           <figcaption>{{ T "gpx_note" }}</figcaption>
         </figure>
         {{- end }}
-        {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
-        {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}
-        {{- $big := .Process "resize 1600x webp q80" }}
-        {{- $small := .Process "resize 800x webp q78" }}
-        <figure class="tour-photo">
-          <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} 800w, {{ $big.RelPermalink }} 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ $.Params.photo_alt }}" loading="lazy" decoding="async">
+        {{- with $photo }}
+        {{- $big := .Process "resize 1400x webp q82" }}
+        {{- $small := .Process "resize 800x webp q80" }}
+        <figure class="tour-photo" id="panel-photo" role="tabpanel" aria-labelledby="tab-photo">
+          <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} 800w, {{ $big.RelPermalink }} 1400w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ $.Params.photo_alt }}" loading="lazy" decoding="async">
         </figure>
-        {{- end }}{{ end }}
+        {{- end }}
+        {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
       </div>
       <aside class="tour-side">
         <dl class="act-stats tour-stats">

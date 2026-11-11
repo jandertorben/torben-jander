@@ -352,3 +352,9 @@ other = "Newer ride"
 other = "Load the GPX file into Komoot, Strava, Garmin Connect or straight onto your bike computer."
 [tours_more]
 other = "See all rides"
+[tour_view]
+other = "View"
+[tour_tab_route]
+other = "Route"
+[tour_tab_photo]
+other = "Photo"

@@ -518,3 +518,12 @@ p{margin:0}
 .back-link:hover{color:var(--ink)}
 .back-link:hover .back-arrow{transform:translateX(-3px)}
 @media (prefers-reduced-motion:reduce){.back-arrow{transition:none}}
+/* Reiter Route / Foto auf Tourenseiten (ohne JS: beides untereinander) */
+.tour-tabs{display:inline-flex;gap:0;margin-bottom:1rem;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
+.tour-tabs button{appearance:none;background:none;border:0;padding:.55rem 1.1rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
+.tour-tabs button+button{border-left:1px solid var(--line-2)}
+.tour-tabs button:hover{color:var(--ink)}
+.tour-tabs button[aria-selected="true"]{background:var(--gravel-dim);color:var(--gravel-2)}
+.tour-tabs button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.tour-photo img{display:block}
+.js .tour-photo[hidden],.js .tour-route[hidden]{display:none}

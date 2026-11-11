@@ -17,7 +17,7 @@
         <a class="tour-card" href="{{ .RelPermalink }}">
           <div class="tour-thumb">
             {{- $img := "" }}
-            {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $img = .Process "fill 800x500 Center webp q75" }}{{ end }}{{ end }}
+            {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $img = .Process "fill 800x500 Bottom webp q75" }}{{ end }}{{ end }}
             {{- if $img }}
             <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" decoding="async">
             {{- else if $t.path }}{{ partial "route.html" (dict "path" $t.path "group" $t.group) }}
