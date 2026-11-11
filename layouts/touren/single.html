@@ -40,6 +40,8 @@
       </aside>
     </div>
 
+    <a class="back-float" href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}"><span class="back-float-arrow" aria-hidden="true">←</span> <span>{{ T "tours_all" }}</span></a>
+
     <nav class="tour-pager" aria-label="{{ T "tours_eyebrow" }}">
       {{- /* Hugo: NextInSection = neuere Tour, PrevInSection = ältere */ -}}
       {{- with .PrevInSection }}<a class="tp-prev" href="{{ .RelPermalink }}"><small>{{ T "tour_older" }}</small>← {{ .Title }}</a>{{ else }}<span></span>{{ end }}

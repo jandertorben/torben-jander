@@ -36,7 +36,8 @@
     <p class="lead">{{ T "tours_empty" }}</p>
     {{- end }}
     <p class="tour-privacy">{{ T "gpx_note" }}</p>
-    <p><a class="btn btn-ghost" href="{{ .Site.Home.RelPermalink }}#gravel">← {{ T "back_home" }}</a></p>
+    {{- /* schwebt unten links, damit er beim Scrollen immer sichtbar bleibt */}}
+    <a class="back-float" href="{{ .Site.Home.RelPermalink }}#gravel"><span class="back-float-arrow" aria-hidden="true">←</span> <span>{{ T "back_home" }}</span></a>
   </div>
 </section>
 {{ end }}

@@ -512,3 +512,11 @@ p{margin:0}
 .tour-pager small{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
 .tp-next{text-align:right}.tp-all{text-transform:uppercase;letter-spacing:.08em}
 @media (max-width:600px){.tour-pager{grid-template-columns:1fr 1fr}.tp-all{grid-column:1/-1;grid-row:1;text-align:center}}
+
+/* Schwebender Zurück-Button (Tourenseiten), Gegenstück zu .totop */
+.back-float{position:fixed;left:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,2rem);z-index:40;display:inline-flex;align-items:center;line-height:1.2;gap:.55rem;padding:.65rem .9rem .65rem .75rem;background:rgba(19,17,9,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);border:1px solid var(--line-2);border-radius:3px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s}
+.back-float-arrow{color:var(--gravel-2);font-size:.95rem;line-height:1;letter-spacing:0;transition:transform .25s var(--ease)}
+.back-float:hover{border-color:var(--gravel);color:var(--gravel-2)}
+.back-float:hover .back-float-arrow{transform:translateX(-3px)}
+body:has(.back-float) .footer{padding-bottom:5.5rem}
+@media (prefers-reduced-motion:reduce){.back-float-arrow{transition:none}}
