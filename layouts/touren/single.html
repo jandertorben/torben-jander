@@ -6,16 +6,16 @@
     <p class="act-meta"><span class="tag tag-{{ $t.group }}">{{ T (printf "sport_%s" $t.sport) }}</span> <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></p>
     <h1 class="sec-h tour-h">{{ .Title }}</h1>
 
+    {{- $photo := "" }}
+    {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $photo = . }}{{ end }}{{ end }}
     <div class="tour-grid-2">
+      {{- if $photo }}
+      <div class="tour-tabs" role="tablist" aria-label="{{ T "tour_view" }}" hidden>
+        <button type="button" role="tab" id="tab-route" aria-controls="panel-route" aria-selected="true">{{ T "tour_tab_route" }}</button>
+        <button type="button" role="tab" id="tab-photo" aria-controls="panel-photo" aria-selected="false" tabindex="-1">{{ T "tour_tab_photo" }}</button>
+      </div>
+      {{- end }}
       <div class="tour-main">
-        {{- $photo := "" }}
-        {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $photo = . }}{{ end }}{{ end }}
-        {{- if $photo }}
-        <div class="tour-tabs" role="tablist" aria-label="{{ T "tour_view" }}" hidden>
-          <button type="button" role="tab" id="tab-route" aria-controls="panel-route" aria-selected="true">{{ T "tour_tab_route" }}</button>
-          <button type="button" role="tab" id="tab-photo" aria-controls="panel-photo" aria-selected="false" tabindex="-1">{{ T "tour_tab_photo" }}</button>
-        </div>
-        {{- end }}
         {{- with $t.route }}
         <figure class="tour-route route-{{ $t.group }}" id="panel-route" role="tabpanel" aria-labelledby="tab-route">
           <svg viewBox="0 0 {{ .w }} {{ .h }}" role="img" aria-label="{{ T "tour_route_label" }}">

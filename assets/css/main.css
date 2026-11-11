@@ -488,8 +488,10 @@ p{margin:0}
 .tour{padding-top:3rem}
 
 .tour-h{margin:.6rem 0 2rem;max-width:24ch}
-.tour-grid-2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
-@media (max-width:900px){.tour-grid-2{grid-template-columns:1fr}.tour-side{order:-1}}
+.tour-grid-2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);grid-template-areas:"tabs ." "main side";column-gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.tour-grid-2>.tour-tabs{grid-area:tabs;justify-self:start}
+.tour-main{grid-area:main}.tour-side{grid-area:side}
+@media (max-width:900px){.tour-grid-2{grid-template-columns:1fr;grid-template-areas:"side" "tabs" "main";row-gap:0}.tour-side{margin-bottom:2rem}}
 .tour-route{margin:0 0 2rem;background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:clamp(.8rem,3vw,2rem)}
 .tour-route svg{display:block;width:100%;height:auto;max-height:70vh}
 .tour-route path{fill:none;stroke:var(--gravel);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
@@ -519,7 +521,7 @@ p{margin:0}
 .back-link:hover .back-arrow{transform:translateX(-3px)}
 @media (prefers-reduced-motion:reduce){.back-arrow{transition:none}}
 /* Reiter Route / Foto auf Tourenseiten (ohne JS: beides untereinander) */
-.tour-tabs{display:inline-flex;gap:0;margin-bottom:1rem;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
+.tour-tabs{display:inline-flex;gap:0;margin-bottom:1.25rem;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
 .tour-tabs button{appearance:none;background:none;border:0;padding:.55rem 1.1rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
 .tour-tabs button+button{border-left:1px solid var(--line-2)}
 .tour-tabs button:hover{color:var(--ink)}
