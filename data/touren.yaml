@@ -30,9 +30,6 @@
   title: "Weserrunde über Thedinghausen"
   summary: "52 km an der Weser entlang bis Thedinghausen und über Achim zurück."
   slug: "weserrunde-thedinghausen"
-  photo: "weserrunde-thedinghausen.jpg"
-  photo_kind: "plakat"   # grafisches Tourplakat, kein Foto – durch echtes Foto ersetzen
-  photo_alt: "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen der Runde"
   text: |
     Von Bremen-Süd geht es über Dreye nach Südosten, die Weser immer in der Nähe. Riede und Thedinghausen markieren den äußersten Punkt der Runde.
 
@@ -42,9 +39,6 @@
   title: "Feierabendschleife Weyhe"
   summary: "30 km am Abend: durch Weyhe und am Weserdeich zurück."
   slug: "feierabendschleife-weyhe"
-  photo: "feierabendschleife-weyhe.jpg"
-  photo_kind: "plakat"   # grafisches Tourplakat, kein Foto – durch echtes Foto ersetzen
-  photo_alt: "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen der Runde"
   text: |
     Eine Runde für nach der Arbeit. Über Leeste und Kirchweyhe nach Süden, dann über Dreye an den Weserdeich und auf ihm zurück Richtung Stadt.
 
@@ -54,9 +48,6 @@
   title: "Kleine Runde über Heiligenrode"
   summary: "20 km zwischen Brinkum, Heiligenrode und Weyhe, zum Schluss am Deich."
   slug: "runde-heiligenrode"
-  photo: "runde-heiligenrode.jpg"
-  photo_kind: "plakat"   # grafisches Tourplakat, kein Foto – durch echtes Foto ersetzen
-  photo_alt: "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen der Runde"
   text: |
     Eine kurze Schleife durch die Dörfer südlich von Bremen: Brinkum, Heiligenrode, Kirchweyhe. Von Dreye aus geht es am Weserdeich zurück.
 
@@ -66,9 +57,6 @@
   title: "Deichrunde Weyhe"
   summary: "16 km kurz und flach: durch Weyhe und am Weserdeich zurück."
   slug: "deichrunde-weyhe"
-  photo: "deichrunde-weyhe.jpg"
-  photo_kind: "plakat"   # grafisches Tourplakat, kein Foto – durch echtes Foto ersetzen
-  photo_alt: "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen der Runde"
   text: |
     Die kürzeste Runde hier. Über Leeste und Kirchweyhe, dann an den Deich bei Dreye und an der Weser entlang zurück.
 

@@ -136,6 +136,29 @@ def route_svg(path):
     return {"route": {"w": W, "h": H, "d": big}, "path": small}
 
 
+def elevation_profile(path, W=1000, H=150):
+    """Höhenprofil der (gekürzten) Spur als SVG-Pfade für das Tourplakat, geglättet über ~400 m."""
+    ns = "{http://www.topografix.com/GPX/1/1}"
+    pts, dist = [], 0.0
+    for seg in ET.parse(path).getroot().iter(ns + "trkseg"):
+        last = None
+        for p in seg.iter(ns + "trkpt"):
+            q = (float(p.get("lat")), float(p.get("lon"))); e = p.find(ns + "ele")
+            if last: dist += haversine(last, q)
+            last = q
+            if e is not None: pts.append((dist, float(e.text)))
+    if len(pts) < 10 or dist <= 0: return {}
+    sm, j, k, s = [], 0, 0, 0.0
+    for d, _ in pts:
+        while pts[j][0] < d - 200: s -= pts[j][1]; j += 1
+        while k < len(pts) and pts[k][0] <= d + 200: s += pts[k][1]; k += 1
+        sm.append((d, s / (k - j)))
+    lo = min(e for _, e in sm); rng = max(max(e for _, e in sm) - lo, 25)
+    step = max(1, len(sm) // 400)
+    pl = [f"{d / dist * W:.1f},{H - (e - lo) / rng * (H - 14) - 4:.1f}" for d, e in sm[::step]]
+    return {"profile": {"w": W, "h": H, "line": "M" + " L".join(pl), "area": f"M0,{H} L" + " L".join(pl) + f" L{W},{H} Z"}}
+
+
 def current(path):
     if not os.path.exists(path):
         return False
@@ -191,6 +214,7 @@ def main():
                  "duration": fmt_dur(sm["moving_time"]), "moving_time": sm["moving_time"],
                  "tempo": pace(sm["moving_time"], sm["distance"]) if g == "run" else f"{speed(sm['distance'], sm['moving_time'])} km/h"}
         entry.update(route_svg(os.path.join(OUT_DIR, f"{i}.gpx")))
+        entry.update(elevation_profile(os.path.join(OUT_DIR, f"{i}.gpx")))
         listing.append(entry)
     json.dump({"tours": listing}, open(LIST_OUT, "w"), ensure_ascii=False, separators=(",", ":"))
 

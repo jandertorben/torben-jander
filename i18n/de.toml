@@ -358,3 +358,5 @@ other = "Ansicht"
 other = "Route"
 [tour_tab_photo]
 other = "Bild"
+[tour_poster_label]
+other = "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen"

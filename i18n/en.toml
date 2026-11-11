@@ -358,3 +358,5 @@ other = "View"
 other = "Route"
 [tour_tab_photo]
 other = "Image"
+[tour_poster_label]
+other = "Ride poster with route, elevation profile and key figures"
