@@ -472,7 +472,7 @@ p{margin:0}
 /* ─── Touren ─────────────────────────────────────────────────────── */
 .gpx-more{margin-top:.9rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
 .gpx-more a{color:var(--gravel-2);text-decoration:none}.gpx-more a:hover{text-decoration:underline}
-.tours-head{padding-top:8rem;padding-bottom:0}
+.tours-head{padding-top:3.5rem;padding-bottom:0}
 .tours-sec{padding-top:2.5rem}
 .tour-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));gap:1.25rem}
 .tour-card{display:grid;grid-template-rows:auto 1fr;height:100%;background:var(--bg-3);border:1px solid var(--line);border-radius:4px;overflow:hidden;color:inherit;text-decoration:none;transition:border-color .3s var(--ease),transform .3s var(--ease)}
@@ -485,12 +485,8 @@ p{margin:0}
 .tour-sum{color:var(--ink-2);font-size:.95rem}
 .tour-nums{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
 .tour-privacy{margin:2rem 0 1.5rem;font-size:.85rem;color:var(--muted)}
-.tour{padding-top:8rem}
-.tour-back{margin-bottom:1.4rem}
-.tour-back a{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem .8rem .45rem .65rem;border:1px solid var(--line-2);border-radius:2px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;transition:border-color .2s,color .2s}
-.tour-back-arrow{color:var(--gravel-2);font-size:1rem;letter-spacing:0;transition:transform .25s var(--ease)}
-.tour-back a:hover{border-color:var(--gravel);color:var(--ink)}
-.tour-back a:hover .tour-back-arrow{transform:translateX(-3px)}
+.tour{padding-top:3rem}
+
 .tour-h{margin:.6rem 0 2rem;max-width:24ch}
 .tour-grid-2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
 @media (max-width:900px){.tour-grid-2{grid-template-columns:1fr}.tour-side{order:-1}}
@@ -502,7 +498,7 @@ p{margin:0}
 .tour-text{margin-bottom:2rem;font-size:1.05rem}
 .tour-photo{margin:0 0 2rem}
 .tour-photo img{width:100%;height:auto;border-radius:4px;border:1px solid var(--line)}
-.tour-side{position:sticky;top:5.5rem;display:grid;gap:1.4rem;padding:1.3rem;background:var(--bg-3);border:1px solid var(--line);border-radius:4px}
+.tour-side{position:sticky;top:8.5rem;display:grid;gap:1.4rem;padding:1.3rem;background:var(--bg-3);border:1px solid var(--line);border-radius:4px}
 @media (max-width:900px){.tour-side{position:static}}
 .tour-stats{margin:0}
 .tour-actions{display:grid;gap:.6rem}
@@ -514,10 +510,11 @@ p{margin:0}
 .tp-next{text-align:right}.tp-all{text-transform:uppercase;letter-spacing:.08em}
 @media (max-width:600px){.tour-pager{grid-template-columns:1fr 1fr}.tp-all{grid-column:1/-1;grid-row:1;text-align:center}}
 
-/* Schwebender Zurück-Button (Tourenseiten), Gegenstück zu .totop */
-.back-float{position:fixed;left:clamp(1rem,3vw,2rem);bottom:clamp(1rem,3vw,2rem);z-index:40;display:inline-flex;align-items:center;line-height:1.2;gap:.55rem;padding:.65rem .9rem .65rem .75rem;background:rgba(19,17,9,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);border:1px solid var(--line-2);border-radius:3px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s}
-.back-float-arrow{color:var(--gravel-2);font-size:.95rem;line-height:1;letter-spacing:0;transition:transform .25s var(--ease)}
-.back-float:hover{border-color:var(--gravel);color:var(--gravel-2)}
-.back-float:hover .back-float-arrow{transform:translateX(-3px)}
-body:has(.back-float) .footer{padding-bottom:5.5rem}
-@media (prefers-reduced-motion:reduce){.back-float-arrow{transition:none}}
+/* Zurück-Leiste unter der Navigation (Tourenseiten) */
+.back-bar{position:sticky;top:4rem;z-index:45;margin-top:4rem;background:rgba(11,10,8,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.back-bar .wrap{display:flex;align-items:center;min-height:2.9rem}
+.back-link{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;padding:.4rem 0;transition:color .2s}
+.back-arrow{color:var(--gravel-2);font-size:1rem;line-height:1;letter-spacing:0;transition:transform .25s var(--ease)}
+.back-link:hover{color:var(--ink)}
+.back-link:hover .back-arrow{transform:translateX(-3px)}
+@media (prefers-reduced-motion:reduce){.back-arrow{transition:none}}

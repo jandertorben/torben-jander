@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ partial "back-bar.html" (dict "href" (printf "%s#gravel" .Site.Home.RelPermalink) "label" (T "back_home")) }}
 <section class="sec tours-head">
   <div class="wrap">
     <p class="eyebrow">{{ T "tours_eyebrow" }}</p>
@@ -36,8 +37,6 @@
     <p class="lead">{{ T "tours_empty" }}</p>
     {{- end }}
     <p class="tour-privacy">{{ T "gpx_note" }}</p>
-    {{- /* schwebt unten links, damit er beim Scrollen immer sichtbar bleibt */}}
-    <a class="back-float" href="{{ .Site.Home.RelPermalink }}#gravel"><span class="back-float-arrow" aria-hidden="true">←</span> <span>{{ T "back_home" }}</span></a>
   </div>
 </section>
 {{ end }}

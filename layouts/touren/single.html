@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{- $t := .Params.tour }}
+{{ partial "back-bar.html" (dict "href" .Parent.RelPermalink "label" (T "tours_all")) }}
 <article class="sec tour">
   <div class="wrap">
-    <p class="tour-back"><a href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}"><span class="tour-back-arrow" aria-hidden="true">←</span> {{ T "tours_all" }}</a></p>
     <p class="act-meta"><span class="tag tag-{{ $t.group }}">{{ T (printf "sport_%s" $t.sport) }}</span> <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></p>
     <h1 class="sec-h tour-h">{{ .Title }}</h1>
 
@@ -39,8 +39,6 @@
         <p class="tour-hint">{{ T "tour_gpx_hint" }}</p>
       </aside>
     </div>
-
-    <a class="back-float" href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}"><span class="back-float-arrow" aria-hidden="true">←</span> <span>{{ T "tours_all" }}</span></a>
 
     <nav class="tour-pager" aria-label="{{ T "tours_eyebrow" }}">
       {{- /* Hugo: NextInSection = neuere Tour, PrevInSection = ältere */ -}}

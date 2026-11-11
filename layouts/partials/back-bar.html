@@ -1,0 +1,5 @@
+{{- /* Schmale Leiste unter der Navigation mit Zurück-Link. Bleibt beim Scrollen oben stehen.
+     Erwartet dict: "href", "label" */ -}}
+<div class="back-bar">
+  <div class="wrap"><a class="back-link" href="{{ .href }}"><span class="back-arrow" aria-hidden="true">←</span> {{ .label }}</a></div>
+</div>
