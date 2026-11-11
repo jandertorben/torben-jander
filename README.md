@@ -65,7 +65,7 @@ Datenschutz: Das Skript kürzt jede Route um 600 m am Start und am Ziel und zeic
 gekürzte Spuren unter `static/gpx/<id>.gpx` ab. Die Karte zeigt dann einen Button „GPX laden“.
 
 - Nur Gravel-Touren (Strava-Sportart „Gravel-Fahrt“) ab 15 km, auf Strava öffentlich, nicht privat, nicht als Pendelfahrt markiert.
-- Alle Punkte im Umkreis von 1.000 m um Start und Ziel fallen weg (die API liefert die volle Spur, Strava-Privatsphäre-Zonen greifen hier nicht).
+- Alle Punkte im Umkreis von 1.000 bis 1.800 m um Start und Ziel fallen weg (Radius zufällig je Tour und je Ende, damit sich der Wohnort nicht aus mehreren Dateien zurückrechnen lässt) (die API liefert die volle Spur, Strava-Privatsphäre-Zonen greifen hier nicht).
 - Keine Zeitstempel, nur Position und Höhe.
 - Werte stehen oben im Skript (`GPX_PRIVACY_M`, `MIN_GPX_KM`). Wird der Radius geändert, erzeugt der nächste Lauf alle Dateien neu.
 - Dateien von Touren, die nicht mehr auf der Seite stehen, werden gelöscht.

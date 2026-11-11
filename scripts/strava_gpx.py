@@ -8,8 +8,8 @@ als Karte erscheinen (recent + highlights in data/strava.json) und die diese Reg
   - auf Strava öffentlich ("everyone"), nicht privat, nicht als Pendelfahrt markiert
 
 Datenschutz: Die Strava-API liefert dem Besitzer die volle Spur, Privatsphäre-Zonen gelten
-hier NICHT. Deshalb werden alle Punkte im Umkreis von GPX_PRIVACY_M um Start und Ziel
-entfernt (auch wenn die Route mittendrin noch einmal dort vorbeiführt; die Spur wird dann
+hier NICHT. Deshalb werden alle Punkte im Umkreis von 1.000 bis 1.800 m (zufällig je Tour
+und je Ende) um Start und Ziel entfernt (auch wenn die Route mittendrin noch einmal dort vorbeiführt; die Spur wird dann
 in mehrere Segmente geteilt). Zeitstempel werden nicht exportiert, Höhe schon.
 
 Vorhandene Dateien mit gleicher Version werden nicht neu geholt. Dateien von Aktivitäten,
@@ -17,19 +17,20 @@ die nicht mehr auf der Seite stehen, werden gelöscht.
 
 Benötigt dieselben Umgebungsvariablen wie strava_fetch.py.
 """
-import json, os, re, sys, time
+import json, os, random, re, sys, time
 from xml.sax.saxutils import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from strava_fetch import API, ROOT, RAW, access_token, get, load_env  # noqa: E402
 from build_strava_data import haversine, group  # noqa: E402
 
-GPX_PRIVACY_M = 1000   # Radius um Start und Ziel, der komplett entfällt
+GPX_PRIVACY_M = 1000   # Mindest-Radius um Start und Ziel, der komplett entfällt
+GPX_PRIVACY_JITTER_M = 800   # zufälliger Aufschlag je Tour und je Ende (1.000–1.800 m)
 MIN_GPX_KM = 15.0      # kürzere Strecken bekommen keinen Download
 GPX_SPORTS = {"GravelRide"}   # nur Gravel-Touren gibt es als Download
 MIN_STEP_M = 4.0       # Punkte, die näher als das am vorigen liegen, entfallen (kleinere Dateien)
 MIN_SEG_PTS = 10       # Mini-Segmente (kurzer Abstecher in die Sperrzone) entfallen
-VERSION = f"v1-r{GPX_PRIVACY_M}"   # ändert sich der Wert, werden alle Dateien neu erzeugt
+VERSION = f"v2-r{GPX_PRIVACY_M}-j{GPX_PRIVACY_JITTER_M}"   # ändert sich der Wert, werden alle Dateien neu erzeugt
 OUT_DIR = os.path.join(ROOT, "static", "gpx")
 DATA = os.path.join(ROOT, "data", "strava.json")
 
@@ -63,12 +64,22 @@ def eligible(a):
     return True
 
 
-def segments(latlng, alt):
+def radii(aid):
+    """Zufälliger, aber pro Tour fester Radius für Start und Ziel.
+    Bei immer gleichem Radius lägen alle Schnittpunkte auf einem Kreis um die Haustür,
+    aus drei Touren ließe sich der Mittelpunkt (= Wohnort) ausrechnen. Der Zufall verwischt das."""
+    rnd = random.Random(f"{aid}-{GPX_PRIVACY_JITTER_M}-{os.environ.get('GPX_SALT', '')}")
+    return (GPX_PRIVACY_M + rnd.uniform(0, GPX_PRIVACY_JITTER_M),
+            GPX_PRIVACY_M + rnd.uniform(0, GPX_PRIVACY_JITTER_M))
+
+
+def segments(latlng, alt, aid=""):
     """Entfernt alle Punkte nahe Start/Ziel und teilt die Spur an den Lücken."""
     start, end = latlng[0], latlng[-1]
+    r_start, r_end = radii(aid)
     segs, cur, last = [], [], None
     for i, p in enumerate(latlng):
-        if haversine(p, start) <= GPX_PRIVACY_M or haversine(p, end) <= GPX_PRIVACY_M:
+        if haversine(p, start) <= r_start or haversine(p, end) <= r_end:
             if cur: segs.append(cur)
             cur, last = [], None
             continue
@@ -87,7 +98,7 @@ def write_gpx(path, a, segs):
         '<gpx version="1.1" creator="torben-jander.me" xmlns="http://www.topografix.com/GPX/1/1">',
         "  <metadata>",
         f"    <name>{escape(a['name'])}</name>",
-        f"    <desc>{escape(a['start_local'][:10])} · Start und Ziel um {GPX_PRIVACY_M} m gekürzt · {VERSION}</desc>",
+        f"    <desc>{escape(a['start_local'][:10])} · Start und Ziel um mindestens {GPX_PRIVACY_M} m gekürzt · {VERSION}</desc>",
         "    <link href=\"https://torben-jander.me\"><text>torben-jander.me</text></link>",
         "  </metadata>",
         "  <trk>",
@@ -138,7 +149,7 @@ def main():
         if len(latlng) < 20:
             print(f"{aid}: keine GPS-Spur")
             continue
-        segs = segments(latlng, alt)
+        segs = segments(latlng, alt, aid)
         if not segs:
             print(f"{aid}: nach dem Kürzen bleibt nichts übrig")
             continue
