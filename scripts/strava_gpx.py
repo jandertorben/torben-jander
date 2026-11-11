@@ -22,10 +22,10 @@ from xml.sax.saxutils import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from strava_fetch import API, ROOT, RAW, access_token, get, load_env  # noqa: E402
-from build_strava_data import haversine, group  # noqa: E402
+from build_strava_data import haversine, group, privacy_radii, PRIVACY_M, PRIVACY_JITTER_M  # noqa: E402
 
-GPX_PRIVACY_M = 1000   # Mindest-Radius um Start und Ziel, der komplett entfällt
-GPX_PRIVACY_JITTER_M = 800   # zufälliger Aufschlag je Tour und je Ende (1.000–1.800 m)
+# Kürzung um Start und Ziel: dieselben Werte wie für Karte und Vorschauen (build_strava_data.py)
+GPX_PRIVACY_M, GPX_PRIVACY_JITTER_M = PRIVACY_M, PRIVACY_JITTER_M
 MIN_GPX_KM = 15.0      # kürzere Strecken bekommen keinen Download
 GPX_SPORTS = {"GravelRide"}   # nur Gravel-Touren gibt es als Download
 MIN_STEP_M = 4.0       # Punkte, die näher als das am vorigen liegen, entfallen (kleinere Dateien)
@@ -64,19 +64,10 @@ def eligible(a):
     return True
 
 
-def radii(aid):
-    """Zufälliger, aber pro Tour fester Radius für Start und Ziel.
-    Bei immer gleichem Radius lägen alle Schnittpunkte auf einem Kreis um die Haustür,
-    aus drei Touren ließe sich der Mittelpunkt (= Wohnort) ausrechnen. Der Zufall verwischt das."""
-    rnd = random.Random(f"{aid}-{GPX_PRIVACY_JITTER_M}-{os.environ.get('GPX_SALT', '')}")
-    return (GPX_PRIVACY_M + rnd.uniform(0, GPX_PRIVACY_JITTER_M),
-            GPX_PRIVACY_M + rnd.uniform(0, GPX_PRIVACY_JITTER_M))
-
-
 def segments(latlng, alt, aid=""):
     """Entfernt alle Punkte nahe Start/Ziel und teilt die Spur an den Lücken."""
     start, end = latlng[0], latlng[-1]
-    r_start, r_end = radii(aid)
+    r_start, r_end = privacy_radii(aid)
     segs, cur, last = [], [], None
     for i, p in enumerate(latlng):
         if haversine(p, start) <= r_start or haversine(p, end) <= r_end:
