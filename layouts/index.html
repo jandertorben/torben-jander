@@ -161,7 +161,7 @@
         <div><strong class="num" data-count="{{ $t.gravel.count }}">{{ $t.gravel.count }}</strong><span>{{ printf (T "gravel_count") $y }}</span></div>
         <div><strong class="num" data-count="{{ $t.gravel.km }}">{{ lang.FormatNumber 0 $t.gravel.km }}</strong><span>{{ T "gravel_km" }}</span></div>
       </div>
-      {{- with (index (hugo.Data) "gpx").tours }}
+      {{- with .Site.Data.gpx.tours }}
       <div class="gpx-list reveal">
         <p class="feature-k">{{ T "gpx_list_title" }}</p>
         <p class="gpx-note">{{ T "gpx_list_note" }}</p>
