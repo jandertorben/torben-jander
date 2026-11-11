@@ -21,7 +21,7 @@
         {{- with $t.route }}
         <figure class="tour-route route-{{ $t.group }}" id="panel-route" role="tabpanel" aria-labelledby="tab-route">
           <svg viewBox="0 0 {{ .w }} {{ .h }}" role="img" aria-label="{{ T "tour_route_label" }}">
-            <path d="{{ .d | safeHTMLAttr }}" pathLength="1"/>
+            <path id="tour-path" d="{{ .d | safeHTMLAttr }}" pathLength="1" vector-effect="non-scaling-stroke"/>
           </svg>
           <figcaption>{{ T "gpx_note" }}</figcaption>
         </figure>
@@ -39,7 +39,7 @@
           <div class="tp" role="img" aria-label="{{ T "tour_poster_label" }}"><div class="tp-in">
             <p class="tp-k"><span><b>{{ T (printf "sport_%s" $t.sport) }}</b> · {{ time.Format ":date_long" $d }}</span></p>
             <p class="tp-h">{{ .Title }}</p>
-            <div class="tp-map"><svg viewBox="0 0 {{ $t.route.w }} {{ $t.route.h }}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="{{ $t.route.d | safeHTMLAttr }}"/></svg></div>
+            <div class="tp-map"><svg viewBox="0 0 {{ $t.route.w }} {{ $t.route.h }}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#tour-path"/></svg></div>
             {{- with $t.profile }}
             <div class="tp-ele"><svg viewBox="0 0 {{ .w }} {{ .h }}" preserveAspectRatio="none" aria-hidden="true"><path class="a" d="{{ .area | safeHTMLAttr }}"/><path class="l" d="{{ .line | safeHTMLAttr }}"/></svg></div>
             {{- end }}

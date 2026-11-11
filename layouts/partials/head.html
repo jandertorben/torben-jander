@@ -46,5 +46,7 @@
 <meta name="application-name" content="{{ .Site.Params.name }}">
 <link rel="preload" href="/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/jetbrains-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- /* CSS direkt eingebettet: spart beim ersten Aufruf eine blockierende Anfrage (komprimiert ca. 10 KB) */}}
+<style>{{ $css.Content | safeCSS }}</style>

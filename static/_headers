@@ -24,6 +24,10 @@
 /video/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Bilder: 30 Tage (verarbeitete Bilder haben einen Hash im Namen; die Cursor-Bilder nicht)
+/img/*
+  Cache-Control: public, max-age=2592000
+
 # ── GPX-Downloads (gekürzte Spuren aus scripts/strava_gpx.py) ─
 /gpx/*
   Content-Type: application/gpx+xml; charset=utf-8

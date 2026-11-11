@@ -131,8 +131,8 @@ def route_svg(path):
     bounds = (min(xs), min(ys), max(xs), max(ys))
     w, h = max(bounds[2] - bounds[0], 1e-9), max(bounds[3] - bounds[1], 1e-9)
     W = 1000; H = max(400, min(1400, round(W * h / w)))
-    big = "".join(to_path(s, (W, H), bounds, pad=0.04) for s in xy)
-    small = "".join(to_path(s, (100, 100), bounds) for s in xy)
+    big = "".join(to_path(s, (W, H), bounds, pad=0.04, tol=0.7) for s in xy)
+    small = "".join(to_path(s, (100, 100), bounds, tol=0.15) for s in xy)
     return {"route": {"w": W, "h": H, "d": big}, "path": small}
 
 

@@ -65,7 +65,29 @@ def project(pts, lat0):
     k = math.cos(math.radians(lat0))
     return [(p[1] * k, -p[0]) for p in pts]  # x east, y north (flipped for SVG)
 
-def to_path(xy, box, bounds=None, pad=0.04):
+def simplify(pts, tol):
+    """Douglas-Peucker: entfernt Punkte, die weniger als tol (Pixel) von der Linie abweichen.
+    Die Form bleibt sichtbar gleich, der SVG-Pfad wird deutlich kürzer."""
+    if tol <= 0 or len(pts) < 3: return pts
+    keep = [False] * len(pts); keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        a, b = stack.pop()
+        (x1, y1), (x2, y2) = pts[a], pts[b]
+        dx, dy = x2 - x1, y2 - y1; ln = math.hypot(dx, dy) or 1e-9
+        best, idx = -1.0, -1
+        for i in range(a + 1, b):
+            d = abs(dy * pts[i][0] - dx * pts[i][1] + x2 * y1 - y2 * x1) / ln
+            if d > best: best, idx = d, i
+        if best > tol:
+            keep[idx] = True; stack += [(a, idx), (idx, b)]
+    return [p for p, k in zip(pts, keep) if k]
+
+def fmt(v):
+    s = f"{v:.1f}"
+    return s[:-2] if s.endswith(".0") else s
+
+def to_path(xy, box, bounds=None, pad=0.04, tol=0.0):
     if not xy: return ""
     xs, ys = [p[0] for p in xy], [p[1] for p in xy]
     if bounds is None:
@@ -75,14 +97,14 @@ def to_path(xy, box, bounds=None, pad=0.04):
     scale = min(box[0] * (1 - 2*pad) / w, box[1] * (1 - 2*pad) / h)
     ox = (box[0] - w * scale) / 2
     oy = (box[1] - h * scale) / 2
+    pts = simplify([((x - minx) * scale + ox, (y - miny) * scale + oy) for x, y in xy], tol)
     out = []
     last = None
-    for x, y in xy:
-        px = round((x - minx) * scale + ox, 1)
-        py = round((y - miny) * scale + oy, 1)
+    for x, y in pts:
+        px, py = round(x, 1), round(y, 1)
         if last and abs(px - last[0]) < 0.6 and abs(py - last[1]) < 0.6:
             continue
-        out.append(("M" if not out else "L") + f"{px} {py}")
+        out.append(("M" if not out else "L") + f"{fmt(px)} {fmt(py)}")
         last = (px, py)
     return "".join(out)
 
@@ -228,7 +250,7 @@ def main():
         }
         card["tempo"] = pace(s["moving_time"], s["distance"]) if g in ("run", "foot") else f"{speed(s['distance'], s['moving_time'])} km/h"
         if a["id"] in routes:
-            card["path"] = to_path(project(routes[a["id"]], routes[a["id"]][0][0]), (100, 100))
+            card["path"] = to_path(project(routes[a["id"]], routes[a["id"]][0][0]), (100, 100), tol=0.15)
         return card
 
     ordered = sorted(acts.values(), key=lambda a: a["start_local"], reverse=True)
@@ -275,7 +297,7 @@ def main():
     for aid, xy in allxy.items():
         a = acts[aid]
         map_paths.append({"id": aid, "group": group(a["sport_type"]), "sport": a["sport_type"],
-                          "km": round(a["summary"]["distance"] / 1000, 1), "d": to_path(xy, box, bounds, pad=0.03)})
+                          "km": round(a["summary"]["distance"] / 1000, 1), "d": to_path(xy, box, bounds, pad=0.03, tol=0.7)})
     # Pendelstrecken überlagern sich fast vollständig: davon reicht eine Auswahl.
     # Alle Routen ab LONG_KM bleiben drin, kürzere werden gleichmäßig auf MAX_SHORT reduziert.
     LONG_KM, MAX_SHORT, MAX_LONG = 12.0, 40, 40

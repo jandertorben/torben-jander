@@ -11,8 +11,8 @@
   /* Porträt-Video: bei „Bewegung reduzieren“ nur Standbild, sonst nur abspielen, wenn sichtbar */
   var pv = document.querySelector('.portrait-video video');
   if (pv) {
+    /* Video lädt erst, wenn es ins Bild kommt (kein autoplay, preload="none") */
     if (reduce) {
-      pv.removeAttribute('autoplay');
       pv.pause();
     } else if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
@@ -22,6 +22,16 @@
         });
       }, { threshold: 0.1 }).observe(pv);
     }
+  }
+
+  /* Jahreskarte: Leuchten einschalten, wenn die letzte Route fertig gezeichnet ist */
+  var heroMap = document.querySelector('.hero-map');
+  if (heroMap) {
+    var routes = heroMap.querySelectorAll('.r');
+    var lastR = routes[routes.length - 1];
+    var glow = function () { heroMap.classList.add('glow'); };
+    if (reduce || !lastR) glow();
+    else { lastR.addEventListener('animationend', glow, { once: true }); setTimeout(glow, 9000); }
   }
 
   /* Navigation: Hintergrund nach dem ersten Scrollen */

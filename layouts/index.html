@@ -87,8 +87,8 @@
           {{- $x := add (mul $i 14) 2 }}
           {{- $hr := div (mul $wk.ride 92) $max }}{{ $hn := div (mul $wk.run 92) $max }}
           <g class="bar" style="--i:{{ $i }}">
-            <rect x="{{ $x }}" y="{{ sub 110 $hr }}" width="10" height="{{ $hr }}" class="b-ride"/>
-            <rect x="{{ $x }}" y="{{ sub (sub 110 $hr) $hn }}" width="10" height="{{ $hn }}" class="b-run"/>
+            <rect x="{{ $x }}" y="{{ printf "%.1f" (sub 110 $hr) }}" width="10" height="{{ printf "%.1f" $hr }}" class="b-ride"/>
+            <rect x="{{ $x }}" y="{{ printf "%.1f" (sub (sub 110 $hr) $hn) }}" width="10" height="{{ printf "%.1f" $hn }}" class="b-run"/>
             <title>{{ T "week_short" }} {{ $wk.week }}: {{ lang.FormatNumber 0 $wk.ride }} km {{ T "weekly_legend_ride" }}, {{ lang.FormatNumber 0 $wk.run }} km {{ T "weekly_legend_run" }}</title>
           </g>
           {{- if eq (mod $wk.week 4) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ T "week_short" }} {{ $wk.week }}</text>{{ end }}
@@ -106,7 +106,7 @@
           <line x1="0" y1="110.5" x2="336" y2="110.5" class="axis"/>
           {{- range $i, $c := $h }}
           {{- $x := add (mul $i 14) 2 }}{{ $hh := div (mul (float $c) 92) (float $hm) }}
-          <g class="bar" style="--i:{{ $i }}"><rect x="{{ $x }}" y="{{ sub 110 $hh }}" width="10" height="{{ $hh }}" class="b-neutral"/><title>{{ printf "%02d:00" $i }} – {{ $c }}</title></g>
+          <g class="bar" style="--i:{{ $i }}"><rect x="{{ $x }}" y="{{ printf "%.1f" (sub 110 $hh) }}" width="10" height="{{ printf "%.1f" $hh }}" class="b-neutral"/><title>{{ printf "%02d:00" $i }} – {{ $c }}</title></g>
           {{- if eq (mod $i 6) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ printf "%02d" $i }}</text>{{ end }}
           {{- end }}
         </svg>
@@ -362,7 +362,7 @@
       {{- $poster := resources.Get "img/portrait-poster.jpg" }}
       {{- with $poster }}{{ $poster = .Process "webp q82" }}{{ end }}
       <figure class="portrait portrait-video reveal">
-        <video src="{{ $v.RelPermalink }}"{{ with $poster }} poster="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"{{ end }} autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-label="{{ T "portrait_alt" }}"></video>
+        <video src="{{ $v.RelPermalink }}"{{ with $poster }} poster="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"{{ end }} muted loop playsinline preload="none" disablepictureinpicture aria-label="{{ T "portrait_alt" }}"></video>
       </figure>
       {{- else }}{{ with $img }}
       {{- $w1 := .Resize "720x webp q82" }}{{ $w2 := .Resize "1080x webp q82" }}
