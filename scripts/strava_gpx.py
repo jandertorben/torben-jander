@@ -28,6 +28,11 @@ from build_strava_data import haversine, group, privacy_radii, PRIVACY_M, PRIVAC
 GPX_PRIVACY_M, GPX_PRIVACY_JITTER_M = PRIVACY_M, PRIVACY_JITTER_M
 MIN_GPX_KM = 15.0      # kürzere Strecken bekommen keinen Download
 GPX_SPORTS = {"GravelRide"}   # nur Gravel-Touren gibt es als Download
+# Ausnahmen: einzelne Touren anderer Sportart, die trotzdem einen Download bekommen
+# (Strava-ID aus der Aktivitäts-URL). Öffentlich und kein Pendeln müssen sie trotzdem sein.
+GPX_EXTRA_IDS = {
+    "20023559115",   # Abendradfahrt 03.09.2026, 30,7 km (längste Fahrt des Jahres)
+}
 MIN_STEP_M = 4.0       # Punkte, die näher als das am vorigen liegen, entfallen (kleinere Dateien)
 MIN_SEG_PTS = 10       # Mini-Segmente (kurzer Abstecher in die Sperrzone) entfallen
 VERSION = f"v2-r{GPX_PRIVACY_M}-j{GPX_PRIVACY_JITTER_M}"   # ändert sich der Wert, werden alle Dateien neu erzeugt
@@ -54,6 +59,8 @@ def raw_activities():
 
 
 def eligible(a):
+    if str(a["id"]) in GPX_EXTRA_IDS:
+        return a.get("visibility") == "everyone" and not a.get("private", True) and not a.get("commute", True)
     if a["sport_type"] not in GPX_SPORTS:
         return False
     if a["summary"]["distance"] < MIN_GPX_KM * 1000:
