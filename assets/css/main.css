@@ -485,7 +485,11 @@ p{margin:0}
 .tour-nums{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
 .tour-privacy{margin:2rem 0 1.5rem;font-size:.85rem;color:var(--muted)}
 .tour{padding-top:8rem}
-.tour .eyebrow a{color:inherit;text-decoration:none}.tour .eyebrow a:hover{color:var(--ink)}
+.tour-back{margin-bottom:1.4rem}
+.tour-back a{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem .8rem .45rem .65rem;border:1px solid var(--line-2);border-radius:2px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;transition:border-color .2s,color .2s}
+.tour-back-arrow{color:var(--gravel-2);font-size:1rem;letter-spacing:0;transition:transform .25s var(--ease)}
+.tour-back a:hover{border-color:var(--gravel);color:var(--ink)}
+.tour-back a:hover .tour-back-arrow{transform:translateX(-3px)}
 .tour-h{margin:.6rem 0 2rem;max-width:24ch}
 .tour-grid-2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
 @media (max-width:900px){.tour-grid-2{grid-template-columns:1fr}.tour-side{order:-1}}

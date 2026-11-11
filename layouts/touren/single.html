@@ -2,7 +2,7 @@
 {{- $t := .Params.tour }}
 <article class="sec tour">
   <div class="wrap">
-    <p class="eyebrow"><a href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}">{{ T "tours_eyebrow" }}</a></p>
+    <p class="tour-back"><a href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}"><span class="tour-back-arrow" aria-hidden="true">←</span> {{ T "tours_all" }}</a></p>
     <p class="act-meta"><span class="tag tag-{{ $t.group }}">{{ T (printf "sport_%s" $t.sport) }}</span> <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></p>
     <h1 class="sec-h tour-h">{{ .Title }}</h1>
 
