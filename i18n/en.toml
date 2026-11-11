@@ -10,6 +10,12 @@ other = "Running"
 other = "About"
 [skip]
 other = "Skip to content"
+[menu]
+other = "Menu"
+[menu_open]
+other = "Open menu"
+[menu_close]
+other = "Close menu"
 [lang_switch]
 other = "Auf Deutsch lesen"
 

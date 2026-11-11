@@ -5,7 +5,7 @@
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24 C9 22 8 12 14 11 S18 21 24 17 26 8 28 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
       <span>{{ .Site.Params.name }}</span>
     </a>
-    <nav class="nav-links" aria-label="Sections">
+    <nav class="nav-links" id="menu" aria-label="Sections">
       <a href="{{ $home }}#zahlen">{{ T "nav_numbers" }}</a>
       <a href="{{ $home }}#zuletzt">{{ T "nav_recent" }}</a>
       <a href="{{ $home }}#gravel">{{ T "nav_gravel" }}</a>
@@ -22,5 +22,9 @@
     {{- if $other }}
     <a class="lang" href="{{ $other }}" lang="{{ if eq .Site.Language.Lang "de" }}en{{ else }}de{{ end }}" aria-label="{{ T "lang_switch" }}">{{ if eq .Site.Language.Lang "de" }}EN{{ else }}DE{{ end }}</a>
     {{- end }}
+    <button class="burger" type="button" aria-controls="menu" aria-expanded="false" aria-label="{{ T "menu_open" }}" data-open="{{ T "menu_open" }}" data-close="{{ T "menu_close" }}">
+      <span class="burger-lines" aria-hidden="true"><span></span><span></span></span>
+      <span class="burger-label" aria-hidden="true">{{ T "menu" }}</span>
+    </button>
   </div>
 </header>
