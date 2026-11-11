@@ -368,3 +368,13 @@ other = "Hin und zurück, rund %s km pro Strecke. Jede Fahrt zählt hier mit."
 other = "Fahrten %d"
 [commute_week]
 other = "Diese Woche: %d"
+[ride_next]
+other = "Nächste gemeinsame Ausfahrt"
+[ride_oclock]
+other = "Uhr"
+[ride_time_tbd]
+other = "Startzeit folgt"
+[ride_pace]
+other = "Tempo"
+[ride_meet]
+other = "Treffpunkt"

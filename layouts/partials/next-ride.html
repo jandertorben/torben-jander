@@ -1,0 +1,30 @@
+{{- /* Nächste gemeinsame Ausfahrt aus data/ausfahrten.yaml (erste, die heute oder später stattfindet) */ -}}
+{{- $today := now.Format "2006-01-02" -}}
+{{- $next := dict -}}
+{{- range sort (.Site.Data.ausfahrten | default slice) "date" -}}
+  {{- if and (not $next.date) (ge .date $today) }}{{ $next = . }}{{ end -}}
+{{- end -}}
+{{- with $next.date }}
+{{- $r := $next }}
+<article class="next-ride reveal" aria-labelledby="next-ride-h">
+  <p class="next-k">{{ T "ride_next" }}</p>
+  <div class="next-grid">
+    <div class="next-when">
+      <p class="next-day">{{ time.Format "Monday" (time $r.date) }}</p>
+      <p class="next-date">{{ time.Format ":date_long" (time $r.date) }}</p>
+      <p class="next-time">{{ with $r.start }}{{ . }} {{ T "ride_oclock" }}{{ else }}{{ T "ride_time_tbd" }}{{ with $r.start_hint }} <span>({{ . }})</span>{{ end }}{{ end }}</p>
+    </div>
+    <div class="next-what">
+      <h3 id="next-ride-h" class="next-title">{{ $r.title }}</h3>
+      <dl class="next-facts">
+        <div><dt>{{ T "label_distance" }}</dt><dd>ca. {{ $r.km }} km</dd></div>
+        <div><dt>{{ T "label_elev" }}</dt><dd>{{ $r.hm }} m</dd></div>
+        <div><dt>{{ T "label_time" }}</dt><dd>{{ $r.duration }}</dd></div>
+        <div><dt>{{ T "ride_pace" }}</dt><dd>{{ $r.pace }}</dd></div>
+        <div><dt>{{ T "ride_meet" }}</dt><dd>{{ $r.meet }}</dd></div>
+      </dl>
+      {{- with $r.note }}<p class="next-note">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+</article>
+{{- end }}

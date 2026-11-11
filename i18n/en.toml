@@ -368,3 +368,13 @@ other = "There and back, about %s km each way. Every ride adds up here."
 other = "Rides %d"
 [commute_week]
 other = "This week: %d"
+[ride_next]
+other = "Next group ride"
+[ride_oclock]
+other = ""
+[ride_time_tbd]
+other = "Start time to follow"
+[ride_pace]
+other = "Pace"
+[ride_meet]
+other = "Meeting point"

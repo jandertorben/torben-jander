@@ -328,6 +328,7 @@
       <p>{{ T "community_text" }}</p>
       <p>{{ T "community_open" }}</p>
     </div>
+    {{ partial "next-ride.html" . }}
     <div class="hero-actions reveal">
       <a class="btn" href="{{ .Site.Params.whatsapp_community }}" rel="noopener" target="_blank">{{ partial "icon-chat.html" . -}}{{ T "community_whatsapp" }}</a>
       {{- with .Site.Params.strava_club }}<a class="btn btn-ghost" href="{{ . }}" rel="noopener" target="_blank">{{ T "community_strava" }}</a>{{ end }}
