@@ -360,3 +360,11 @@ other = "Route"
 other = "Bild"
 [tour_poster_label]
 other = "Tourplakat mit Streckenverlauf, Höhenprofil und Kennzahlen"
+[commute_since]
+other = "seit %s"
+[commute_sum]
+other = "Hin und zurück, rund %s km pro Strecke. Jede Fahrt zählt hier mit."
+[commute_count]
+other = "Fahrten %d"
+[commute_week]
+other = "Diese Woche: %d"

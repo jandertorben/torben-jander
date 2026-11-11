@@ -10,7 +10,7 @@ Datenschutz: Von jeder Route werden Start und Ende um 1.000 bis 1.800 m gekürzt
 damit Wohn- und Arbeitsort nicht exakt sichtbar sind. Kurze Routen (< MIN_ROUTE_KM)
 erhalten keine Zeichnung.
 """
-import csv, glob, json, math, os, random, sys
+import csv, glob, json, math, os, random, re, sys
 from datetime import date, datetime, timedelta
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,6 +23,9 @@ MIN_ROUTE_KM = 5.0
 RIDE = {"Ride", "GravelRide", "EBikeRide", "MountainBikeRide", "VirtualRide"}
 RUN = {"Run", "TrailRun", "VirtualRun"}
 FOOT = {"Walk", "Hike"}
+# Automatische Strava-Namen (de/en); ein Arbeitsweg heißt fast immer so
+GENERIC_NAME = re.compile(r"^((gravel-)?fahrt (am morgen|am vormittag|zur mittagszeit|am nachmittag|am abend)|nachtfahrt|"
+                          r"(morgen|mittags|nachmittags|abend)radfahrt|(morning|afternoon|evening|lunch|night) (gravel )?ride|arbeitsweg|pendeln|heimweg)$", re.I)
 
 def decode_polyline(s):
     pts, idx, lat, lng = [], 0, 0, 0
@@ -253,12 +256,38 @@ def main():
             card["path"] = to_path(project(routes[a["id"]], routes[a["id"]][0][0]), (100, 100), tol=0.15)
         return card
 
+    # Arbeitsweg erkennen: Radfahrt mit Strava-Pendelmarkierung oder Standardnamen,
+    # deren Länge zum typischen Arbeitsweg passt. Diese Fahrten erscheinen nicht einzeln,
+    # sondern als eine Karte, die mitzählt, und nur einmal auf der Jahreskarte.
+    def generic(name):
+        return bool(GENERIC_NAME.match(name.strip()))
+    rides = [a for a in acts.values() if group(a["sport_type"]) == "ride"]
+    flagged = sorted(a["summary"]["distance"] for a in rides if a.get("commute") and 5000 <= a["summary"]["distance"] <= 25000)
+    base = flagged or sorted(a["summary"]["distance"] for a in rides if generic(a["name"]) and 5000 <= a["summary"]["distance"] <= 25000)
+    commute_ids = set()
+    if len(base) >= 3:
+        med = base[len(base) // 2]; tol = max(1500, med * 0.15)
+        commute_ids = {a["id"] for a in rides
+                       if (a.get("commute") or generic(a["name"])) and abs(a["summary"]["distance"] - med) <= tol}
+    commute = None
+    cy = sorted((acts[i] for i in commute_ids if acts[i]["start_local"].startswith(str(year))), key=lambda a: a["start_local"])
+    if cy:
+        st = stats(cy); latest = cy[-1]
+        wk = date.today().isocalendar()[:2]
+        this_week = [a for a in cy if datetime.fromisoformat(a["start_local"]).date().isocalendar()[:2] == wk]
+        commute = {"year": year, "count": st["count"], "km": st["km"], "hours": st["hours"], "duration": fmt_dur(st["moving_time"]),
+                   "elevation": st["elevation"], "typical_km": round(med / 1000, 1), "since": cy[0]["start_local"][:10],
+                   "last": latest["start_local"][:10], "week_count": len(this_week),
+                   "week_km": round(sum(a["summary"]["distance"] for a in this_week) / 1000, 1)}
+        if latest["id"] in routes:
+            commute["path"] = to_path(project(routes[latest["id"]], routes[latest["id"]][0][0]), (100, 100), tol=0.15)
+
     ordered = sorted(acts.values(), key=lambda a: a["start_local"], reverse=True)
     # „Zuletzt unterwegs“: Kurzstrecken (Bäcker, Kita) bleiben draußen, zählen aber in allen Summen
     MIN_RECENT_KM = {"ride": 5.0, "run": 2.0}
     def worth_showing(a):
         g = group(a["sport_type"])
-        return g in MIN_RECENT_KM and a["summary"]["distance"] >= MIN_RECENT_KM[g] * 1000
+        return g in MIN_RECENT_KM and a["summary"]["distance"] >= MIN_RECENT_KM[g] * 1000 and a["id"] not in commute_ids
     recent = [activity_card(a) for a in ordered if worth_showing(a)][:8]
 
     def longest(items):
@@ -284,10 +313,12 @@ def main():
 
     # Gesamtkarte: alle Routen in gemeinsamer Projektion (Bremen-Umland), Dänemark ausgeschlossen
     lat0 = 53.07
+    newest_commute = max(commute_ids, key=lambda i: acts[i]["start_local"]) if commute_ids else None
     allxy = {}
     for aid, pts in routes.items():
         if not acts[aid]["start_local"].startswith(str(year)): continue  # Karte zeigt nur das laufende Jahr
         if any(p[0] > 54.5 for p in pts): continue  # Urlaubsspaziergänge (DK) nicht in die Bremen-Karte
+        if aid in commute_ids and aid != newest_commute: continue  # Arbeitsweg nur einmal zeichnen
         allxy[aid] = project(pts, lat0)
     xs = [x for v in allxy.values() for x, _ in v]; ys = [y for v in allxy.values() for _, y in v]
     bounds = (min(xs), min(ys), max(xs), max(ys))
@@ -318,7 +349,7 @@ def main():
     out = {
         "generated_at": datetime.now().strftime("%Y-%m-%d"),
         "totals": totals, "weekly": weekly, "monthly": monthly, "start_hours": hours, "calendar": calendar,
-        "recent": recent, "highlights": highlights,
+        "recent": recent, "highlights": highlights, "commute": commute,
         "map": {"width": box[0], "height": box[1], "paths": map_paths},
         "gear": {
             "bikes": [{"id": g["gear_id"]["id"], "name": g.get("name", "").strip() or "Rad", "km": round(g["total_distance"] / 1000),

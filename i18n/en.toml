@@ -360,3 +360,11 @@ other = "Route"
 other = "Image"
 [tour_poster_label]
 other = "Ride poster with route, elevation profile and key figures"
+[commute_since]
+other = "since %s"
+[commute_sum]
+other = "There and back, about %s km each way. Every ride adds up here."
+[commute_count]
+other = "Rides %d"
+[commute_week]
+other = "This week: %d"
