@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Erzeugt gekürzte GPX-Dateien zum Download unter static/gpx/<id>.gpx.
 
-Läuft nach build_strava_data.py. Berücksichtigt nur Aktivitäten, die auf der Seite
-als Karte erscheinen (recent + highlights in data/strava.json) und die diese Regeln erfüllen:
+Läuft nach build_strava_data.py. Berücksichtigt alle Aktivitäten des laufenden Jahres,
+die diese Regeln erfüllen:
   - nur Gravel-Touren (sport_type GravelRide), mindestens MIN_GPX_KM lang
     (Arbeitswege, Läufe und kurze Strecken bekommen keinen Download)
   - auf Strava öffentlich ("everyone"), nicht privat, nicht als Pendelfahrt markiert
+  - dazu einzelne Ausnahmen aus GPX_EXTRA_IDS (nur öffentlich muss sein)
+Schreibt außerdem data/gpx.json (Liste für den Bereich „Zum Nachfahren“).
 
 Datenschutz: Die Strava-API liefert dem Besitzer die volle Spur, Privatsphäre-Zonen gelten
 hier NICHT. Deshalb werden alle Punkte im Umkreis von 1.000 bis 1.800 m (zufällig je Tour
@@ -18,6 +20,7 @@ die nicht mehr auf der Seite stehen, werden gelöscht.
 Benötigt dieselben Umgebungsvariablen wie strava_fetch.py.
 """
 import json, os, random, re, sys, time
+from datetime import date
 from xml.sax.saxutils import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +32,7 @@ GPX_PRIVACY_M, GPX_PRIVACY_JITTER_M = PRIVACY_M, PRIVACY_JITTER_M
 MIN_GPX_KM = 15.0      # kürzere Strecken bekommen keinen Download
 GPX_SPORTS = {"GravelRide"}   # nur Gravel-Touren gibt es als Download
 # Ausnahmen: einzelne Touren anderer Sportart, die trotzdem einen Download bekommen
-# (Strava-ID aus der Aktivitäts-URL). Öffentlich und kein Pendeln müssen sie trotzdem sein.
+# (Strava-ID aus der Aktivitäts-URL). Öffentlich muss sie trotzdem sein.
 GPX_EXTRA_IDS = {
     "20023559115",   # Abendradfahrt 03.09.2026, 30,7 km (längste Fahrt des Jahres)
 }
@@ -37,14 +40,7 @@ MIN_STEP_M = 4.0       # Punkte, die näher als das am vorigen liegen, entfallen
 MIN_SEG_PTS = 10       # Mini-Segmente (kurzer Abstecher in die Sperrzone) entfallen
 VERSION = f"v2-r{GPX_PRIVACY_M}-j{GPX_PRIVACY_JITTER_M}"   # ändert sich der Wert, werden alle Dateien neu erzeugt
 OUT_DIR = os.path.join(ROOT, "static", "gpx")
-DATA = os.path.join(ROOT, "data", "strava.json")
-
-
-def shown_ids():
-    d = json.load(open(DATA))
-    ids = [a["id"] for a in d.get("recent", [])]
-    ids += [v["id"] for v in d.get("highlights", {}).values() if isinstance(v, dict) and v.get("id")]
-    return list(dict.fromkeys(ids))
+LIST_OUT = os.path.join(ROOT, "data", "gpx.json")
 
 
 def raw_activities():
@@ -60,7 +56,7 @@ def raw_activities():
 
 def eligible(a):
     if str(a["id"]) in GPX_EXTRA_IDS:
-        return a.get("visibility") == "everyone" and not a.get("private", True) and not a.get("commute", True)
+        return a.get("visibility") == "everyone" and not a.get("private", True)
     if a["sport_type"] not in GPX_SPORTS:
         return False
     if a["summary"]["distance"] < MIN_GPX_KM * 1000:
@@ -129,15 +125,15 @@ def main():
     load_env()
     os.makedirs(OUT_DIR, exist_ok=True)
     acts = raw_activities()
-    wanted = [i for i in shown_ids() if i in acts and eligible(acts[i])]
+    year = str(date.today().year)
+    wanted = [i for i, a in acts.items()
+              if eligible(a) and (a["start_local"].startswith(year) or i in GPX_EXTRA_IDS)]
     for i in GPX_EXTRA_IDS - set(wanted):
         a = acts.get(i)
         if not a:
             print(f"Ausnahme {i}: nicht in den Strava-Daten")
-        elif i not in shown_ids():
-            print(f"Ausnahme {i}: steht nicht auf der Seite")
         else:
-            print(f"Ausnahme {i} übersprungen: Sichtbarkeit={a.get('visibility')}, privat={a.get('private')}, Pendeln={a.get('commute')}")
+            print(f"Ausnahme {i} übersprungen: Sichtbarkeit={a.get('visibility')}, privat={a.get('private')}")
     todo = [i for i in wanted if not current(os.path.join(OUT_DIR, f"{i}.gpx"))]
 
     token = access_token() if todo else None
@@ -163,12 +159,22 @@ def main():
         made += 1
         time.sleep(0.5)
 
+    done = [i for i in wanted if os.path.exists(os.path.join(OUT_DIR, f"{i}.gpx"))]
+    listing = []
+    for i in sorted(done, key=lambda i: acts[i]["start_local"], reverse=True):
+        a = acts[i]
+        listing.append({"id": i, "name": a["name"], "date": a["start_local"][:10],
+                         "group": group(a["sport_type"]), "sport": a["sport_type"],
+                         "km": round(a["summary"]["distance"] / 1000, 1),
+                         "elevation": round(a["summary"].get("elevation_gain") or 0)})
+    json.dump({"tours": listing}, open(LIST_OUT, "w"), ensure_ascii=False, separators=(",", ":"))
+
     keep = {f"{i}.gpx" for i in wanted}
     removed = 0
     for f in os.listdir(OUT_DIR):
         if f.endswith(".gpx") and f not in keep:
             os.remove(os.path.join(OUT_DIR, f)); removed += 1
-    print(f"GPX: {len(wanted)} auf der Seite freigegeben, {made} neu erzeugt, {removed} entfernt")
+    print(f"GPX: {len(wanted)} freigegeben, {made} neu erzeugt, {removed} entfernt")
 
 
 if __name__ == "__main__":

@@ -256,6 +256,15 @@ p{margin:0}
 .act-gpx:hover{color:var(--ink)}
 .act-ride .act-gpx:hover{border-color:var(--gravel)}.act-run .act-gpx:hover{border-color:var(--run)}
 .act-gpx:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.gpx-list{margin-top:2rem}
+.gpx-note{font-size:.85rem;color:var(--muted);margin:.35rem 0 .8rem}
+.gpx-list ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.gpx-list li{display:grid;grid-template-columns:auto 1fr auto auto;gap:.4rem 1rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.gpx-date,.gpx-km{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.gpx-name{color:var(--ink);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gpx-name:hover{color:var(--gravel-2)}
+.gpx-list .act-gpx{margin-top:0;border-color:var(--line-2)}
+.gpx-list .act-gpx:hover{border-color:var(--gravel)}
 .act-sum{color:var(--ink-2);text-wrap:pretty}
 .act-big{grid-template-columns:1fr 1fr;grid-template-rows:none}
 .act-big .act-thumb{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line)}

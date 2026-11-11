@@ -75,6 +75,10 @@ other = "Stand %s. Die Daten kommen aus Strava und werden beim Aktualisieren der
 other = "Auf Strava ansehen"
 [gpx_download]
 other = "GPX laden"
+[gpx_list_title]
+other = "Zum Nachfahren"
+[gpx_list_note]
+other = "Touren als GPX für dein Navi. Start und Ziel sind aus Datenschutzgründen gekürzt."
 [gpx_note]
 other = "GPS-Spur zum Nachfahren. Start und Ziel sind aus Datenschutzgründen gekürzt."
 

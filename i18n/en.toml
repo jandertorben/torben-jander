@@ -75,6 +75,10 @@ other = "As of %s. Data comes from Strava and is rewritten whenever the site is 
 other = "View on Strava"
 [gpx_download]
 other = "Download GPX"
+[gpx_list_title]
+other = "Ride them yourself"
+[gpx_list_note]
+other = "Rides as GPX for your bike computer. Start and finish are trimmed for privacy."
 [gpx_note]
 other = "GPS track to ride yourself. Start and finish are trimmed for privacy."
 

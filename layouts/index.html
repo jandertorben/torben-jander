@@ -161,6 +161,22 @@
         <div><strong class="num" data-count="{{ $t.gravel.count }}">{{ $t.gravel.count }}</strong><span>{{ printf (T "gravel_count") $y }}</span></div>
         <div><strong class="num" data-count="{{ $t.gravel.km }}">{{ lang.FormatNumber 0 $t.gravel.km }}</strong><span>{{ T "gravel_km" }}</span></div>
       </div>
+      {{- with (index (hugo.Data) "gpx").tours }}
+      <div class="gpx-list reveal">
+        <p class="feature-k">{{ T "gpx_list_title" }}</p>
+        <p class="gpx-note">{{ T "gpx_list_note" }}</p>
+        <ul>
+          {{- range . }}
+          <li>
+            <span class="gpx-date"><time datetime="{{ .date }}">{{ time.Format "02.01.06" (time .date) }}</time></span>
+            <a class="gpx-name" href="https://www.strava.com/activities/{{ .id }}" target="_blank" rel="noopener">{{ .name }}</a>
+            <span class="gpx-km">{{ lang.FormatNumber 1 .km }} km</span>
+            <a class="act-gpx" href="/gpx/{{ .id }}.gpx" download="torben-jander-{{ .date }}-{{ .id }}.gpx" aria-label="{{ T "gpx_download" }}: {{ .name }}, {{ .date }}"><span aria-hidden="true">↓</span> GPX</a>
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
     </div>
     <div class="sport-feature reveal">
       {{- with $d.highlights.longest_gravel }}
