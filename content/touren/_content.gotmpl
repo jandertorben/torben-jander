@@ -1,0 +1,23 @@
+{{- /* Legt für jede Tour aus data/gpx.json (erzeugt von scripts/strava_gpx.py) eine Seite an.
+     Titel, Text und Foto kommen optional aus data/touren.yaml (Schlüssel = Strava-ID). */ -}}
+{{- .EnableAllLanguages -}}
+{{- $lang := .Site.Language.Lang -}}
+{{- $extra := .Site.Data.touren | default dict -}}
+{{- range .Site.Data.gpx.tours -}}
+  {{- $info := index $extra .id | default dict -}}
+  {{- $title := .name -}}
+  {{- with $info.title }}{{ $title = . }}{{ end -}}
+  {{- if eq $lang "en" }}{{ with $info.title_en }}{{ $title = . }}{{ end }}{{ end -}}
+  {{- $text := $info.text | default "" -}}
+  {{- if eq $lang "en" }}{{ with $info.text_en }}{{ $text = . }}{{ end }}{{ end -}}
+  {{- $slug := $info.slug | default (printf "%s-%s" .date .id) -}}
+  {{- $.AddPage (dict
+        "kind" "page"
+        "path" $slug
+        "title" $title
+        "dates" (dict "date" (time .date))
+        "summary" ($info.summary | default "")
+        "content" (dict "mediaType" "text/markdown" "value" $text)
+        "params" (dict "tour" . "photo" ($info.photo | default "") "photo_alt" ($info.photo_alt | default $title) "described" (ne $text ""))
+      ) -}}
+{{- end -}}

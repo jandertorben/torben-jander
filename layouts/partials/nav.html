@@ -9,6 +9,7 @@
       <a href="{{ $home }}#zahlen">{{ T "nav_numbers" }}</a>
       <a href="{{ $home }}#zuletzt">{{ T "nav_recent" }}</a>
       <a href="{{ $home }}#gravel">{{ T "nav_gravel" }}</a>
+      {{- with site.GetPage "/touren" }}<a href="{{ .RelPermalink }}">{{ T "nav_tours" }}</a>{{ end }}
       <a href="{{ $home }}#laufen">{{ T "nav_run" }}</a>
       <a href="{{ $home }}#ausruestung">{{ T "nav_gear" }}</a>
       <a href="{{ $home }}#apps">{{ T "nav_apps" }}</a>

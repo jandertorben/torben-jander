@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="sec tours-head">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "tours_eyebrow" }}</p>
+    <h1 class="sec-h">{{ .Title }}</h1>
+    <p class="lead">{{ T "tours_lead" }}</p>
+  </div>
+</section>
+<section class="sec tours-sec">
+  <div class="wrap">
+    {{- with .RegularPages.ByDate.Reverse }}
+    <ul class="tour-grid">
+      {{- range . }}
+      {{- $t := .Params.tour }}
+      <li>
+        <a class="tour-card" href="{{ .RelPermalink }}">
+          <div class="tour-thumb">
+            {{- $img := "" }}
+            {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $img = .Process "fill 800x500 Center webp q75" }}{{ end }}{{ end }}
+            {{- if $img }}
+            <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" decoding="async">
+            {{- else if $t.path }}{{ partial "route.html" (dict "path" $t.path "group" $t.group) }}
+            {{- end }}
+          </div>
+          <div class="tour-body">
+            <p class="act-meta"><span class="tag tag-{{ $t.group }}">{{ T (printf "sport_%s" $t.sport) }}</span> <time datetime="{{ $t.date }}">{{ time.Format ":date_medium" (time $t.date) }}</time></p>
+            <h2 class="tour-name">{{ .Title }}</h2>
+            {{- with .Summary }}<p class="tour-sum">{{ . | plainify }}</p>{{ end }}
+            <p class="tour-nums"><span>{{ lang.FormatNumber 1 $t.km }} km</span><span>{{ lang.FormatNumber 0 $t.elevation }} hm</span><span>{{ $t.duration }}</span></p>
+          </div>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+    {{- else }}
+    <p class="lead">{{ T "tours_empty" }}</p>
+    {{- end }}
+    <p class="tour-privacy">{{ T "gpx_note" }}</p>
+    <p><a class="btn btn-ghost" href="{{ .Site.Home.RelPermalink }}#gravel">← {{ T "back_home" }}</a></p>
+  </div>
+</section>
+{{ end }}

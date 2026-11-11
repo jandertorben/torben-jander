@@ -326,3 +326,25 @@ other = "%d Fahrten, ähnliche Distanz."
 other = "Fahrten"
 [recent_highlight_k]
 other = "Abseits vom Arbeitsweg"
+
+# Touren
+[nav_tours]
+other = "Touren"
+[tours_eyebrow]
+other = "Touren"
+[tours_lead]
+other = "Gravel-Runden rund um Bremen zum Nachfahren. Jede Tour als GPX für dein Navi oder deinen Radcomputer."
+[tours_empty]
+other = "Noch keine Touren mit Download."
+[tours_all]
+other = "Alle Touren"
+[tour_route_label]
+other = "Streckenverlauf"
+[tour_older]
+other = "Ältere Tour"
+[tour_newer]
+other = "Neuere Tour"
+[tour_gpx_hint]
+other = "Die GPX-Datei lässt sich in Komoot, Strava, Garmin Connect oder direkt auf den Radcomputer laden."
+[tours_more]
+other = "Alle Touren ansehen"

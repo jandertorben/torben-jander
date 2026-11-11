@@ -166,15 +166,20 @@
         <p class="feature-k">{{ T "gpx_list_title" }}</p>
         <p class="gpx-note">{{ T "gpx_list_note" }}</p>
         <ul>
-          {{- range . }}
+          {{- /* Startseite: nur die letzten fünf, alle weiteren unter /touren/ */ -}}
+          {{- range first 5 . }}
           <li>
             <span class="gpx-date"><time datetime="{{ .date }}">{{ time.Format "02.01.06" (time .date) }}</time></span>
-            <a class="gpx-name" href="https://www.strava.com/activities/{{ .id }}" target="_blank" rel="noopener">{{ .name }}</a>
+            {{- $tp := "" }}{{ $id := .id }}
+            {{- with site.GetPage "/touren" }}{{ range .RegularPages }}{{ if eq .Params.tour.id $id }}{{ $tp = . }}{{ end }}{{ end }}{{ end }}
+            {{- if $tp }}<a class="gpx-name" href="{{ $tp.RelPermalink }}">{{ $tp.Title }}</a>
+            {{- else }}<a class="gpx-name" href="https://www.strava.com/activities/{{ .id }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}
             <span class="gpx-km">{{ lang.FormatNumber 1 .km }} km</span>
             <a class="act-gpx" href="/gpx/{{ .id }}.gpx" download="torben-jander-{{ .date }}-{{ .id }}.gpx" aria-label="{{ T "gpx_download" }}: {{ .name }}, {{ .date }}"><span aria-hidden="true">↓</span> GPX</a>
           </li>
           {{- end }}
         </ul>
+        {{- with site.GetPage "/touren" }}<p class="gpx-more"><a href="{{ .RelPermalink }}">{{ T "tours_more" }} →</a></p>{{ end }}
       </div>
       {{- end }}
     </div>

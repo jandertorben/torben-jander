@@ -326,3 +326,25 @@ other = "%d rides, similar distance."
 other = "Rides"
 [recent_highlight_k]
 other = "Away from the commute"
+
+# Touren
+[nav_tours]
+other = "Rides"
+[tours_eyebrow]
+other = "Rides"
+[tours_lead]
+other = "Gravel loops around Bremen to ride yourself. Every ride as a GPX file for your bike computer or phone."
+[tours_empty]
+other = "No rides with downloads yet."
+[tours_all]
+other = "All rides"
+[tour_route_label]
+other = "Route"
+[tour_older]
+other = "Older ride"
+[tour_newer]
+other = "Newer ride"
+[tour_gpx_hint]
+other = "Load the GPX file into Komoot, Strava, Garmin Connect or straight onto your bike computer."
+[tours_more]
+other = "See all rides"

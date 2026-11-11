@@ -1,0 +1,16 @@
+# Beschreibungen und Fotos zu den Touren auf /touren/.
+# Schlüssel ist die Strava-ID (steht in der Aktivitäts-URL). Alles ist optional:
+# Touren ohne Eintrag bekommen trotzdem eine Seite mit Route, Zahlen und GPX.
+#
+# "20254852185":
+#   title: "Ochtum und Weserdeich"          # sonst der Strava-Name
+#   title_en: "Ochtum and the Weser dyke"
+#   summary: "Ein Satz für die Übersicht."
+#   text: |
+#     Absätze in Markdown. Leerzeile = neuer Absatz.
+#   text_en: |
+#     Optional, sonst erscheint der deutsche Text.
+#   photo: "20254852185.jpg"                # liegt in assets/img/touren/
+#   photo_alt: "Gravelbike am Deich"
+#   slug: "ochtum-weserdeich"               # optional, sonst Datum-ID
+{}

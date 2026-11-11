@@ -25,7 +25,9 @@ from xml.sax.saxutils import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from strava_fetch import API, ROOT, RAW, access_token, get, load_env  # noqa: E402
-from build_strava_data import haversine, group, privacy_radii, PRIVACY_M, PRIVACY_JITTER_M  # noqa: E402
+from build_strava_data import (haversine, group, privacy_radii, project, to_path, fmt_dur, pace, speed,  # noqa: E402
+                               PRIVACY_M, PRIVACY_JITTER_M)
+import xml.etree.ElementTree as ET  # noqa: E402
 
 # Kürzung um Start und Ziel: dieselben Werte wie für Karte und Vorschauen (build_strava_data.py)
 GPX_PRIVACY_M, GPX_PRIVACY_JITTER_M = PRIVACY_M, PRIVACY_JITTER_M
@@ -114,6 +116,26 @@ def write_gpx(path, a, segs):
     os.replace(tmp, path)
 
 
+def route_svg(path):
+    """Zeichnet die (bereits gekürzte) GPX-Spur als SVG-Pfad: einmal groß für die Tourenseite,
+    einmal im 100x100-Raster für Vorschaukarten. Segmente bleiben getrennt."""
+    ns = "{http://www.topografix.com/GPX/1/1}"
+    segs = []
+    for seg in ET.parse(path).getroot().iter(ns + "trkseg"):
+        pts = [(float(p.get("lat")), float(p.get("lon"))) for p in seg.iter(ns + "trkpt")]
+        if len(pts) >= 2: segs.append(pts)
+    if not segs: return {}
+    lat0 = sum(p[0] for s in segs for p in s) / sum(len(s) for s in segs)
+    xy = [project(s, lat0) for s in segs]
+    xs = [x for s in xy for x, _ in s]; ys = [y for s in xy for _, y in s]
+    bounds = (min(xs), min(ys), max(xs), max(ys))
+    w, h = max(bounds[2] - bounds[0], 1e-9), max(bounds[3] - bounds[1], 1e-9)
+    W = 1000; H = max(400, min(1400, round(W * h / w)))
+    big = "".join(to_path(s, (W, H), bounds, pad=0.04) for s in xy)
+    small = "".join(to_path(s, (100, 100), bounds) for s in xy)
+    return {"route": {"w": W, "h": H, "d": big}, "path": small}
+
+
 def current(path):
     if not os.path.exists(path):
         return False
@@ -162,11 +184,14 @@ def main():
     done = [i for i in wanted if os.path.exists(os.path.join(OUT_DIR, f"{i}.gpx"))]
     listing = []
     for i in sorted(done, key=lambda i: acts[i]["start_local"], reverse=True):
-        a = acts[i]
-        listing.append({"id": i, "name": a["name"], "date": a["start_local"][:10],
-                         "group": group(a["sport_type"]), "sport": a["sport_type"],
-                         "km": round(a["summary"]["distance"] / 1000, 1),
-                         "elevation": round(a["summary"].get("elevation_gain") or 0)})
+        a = acts[i]; sm = a["summary"]; g = group(a["sport_type"])
+        entry = {"id": i, "name": a["name"], "date": a["start_local"][:10], "time": a["start_local"][11:16],
+                 "group": g, "sport": a["sport_type"],
+                 "km": round(sm["distance"] / 1000, 1), "elevation": round(sm.get("elevation_gain") or 0),
+                 "duration": fmt_dur(sm["moving_time"]), "moving_time": sm["moving_time"],
+                 "tempo": pace(sm["moving_time"], sm["distance"]) if g == "run" else f"{speed(sm['distance'], sm['moving_time'])} km/h"}
+        entry.update(route_svg(os.path.join(OUT_DIR, f"{i}.gpx")))
+        listing.append(entry)
     json.dump({"tours": listing}, open(LIST_OUT, "w"), ensure_ascii=False, separators=(",", ":"))
 
     keep = {f"{i}.gpx" for i in wanted}
