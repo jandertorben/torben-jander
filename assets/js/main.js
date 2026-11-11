@@ -26,6 +26,28 @@
 
   /* Navigation: Hintergrund nach dem ersten Scrollen */
   var nav = document.querySelector('.nav');
+
+  /* Burgermenü */
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  function setMenu(open, focusBack) {
+    if (!nav || !burger) return;
+    nav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', burger.getAttribute(open ? 'data-close' : 'data-open'));
+    if (open && menu) { var first = menu.querySelector('a'); if (first) first.focus({ preventScroll: true }); }
+    if (!open && focusBack) burger.focus();
+  }
+  if (burger && menu) {
+    burger.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('open')) setMenu(false, true);
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('open') && !nav.contains(e.target)) setMenu(false);
+    });
+  }
   function onScroll() {
     if (nav) nav.classList.toggle('on', window.scrollY > 24);
     if (!reduce && map) {

@@ -10,6 +10,12 @@ other = "Laufen"
 other = "Über mich"
 [skip]
 other = "Zum Inhalt springen"
+[menu]
+other = "Menü"
+[menu_open]
+other = "Menü öffnen"
+[menu_close]
+other = "Menü schließen"
 [lang_switch]
 other = "Switch to English"
 
