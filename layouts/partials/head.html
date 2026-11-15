@@ -5,7 +5,7 @@
 {{- $desc := .Site.Params.description }}{{ with .Description }}{{ $desc = . }}{{ end }}
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ .Site.Params.name }}">
-<meta name="robots" content="{{ if .IsHome }}index, follow{{ else }}noindex, follow{{ end }}">
+<meta name="robots" content="{{ if or .IsHome (eq .Section "touren") }}index, follow{{ else }}noindex, follow{{ end }}">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0b0a08">
 <link rel="canonical" href="{{ .Permalink }}">
