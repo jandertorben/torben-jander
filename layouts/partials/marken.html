@@ -1,0 +1,35 @@
+{{- /* Marken-Laufband. Daten: data/marken.yaml. Das Band selbst ist für Screenreader ausgeblendet (aria-hidden),
+       stattdessen gibt es eine echte Liste. Bei „Bewegung reduzieren“ ersetzt diese Liste das Band. */ -}}
+{{- $items := .Site.Data.marken.items }}
+{{- if $items }}
+<section class="marken" id="marken" aria-labelledby="marken-h">
+  <div class="wrap">
+    <p class="eyebrow" id="marken-h">{{ T "marken_eyebrow" }}</p>
+    <p class="marken-note">{{ T "marken_note" }}</p>
+  </div>
+  <ul class="marken-list">
+    {{- range $items }}
+    <li>{{ .name }}</li>
+    {{- end }}
+  </ul>
+  <div class="marken-marquee" aria-hidden="true">
+    <div class="marken-track">
+      {{- /* Zwei identische Gruppen, damit die Schleife nahtlos ist. Jede Gruppe wiederholt die Marken dreimal, damit sie breiter als der Bildschirm ist. */ -}}
+      {{- range seq 2 }}
+      <ul class="marken-group">
+        {{- range seq 3 }}
+        {{- range $items }}
+        <li class="marke">
+          {{- with .logo }}
+          {{- $img := resources.Get (printf "img/marken/%s" .) }}
+          {{- with $img }}<img src="{{ .RelPermalink }}" alt="" height="28" loading="lazy" decoding="async">{{ end }}
+          {{- else }}<span>{{ .name }}</span>{{ end -}}
+        </li>
+        {{- end }}
+        {{- end }}
+      </ul>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

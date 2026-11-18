@@ -378,3 +378,8 @@ other = "Start time to follow"
 other = "Pace"
 [ride_meet]
 other = "Meeting point"
+
+[marken_eyebrow]
+other = "Brands I like"
+[marken_note]
+other = "Companies and clubs I use myself and want to support. Not paid advertising."

@@ -378,3 +378,8 @@ other = "Startzeit folgt"
 other = "Tempo"
 [ride_meet]
 other = "Treffpunkt"
+
+[marken_eyebrow]
+other = "Marken, die ich gut finde"
+[marken_note]
+other = "Firmen und Vereine, die ich selbst nutze und unterstützen möchte. Keine bezahlte Werbung."
