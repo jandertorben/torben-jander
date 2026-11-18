@@ -1,11 +1,17 @@
 # Marken im Laufband (Startseite, zwischen „Apps“ und „Community“).
-# Reihenfolge = Reihenfolge im Band. Ein Eintrag entfernen oder ergänzen reicht, der Rest passt sich an.
+# Reihenfolge = Reihenfolge im Band. Einen Eintrag entfernen oder ergänzen reicht, der Rest passt sich an.
 # name: wird als Schriftzug gesetzt (Barlow Condensed). Keine Fremd-Logos, daher keine Markenrechts-Fragen.
+# url:  optional. Mit Link öffnet ein Klick die Seite in einem neuen Tab, und das Band bleibt stehen.
 # logo: optional. Dateiname unter assets/img/marken/ (SVG, einfarbig, besser mit Erlaubnis/Pressekit der Firma).
-#       Ist logo gesetzt, wird das Logo statt des Schriftzugs gezeigt; der Name bleibt als Alt-Text.
+#       Ist logo gesetzt, wird das Logo statt des Schriftzugs gezeigt; der Name dient als Alt-Text.
 items:
   - name: Bioracer
+    url: https://www.bioracer.com
   - name: Radschlag Bremen
+    url: https://www.radschlag-bremen.de
   - name: Hammerhead
+    url: https://www.hammerhead.io
   - name: Van Rysel
+    url: https://www.vanryselcycling.com
   - name: Battlefield Cyclists
+    url: https://battlefield-cyclists.de

@@ -1,5 +1,6 @@
-{{- /* Marken-Laufband. Daten: data/marken.yaml. Das Band selbst ist für Screenreader ausgeblendet (aria-hidden),
-       stattdessen gibt es eine echte Liste. Bei „Bewegung reduzieren“ ersetzt diese Liste das Band. */ -}}
+{{- /* Marken-Laufband. Daten: data/marken.yaml.
+       Nur der erste Durchlauf (echt) ist für Screenreader und Tastatur da, alle Kopien sind aria-hidden und nicht fokussierbar.
+       Bei „Bewegung reduzieren“ zeigt das CSS nur den echten Durchlauf als ruhige Liste. */ -}}
 {{- $items := .Site.Data.marken.items }}
 {{- if $items }}
 <section class="marken" id="marken" aria-labelledby="marken-h">
@@ -7,23 +8,19 @@
     <p class="eyebrow" id="marken-h">{{ T "marken_eyebrow" }}</p>
     <p class="marken-note">{{ T "marken_note" }}</p>
   </div>
-  <ul class="marken-list">
-    {{- range $items }}
-    <li>{{ .name }}</li>
-    {{- end }}
-  </ul>
-  <div class="marken-marquee" aria-hidden="true">
+  <div class="marken-marquee">
     <div class="marken-track">
       {{- /* Zwei identische Gruppen, damit die Schleife nahtlos ist. Jede Gruppe wiederholt die Marken dreimal, damit sie breiter als der Bildschirm ist. */ -}}
-      {{- range seq 2 }}
+      {{- range $gi, $g := seq 2 }}
       <ul class="marken-group">
-        {{- range seq 3 }}
+        {{- range $ri, $r := seq 3 }}
+        {{- $real := and (eq $gi 0) (eq $ri 0) }}
         {{- range $items }}
-        <li class="marke">
-          {{- with .logo }}
-          {{- $img := resources.Get (printf "img/marken/%s" .) }}
-          {{- with $img }}<img src="{{ .RelPermalink }}" alt="" height="28" loading="lazy" decoding="async">{{ end }}
-          {{- else }}<span>{{ .name }}</span>{{ end -}}
+        {{- $name := .name }}
+        <li class="marke{{ if not $real }} marke-copy{{ end }}"{{ if not $real }} aria-hidden="true"{{ end }}>
+          {{- if .url }}<a class="marke-in" href="{{ .url }}" target="_blank" rel="noopener"{{ if not $real }} tabindex="-1"{{ end }}>{{ else }}<span class="marke-in">{{ end -}}
+          {{- with .logo }}{{ with resources.Get (printf "img/marken/%s" .) }}<img src="{{ .RelPermalink }}" alt="{{ $name }}" height="28" loading="lazy" decoding="async">{{ end }}{{ else }}<span>{{ $name }}</span>{{ end -}}
+          {{- if .url }}</a>{{ else }}</span>{{ end -}}
         </li>
         {{- end }}
         {{- end }}

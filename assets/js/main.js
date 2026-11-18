@@ -8,6 +8,16 @@
   var lang = root.lang || 'de';
   var fmt = new Intl.NumberFormat(lang, { maximumFractionDigits: 0 });
 
+  /* Marken-Laufband: Nach einem Klick auf eine Marke bleibt das Band stehen (bis zum Neuladen) */
+  var marken = document.querySelector('.marken');
+  if (marken) {
+    var stopBand = function (e) {
+      if (e.target.closest && e.target.closest('a')) marken.classList.add('is-stopped');
+    };
+    marken.addEventListener('click', stopBand);
+    marken.addEventListener('auxclick', stopBand);
+  }
+
   /* Porträt-Video: bei „Bewegung reduzieren“ nur Standbild, sonst nur abspielen, wenn sichtbar */
   var pv = document.querySelector('.portrait-video video');
   if (pv) {
