@@ -25,6 +25,14 @@ items:
     spec_en: "Gravel · 11 kg"
     note_de: "Pendelrad und Wochenendmaschine in einem. Fährt fast jeden Tag, egal ob Deich oder Bürgersteig."
     note_en: "Commuter and weekend machine in one. Rides almost every day, dyke or pavement."
+  - name: Grix.2
+    brand: Storck
+    category: bike
+    image: storck-grix-2.png
+    spec: "Gravel · Carbon · Tourenrad"
+    spec_en: "Gravel · carbon · touring bike"
+    note_de: "Das Rad für die langen Tage abseits vom Pendeln. Kupferfarbener Verlauf, Carbonlaufräder, Schwalbe G-One. Nach Bremen-flach sieht es fast zu schön für den Deich aus."
+    note_en: "The bike for the long days away from the commute. Copper fade, carbon wheels, Schwalbe G-One. For Bremen's flat land it looks almost too good for the dyke."
   - name: Edge 1040
     brand: Garmin
     category: bike
