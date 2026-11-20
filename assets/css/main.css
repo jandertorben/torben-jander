@@ -268,6 +268,7 @@ p{margin:0}
 .act-body{padding:1rem 1.1rem 1.2rem;display:grid;gap:.5rem;align-content:start}
 .act-meta{font-family:var(--mono);font-size:.8125rem;letter-spacing:.04em;color:var(--muted);display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
 .tag{font-weight:500;padding:.15rem .45rem;border-radius:2px;text-transform:uppercase;letter-spacing:.08em}
+.act-gear{padding:.15rem .45rem;border:1px solid currentColor;border-radius:2px;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
 .tag-ride{background:var(--gravel-dim);color:var(--gravel-2)}
 .tag-run{background:var(--run-dim);color:var(--run-2)}
 .tag-both{background:linear-gradient(90deg,var(--gravel-dim),var(--run-dim));color:var(--ink)}

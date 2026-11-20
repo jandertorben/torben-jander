@@ -7,7 +7,7 @@
     {{- if gt (int $c.week_count) 0 }}<span class="act-badge">{{ printf (T "commute_week") (int $c.week_count) }}</span>{{ end }}
   </div>
   <div class="act-body">
-    <p class="act-meta"><span class="tag tag-ride">{{ T "sport_Ride" }}</span> <span>{{ printf (T "commute_since") (time.Format ":date_medium" (time $c.since)) }}</span></p>
+    <p class="act-meta"><span class="tag tag-ride">{{ T "sport_Ride" }}</span> <span>{{ printf (T "commute_since") (time.Format ":date_medium" (time $c.since)) }}</span>{{ with partial "gear-name.html" $c.gear }} <span class="act-gear" title="{{ T "label_gear" }}">{{ . }}</span>{{ end }}</p>
     <h3 class="act-name">{{ T "recent_commute_name" }}</h3>
     <p class="act-sum">{{ printf (T "commute_sum") (lang.FormatNumber 1 $c.typical_km) }}</p>
     <dl class="act-stats">

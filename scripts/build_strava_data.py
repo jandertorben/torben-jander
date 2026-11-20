@@ -242,6 +242,10 @@ def main():
         pts = trim(decode_polyline(pl), a["id"])
         if pts: routes[a["id"]] = pts
 
+    def gear_key(gid):
+        """Strava-Gear-ID ohne Präfix (b16232514 → 16232514), passend zu strava_gear in data/equipment.yaml."""
+        return "".join(ch for ch in (gid or "") if ch.isdigit())
+
     def activity_card(a):
         s = a["summary"]; g = group(a["sport_type"])
         card = {
@@ -250,6 +254,7 @@ def main():
             "km": round(s["distance"] / 1000, 1), "duration": fmt_dur(s["moving_time"]),
             "moving_time": s["moving_time"], "elevation": round(s.get("elevation_gain") or 0),
             "location": (a.get("location_summary") or "").replace(", Germany", "").replace(", Denmark", " (DK)"),
+            "gear": gear_key(a.get("gear_id")),
         }
         card["tempo"] = pace(s["moving_time"], s["distance"]) if g in ("run", "foot") else f"{speed(s['distance'], s['moving_time'])} km/h"
         if a["id"] in routes:
@@ -278,7 +283,8 @@ def main():
         commute = {"year": year, "count": st["count"], "km": st["km"], "hours": st["hours"], "duration": fmt_dur(st["moving_time"]),
                    "elevation": st["elevation"], "typical_km": round(med / 1000, 1), "since": cy[0]["start_local"][:10],
                    "last": latest["start_local"][:10], "week_count": len(this_week),
-                   "week_km": round(sum(a["summary"]["distance"] for a in this_week) / 1000, 1)}
+                   "week_km": round(sum(a["summary"]["distance"] for a in this_week) / 1000, 1),
+                   "gear": gear_key(latest.get("gear_id"))}
         if latest["id"] in routes:
             commute["path"] = to_path(project(routes[latest["id"]], routes[latest["id"]][0][0]), (100, 100), tol=0.15)
 

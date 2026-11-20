@@ -7,7 +7,7 @@
   </div>
   <div class="act-body">
     {{- with .kicker }}<p class="feature-k">{{ . }}</p>{{ end }}
-    <p class="act-meta"><span class="tag tag-{{ $a.group }}">{{ T (printf "sport_%s" $a.sport) }}</span> <time datetime="{{ $a.date }}">{{ time.Format ":date_medium" (time $a.date) }}</time> · {{ $a.time }}</p>
+    <p class="act-meta"><span class="tag tag-{{ $a.group }}">{{ T (printf "sport_%s" $a.sport) }}</span> <time datetime="{{ $a.date }}">{{ time.Format ":date_medium" (time $a.date) }}</time> · {{ $a.time }}{{ with partial "gear-name.html" $a.gear }} <span class="act-gear" title="{{ T "label_gear" }}">{{ . }}</span>{{ end }}</p>
     <h3 class="act-name">{{ $a.name }}</h3>
     <dl class="act-stats">
       <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $a.km }} km</dd></div>

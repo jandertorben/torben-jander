@@ -383,3 +383,6 @@ other = "Treffpunkt"
 other = "Marken, die ich gut finde"
 [marken_note]
 other = "Firmen und Vereine, die ich selbst nutze und unterstützen möchte. Keine bezahlte Werbung."
+
+[label_gear]
+other = "Rad / Schuh"

@@ -383,3 +383,6 @@ other = "Meeting point"
 other = "Brands I like"
 [marken_note]
 other = "Companies and clubs I use myself and want to support. Not paid advertising."
+
+[label_gear]
+other = "Bike / shoe"

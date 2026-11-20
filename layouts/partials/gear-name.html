@@ -1,0 +1,12 @@
+{{- /* Erwartet die Strava-Gear-ID ohne Präfix (z. B. "16232514").
+     Name kommt aus data/equipment.yaml (strava_gear), sonst aus Strava (data/strava.json → gear). */ -}}
+{{- $id := . -}}
+{{- $name := "" -}}
+{{- with $id -}}
+  {{- with index (where site.Data.equipment.items "strava_gear" $id) 0 }}{{ $name = .name }}{{ end -}}
+  {{- if not $name -}}
+    {{- $g := site.Data.strava.gear -}}
+    {{- range (union $g.bikes $g.shoes) }}{{ if eq (replaceRE `\D` "" .id) $id }}{{ $name = .name }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $name -}}

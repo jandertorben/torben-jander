@@ -29,6 +29,7 @@ items:
     brand: Storck
     category: bike
     image: storck-grix-2.png
+    strava_gear: "19023709"
     spec: "Gravel · Carbon · Tourenrad"
     spec_en: "Gravel · carbon · touring bike"
     note_de: "Das Rad für die langen Tage abseits vom Pendeln. Kupferfarbener Verlauf, Carbonlaufräder, Schwalbe G-One. Nach Bremen-flach sieht es fast zu schön für den Deich aus."
