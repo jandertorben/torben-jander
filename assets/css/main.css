@@ -792,3 +792,25 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .tip-actions .btn:hover{color:var(--bg)}
 .tip-actions .btn-ghost:hover{color:var(--ink)}
 .tip-route{aspect-ratio:16/10}
+
+/* ─── Startseite: 3-Tage-Vorschau, Planer-Knopf, Wetteranimation ───── */
+.wind{position:relative;overflow:hidden;isolation:isolate}
+.wind>.wrap{position:relative;z-index:1}
+.wind-anim{position:absolute;inset:0;z-index:0;pointer-events:none}
+.wb-days{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.wb-day{display:grid;grid-template-columns:5.5rem auto 1fr;gap:1rem;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:background .2s}
+.wb-day:hover{background:rgba(239,232,218,.03)}
+.wb-day:hover .wb-day-n{color:var(--gravel-2)}
+.wb-day-n{font-family:var(--display);font-weight:600;font-size:1.15rem}
+.wb-day-dots{display:flex;gap:.25rem}
+.wb-day-dots i{width:.55rem;height:.55rem;border-radius:50%;border:1px solid var(--line-2)}
+.wb-day-dots i.on{background:var(--ink-2);border-color:var(--ink-2)}
+.wb-day.lv-3 .wb-day-dots i.on,.wb-day.lv-4 .wb-day-dots i.on,.wb-day.lv-5 .wb-day-dots i.on{background:var(--gravel);border-color:var(--gravel)}
+.wb-day-r{font-family:var(--mono);font-size:.8rem;color:var(--muted);text-align:right}
+.wb-day-r.is-wet{color:var(--run-2)}
+.wb-day-r::after{content:" →";color:var(--line-2)}
+.wb-day:hover .wb-day-r::after{color:var(--gravel-2)}
+.wind-brief .wb-actions{display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;align-items:center;margin-top:1.2rem;font-size:1rem}
+.wb-more{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);text-decoration:none}
+.wb-more:hover{color:var(--gravel-2)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

@@ -44,6 +44,11 @@
   "lightAfter" (T "wx_light_after")
   "lightMorning" (T "wx_light_morning")
   "tours" $tours
+  "dayToday" (T "pl_today")
+  "dayTomorrow" (T "pl_tomorrow")
+  "dayDry" (T "wb_day_dry")
+  "dayRain" (T "wb_day_rain")
+  "dayLevel" (T "wb_day_level")
   "tipGpx" (T "tip_gpx")
   "tipWhyGood" (T "tip_why_good")
   "tipWhyMeh" (T "tip_why_meh")
@@ -53,6 +58,7 @@
 }}
 <section class="sec wind{{ if $full }} wind-full{{ end }}" id="wind" aria-labelledby="wind-h" hidden>
   <script type="application/json" id="wind-cfg">{{ $cfg | jsonify | safeJS }}</script>
+  <canvas class="wind-anim" aria-hidden="true"></canvas>
   <div class="wrap">
     {{- if not $full }}
     <p class="eyebrow">{{ T "wind_eyebrow" }}</p>
@@ -98,7 +104,13 @@
       <div class="wind-brief">
         <p class="wb-rain">&nbsp;</p>
         <p class="wb-wear">&nbsp;</p>
-        {{- with site.GetPage "/wetter" }}<p class="more-link"><a href="{{ .RelPermalink }}">{{ T "wx_more" }} <span aria-hidden="true">→</span></a></p>{{ end }}
+        {{- with site.GetPage "/wetter" }}
+        <ul class="wb-days" aria-label="{{ T "wb_days_label" }}" data-href="{{ .RelPermalink }}" hidden></ul>
+        <p class="wb-actions">
+          <a class="btn wb-plan" href="{{ .RelPermalink }}#planer">{{ T "wb_plan" }} <span aria-hidden="true">→</span></a>
+          <a class="wb-more" href="{{ .RelPermalink }}">{{ T "wx_more" }}</a>
+        </p>
+        {{- end }}
       </div>
       {{- end }}
     </div>

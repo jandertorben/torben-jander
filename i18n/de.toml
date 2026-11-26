@@ -613,3 +613,15 @@ other = "Führt raus gegen den Wind. Auf dem Heimweg schiebt er."
 other = "Keine Runde führt richtig in den Wind. Diese passt noch am besten."
 [tip_all_tours]
 other = "Alle Touren ansehen"
+
+# Startseite: 3-Tage-Vorschau und Planer-Knopf
+[wb_days_label]
+other = "Die nächsten Tage, zum Planer"
+[wb_plan]
+other = "Fahrt planen: bis 7 Tage"
+[wb_day_dry]
+other = "trocken"
+[wb_day_rain]
+other = "Regen ab %s Uhr"
+[wb_day_level]
+other = "Gegenwind-Stufe %d von 5"

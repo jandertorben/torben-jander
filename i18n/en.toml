@@ -613,3 +613,15 @@ other = "Heads out into the wind. It pushes you home."
 other = "No loop really heads into the wind. This one fits best."
 [tip_all_tours]
 other = "See all rides"
+
+# Home page: 3-day preview and planner button
+[wb_days_label]
+other = "The next days, open in planner"
+[wb_plan]
+other = "Plan a ride: up to 7 days"
+[wb_day_dry]
+other = "dry"
+[wb_day_rain]
+other = "rain from %s:00"
+[wb_day_level]
+other = "Headwind level %d of 5"
