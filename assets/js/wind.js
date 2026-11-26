@@ -465,6 +465,7 @@
     var drops = [];
     if (wet) for (var k = 0; k < 60; k++) drops.push({ x: Math.random() * box.width, y: Math.random() * box.height, v: 3 + Math.random() * 3 });
     var light = getComputedStyle(sec).getPropertyValue('--wc') || '#efe8da';
+    var onLight = sec.classList.contains('sec-light'), lineRGB = onLight ? '70,58,38' : '239,232,218', lineK = onLight ? 1.6 : 1;
     function frame() {
       anim.raf = 0;
       if (!anim.visible || document.hidden) return;
@@ -473,7 +474,7 @@
       anim.parts.forEach(function (p) {
         p.x += vx * p.v; p.y += vy * p.v;
         if (p.x < -120 || p.x > box.width + 120 || p.y < -120 || p.y > box.height + 120) spawn(p, false);
-        ctx.strokeStyle = 'rgba(239,232,218,' + p.a + ')';
+        ctx.strokeStyle = 'rgba(' + lineRGB + ',' + (p.a * lineK) + ')';
         ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - vx * p.len, p.y - vy * p.len); ctx.stroke();
       });
