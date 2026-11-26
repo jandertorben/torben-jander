@@ -943,3 +943,112 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .sec-community + .marken{padding-top:clamp(.5rem,1.5vw,1.5rem)}
 .sec-community + .marken{border-top:1px solid var(--line)}
 .sec-community + .marken .wrap{padding-top:clamp(2rem,4vw,3rem)}
+
+/* ═══ Warm Minimalist ═══════════════════════════════════════════════════
+   Zwei Flächen: --bg-dark und --bg-light, ein Akzent (--accent).
+   Dunkel: Hero, Wetter, Zahlen, Zuletzt, Über mich, Marken, Footer.
+   Hell:   Gravel, Laufen, Community (zusammenhängend), Ausrüstung. */
+:root{
+  --bg-dark:#0E0D0B;--bg-light:#F6F3EE;--text-on-dark:#F3EDE3;--text-on-light:#1C1B19;
+  --accent:#C4A574;--accent-hover:#D4B584;--border-subtle:rgba(196,165,116,.25);
+  /* dunklere Variante des Akzents nur für Zahlen und kleine Schrift auf Hell (Lesbarkeit) */
+  --accent-ink:#8a6c3e;
+  --bg:var(--bg-dark);--bg-2:#151410;--bg-3:#1b1915;
+  --ink:var(--text-on-dark);--ink-2:#cfc6b8;--muted:#a59b8c;
+  --line:rgba(196,165,116,.16);--line-2:var(--border-subtle);
+  --gravel:var(--accent);--gravel-2:var(--accent-hover);--gravel-dim:rgba(196,165,116,.16);
+  --focus:var(--accent-hover);--light:var(--bg-light)
+}
+html,body,.footer{background:var(--bg-dark)}
+/* Überschriften auf Dunkel im Akzent */
+.sec:not(.sec-light) .sec-h,.page-head .sec-h,.legal .sec-h{color:var(--accent)}
+.wind-say{color:var(--accent)}
+.hero-l2{color:var(--accent)}
+.eyebrow::before{background:var(--accent)}
+/* Buttons: Akzent mit dunkler Schrift, Hover heller */
+.btn{background:var(--accent);border-color:var(--accent);color:var(--bg-dark)}
+.btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--bg-dark)}
+.btn-ghost{background:transparent;border-color:var(--border-subtle);color:var(--ink)}
+.btn-ghost:hover{background:rgba(196,165,116,.08);border-color:var(--accent);color:var(--ink)}
+/* Karten auf Dunkel: leicht aufgehellt, feine Akzent-Border */
+.act,.tip-card,.next-ride,.app,.equip-slider,.tour-card,.tour-side{background:var(--bg-3);border-color:var(--border-subtle)}
+.tip-card{background:#1a1813}
+/* Routen und Icons im Akzent */
+.route-ride path,.tour-route path,.tip-route path,.tp-map use{stroke:var(--accent)}
+.r-ride,.r-long.r-ride{stroke:var(--accent)}
+
+/* ─── Helle Bereiche ─── */
+.sec-light{background:var(--bg-light);color:var(--text-on-light)}
+.sec-light .sec-h{color:var(--text-on-light)}
+.sec-light .eyebrow{color:var(--accent-ink)}
+.sec-light .eyebrow::before{background:var(--accent)}
+.sec-light .lead,.sec-light .note,.sec-light .community-copy p,.sec-light p{color:#3a3732}
+.sec-light .num,.sec-light .mini-ledger .num{color:var(--accent-ink)}
+.sec-light .mini-ledger{border-color:rgba(28,27,25,.15)}
+.sec-light .mini-ledger span,.sec-light .gpx-note,.sec-light .gpx-date,.sec-light .gpx-km,.sec-light .feature-k{color:#6b655c}
+.sec-light .gpx-list ul,.sec-light .gpx-list li{border-color:rgba(28,27,25,.12)}
+.sec-light .gpx-name{color:var(--text-on-light)}
+.sec-light .gpx-name:hover,.sec-light .gpx-more a{color:var(--accent-ink)}
+.sec-light .act-gpx{color:#3a3732;border-color:rgba(28,27,25,.25)}
+.sec-light .act-gpx:hover{color:var(--text-on-light);border-color:var(--accent)}
+.sec-light .btn{background:var(--accent);border-color:var(--accent);color:var(--bg-dark)}
+.sec-light .btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--bg-dark)}
+.sec-light .btn-ghost,.sec-light .btn-ghost:hover{background:transparent;border-color:rgba(28,27,25,.25);color:var(--text-on-light)}
+.sec-light .btn-ghost:hover{background:rgba(28,27,25,.04);border-color:var(--accent)}
+.sec-light a:focus-visible,.sec-light button:focus-visible{outline-color:var(--accent-ink)}
+/* Karten auf Hell: hell mit feiner Border und dezentem Schatten */
+.sec-light .next-ride{background:#fffdf9;color:var(--text-on-light);border:1px solid rgba(28,27,25,.1);box-shadow:0 10px 30px rgba(28,27,25,.07)}
+.sec-light .next-ride::before{background:var(--accent)}
+.sec-light .next-k{color:var(--accent-ink)}
+.sec-light .next-date,.sec-light .next-note,.sec-light .next-facts dt,.sec-light .next-time span{color:#6b655c}
+/* Battlefield-Balken bleibt dunkel */
+.sec-light .partner{background:var(--bg-dark);color:var(--text-on-dark)}
+.sec-light .partner p,.sec-light .partner .partner-claim{color:var(--ink-2)}
+.sec-light .partner-url{color:var(--accent)}
+.sec-light .partner .partner-k{color:var(--muted)}
+::selection{background:var(--accent);color:var(--bg-dark)}
+.sec:not(.sec-light) ::selection{background:var(--accent);color:var(--bg-dark)}
+
+/* Zusammenhängender heller Block: innen keine Schrägen, nur feine Trennlinie */
+.sec-light + .sec-light{margin-top:0;padding-top:clamp(5rem,10vw,8rem);clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--slant)));border-top:1px solid rgba(28,27,25,.08)}
+.sec-light:has(+ .sec-light){clip-path:polygon(0 0,100% var(--slant),100% 100%,0 100%);padding-bottom:clamp(5rem,10vw,8rem)}
+.sec-light + .sec-light:has(+ .sec-light){clip-path:none}
+.sec-light + .sec-community{clip-path:none}
+/* Zuletzt ist jetzt dunkel: Gravel startet mit Schräge darüber */
+.sec-alt{background:var(--bg-dark);border:0}
+/* Ausrüstung: heller Bereich, Slider-Karte bleibt dunkel, oben ohne Schräge (direkt unter der Leiste) */
+.sec-light-page{clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--slant)));margin-top:0;padding-top:clamp(3rem,6vw,5rem)}
+.sec-light .equip-slider{color:var(--text-on-dark)}
+.sec-light .equip-slider p{color:var(--ink-2)}
+.sec-light .equip-name{color:var(--text-on-dark)}
+.sec-light .equip-controls .equip-count{color:var(--muted)}
+
+/* ─── Besserer Wechsel: Hero D · Wetter D · Zahlen H · Zuletzt D · Gravel H · Laufen D ·
+       Community H (+ Balken/Marken D) · Über mich H · Footer D ─── */
+.sec-run{background:var(--bg-dark)}
+/* Zahlen auf Hell: Lesbare Varianten der Daten-Farben */
+.sec-light .ledger{border-color:rgba(28,27,25,.15)}
+.sec-light .led .num{color:var(--text-on-light)}
+.sec-light .led-ride .num{color:var(--accent-ink)}
+.sec-light .led-run .num{color:#2f7f6f}
+.sec-light .led span{color:#3a3732}
+.sec-light .led small{color:#6b655c}
+.sec-light .cal figcaption,.sec-light .chart-note{color:#3a3732}
+.sec-light .tick{fill:#6b655c}
+.sec-light .cd rect{fill:#e8e2d6;stroke:none}
+.sec-light .cd-rest rect{fill:#ece7dd}
+.sec-light .cd-foot rect{fill:#d9d2c5}
+.sec-light .cd-ride.cd-l1 rect{fill:rgba(196,165,116,.45)}
+.sec-light .cd-ride.cd-l2 rect{fill:#c4a574}
+.sec-light .cd-ride.cd-l3 rect{fill:#8a6c3e}
+.sec-light .cd-run.cd-l1 rect{fill:rgba(47,127,111,.35)}
+.sec-light .cd-run.cd-l2 rect{fill:rgba(47,127,111,.65)}
+.sec-light .cd-run.cd-l3 rect{fill:#2f7f6f}
+.sec-light .cd:hover rect{stroke:var(--text-on-light)}
+.sec-light .cal-l1{background:rgba(196,165,116,.45)}.sec-light .cal-l2{background:#c4a574}.sec-light .cal-l3{background:#8a6c3e}
+.sec-light .legend{color:#6b655c}
+.sec-light .more-link a{color:var(--accent-ink)}
+/* Über mich auf Hell */
+.sec-light .portrait{border-color:rgba(28,27,25,.15);background:var(--bg-dark)}
+.sec-light .about-copy,.sec-light .about-collab{color:#3a3732}
+.sec-light .about-collab a{color:var(--text-on-light);text-decoration-color:var(--accent)}

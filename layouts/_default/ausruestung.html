@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- $d := .Site.Data.strava }}
 {{ partial "back-bar.html" (dict "href" .Site.Home.RelPermalink "label" (T "back_home")) }}
-<section class="sec sec-equip" id="ausruestung" aria-labelledby="equip-h">
+<section class="sec sec-equip sec-light sec-light-page" id="ausruestung" aria-labelledby="equip-h">
   <div class="wrap">
     <p class="eyebrow">{{ T "equip_eyebrow" }}</p>
     <h1 id="equip-h" class="sec-h">{{ T "equip_title" }}</h1>
