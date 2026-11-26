@@ -1560,3 +1560,8 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .wind-full.sec-light .wh-bar i{background:rgba(184,146,79,.55)}
 .wind-full.sec-light .wr-ring{stroke-opacity:.7}
 .wind-full.sec-light .wr-tick{stroke-opacity:.55}
+/* Navigation: Start-Link und aktuelle Seite */
+.nav-main a[aria-current="page"]{color:var(--accent)}
+.nav-main a[aria-current="page"]::after{content:"";display:block;height:1px;background:var(--accent);margin-top:.35rem}
+.nav-links a[aria-current="page"]{color:var(--accent)}
+@media (min-width:1000px) and (max-width:1240px){.nav-main{gap:1.6rem}.nav-main a{letter-spacing:.12em}}
