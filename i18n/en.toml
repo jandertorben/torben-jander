@@ -679,3 +679,12 @@ other = "What hangs on and rides along."
 other = "Running"
 [equip_lauf_title]
 other = "On foot and for both."
+
+[tours_tag]
+other = "Flat. Far. Ready to ride."
+[tours_total]
+other = "%d rides, %s km in total. All numbers from Strava."
+[tour_open]
+other = "Open ride"
+[tour_profile_k]
+other = "Elevation"

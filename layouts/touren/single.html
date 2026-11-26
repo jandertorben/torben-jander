@@ -1,11 +1,25 @@
 {{ define "main" }}
 {{- $t := .Params.tour }}
-{{ partial "back-bar.html" (dict "href" .Parent.RelPermalink "label" (T "tours_all")) }}
-<article class="sec tour">
-  <div class="wrap">
-    <p class="act-meta"><span class="tag tag-{{ $t.group }}">{{ T (printf "sport_%s" $t.sport) }}</span> <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></p>
-    <h1 class="sec-h tour-h">{{ .Title }}</h1>
+<section class="hero hero-page hero-tour" aria-labelledby="tour-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <div class="wrap hero-in hero-mag">
+    <p class="eyebrow"><span>{{ T (printf "sport_%s" $t.sport) }} · <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></span></p>
+    <h1 id="tour-h" class="hero-h">{{ .Title }}</h1>
+    <dl class="th-stats">
+      <div><dt>{{ T "label_distance" }}</dt><dd><span class="num">{{ lang.FormatNumber 1 $t.km }}</span> km</dd></div>
+      <div><dt>{{ T "label_elev" }}</dt><dd><span class="num">{{ lang.FormatNumber 0 $t.elevation }}</span> m</dd></div>
+      <div><dt>{{ T "label_time" }}</dt><dd><span class="num">{{ $t.duration }}</span></dd></div>
+      <div><dt>{{ T "label_speed" }}</dt><dd>{{ partial "tempo.html" $t.tempo }}</dd></div>
+    </dl>
+    <div class="th-actions">
+      <a class="btn" href="/gpx/{{ $t.id }}.gpx" download="torben-jander-{{ $t.date }}-{{ $t.id }}.gpx"><span aria-hidden="true">↓</span> {{ T "gpx_download" }}</a>
+      <a class="hero-link" href="https://www.strava.com/activities/{{ $t.id }}" target="_blank" rel="noopener">{{ T "view_on_strava" }} <span aria-hidden="true">↗︎</span></a>
+    </div>
+  </div>
+</section>
 
+<article class="sec sec-light tour">
+  <div class="wrap">
     {{- $photo := "" }}
     {{- with .Params.photo }}{{ with resources.Get (printf "img/touren/%s" .) }}{{ $photo = . }}{{ end }}{{ end }}
     {{- /* Ohne Foto gibt es ein Tourplakat, das der Browser zeichnet (scharf auf jedem Bildschirm) */}}
@@ -53,19 +67,16 @@
           </div></div>
         </figure>
         {{- end }}
-        {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
       </div>
       <aside class="tour-side">
-        <dl class="act-stats tour-stats">
-          <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $t.km }} km</dd></div>
-          <div><dt>{{ T "label_elev" }}</dt><dd>{{ lang.FormatNumber 0 $t.elevation }} m</dd></div>
-          <div><dt>{{ T "label_time" }}</dt><dd>{{ $t.duration }}</dd></div>
-          <div><dt>{{ T "label_speed" }}</dt><dd>{{ partial "tempo.html" $t.tempo }}</dd></div>
-        </dl>
-        <div class="tour-actions">
-          <a class="btn" href="/gpx/{{ $t.id }}.gpx" download="torben-jander-{{ $t.date }}-{{ $t.id }}.gpx"><span aria-hidden="true">↓</span> {{ T "gpx_download" }}</a>
-          <a class="btn btn-ghost" href="https://www.strava.com/activities/{{ $t.id }}" target="_blank" rel="noopener">{{ T "view_on_strava" }} ↗︎</a>
-        </div>
+        {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
+        {{- with $t.flat }}
+        <figure class="ts-prof">
+          <figcaption class="ts-k">{{ T "tour_profile_k" }} <span class="mono">0–{{ .ymax }} m</span></figcaption>
+          <svg viewBox="0 0 {{ .w }} {{ .h }}" preserveAspectRatio="none" aria-hidden="true"><path d="{{ .area | safeHTMLAttr }}" class="a"/><path d="{{ .line | safeHTMLAttr }}" class="l" vector-effect="non-scaling-stroke"/></svg>
+          <p class="ts-hand" aria-hidden="true">{{ T "hand_flat" }}</p>
+        </figure>
+        {{- end }}
         <p class="tour-hint">{{ T "tour_gpx_hint" }}</p>
       </aside>
     </div>

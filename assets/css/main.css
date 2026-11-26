@@ -1336,3 +1336,63 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .sec-apps .app-name{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.5rem,2.4vw,2rem)}
 .eq-card-body{min-width:0}
 .eq-name{overflow-wrap:anywhere;hyphens:auto}
+
+/* ===== Touren im Magazin-Stil ===== */
+.tour-list{list-style:none;margin:0;padding:0;display:grid;gap:3rem 2.4rem;grid-template-columns:1fr}
+@media (min-width:700px){.tour-list{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1050px){.tour-list{grid-template-columns:repeat(3,1fr)}}
+.tl-card{display:grid;grid-template-rows:auto 1fr;gap:1.3rem;height:100%;color:inherit;text-decoration:none;border-top:1px solid rgba(28,27,25,.14);padding-top:1.4rem}
+.tl-thumb{aspect-ratio:3/2;display:grid;place-items:center;position:relative;overflow:hidden;border-radius:3px;background:rgba(184,146,79,.07)}
+.tl-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) sepia(.08);transition:transform .8s var(--ease)}
+.tl-thumb .route{width:62%;height:80%}
+.tl-thumb .route path{stroke:var(--accent-ink);stroke-width:1.6;transition:stroke .3s}
+.tl-card:hover .tl-thumb img{transform:scale(1.03)}
+.tl-card:hover .tl-thumb .route path{stroke:var(--accent)}
+.tl-body{display:flex;flex-direction:column;gap:.55rem}
+.tl-meta{display:flex;gap:.9rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin:0}
+.tl-meta time{color:rgba(28,27,25,.55);letter-spacing:.06em}
+.tl-name{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.02em;line-height:1.08;font-size:clamp(1.45rem,2.2vw,1.85rem);margin:.1rem 0 .2rem}
+.tl-sum{font-size:.93rem;line-height:1.6;margin:0;color:rgba(28,27,25,.78)}
+.tl-nums{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-size:.74rem;color:rgba(28,27,25,.6);margin:.3rem 0 0}
+.tl-nums b{font-weight:500;color:var(--text-on-light)}
+.tl-go{margin-top:auto;padding-top:.6rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink)}
+.tl-card:hover .tl-go{color:var(--accent)}
+@media (min-width:1050px){
+  .tl-first{grid-column:1/-1}
+  .tl-first .tl-card{grid-template-columns:1.3fr 1fr;grid-template-rows:auto;gap:3.5rem;align-items:center}
+  .tl-first .tl-name{font-size:clamp(2.2rem,3.6vw,3.2rem)}
+  .tl-first .tl-thumb{aspect-ratio:16/10}
+}
+.tours-sec .tour-privacy{margin-top:3rem;font-size:.78rem;color:rgba(28,27,25,.55)}
+/* Tour-Einzelseite */
+.hero-tour .hero-h{font-size:clamp(2.6rem,7vw,6.2rem)}
+.th-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem 2rem;margin:2.4rem 0 0;max-width:44rem}
+@media (min-width:700px){.th-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.th-stats dt{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.th-stats dd{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--text-on-dark);line-height:1}
+.th-stats dd .num{font-size:inherit}
+.th-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem 2.4rem;margin-top:2.6rem}
+.tour .tour-tabs{border-color:rgba(28,27,25,.2)}
+.tour .tour-tabs button{color:rgba(28,27,25,.55)}
+.tour .tour-tabs button+button{border-left-color:rgba(28,27,25,.2)}
+.tour .tour-tabs button[aria-selected="true"]{background:var(--accent);color:#1A1A18}
+.tour .tour-route{background:none;border:0;border-radius:0;padding:0}
+.tour .tour-route path{stroke:var(--accent-ink);stroke-width:2.4}
+.tour .tour-route figcaption{color:rgba(28,27,25,.55)}
+.tour .tour-photo img{border:0}
+.tour-side{position:static;background:none;border:0;padding:0;gap:2rem}
+@media (min-width:901px){.tour-side{position:sticky;top:7rem}}
+.tour-text{font-size:1.02rem;line-height:1.75}
+.tour-text p:first-child::first-letter{font-family:var(--serif);font-size:3.2em;float:left;line-height:.85;padding:.06em .1em 0 0;color:var(--accent-ink)}
+.ts-prof{margin:0;border-top:1px solid rgba(28,27,25,.14);padding-top:1.2rem}
+.ts-k{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:.8rem}
+.ts-k .mono{letter-spacing:.04em;text-transform:none;color:rgba(28,27,25,.55);margin-left:.5rem}
+.ts-prof svg{display:block;width:100%;height:70px;border-bottom:1px solid rgba(28,27,25,.3)}
+.ts-prof .a{fill:rgba(184,146,79,.18)}.ts-prof .l{fill:none;stroke:var(--accent-ink);stroke-width:1.4}
+.ts-hand{font-family:var(--hand);font-size:1.9rem;color:var(--accent-ink);margin:.6rem 0 0;transform:rotate(-3deg);transform-origin:left}
+.tour .tour-hint{font-size:.8rem;color:rgba(28,27,25,.6);margin:0}
+.tour .tour-pager{border-top-color:rgba(28,27,25,.14)}
+.tour .tour-pager a{color:var(--text-on-light)}.tour .tour-pager a:hover{color:var(--accent-ink)}
+.tour .tour-pager small{color:rgba(28,27,25,.5)}
+.tour-grid-2{grid-template-areas:"tabs ." "main side"}
+@media (max-width:900px){.tour-grid-2{grid-template-areas:"tabs" "main" "side"}}
