@@ -1,0 +1,40 @@
+{{- /* Startseite: Journal – neueste Tour mit Foto und die Ausrüstung als Karten */ -}}
+{{- $tour := false }}
+{{- with site.GetPage "/touren" }}{{ range .Pages.ByDate.Reverse }}{{ if and (not $tour) .Params.photo (ne .Params.photo_kind "plakat") }}{{ $tour = . }}{{ end }}{{ end }}{{ end }}
+{{- $gear := site.GetPage "/ausruestung" }}
+<section class="sec journal" id="journal" aria-labelledby="journal-h">
+  <div class="wrap journal-grid">
+    <div class="journal-text">
+      <p class="eyebrow">{{ T "journal_eyebrow" }}</p>
+      <h2 id="journal-h" class="sec-h reveal">{{ T "journal_title1" }}<br>{{ T "journal_title2" }}</h2>
+      <p class="lead reveal">{{ T "journal_text" }}</p>
+      {{- with site.GetPage "/touren" }}<a class="road-more journal-all" href="{{ .RelPermalink }}">{{ T "journal_all" }} <span aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}
+    </div>
+    <div class="journal-cards">
+      {{- with $tour }}
+      {{- $img := false }}{{ with resources.Get (printf "img/touren/%s" .Params.photo) }}{{ $img = .Process "fill 720x720 Center webp q78" }}{{ end }}
+      <a class="jcard reveal" href="{{ .RelPermalink }}">
+        {{- with $img }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy" decoding="async">{{ end }}
+        <span class="jcard-body">
+          <span class="jcard-k">{{ T "journal_k_tour" }}</span>
+          <span class="jcard-t">{{ .Title }}</span>
+          {{- with .Params.tour }}<span class="jcard-s">{{ lang.FormatNumber 1 .km }} km · {{ .elevation }} {{ T "journal_hm" }}</span>{{ end }}
+          <span class="jcard-a" aria-hidden="true">→</span>
+        </span>
+      </a>
+      {{- end }}
+      {{- with $gear }}
+      {{- $img := false }}{{ with resources.Get "img/storck-grix-2-foto.jpg" }}{{ $img = .Process "fill 720x720 Center webp q78" }}{{ end }}
+      <a class="jcard reveal" href="{{ .RelPermalink }}">
+        {{- with $img }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy" decoding="async">{{ end }}
+        <span class="jcard-body">
+          <span class="jcard-k">{{ T "journal_k_gear" }}</span>
+          <span class="jcard-t">{{ T "journal_gear_title" }}</span>
+          <span class="jcard-s">{{ T "journal_gear_text" }}</span>
+          <span class="jcard-a" aria-hidden="true">→</span>
+        </span>
+      </a>
+      {{- end }}
+    </div>
+  </div>
+</section>

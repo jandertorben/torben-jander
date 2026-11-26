@@ -800,3 +800,24 @@ other = "Start"
 other = "%d bisher: %s km auf dem Rad, %s km gelaufen. Alles aus Strava."
 [about_stats_more]
 other = "Mehr Zahlen →"
+
+[journal_eyebrow]
+other = "Journal"
+[journal_title1]
+other = "Unterwegs in"
+[journal_title2]
+other = "flachem Land."
+[journal_text]
+other = "Touren, Gedanken und Beobachtungen vom Gravelbike. Ohne Helden. Mit Kaffee."
+[journal_all]
+other = "Alle Touren"
+[journal_k_tour]
+other = "Tour"
+[journal_k_gear]
+other = "Ausrüstung"
+[journal_hm]
+other = "Hm"
+[journal_gear_title]
+other = "Was wirklich mitfährt"
+[journal_gear_text]
+other = "Rad, Licht, Kleidung. Ohne Schnickschnack."

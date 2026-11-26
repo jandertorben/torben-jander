@@ -800,3 +800,24 @@ other = "Home"
 other = "%d so far: %s km on the bike, %s km on foot. All from Strava."
 [about_stats_more]
 other = "More numbers →"
+
+[journal_eyebrow]
+other = "Journal"
+[journal_title1]
+other = "On the road"
+[journal_title2]
+other = "in flat country."
+[journal_text]
+other = "Rides, thoughts and observations from the gravel bike. No heroes. With coffee."
+[journal_all]
+other = "All rides"
+[journal_k_tour]
+other = "Ride"
+[journal_k_gear]
+other = "Gear"
+[journal_hm]
+other = "m"
+[journal_gear_title]
+other = "What actually comes along"
+[journal_gear_text]
+other = "Bike, lights, clothing. No frills."
