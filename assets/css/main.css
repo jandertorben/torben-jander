@@ -700,3 +700,10 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .wind-tip-avoid a{color:var(--ink-2)}
 .wind-src{margin-top:2.2rem;font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.02em}
 .wind-src a{color:var(--ink-2)}
+
+/* Marke oben links: „Bremen ist flach“ groß, der Name klein darunter */
+.brand-text{display:grid;gap:.18rem;line-height:1}
+.brand-main{font-weight:700;font-size:1.2rem;letter-spacing:.03em}
+.brand-sub{font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.14em;text-transform:lowercase;color:var(--muted)}
+.brand:hover .brand-main{color:var(--gravel-2)}
+@media (max-width:380px){.brand-main{font-size:1.05rem}.brand-sub{font-size:.6rem}}
