@@ -12,10 +12,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "reparatur.json")
 ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
 
-# Stadt Bremen (ohne Bremerhaven): Gemeinde-Relation admin_level 6, darin Stadtteile
+# Land Bremen (ISO DE-HB), Bremerhaven wird unten über die Breite aussortiert; darin Stadtteile
 QUERY = """
 [out:json][timeout:90];
-area["boundary"="administrative"]["admin_level"="6"]["name"="Bremen"]->.stadt;
+area["ISO3166-2"="DE-HB"]->.stadt;
 node["amenity"="bicycle_repair_station"](area.stadt)->.st;
 .st out body;
 rel(area.stadt)["boundary"="administrative"]["admin_level"~"^(9|10)$"];
@@ -49,6 +49,7 @@ def yes(v):
 
 def main():
     data = fetch()
+    print("Elemente:", len(data.get("elements", [])), data.get("remark", ""))
     nodes, teil = {}, {}
     for el in data.get("elements", []):
         if el.get("type") == "node":
@@ -66,6 +67,8 @@ def main():
     for i, n in nodes.items():
         tg = n.get("tags", {})
         if tg.get("access") in ("private", "no", "customers"):
+            continue
+        if n["lat"] > 53.3:   # Bremerhaven gehört zum Land, aber nicht zu „rund um Bremen“
             continue
         out.append({
             "id": i,
