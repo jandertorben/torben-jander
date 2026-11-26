@@ -124,10 +124,10 @@ items:
     brand: Bioracer
     category: bike
     image: bib-icon-gravel.png
-    spec: "Trägerhose · Gravel"
-    spec_en: "Bib shorts · gravel"
-    note_de: "Die Hose für alles ab einer Stunde im Sattel. Polster, das auch nach dem Deich noch Freude macht."
-    note_en: "The shorts for anything over an hour in the saddle. A pad that still feels good after the dyke."
+    spec: "Trägerhose · Gravel · kurz und lang"
+    spec_en: "Bib · gravel · short and long"
+    note_de: "Die Hose für alles ab einer Stunde im Sattel, kurz für den Sommer, lang für die kalten Tage am Deich. Polster, das auch nach dem Deich noch Freude macht."
+    note_en: "The bib for anything over an hour in the saddle, short for summer, long for the cold days on the dyke. A pad that still feels good after the dyke."
   - name: Tour of Honor 2026
     brand: Battlefield Cyclists
     category: bike
