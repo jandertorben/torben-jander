@@ -1022,3 +1022,33 @@ html,body,.footer{background:var(--bg-dark)}
 .sec-light .equip-slider p{color:var(--ink-2)}
 .sec-light .equip-name{color:var(--text-on-dark)}
 .sec-light .equip-controls .equip-count{color:var(--muted)}
+
+/* ─── Besserer Wechsel: Hero D · Wetter D · Zahlen H · Zuletzt D · Gravel H · Laufen D ·
+       Community H (+ Balken/Marken D) · Über mich H · Footer D ─── */
+.sec-run{background:var(--bg-dark)}
+/* Zahlen auf Hell: Lesbare Varianten der Daten-Farben */
+.sec-light .ledger{border-color:rgba(28,27,25,.15)}
+.sec-light .led .num{color:var(--text-on-light)}
+.sec-light .led-ride .num{color:var(--accent-ink)}
+.sec-light .led-run .num{color:#2f7f6f}
+.sec-light .led span{color:#3a3732}
+.sec-light .led small{color:#6b655c}
+.sec-light .cal figcaption,.sec-light .chart-note{color:#3a3732}
+.sec-light .tick{fill:#6b655c}
+.sec-light .cd rect{fill:#e8e2d6;stroke:none}
+.sec-light .cd-rest rect{fill:#ece7dd}
+.sec-light .cd-foot rect{fill:#d9d2c5}
+.sec-light .cd-ride.cd-l1 rect{fill:rgba(196,165,116,.45)}
+.sec-light .cd-ride.cd-l2 rect{fill:#c4a574}
+.sec-light .cd-ride.cd-l3 rect{fill:#8a6c3e}
+.sec-light .cd-run.cd-l1 rect{fill:rgba(47,127,111,.35)}
+.sec-light .cd-run.cd-l2 rect{fill:rgba(47,127,111,.65)}
+.sec-light .cd-run.cd-l3 rect{fill:#2f7f6f}
+.sec-light .cd:hover rect{stroke:var(--text-on-light)}
+.sec-light .cal-l1{background:rgba(196,165,116,.45)}.sec-light .cal-l2{background:#c4a574}.sec-light .cal-l3{background:#8a6c3e}
+.sec-light .legend{color:#6b655c}
+.sec-light .more-link a{color:var(--accent-ink)}
+/* Über mich auf Hell */
+.sec-light .portrait{border-color:rgba(28,27,25,.15);background:var(--bg-dark)}
+.sec-light .about-copy,.sec-light .about-collab{color:#3a3732}
+.sec-light .about-collab a{color:var(--text-on-light);text-decoration-color:var(--accent)}
