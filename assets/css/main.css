@@ -1391,9 +1391,9 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ts-prof .a{fill:rgba(184,146,79,.18)}.ts-prof .l{fill:none;stroke:var(--accent-ink);stroke-width:1.4}
 .ts-hand{font-family:var(--hand);font-size:1.9rem;color:var(--accent-ink);margin:.6rem 0 0;transform:rotate(-3deg);transform-origin:left}
 .tour .tour-hint{font-size:.8rem;color:rgba(28,27,25,.6);margin:0}
-.tour .tour-pager{border-top-color:rgba(28,27,25,.14)}
-.tour .tour-pager a{color:var(--text-on-light)}.tour .tour-pager a:hover{color:var(--accent-ink)}
-.tour .tour-pager small{color:rgba(28,27,25,.5)}
+.tour .tour-pager,.post .tour-pager{border-top-color:rgba(28,27,25,.14)}
+.tour .tour-pager a,.post .tour-pager a{color:var(--text-on-light)}.tour .tour-pager a:hover,.post .tour-pager a:hover{color:var(--accent-ink)}
+.tour .tour-pager small,.post .tour-pager small{color:rgba(28,27,25,.5)}
 .tour-grid-2{grid-template-areas:"tabs ." "main side"}
 @media (max-width:900px){.tour-grid-2{grid-template-areas:"tabs" "main" "side"}}
 /* Zurück-Leiste passend zum höheren Kopf (5rem) */
@@ -1605,3 +1605,22 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .jcard:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .journal .sec-h{font-size:clamp(2.2rem,3.8vw,3.4rem);hyphens:manual;-webkit-hyphens:manual}
 @media (min-width:900px){.journal-grid{grid-template-columns:1fr 1.35fr}}
+
+/* Journal-Beitrag */
+.post-wrap{max-width:1100px}
+.post-cover{margin:0 0 clamp(2rem,5vw,3.5rem)}
+.post-cover img{display:block;width:100%;height:auto}
+.post-text{max-width:42rem;margin-inline:auto;font-size:1.08rem;line-height:1.8;color:#3a3732}
+.post-text>p:first-child::first-letter{font-family:var(--serif);font-size:3.4em;float:left;line-height:.85;padding:.06em .1em 0 0;color:var(--accent-ink)}
+.post-text h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3vw,2.1rem);color:var(--text-on-light);margin-top:2rem}
+.post-text h3{color:var(--text-on-light)}
+.post-text a{color:var(--accent-ink)}
+.post-text strong{color:var(--text-on-light)}
+.post-fig{margin:1.5rem 0}
+.post-fig img{display:block;width:100%;height:auto}
+.post-fig figcaption{font-family:var(--mono);font-size:.75rem;color:#6b655c;margin-top:.6rem}
+.post-facts{max-width:42rem;margin:0 auto 3rem;padding:1.4rem 1.6rem;border:1px solid rgba(28,27,25,.14);background:rgba(28,27,25,.03)}
+.post-facts dl{margin:.8rem 0 0;display:grid;gap:.55rem}
+.post-facts dl div{display:grid;grid-template-columns:minmax(7rem,38%) 1fr;gap:1rem;border-top:1px solid rgba(28,27,25,.1);padding-top:.55rem}
+.post-facts dt{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
+.post-facts dd{margin:0;color:var(--text-on-light)}

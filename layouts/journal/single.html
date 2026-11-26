@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="hero hero-page hero-tour" aria-labelledby="post-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <div class="wrap hero-in hero-mag">
+    <p class="eyebrow"><span>{{ with .Params.kategorie }}{{ . }} · {{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_long" .Date }}</time></span></p>
+    <h1 id="post-h" class="hero-h">{{ .Title }}</h1>
+    {{- with .Params.summary }}<p class="hero-text">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<article class="sec sec-light post">
+  <div class="wrap post-wrap">
+    {{- with partial "journal-cover.html" . }}
+    {{- $big := .Process "resize 1600x webp q82" }}{{ $small := .Process "resize 900x webp q80" }}
+    <figure class="post-cover">
+      <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $big.RelPermalink }} 1600w" sizes="(max-width:1000px) 100vw, 1100px" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ $.Params.cover_alt }}" decoding="async">
+    </figure>
+    {{- end }}
+    <div class="prose post-text">{{ .Content }}</div>
+    {{- with .Params.fakten }}
+    <aside class="post-facts">
+      <p class="ts-k">{{ with $.Params.fakten_titel }}{{ . }}{{ else }}{{ T "journal_facts" }}{{ end }}</p>
+      <dl>{{ range . }}<div><dt>{{ .k }}</dt><dd>{{ .v }}</dd></div>{{ end }}</dl>
+    </aside>
+    {{- end }}
+    <nav class="tour-pager" aria-label="{{ T "journal_eyebrow" }}">
+      {{- with .PrevInSection }}<a class="tp-prev" href="{{ .RelPermalink }}"><small>{{ T "journal_older" }}</small>← {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+      <a class="tp-all" href="{{ with .Parent }}{{ .RelPermalink }}{{ end }}">{{ T "journal_all_posts" }}</a>
+      {{- with .NextInSection }}<a class="tp-next" href="{{ .RelPermalink }}"><small>{{ T "journal_newer" }}</small>{{ .Title }} →</a>{{ else }}<span></span>{{ end }}
+    </nav>
+  </div>
+</article>
+{{ end }}

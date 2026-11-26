@@ -821,3 +821,18 @@ other = "Hm"
 other = "Was wirklich mitfährt"
 [journal_gear_text]
 other = "Rad, Licht, Kleidung. Ohne Schnickschnack."
+
+[nav_journal]
+other = "Journal"
+[journal_read]
+other = "Lesen"
+[journal_empty]
+other = "Der erste Beitrag ist in Arbeit."
+[journal_facts]
+other = "Auf einen Blick"
+[journal_older]
+other = "Älter"
+[journal_newer]
+other = "Neuer"
+[journal_all_posts]
+other = "Alle Einträge"

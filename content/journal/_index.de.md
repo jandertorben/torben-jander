@@ -1,0 +1,4 @@
+---
+title: "Journal"
+description: "Texte vom Gravelbike: Räder, Umbauten, Gedanken und Beobachtungen rund um Bremen."
+---

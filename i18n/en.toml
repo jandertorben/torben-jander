@@ -821,3 +821,18 @@ other = "m"
 other = "What actually comes along"
 [journal_gear_text]
 other = "Bike, lights, clothing. No frills."
+
+[nav_journal]
+other = "Journal"
+[journal_read]
+other = "Read"
+[journal_empty]
+other = "The first post is in the works."
+[journal_facts]
+other = "At a glance"
+[journal_older]
+other = "Older"
+[journal_newer]
+other = "Newer"
+[journal_all_posts]
+other = "All posts"
