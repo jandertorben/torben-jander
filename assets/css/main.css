@@ -761,3 +761,34 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .planer.is-vague .pl-grid{opacity:.75}
 .pl-best{margin-top:clamp(2.5rem,5vw,3.5rem);padding:1.2rem 1.4rem;border:1px solid var(--line-2);border-radius:4px;display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;justify-content:space-between;max-width:62rem}
 .pl-best-t{font-size:1.05rem;color:var(--ink)}
+
+/* Verborgen heißt verborgen, auch bei Elementen mit eigenem display (z. B. .btn, Grids) */
+[hidden]{display:none !important}
+
+/* ─── Tour-Tipp als Karte (Fahrradwetter und Planer) ───────────────── */
+.wind-tip,.pl-tip-b{max-width:none;display:grid;gap:.9rem}
+.wind-tip{margin-top:clamp(3rem,6vw,4.5rem);padding-top:0;border-top:0}
+.pl-tip-b{margin:0 0 clamp(2.5rem,5vw,3.5rem)}
+.tip-k{font-family:var(--mono);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gravel-2);display:flex;align-items:center;gap:.8rem}
+.tip-k::before{content:"";width:1.6rem;height:1px;background:var(--gravel);flex:none}
+.tip-card{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(1.4rem,4vw,3rem);align-items:center;padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--gravel);border-radius:6px;background:linear-gradient(135deg,rgba(211,155,90,.12),rgba(211,155,90,.03))}
+.tip-card.is-plain{grid-template-columns:1fr}
+@media (max-width:640px){.tip-card{grid-template-columns:1fr}.tip-route{max-width:220px}}
+.tip-route{display:block;width:100%;height:auto;aspect-ratio:1000/610;background:var(--bg-2);border:1px solid var(--line);border-radius:4px}
+.tip-route path{fill:none;stroke:var(--gravel-2);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px rgba(240,192,122,.45))}
+.tip-body{display:grid;gap:.55rem;align-content:center}
+.tip-name{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1;text-transform:uppercase;letter-spacing:.005em}
+.tip-name a{color:var(--ink);text-decoration:none}
+.tip-name a:hover{color:var(--gravel-2)}
+.tip-meta{font-family:var(--mono);font-size:.95rem;color:var(--gravel-2)}
+.tip-why{font-size:1.1rem;color:var(--ink-2);max-width:48ch;text-wrap:pretty}
+.tip-card.is-plain .tip-why{font-size:1.25rem;color:var(--ink)}
+.tip-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.6rem}
+.wind-tip-avoid{color:var(--muted);font-size:.95rem}
+.wind-tip-avoid a{color:var(--ink-2)}
+.tip-route{aspect-ratio:1080/690;overflow:hidden}
+.tip-actions .btn{color:var(--bg)}
+.tip-actions .btn-ghost{color:var(--ink)}
+.tip-actions .btn:hover{color:var(--bg)}
+.tip-actions .btn-ghost:hover{color:var(--ink)}
+.tip-route{aspect-ratio:16/10}

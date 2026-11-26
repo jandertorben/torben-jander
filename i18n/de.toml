@@ -601,3 +601,13 @@ other = "Ordentlich Wind. Bremer Bergwetter."
 other = "Der Deich wird lang."
 [pl_l5]
 other = "Da fährt der Wind. Du fährst nur mit."
+
+# Tour-Tipp als Karte
+[tip_gpx]
+other = "GPX laden"
+[tip_open]
+other = "Zur Tour"
+[tip_why_good]
+other = "Führt raus gegen den Wind. Auf dem Heimweg schiebt er."
+[tip_why_meh]
+other = "Keine Runde führt richtig in den Wind. Diese passt noch am besten."
