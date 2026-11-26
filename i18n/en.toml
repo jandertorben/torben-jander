@@ -537,3 +537,67 @@ other = "Wind, rain, temperature and light for Bremen. Plus what to wear and whi
 other = "Riding weather"
 [wx_eyebrow]
 other = "Bremen · live"
+
+# Ride planner (layouts/partials/planer.html, assets/js/planer.js)
+[pl_eyebrow]
+other = "Planner · up to 7 days"
+[pl_title]
+other = "When do I ride?"
+[pl_lead]
+other = "Pick a day and a time window. The page shows wind, rain, temperature and light for exactly those hours, plus what to wear, a ride tip and the best window that day."
+[pl_day_label]
+other = "Pick a day"
+[pl_today]
+other = "Today"
+[pl_tomorrow]
+other = "Tomorrow"
+[pl_from]
+other = "From"
+[pl_to]
+other = "To"
+[pl_when]
+other = "%s, %s:00 to %s:00"
+[pl_vague]
+other = "This far ahead the forecast is still uncertain, especially rain and wind direction. Check again the evening before."
+[pl_wind_k]
+other = "Average wind"
+[pl_rain_yes]
+other = "Possibly wet: up to %d %, about %s mm."
+[pl_rain_no]
+other = "Dry. Chance of rain at most %d %."
+[pl_temp_range]
+other = "%d to %d °C"
+[pl_feels_min]
+other = "Feels like %d °C at the coldest"
+[pl_light_sunset]
+other = "Sunset at %s, bring lights."
+[pl_light_sunrise]
+other = "Light only from %s, lights on."
+[pl_light_dark]
+other = "Fully in the dark. Lights on, reflectors on."
+[pl_light_ok]
+other = "Daylight. Sunset not until %s."
+[pl_tip_k]
+other = "Ride tip for this window"
+[pl_best]
+other = "Best window that day: %s:00 to %s:00 (wind %d km/h, chance of rain %d %)."
+[pl_best_this]
+other = "This already is the best window that day."
+[pl_best_go]
+other = "Use it"
+[pl_past]
+other = "That window is already over today. Pick a later time or another day."
+[pl_nodata]
+other = "There is no forecast for this window."
+[pl_src]
+other = "Forecast refreshed every 30 minutes"
+[pl_l1]
+other = "Almost no wind. Suspicious."
+[pl_l2]
+other = "A light breeze. Not an excuse."
+[pl_l3]
+other = "Proper wind. Bremen's version of hills."
+[pl_l4]
+other = "The dyke will feel long."
+[pl_l5]
+other = "The wind rides. You are just along for it."

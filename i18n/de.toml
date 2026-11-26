@@ -537,3 +537,67 @@ other = "Wind, Regen, Temperatur und Licht für Bremen. Dazu, was du anziehst un
 other = "Fahrradwetter"
 [wx_eyebrow]
 other = "Bremen · live"
+
+# Fahrrad-Planer (layouts/partials/planer.html, assets/js/planer.js)
+[pl_eyebrow]
+other = "Planer · bis 7 Tage"
+[pl_title]
+other = "Wann fahre ich?"
+[pl_lead]
+other = "Tag und Zeitfenster wählen. Die Seite zeigt Wind, Regen, Temperatur und Licht für genau diese Stunden, dazu Kleidung, Tour-Tipp und das beste Fenster an diesem Tag."
+[pl_day_label]
+other = "Tag wählen"
+[pl_today]
+other = "Heute"
+[pl_tomorrow]
+other = "Morgen"
+[pl_from]
+other = "Von"
+[pl_to]
+other = "Bis"
+[pl_when]
+other = "%s, %s bis %s Uhr"
+[pl_vague]
+other = "So weit voraus ist die Vorhersage noch unsicher, vor allem Regen und Windrichtung. Am Vorabend noch mal reinschauen."
+[pl_wind_k]
+other = "Wind im Schnitt"
+[pl_rain_yes]
+other = "Nass möglich: bis %d %, etwa %s mm."
+[pl_rain_no]
+other = "Trocken. Regenrisiko höchstens %d %."
+[pl_temp_range]
+other = "%d bis %d °C"
+[pl_feels_min]
+other = "Gefühlt ab %d °C"
+[pl_light_sunset]
+other = "Sonnenuntergang %s Uhr, Licht mitnehmen."
+[pl_light_sunrise]
+other = "Hell erst ab %s Uhr, Licht an."
+[pl_light_dark]
+other = "Komplett im Dunkeln. Licht an, Reflektoren dran."
+[pl_light_ok]
+other = "Hell. Sonnenuntergang erst %s Uhr."
+[pl_tip_k]
+other = "Tour-Tipp für dieses Fenster"
+[pl_best]
+other = "Bestes Fenster an diesem Tag: %s bis %s Uhr (Wind %d km/h, Regenrisiko %d %)."
+[pl_best_this]
+other = "Das ist schon das beste Fenster an diesem Tag."
+[pl_best_go]
+other = "Übernehmen"
+[pl_past]
+other = "Das Fenster ist heute schon vorbei. Wähl eine spätere Zeit oder einen anderen Tag."
+[pl_nodata]
+other = "Für dieses Fenster gibt es keine Vorhersage."
+[pl_src]
+other = "Vorhersage alle 30 Minuten neu"
+[pl_l1]
+other = "Fast windstill. Verdächtig."
+[pl_l2]
+other = "Leichte Brise. Zählt nicht als Ausrede."
+[pl_l3]
+other = "Ordentlich Wind. Bremer Bergwetter."
+[pl_l4]
+other = "Der Deich wird lang."
+[pl_l5]
+other = "Da fährt der Wind. Du fährst nur mit."

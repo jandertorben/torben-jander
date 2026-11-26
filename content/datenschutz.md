@@ -35,7 +35,7 @@ Die auf dieser Website gezeigten Kilometer, Zeiten und Routen sind **ausschließ
 
 ## 6. Wetteranzeige (Gegenwind-Radar, Fahrradwetter)
 
-Die Wetteranzeige auf der Startseite und auf der Seite „Fahrradwetter“ zeigt Wetterdaten von **Open-Meteo** (open-meteo.com). Ihr Browser fragt diese Daten **nur bei dieser Website** ab (Adresse /api/wind). Die Website holt die Daten selbst serverseitig bei Open-Meteo ab und hält sie einige Minuten zwischengespeichert. Dabei wird **keine IP-Adresse und keine sonstige Information über Besucher** an Open-Meteo übertragen. Es werden keine Cookies gesetzt.
+Die Wetteranzeige auf der Startseite und auf der Seite „Fahrradwetter“ (einschließlich Planer) zeigt Wetterdaten von **Open-Meteo** (open-meteo.com). Ihr Browser fragt diese Daten **nur bei dieser Website** ab (Adressen /api/wind und /api/forecast für den Planer). Die Website holt die Daten selbst serverseitig bei Open-Meteo ab und hält sie einige Minuten zwischengespeichert. Dabei wird **keine IP-Adresse und keine sonstige Information über Besucher** an Open-Meteo übertragen. Es werden keine Cookies gesetzt.
 
 ## 7. Ihre Rechte
 

@@ -19,6 +19,10 @@
 {{- if or .IsHome (eq .Layout "wetter") }}
 {{ $wjs := resources.Get "js/wind.js" | minify | fingerprint }}
 <script src="{{ $wjs.RelPermalink }}" integrity="{{ $wjs.Data.Integrity }}" defer></script>
+{{- if eq .Layout "wetter" }}
+{{ $pjs := resources.Get "js/planer.js" | minify | fingerprint }}
+<script src="{{ $pjs.RelPermalink }}" integrity="{{ $pjs.Data.Integrity }}" defer></script>
+{{- end }}
 {{- end }}
 </body>
 </html>

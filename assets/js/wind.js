@@ -107,6 +107,7 @@
   var api = { level: level, dirIndex: dirIndex, parsePath: parsePath, outBearing: outBearing, windFit: windFit,
               rankTours: rankTours, calmest: calmest, isWet: isWet, rainState: rainState, wearIndex: wearIndex, lightState: lightState };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
+  global.TJWind = api;   // für planer.js
 
   /* ── Darstellung ──────────────────────────────────────────────────────────── */
 

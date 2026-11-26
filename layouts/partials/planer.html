@@ -1,0 +1,88 @@
+{{- /* Fahrrad-Planer (nur /wetter/). Logik in assets/js/planer.js, Daten von /api/forecast.
+     Ohne JavaScript oder ohne Vorhersage bleibt der Abschnitt verborgen. */ -}}
+{{- $cfg := dict
+  "levels" (slice (T "pl_l1") (T "pl_l2") (T "pl_l3") (T "pl_l4") (T "pl_l5"))
+  "today" (T "pl_today")
+  "tomorrow" (T "pl_tomorrow")
+  "when" (T "pl_when")
+  "rainYes" (T "pl_rain_yes")
+  "rainNo" (T "pl_rain_no")
+  "tempRange" (T "pl_temp_range")
+  "feelsMin" (T "pl_feels_min")
+  "lightSunset" (T "pl_light_sunset")
+  "lightSunrise" (T "pl_light_sunrise")
+  "lightDark" (T "pl_light_dark")
+  "lightOk" (T "pl_light_ok")
+  "best" (T "pl_best")
+  "bestIsThis" (T "pl_best_this")
+  "past" (T "pl_past")
+  "nodata" (T "pl_nodata")
+}}
+<section class="sec planer" id="planer" aria-labelledby="planer-h" hidden>
+  <script type="application/json" id="planer-cfg">{{ $cfg | jsonify | safeJS }}</script>
+  <div class="wrap">
+    <p class="eyebrow">{{ T "pl_eyebrow" }}</p>
+    <h2 id="planer-h" class="sec-h">{{ T "pl_title" }}</h2>
+    <p class="lead">{{ T "pl_lead" }}</p>
+
+    <div class="pl-controls">
+      <div class="pl-days" role="group" aria-label="{{ T "pl_day_label" }}"></div>
+      <div class="pl-times">
+        <label>{{ T "pl_from" }}
+          <select id="pl-from">
+            {{- range seq 5 21 }}<option value="{{ . }}"{{ if eq . 9 }} selected{{ end }}>{{ printf "%02d:00" . }}</option>{{ end }}
+          </select>
+        </label>
+        <label>{{ T "pl_to" }}
+          <select id="pl-to">
+            {{- range seq 6 23 }}<option value="{{ . }}"{{ if eq . 13 }} selected{{ end }}>{{ printf "%02d:00" . }}</option>{{ end }}
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <p class="pl-when" aria-live="polite">&nbsp;</p>
+    <p class="pl-vague" hidden>{{ T "pl_vague" }}</p>
+    <p class="pl-empty" hidden></p>
+
+    <div class="pl-result">
+      <p class="pl-say">&nbsp;</p>
+      <div class="pl-grid">
+        <div class="wx-block">
+          <p class="wx-k">{{ T "pl_wind_k" }}</p>
+          <p class="wx-big pl-wind">&nbsp;</p>
+          <p class="wx-note pl-gust">&nbsp;</p>
+        </div>
+        <div class="wx-block">
+          <p class="wx-k">{{ T "wx_rain_k" }}</p>
+          <p class="wx-big pl-rain">&nbsp;</p>
+        </div>
+        <div class="wx-block">
+          <p class="wx-k">{{ T "wx_temp_k" }}</p>
+          <p class="wx-big pl-temp">&nbsp;</p>
+          <p class="wx-note pl-feels">&nbsp;</p>
+        </div>
+        <div class="wx-block">
+          <p class="wx-k">{{ T "wx_light_k" }}</p>
+          <p class="wx-big pl-light">&nbsp;</p>
+        </div>
+        <div class="wx-block pl-wear-b">
+          <p class="wx-k">{{ T "wx_wear_k" }}</p>
+          <p class="wx-big pl-wear">&nbsp;</p>
+          <ul class="wx-extras pl-extras"></ul>
+        </div>
+        <div class="wx-block pl-tip-b" hidden>
+          <p class="wx-k">{{ T "pl_tip_k" }}</p>
+          <p class="pl-tip"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-best" hidden>
+      <p class="pl-best-t"></p>
+      <button type="button" class="btn btn-ghost pl-best-go">{{ T "pl_best_go" }}</button>
+    </div>
+
+    <p class="wind-src">{{ T "pl_src" }} · {{ T "wind_source" }} <a href="https://open-meteo.com" rel="noopener" target="_blank">Open-Meteo.com</a></p>
+  </div>
+</section>
