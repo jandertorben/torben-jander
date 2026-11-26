@@ -733,3 +733,31 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .wx-feels{font-family:var(--display);font-weight:600;font-size:1.4rem}
 .wx-range,.wx-sun{font-family:var(--mono);font-size:.85rem;color:var(--muted);white-space:pre}
 .wind-brief .more-link{font-size:.85rem}
+
+/* ─── Fahrrad-Planer (/wetter/) ────────────────────────────────────── */
+.planer{border-top:1px solid var(--line)}
+.planer .lead{margin-bottom:2.4rem}
+.pl-controls{display:flex;flex-wrap:wrap;gap:1.2rem 2.5rem;align-items:end;margin-bottom:2.4rem}
+.pl-days{display:flex;flex-wrap:wrap;gap:.5rem}
+.pl-day{display:grid;justify-items:center;gap:.15rem;min-width:3.6rem;min-height:3.4rem;padding:.45rem .7rem;background:none;border:1px solid var(--line-2);border-radius:3px;color:var(--ink-2);font-family:var(--display);font-weight:600;font-size:1.05rem;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.pl-day small{font-family:var(--mono);font-weight:400;font-size:.7rem;color:var(--muted)}
+.pl-day:hover{border-color:var(--gravel);color:var(--ink)}
+.pl-day.is-on{background:var(--gravel-2);border-color:var(--gravel-2);color:var(--bg)}
+.pl-day.is-on small{color:var(--bg)}
+.pl-day.is-vague:not(.is-on){opacity:.6}
+.pl-times{display:flex;gap:1rem}
+.pl-times label{display:grid;gap:.35rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pl-times select{min-height:2.8rem;padding:.4rem 2rem .4rem .8rem;background:var(--bg-3);color:var(--ink);border:1px solid var(--line-2);border-radius:3px;font-family:var(--mono);font-size:1rem;letter-spacing:0}
+.pl-when{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:.4rem}
+.pl-vague{font-size:.95rem;color:var(--gravel-2);max-width:62ch;margin-bottom:.4rem}
+.pl-empty{color:var(--ink-2);margin-top:1rem}
+.pl-say{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1;margin:1.6rem 0 2.4rem;max-width:22ch}
+.pl-result[data-level="3"] .pl-say,.pl-result[data-level="4"] .pl-say,.pl-result[data-level="5"] .pl-say{color:var(--gravel-2)}
+.pl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(2rem,4vw,3rem) clamp(1.6rem,4vw,3.5rem)}
+@media (max-width:960px){.pl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.pl-grid{grid-template-columns:1fr}}
+.pl-tip{font-size:1.1rem;line-height:1.45;text-wrap:pretty}
+.pl-tip a{color:var(--gravel-2);text-decoration-color:var(--gravel)}
+.planer.is-vague .pl-grid{opacity:.75}
+.pl-best{margin-top:clamp(2.5rem,5vw,3.5rem);padding:1.2rem 1.4rem;border:1px solid var(--line-2);border-radius:4px;display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;justify-content:space-between;max-width:62rem}
+.pl-best-t{font-size:1.05rem;color:var(--ink)}
