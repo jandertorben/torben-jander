@@ -719,7 +719,7 @@ other = "Platten? Kette trocken?"
 [repair_title]
 other = "Luft und Werkzeug für alle."
 [repair_lead]
-other = "%d öffentliche Reparaturstationen mit Luftpumpe oder Werkzeug in Bremen und drumherum, frei zugänglich und kostenlos. Sortiert nach dem nächsten Ortsteil."
+other = "%d öffentliche Reparaturstationen mit Luftpumpe oder Werkzeug in Bremen und drumherum, frei zugänglich und kostenlos. Ort oder PLZ eingeben, schon siehst du die fünf nächsten."
 [repair_pump]
 other = "Pumpe"
 [repair_tools]
@@ -746,3 +746,18 @@ other = "Fünf Fähren nehmen in und um Bremen das Rad mit. Drei fahren das ganz
 other = "Zeiten und Preise bei %s"
 [ferry_stand]
 other = "Stand: %s. Zeiten ändern sich, vor der Tour kurz beim Betreiber nachsehen."
+
+[repair_q_label]
+other = "Wo bist du gerade?"
+[repair_q_ph]
+other = "Ort oder PLZ, z. B. Horn oder 28359"
+[repair_near]
+other = "Die nächsten Stationen bei %s:"
+[repair_none]
+other = "Den Ort kenne ich nicht. Probier einen Stadtteil wie Findorff oder eine Postleitzahl."
+[repair_plz_unknown]
+other = "Diese Postleitzahl liegt nicht in Bremen oder drumherum. Probier einen Ortsnamen."
+[repair_all]
+other = "Alle %d Stationen anzeigen"
+[repair_all_close]
+other = "Liste zuklappen"

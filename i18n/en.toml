@@ -719,7 +719,7 @@ other = "Flat tyre? Dry chain?"
 [repair_title]
 other = "Air and tools for everyone."
 [repair_lead]
-other = "%d public repair stations with a pump or tools in and around Bremen, open to everyone and free. Sorted by the nearest district."
+other = "%d public repair stations with a pump or tools in and around Bremen, open to everyone and free. Type a place or postcode to see the five nearest."
 [repair_pump]
 other = "Pump"
 [repair_tools]
@@ -746,3 +746,18 @@ other = "Five ferries in and around Bremen take your bike. Three run all year, t
 other = "Times and prices: %s"
 [ferry_stand]
 other = "As of %s. Times change, check with the operator before you ride."
+
+[repair_q_label]
+other = "Where are you right now?"
+[repair_q_ph]
+other = "Place or postcode, e.g. Horn or 28359"
+[repair_near]
+other = "Nearest stations to %s:"
+[repair_none]
+other = "I don't know that place. Try a district like Findorff or a postcode."
+[repair_plz_unknown]
+other = "That postcode is not in or around Bremen. Try a place name."
+[repair_all]
+other = "Show all %d stations"
+[repair_all_close]
+other = "Collapse list"
