@@ -386,3 +386,13 @@ other = "Companies and clubs I use myself and want to support. Not paid advertis
 
 [label_gear]
 other = "Bike / shoe"
+
+# Calmer layout (slimmer home page, details on sub-pages)
+[numbers_more]
+other = "All the numbers"
+[numbers_page_lead]
+other = "Everything Strava has: yearly goals, weeks, times of day and the longest rides. The home page only shows what matters most."
+[longest_eyebrow]
+other = "Records, sort of"
+[longest_title]
+other = "The longest rides of the year."

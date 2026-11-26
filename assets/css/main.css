@@ -597,3 +597,43 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   .marke:first-child{padding-left:0}
   .marke:not(.marke-copy):has(+ .marke-copy)::after{display:none}
 }
+
+/* ─── Ruhiger Auftritt ─────────────────────────────────────────────
+   Weniger auf einmal, mehr Abstand, Farbe nur dort, wo echte Zahlen stehen. */
+.sec{padding-block:clamp(6rem,13vw,11rem)}
+.sec-h{margin-bottom:clamp(2.4rem,4vw,3.4rem)}
+.hero-cap{opacity:.8}
+
+/* Startseite: drei große Zahlen statt acht */
+.ledger-calm{grid-template-columns:repeat(3,1fr);gap:0 clamp(2rem,5vw,5rem);border-top:1px solid var(--line)}
+.ledger-calm .led{border-bottom:0;padding:2rem 0 0}
+.ledger-calm .led .num{font-size:clamp(3.2rem,7vw,6rem)}
+@media (max-width:760px){.ledger-calm{grid-template-columns:1fr;gap:0}.ledger-calm .led{padding:1.6rem 0;border-bottom:1px solid var(--line)}}
+#zahlen .cal{margin-top:clamp(4.5rem,9vw,7rem)}
+.more-link{margin-top:2.5rem;font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.more-link a{color:var(--gravel-2);text-decoration:none}
+.more-link a:hover{text-decoration:underline}
+
+/* Kalender: leere Tage ohne Rahmen, kaum sichtbar */
+.cd-rest rect{fill:#15130e;stroke:none}
+.cd-foot rect{fill:var(--line);stroke:none}
+
+/* Sektionen ohne Verläufe und Hintergrundflächen */
+.sec-alt,.sec-gravel,.sec-run,.sec-equip{background:none}
+.sec-alt{border-block:0;border-top:1px solid var(--line)}
+.sec-sport .sport-grid{grid-template-columns:minmax(0,46rem)}
+.sec-sport .gpx-list{max-width:40rem}
+
+/* Atempause: breites Landschaftsfoto (assets/img/landschaft.jpg) */
+.band{margin:0;height:clamp(320px,55vw,640px);overflow:hidden;background:var(--bg-2)}
+.band img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+
+/* Über mich: Kooperationen als ein Satz */
+.about-collab{color:var(--muted);font-size:1rem;max-width:62ch;margin-top:-.5rem}
+
+/* Unterseiten Zahlen und Ausrüstung */
+.page-head{padding-bottom:0;padding-top:clamp(3rem,6vw,5rem)}
+.page-sec{padding-top:clamp(3rem,6vw,5rem)}
+.page-cal .cal{margin-top:clamp(4rem,8vw,6rem)}
+.longest-grid{display:grid;gap:2.5rem}
+.sec-equip.sec{padding-top:clamp(3rem,6vw,5rem)}

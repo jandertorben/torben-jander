@@ -386,3 +386,13 @@ other = "Firmen und Vereine, die ich selbst nutze und unterstützen möchte. Kei
 
 [label_gear]
 other = "Rad / Schuh"
+
+# Ruhiger Auftritt (Startseite verschlankt, Details auf Unterseiten)
+[numbers_more]
+other = "Alle Zahlen"
+[numbers_page_lead]
+other = "Alles, was Strava hergibt: Jahresziele, Wochen, Tageszeiten und die längsten Runden. Auf der Startseite steht nur das Wichtigste."
+[longest_eyebrow]
+other = "Rekorde, gewissermaßen"
+[longest_title]
+other = "Die längsten Runden des Jahres."

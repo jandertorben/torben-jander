@@ -1,0 +1,120 @@
+{{ define "main" }}
+{{- $d := .Site.Data.strava }}
+{{- $t := $d.totals }}
+{{- $y := int $t.year }}
+{{ partial "back-bar.html" (dict "href" (printf "%s#zahlen" .Site.Home.RelPermalink) "label" (T "back_home")) }}
+<section class="sec page-head" aria-labelledby="zahlen-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "numbers_eyebrow" }} · {{ $y }}</p>
+    <h1 id="zahlen-h" class="sec-h">{{ .Title }}</h1>
+    <p class="lead">{{ T "numbers_page_lead" }}</p>
+  </div>
+</section>
+<section class="sec page-sec">
+  <div class="wrap">
+      <div class="ledger reveal">
+        <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
+        <div class="led led-run"><strong class="num" data-count="{{ $t.run.km }}">{{ lang.FormatNumber 0 $t.run.km }}</strong><span>{{ T "stat_run_km" }}</span></div>
+        <div class="led"><strong class="num" data-count="{{ $t.all.hours }}">{{ lang.FormatNumber 0 $t.all.hours }}</strong><span>{{ T "stat_hours" }}</span></div>
+        <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small></div>
+        <div class="led"><strong class="num" data-count="{{ $d.highlights.active_days }}">{{ $d.highlights.active_days }}</strong><span>{{ T "stat_days" }}</span></div>
+        <div class="led"><strong class="num" data-count="{{ $t.all.count }}">{{ $t.all.count }}</strong><span>{{ T "stat_activities" }}</span></div>
+        <div class="led"><strong class="num" data-count="{{ $d.highlights.longest_streak_days }}">{{ $d.highlights.longest_streak_days }}</strong><span>{{ T "stat_streak" }}</span></div>
+        <div class="led"><strong class="num num-time">{{ $d.highlights.earliest_start }}</strong><span>{{ T "stat_earliest" }}</span></div>
+      </div>
+
+      {{- /* Jahresziel: Fortschritt gegen Soll-Stand nach Kalendertagen */ -}}
+      {{- $cal := $d.calendar }}
+      {{- $frac := div (float $cal.day_of_year) (float $cal.days_in_year) }}
+      <div class="goals reveal">
+        <p class="eyebrow">{{ printf (T "goal_eyebrow") $y }}</p>
+        <div class="goal-grid">
+          {{- range $g := slice (dict "key" "ride" "km" $t.ride.km "goal" .Site.Params.ziele.rad "label" (T "goal_ride")) (dict "key" "run" "km" $t.run.km "goal" .Site.Params.ziele.lauf "label" (T "goal_run")) }}
+          {{- $pct := math.Min 100 (div (mul (float $g.km) 100) (float $g.goal)) }}
+          {{- $soll := mul (float $g.goal) $frac }}
+          {{- $sollpct := math.Min 100 (mul $frac 100) }}
+          {{- $diff := sub (float $g.km) $soll }}
+          <div class="goal goal-{{ $g.key }}">
+            <div class="goal-head">
+              <span class="goal-label">{{ $g.label }}</span>
+              <span class="goal-nums"><strong class="num" data-count="{{ $g.km }}">{{ lang.FormatNumber 0 $g.km }}</strong> <span>{{ printf (T "goal_of") (lang.FormatNumber 0 $g.goal) }}</span></span>
+            </div>
+            <div class="goal-bar" role="img" aria-label="{{ lang.FormatNumber 0 $g.km }} {{ printf (T "goal_of") (lang.FormatNumber 0 $g.goal) }}">
+              <i class="goal-fill" style="--w:{{ printf "%.1f" $pct }}%"></i>
+              <b class="goal-mark" style="--x:{{ printf "%.1f" $sollpct }}%"></b>
+            </div>
+            <p class="goal-foot">
+              <span class="goal-pct">{{ lang.FormatNumber 0 $pct }} %</span>
+              {{- if ge (float $g.km) (float $g.goal) }}<span class="goal-diff is-ahead">{{ T "goal_reached" }}</span>
+              {{- else if ge $diff 0.0 }}<span class="goal-diff is-ahead">{{ printf (T "goal_ahead") (lang.FormatNumber 0 $diff) }}</span>
+              {{- else }}<span class="goal-diff is-behind">{{ printf (T "goal_behind") (lang.FormatNumber 0 (mul $diff -1.0)) }}</span>{{ end }}
+            </p>
+          </div>
+          {{- end }}
+        </div>
+        <p class="chart-note goal-note">{{ printf (T "goal_note") (int $cal.day_of_year) (int $cal.days_in_year) }}</p>
+      </div>
+  
+      <div class="charts">
+        {{- $w := $d.weekly }}
+        {{- $max := 1.0 }}{{ range $w }}{{ $s := add .ride .run }}{{ if gt $s $max }}{{ $max = $s }}{{ end }}{{ end }}
+        {{- $n := len $w }}
+        <figure class="chart reveal">
+          <figcaption><span>{{ T "weekly_title" }}</span><span class="legend"><i class="sw sw-ride"></i>{{ T "weekly_legend_ride" }} <i class="sw sw-run"></i>{{ T "weekly_legend_run" }}</span></figcaption>
+          <div class="chart-scroll">
+          <svg viewBox="0 0 {{ mul $n 14 }} 132" class="bars" role="img" aria-label="{{ T "weekly_title" }}" preserveAspectRatio="none">
+            <line x1="0" y1="110.5" x2="{{ mul $n 14 }}" y2="110.5" class="axis"/>
+            {{- range $i, $wk := $w }}
+            {{- $x := add (mul $i 14) 2 }}
+            {{- $hr := div (mul $wk.ride 92) $max }}{{ $hn := div (mul $wk.run 92) $max }}
+            <g class="bar" style="--i:{{ $i }}">
+              <rect x="{{ $x }}" y="{{ printf "%.1f" (sub 110 $hr) }}" width="10" height="{{ printf "%.1f" $hr }}" class="b-ride"/>
+              <rect x="{{ $x }}" y="{{ printf "%.1f" (sub (sub 110 $hr) $hn) }}" width="10" height="{{ printf "%.1f" $hn }}" class="b-run"/>
+              <title>{{ T "week_short" }} {{ $wk.week }}: {{ lang.FormatNumber 0 $wk.ride }} km {{ T "weekly_legend_ride" }}, {{ lang.FormatNumber 0 $wk.run }} km {{ T "weekly_legend_run" }}</title>
+            </g>
+            {{- if eq (mod $wk.week 4) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ T "week_short" }} {{ $wk.week }}</text>{{ end }}
+            {{- end }}
+            <text x="{{ sub (mul $n 14) 2 }}" y="10" class="tick" text-anchor="end">{{ lang.FormatNumber 0 $max }} km</text>
+          </svg>
+          </div>
+        </figure>
+  
+        {{- $h := $d.start_hours }}
+        {{- $hm := 1 }}{{ range $h }}{{ if gt . $hm }}{{ $hm = . }}{{ end }}{{ end }}
+        <figure class="chart chart-hours reveal">
+          <figcaption><span>{{ T "hours_title" }}</span></figcaption>
+          <svg viewBox="0 0 336 132" class="bars" role="img" aria-label="{{ T "hours_title" }}" preserveAspectRatio="none">
+            <line x1="0" y1="110.5" x2="336" y2="110.5" class="axis"/>
+            {{- range $i, $c := $h }}
+            {{- $x := add (mul $i 14) 2 }}{{ $hh := div (mul (float $c) 92) (float $hm) }}
+            <g class="bar" style="--i:{{ $i }}"><rect x="{{ $x }}" y="{{ printf "%.1f" (sub 110 $hh) }}" width="10" height="{{ printf "%.1f" $hh }}" class="b-neutral"/><title>{{ printf "%02d:00" $i }} – {{ $c }}</title></g>
+            {{- if eq (mod $i 6) 0 }}<text x="{{ add $x 5 }}" y="126" class="tick" text-anchor="middle">{{ printf "%02d" $i }}</text>{{ end }}
+            {{- end }}
+          </svg>
+          <p class="chart-note">{{ T "hours_note" }}</p>
+        </figure>
+      </div>
+
+    <div class="page-cal">{{ partial "calendar.html" . }}</div>
+
+    <p class="lifetime reveal">{{ printf (T "lifetime_note") (time.Format ":date_long" (time $t.lifetime.since)) (lang.FormatNumber 0 $t.lifetime.all.km) }}</p>
+  </div>
+</section>
+<section class="sec page-sec" aria-labelledby="longest-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "longest_eyebrow" }}</p>
+    <h2 id="longest-h" class="sec-h reveal">{{ T "longest_title" }}</h2>
+    <div class="longest-grid">
+      {{- with $d.highlights.longest_gravel }}
+      <div class="reveal"><p class="feature-k">{{ T "gravel_longest" }}</p>{{ partial "activity-card.html" (dict "a" . "big" true) }}</div>
+      {{- end }}
+      {{- with $d.highlights.longest_ride }}
+      <div class="reveal"><p class="feature-k">{{ T "ride_longest" }}</p>{{ partial "activity-card.html" (dict "a" . "big" true) }}</div>
+      {{- end }}
+      {{- with $d.highlights.longest_run }}
+      <div class="reveal"><p class="feature-k">{{ T "run_longest" }}</p>{{ partial "activity-card.html" (dict "a" . "big" true) }}</div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ end }}
