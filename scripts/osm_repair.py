@@ -19,6 +19,12 @@ QUERY = """
 node["amenity"="bicycle_repair_station"](52.98,8.48,53.24,9.00);
 out body;
 """
+# Postleitzahl-Gebiete mit Mittelpunkt (für die Suche nach PLZ)
+PLZ = """
+[out:json][timeout:90];
+rel["boundary"="postal_code"](52.98,8.48,53.24,9.00);
+out center tags;
+"""
 # Ortsteile als Punkte (place=suburb/quarter/village …) – die Station bekommt den nächstgelegenen Namen
 ORTE = """
 [out:json][timeout:60];
@@ -64,6 +70,16 @@ def main():
     orte = [(e["lat"], e["lon"], e["tags"]["name"]) for e in fetch(ORTE).get("elements", [])
             if e.get("type") == "node" and e.get("tags", {}).get("name")]
     print("Orte:", len(orte))
+    time.sleep(2)
+    plz = {}
+    try:
+        for e in fetch(PLZ).get("elements", []):
+            code, c = e.get("tags", {}).get("postal_code"), e.get("center")
+            if code and c and len(code) == 5:
+                plz[code] = [round(c["lat"], 4), round(c["lon"], 4)]
+    except SystemExit:
+        pass   # ohne PLZ läuft die Suche trotzdem über Ortsnamen
+    print("PLZ:", len(plz))
     out = []
     for n in data.get("elements", []):
         if n.get("type") != "node":
@@ -86,7 +102,11 @@ def main():
             "covered": yes(tg.get("covered")),
         })
     out.sort(key=lambda s: (s["teil"] or "~", s["name"], s["lat"]))
-    json.dump({"generated": date.today().isoformat(), "count": len(out), "stations": out},
+    orte_out = sorted({o[2]: [round(o[0], 4), round(o[1], 4)] for o in orte}.items())
+    if not plz and os.path.exists(OUT):   # PLZ-Abfrage fehlgeschlagen: alte Werte behalten
+        plz = json.load(open(OUT)).get("plz", {})
+    json.dump({"generated": date.today().isoformat(), "count": len(out), "stations": out,
+               "orte": {k: v for k, v in orte_out}, "plz": dict(sorted(plz.items()))},
               open(OUT, "w"), ensure_ascii=False, indent=1)
     print(f"{len(out)} Reparaturstationen geschrieben")
 
