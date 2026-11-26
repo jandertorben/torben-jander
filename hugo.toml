@@ -35,6 +35,11 @@ timeZone               = "Europe/Berlin"
   whatsapp_community = "https://chat.whatsapp.com/EF7EvsZqAF15vB4CjHzQUY"
   # Strava-Club „Bremen ist flach“
   strava_club = "https://www.strava.com/clubs/2156230"
+  # Partner, den Torben unterstützt. Steht sichtbar im Community-Abschnitt der Startseite.
+  [params.partner]
+    name  = "Battlefield Cyclists"
+    url   = "https://battlefield-cyclists.de"
+    claim = "Remember. Ride. Unite."
   # Richtwert, ab dem Laufschuhe üblicherweise getauscht werden (km)
   schuhLebensdauer = 800
   # Jahresziele in Kilometern

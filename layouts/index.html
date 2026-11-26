@@ -114,6 +114,16 @@
       {{- with .Site.Params.strava_club }}<a class="btn btn-ghost" href="{{ . }}" rel="noopener" target="_blank">{{ T "community_strava" }}</a>{{ end }}
       <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
     </div>
+    {{- with .Site.Params.partner }}
+    <aside class="partner reveal" aria-label="{{ T "partner_k" }}">
+      <p class="partner-k">{{ T "partner_k" }}</p>
+      <a class="partner-link" href="{{ .url }}" target="_blank" rel="noopener">
+        <span class="partner-name">{{ .name }}</span>
+        <span class="partner-claim">{{ .claim }}</span>
+        <span class="partner-url">{{ replace .url "https://" "" }} <span aria-hidden="true">→</span></span>
+      </a>
+    </aside>
+    {{- end }}
   </div>
 </section>
 
