@@ -644,3 +644,20 @@ other = "Flat land, fine tracks, plenty of freedom."
 other = "Explore the rides"
 [nav_brand_sub]
 other = "ist flach"
+
+[why_height]
+other = "Elevation"
+[why_cap]
+other = "Latest ride: %s · %s · %s km · %s m climbing"
+[why_eyebrow]
+other = "Why gravel?"
+[why_title1]
+other = "Because here"
+[why_title2]
+other = "anything goes."
+[why_text]
+other = "No drama. No climbs. Just Bremen and around. Along dyke lines, farm tracks and quiet roads. For anyone who likes to take it slow – or just get out."
+[why_more]
+other = "Learn more"
+[why_alt]
+other = "Gravel rider on a gravel track along a dyke, the river in morning mist on the left"

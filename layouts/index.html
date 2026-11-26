@@ -21,6 +21,46 @@
   </div>
 </section>
 
+{{- with index .Site.Data.gpx.tours 0 }}
+<section class="sec sec-light sec-why" id="warum" aria-labelledby="why-h">
+  <div class="wrap">
+    {{- $tour := . }}
+    {{- with .flat }}
+    <figure class="why-prof reveal">
+      <div class="why-chart" style="--y0:{{ div (float .start) (float .h) }};--y1:{{ div (float .end) (float .h) }}">
+        <span class="why-ylab">{{ T "why_height" }}<br><span class="mono">0–{{ .ymax }} m</span></span>
+        <div class="why-plot">
+          <svg viewBox="0 0 {{ .w }} {{ .h }}" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="why-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8924F" stop-opacity=".28"/><stop offset="1" stop-color="#B8924F" stop-opacity="0"/></linearGradient></defs>
+            <path d="{{ .area | safeHTMLAttr }}" fill="url(#why-fill)"/>
+            <path d="{{ .line | safeHTMLAttr }}" class="why-line" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <i class="why-dot why-dot-a"></i><i class="why-dot why-dot-b"></i>
+          <span class="why-x mono" aria-hidden="true"><span>0 km</span><span>{{ lang.FormatNumber 0 (div $tour.km 2) }} km</span><span>{{ lang.FormatNumber 1 $tour.km }} km</span></span>
+        </div>
+      </div>
+      <figcaption class="why-cap mono">{{ printf (T "why_cap") $tour.name (time.Format "02.01.2006" $tour.date) (lang.FormatNumber 1 $tour.km) (lang.FormatNumber 0 $tour.elevation) }}</figcaption>
+      <p class="why-hand" aria-hidden="true">{{ T "hand_flat" }}<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 11C60 3 130 2 197 5"/></svg></p>
+    </figure>
+    {{- end }}
+    <div class="why-grid">
+      <div>
+        <p class="eyebrow">{{ T "why_eyebrow" }}</p>
+        <h2 id="why-h" class="sec-h reveal">{{ T "why_title1" }}<br>{{ T "why_title2" }}</h2>
+      </div>
+      <div class="why-body">
+        <p>{{ T "why_text" }}</p>
+        <a class="hero-link" href="#ueber">{{ T "why_more" }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+  <picture class="why-photo">
+    <source type="image/webp" srcset="/img/deich-900.webp 900w, /img/deich-1600.webp 1600w" sizes="(min-width:800px) 60vw, 100vw">
+    <img src="/img/deich-1600.jpg" srcset="/img/deich-900.jpg 900w, /img/deich-1600.jpg 1600w" sizes="(min-width:800px) 60vw, 100vw" width="1600" height="900" alt="{{ T "why_alt" }}" loading="eager" decoding="async">
+  </picture>
+</section>
+{{- end }}
+
 {{ partial "wind.html" (dict "page" . "full" false) }}
 
 <section class="sec sec-light" id="zahlen" aria-labelledby="zahlen-h">
@@ -31,7 +71,7 @@
     <div class="ledger ledger-calm reveal">
       <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
       <div class="led led-run"><strong class="num" data-count="{{ $t.run.km }}">{{ lang.FormatNumber 0 $t.run.km }}</strong><span>{{ T "stat_run_km" }}</span></div>
-      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small><span class="hand" aria-hidden="true">{{ T "hand_flat" }}</span></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small></div>
     </div>
 
     {{ partial "calendar.html" . }}
