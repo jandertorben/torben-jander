@@ -693,3 +693,11 @@ other = "Höhenprofil"
 other = "Wind. Regen. Licht. Live für Bremen."
 [numbers_tag]
 other = "Alles aus Strava. Nichts geschätzt."
+
+[tour_wind_k]
+other = "Vor dem Losfahren"
+[tour_wind_t]
+other = "Woher weht der Wind? Im Fahrradwetter siehst du Wind, Regen und das beste Zeitfenster für deine Runde."
+
+[tour_wind_go]
+other = "Zum Fahrradwetter"
