@@ -1,9 +1,9 @@
 {{- $home := .Site.Home.RelPermalink }}
 <header class="nav" id="top">
   <div class="wrap nav-in">
-    <a class="brand" href="{{ $home }}" aria-label="{{ .Site.Params.name }}">
+    <a class="brand" href="{{ $home }}" aria-label="{{ .Site.Params.marke }} – {{ .Site.Params.name }}">
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24 C9 22 8 12 14 11 S18 21 24 17 26 8 28 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-      <span>{{ .Site.Params.name }}</span>
+      <span class="brand-text"><span class="brand-main">{{ .Site.Params.marke }}</span><span class="brand-sub">{{ .Site.Params.name }}</span></span>
     </a>
     <nav class="nav-links" id="menu" aria-label="Sections">
       <a href="{{ $home }}#wind">{{ T "nav_wind" }}</a>

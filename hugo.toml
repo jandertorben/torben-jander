@@ -24,6 +24,7 @@ timeZone               = "Europe/Berlin"
 
 [params]
   name     = "Torben Jander"
+  marke    = "Bremen ist flach"   # groß oben links in der Navigation, der Name steht klein darunter
   ort      = "Bremen"
   email    = "torbenjander@icloud.com"
   strava   = "https://www.strava.com/athletes/165488129"
