@@ -14,22 +14,22 @@ ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.s
 
 # Land Bremen (ISO DE-HB), Bremerhaven wird unten über die Breite aussortiert; darin Stadtteile
 QUERY = """
-[out:json][timeout:90];
-area["ISO3166-2"="DE-HB"]->.stadt;
-node["amenity"="bicycle_repair_station"](area.stadt)->.st;
-.st out body;
-rel(area.stadt)["boundary"="administrative"]["admin_level"~"^(9|10)$"];
-map_to_area->.teile;
-foreach.teile->.t(
-  node.st(area.t);
-  make teil name=t.u(t["name"]), level=t.u(t["admin_level"]), ids=set(id());
-  out;
-);
+[out:json][timeout:60];
+area["ISO3166-2"="DE-HB"]->.land;
+node["amenity"="bicycle_repair_station"](area.land);
+out body;
+"""
+# Stadtteil je Station: kleine Einzelabfrage über is_in
+TEIL = """
+[out:json][timeout:25];
+is_in({lat},{lon});
+area._["boundary"="administrative"]["admin_level"~"^(9|10)$"];
+out tags;
 """
 
 
-def fetch():
-    body = urllib.parse.urlencode({"data": QUERY}).encode()
+def fetch(q=QUERY):
+    body = urllib.parse.urlencode({"data": q}).encode()
     last = None
     for ep in ENDPOINTS:
         for _ in range(2):
@@ -47,33 +47,35 @@ def yes(v):
     return str(v or "").lower() in ("yes", "true", "1")
 
 
+def stadtteil(lat, lon):
+    try:
+        els = fetch(TEIL.format(lat=lat, lon=lon)).get("elements", [])
+    except SystemExit:
+        return ""
+    best = {}
+    for e in els:
+        t = e.get("tags", {})
+        best[t.get("admin_level")] = t.get("name", "")
+    return best.get("10") or best.get("9") or ""
+
+
 def main():
     data = fetch()
     print("Elemente:", len(data.get("elements", [])), data.get("remark", ""))
-    nodes, teil = {}, {}
-    for el in data.get("elements", []):
-        if el.get("type") == "node":
-            nodes[el["id"]] = el
-        elif el.get("type") == "teil":
-            t = el.get("tags", {})
-            for i in str(t.get("ids", "")).split(";"):
-                if not i:
-                    continue
-                i = int(i)
-                # Stadtteil (10) schlägt Stadtbezirk (9)
-                if t.get("level") == "10" or i not in teil:
-                    teil[i] = t.get("name", "")
     out = []
-    for i, n in nodes.items():
+    for n in data.get("elements", []):
+        if n.get("type") != "node":
+            continue
         tg = n.get("tags", {})
         if tg.get("access") in ("private", "no", "customers"):
             continue
         if n["lat"] > 53.3:   # Bremerhaven gehört zum Land, aber nicht zu „rund um Bremen“
             continue
+        time.sleep(1)
         out.append({
-            "id": i,
+            "id": n["id"],
             "lat": round(n["lat"], 6), "lon": round(n["lon"], 6),
-            "teil": teil.get(i, ""),
+            "teil": stadtteil(n["lat"], n["lon"]),
             "name": tg.get("name") or tg.get("description") or "",
             "operator": tg.get("operator", ""),
             "pump": yes(tg.get("service:bicycle:pump")),
