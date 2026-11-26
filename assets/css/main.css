@@ -1624,3 +1624,5 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .post-facts dl div{display:grid;grid-template-columns:minmax(7rem,38%) 1fr;gap:1rem;border-top:1px solid rgba(28,27,25,.1);padding-top:.55rem}
 .post-facts dt{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
 .post-facts dd{margin:0;color:var(--text-on-light)}
+.post-fig img{width:auto;max-width:100%;max-height:min(80vh,760px);margin-inline:auto}
+.post-fig figcaption{text-align:center}
