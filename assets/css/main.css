@@ -1584,3 +1584,4 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .road-home.sec-light .road-ferry-list .ferry{border-top-color:rgba(28,27,25,.12)}
 .road-home.sec-light .road-ferry-n{color:var(--text-on-light)}
 .road-home.sec-light .ferry-today.is-no{border-color:rgba(28,27,25,.3);color:rgba(28,27,25,.55)}
+.road-home.sec-light{padding-top:calc(clamp(5rem,10vw,8rem) + var(--wave))}
