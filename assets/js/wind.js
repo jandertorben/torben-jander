@@ -114,7 +114,17 @@
   // Tour-Tipp als Karte: kleine Route, Name groß, Begründung, GPX und Link zur Tour
   function tipCard(el, tour, why, c) {
     el.textContent = '';
-    if (!tour) { var p0 = document.createElement('p'); p0.className = 'tip-why'; p0.textContent = why; el.appendChild(p0); el.classList.add('is-plain'); return; }
+    if (!tour) {
+      // Kein bestimmter Tipp (zu wenig Wind): Satz plus direkter Weg zu allen Touren
+      var b0 = document.createElement('div'); b0.className = 'tip-body';
+      var p0 = document.createElement('p'); p0.className = 'tip-why'; p0.textContent = why; b0.appendChild(p0);
+      if (c.toursUrl) {
+        var a0 = document.createElement('div'); a0.className = 'tip-actions';
+        var l0 = document.createElement('a'); l0.className = 'btn'; l0.href = c.toursUrl; l0.textContent = c.toursAll + ' →';
+        a0.appendChild(l0); b0.appendChild(a0);
+      }
+      el.appendChild(b0); el.classList.add('is-plain'); return;
+    }
     el.classList.remove('is-plain');
     var NS = 'http://www.w3.org/2000/svg';
     var svg = document.createElementNS(NS, 'svg');

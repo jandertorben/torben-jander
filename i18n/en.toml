@@ -611,3 +611,5 @@ other = "View ride"
 other = "Heads out into the wind. It pushes you home."
 [tip_why_meh]
 other = "No loop really heads into the wind. This one fits best."
+[tip_all_tours]
+other = "See all rides"
