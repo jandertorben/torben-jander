@@ -1248,12 +1248,12 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 /* Footer: Logo links, Text + Links rechts unten bündig */
 .footer{padding:3.5rem 0 3.5rem}
 .foot-in{display:grid;grid-template-columns:1fr;gap:2rem;align-items:end}
-.foot-logo{width:170px;max-width:none;margin:0}
+.foot-logo{width:150px;max-width:none;margin:0}
 .foot-text{display:grid;gap:1.1rem}
 .foot-data{margin:0;max-width:44rem}
 @media (min-width:800px){
   .foot-in{grid-template-columns:auto 1fr;gap:3.5rem}
-  .foot-logo{width:190px}
+  .foot-logo{width:160px}
   .foot-text{padding-bottom:.35rem;border-left:1px solid rgba(244,238,227,.12);padding-left:3.5rem}
 }
 
