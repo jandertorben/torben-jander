@@ -160,8 +160,18 @@
     sec.hidden = false;
   }
 
-  fetch('/api/wind', { headers: { Accept: 'application/json' } })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (w) { if (w && typeof w.speed === 'number' && typeof w.dir === 'number') render(w); })
-    .catch(function () { /* kein Wind, kein Abschnitt */ });
+  var last = 0;
+  function load() {
+    last = Date.now();
+    fetch('/api/wind', { headers: { Accept: 'application/json' }, cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (w) { if (w && typeof w.speed === 'number' && typeof w.dir === 'number') render(w); })
+      .catch(function () { /* kein Wind, kein Abschnitt; bei späterem Erfolg erscheint er */ });
+  }
+  load();
+  // Bleibt die Seite offen, alle 10 Minuten nachladen. Kommt man in den Tab zurück, sofort, wenn es älter ist.
+  setInterval(function () { if (!document.hidden) load(); }, 10 * 60 * 1000);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && Date.now() - last > 10 * 60 * 1000) load();
+  });
 })(typeof window !== 'undefined' ? window : this);

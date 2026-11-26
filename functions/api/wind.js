@@ -3,11 +3,11 @@
 // Holt den Wind für Bremen bei Open-Meteo und gibt eine schlanke Antwort zurück.
 // Der Abruf läuft auf dem Server (Cloudflare), nicht im Browser der Besucher:
 // Open-Meteo sieht also keine IP-Adressen von Besuchern, und die Seite bleibt ohne Drittanbieter.
-// Die Antwort wird 20 Minuten im Cloudflare-Cache gehalten, damit nicht jeder Besuch eine Anfrage auslöst.
+// Die Antwort wird 10 Minuten im Cloudflare-Cache gehalten (Open-Meteo rechnet in 15-Minuten-Schritten), damit nicht jeder Besuch eine Anfrage auslöst.
 
 const LAT = 53.08;   // Bremen
 const LON = 8.80;
-const CACHE_SECONDS = 20 * 60;
+const CACHE_SECONDS = 10 * 60;
 
 const UPSTREAM =
   'https://api.open-meteo.com/v1/forecast' +
