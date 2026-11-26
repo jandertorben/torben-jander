@@ -4,6 +4,8 @@
 {{- $y := int $t.year }}
 
 <section class="hero" aria-labelledby="hero-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <p class="hero-coord" aria-hidden="true"><span class="hero-x">×</span><span>Bremen</span><span>53.0793° N</span></p>
   <div class="hero-map" aria-hidden="true">
     <svg viewBox="0 0 {{ $d.map.width }} {{ $d.map.height }}" preserveAspectRatio="xMidYMid slice">
       {{- range $i, $p := $d.map.paths }}
@@ -33,7 +35,7 @@
     <div class="ledger ledger-calm reveal">
       <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
       <div class="led led-run"><strong class="num" data-count="{{ $t.run.km }}">{{ lang.FormatNumber 0 $t.run.km }}</strong><span>{{ T "stat_run_km" }}</span></div>
-      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small><span class="hand" aria-hidden="true">{{ T "hand_flat" }}</span></div>
     </div>
 
     {{ partial "calendar.html" . }}

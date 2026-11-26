@@ -625,3 +625,6 @@ other = "dry"
 other = "rain from %s:00"
 [wb_day_level]
 other = "Headwind level %d of 5"
+
+[hand_flat]
+other = "Flat goes far."

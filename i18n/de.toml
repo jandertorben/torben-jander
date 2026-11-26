@@ -625,3 +625,6 @@ other = "trocken"
 other = "Regen ab %s Uhr"
 [wb_day_level]
 other = "Gegenwind-Stufe %d von 5"
+
+[hand_flat]
+other = "Flach hilft weit."
