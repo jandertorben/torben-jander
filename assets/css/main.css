@@ -943,3 +943,10 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .sec-community + .marken{padding-top:clamp(.5rem,1.5vw,1.5rem)}
 .sec-community + .marken{border-top:1px solid var(--line)}
 .sec-community + .marken .wrap{padding-top:clamp(2rem,4vw,3rem)}
+
+/* Helle Flächen in klassischer Bronze statt Ocker */
+:root{--light:#a6733f}
+.sec-light{background:var(--light)}
+.sec-light .eyebrow{color:#0b0a08}
+.sec-light .lead,.sec-light .note,.sec-light .community-copy p,.sec-light .about-copy,.sec-light .about-collab{color:#120d07}
+.sec-light .btn-ghost,.sec-light .btn-ghost:hover{border-color:rgba(11,10,8,.7)}
