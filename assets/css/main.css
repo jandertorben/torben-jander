@@ -875,3 +875,57 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   clip-path:polygon(0 0,100% var(--slant),100% 100%,0 calc(100% - var(--slant)));
   margin-top:calc(-1 * var(--slant));
   padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));padding-bottom:calc(clamp(6rem,13vw,11rem) + var(--slant))}
+
+/* Battlefield-Karte über die volle Inhaltsbreite, Inhalt in einer Reihe */
+.sec-community .partner,.community-grid .partner{max-width:none;width:100%}
+@media (min-width:900px){
+  .sec-community .partner{padding:2.2rem 2.6rem}
+  .sec-community .partner-link.has-logo{grid-template-columns:auto 1fr;gap:2.4rem;align-items:center}
+  .sec-community .partner-text{grid-template-columns:1fr auto;grid-template-areas:"name url" "claim url";column-gap:2rem;align-items:center}
+  .sec-community .partner-name{grid-area:name}
+  .sec-community .partner-claim{grid-area:claim}
+  .sec-community .partner-url{grid-area:url;margin-top:0;align-self:center;font-size:1rem}
+}
+
+/* Battlefield als eigener dunkler Balken von Bildschirmrand zu Bildschirmrand.
+   Der Inhalt bleibt an der Inhaltsbreite ausgerichtet. */
+.sec-community .partner{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-radius:0;
+  padding:clamp(2rem,4vw,3rem) max(var(--pad),calc((100vw - var(--wrap)) / 2))}
+@media (max-width:1099px){.sec-community .partner{margin-top:3.5rem}}
+.sec-community{padding-bottom:calc(clamp(3rem,6vw,5rem) + var(--slant))}
+
+/* ─── Helle Bereiche (Ocker) im Wechsel mit dunklen ──────────────────
+   Zuletzt, Community, Über mich. Dunkle Karten bleiben dunkel und heben sich ab.
+   Schräge Kanten, parallel, schieben sich über den Bereich davor. */
+.sec-light{--slant:clamp(28px,4.5vw,80px);background:var(--gravel);color:#0b0a08;position:relative;z-index:1;border:0;
+  clip-path:polygon(0 0,100% var(--slant),100% 100%,0 calc(100% - var(--slant)));
+  margin-top:calc(-1 * var(--slant));
+  padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));padding-bottom:calc(clamp(5rem,10vw,8rem) + var(--slant))}
+.sec-light .eyebrow{color:#2b2013}
+.sec-light .eyebrow::before{background:#0b0a08}
+.sec-light .sec-h{color:#0b0a08}
+.sec-light .lead,.sec-light .note,.sec-light .community-copy p,.sec-light .about-copy,.sec-light .about-collab{color:#1f170e}
+.sec-light .note{border-color:rgba(11,10,8,.25)}
+.sec-light .about-collab a,.sec-light .note a{color:#0b0a08;text-decoration-color:rgba(11,10,8,.5)}
+.sec-light .btn{background:#0b0a08;border-color:#0b0a08;color:var(--gravel-2)}
+.sec-light .btn:hover{background:#2b2217;border-color:#2b2217;color:var(--gravel-2)}
+.sec-light .btn-ghost,.sec-light .btn-ghost:hover{background:transparent;border-color:rgba(11,10,8,.55);color:#0b0a08}
+.sec-light .btn-ghost:hover{background:rgba(11,10,8,.08);border-color:#0b0a08}
+.sec-light a:focus-visible,.sec-light button:focus-visible{outline-color:#0b0a08}
+/* Dunkle Karten in hellen Bereichen behalten helle Schrift */
+.sec-light .act,.sec-light .partner,.sec-light .next-ride{color:var(--ink)}
+.sec-light .act{border-color:#0b0a08;background:#0b0a08}
+.sec-light .act-thumb{background:#14110c}
+.sec-light .portrait{border-color:#0b0a08;background:#0b0a08}
+::selection{background:#0b0a08;color:var(--gravel-2)}
+.sec:not(.sec-light) ::selection{background:var(--gravel);color:var(--bg)}
+/* Unter der Schräge von „Zuletzt“ soll das Braun von Gravel durchscheinen, nicht Schwarz */
+:root{--slant:clamp(28px,4.5vw,80px)}
+#zuletzt + .sec-gravel{margin-top:calc(-1 * var(--slant));padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));border-top:0}
+
+/* ─── Nur zwei Flächen: Schwarz (#0b0a08) und Ocker. Ocker und Mint bleiben Akzente in Daten. ─── */
+.wind:not(.wind-full),.sec-gravel,.sec-run{background:var(--bg);border-top:0;border-bottom:0}
+.wind:not(.wind-full) .eyebrow,.sec-gravel .eyebrow,.sec-run .eyebrow{color:var(--muted)}
+.sec-run .lead{color:var(--ink-2)}
+.sec-run .mini-ledger{border-color:var(--line-2)}
+.footer{background:var(--bg)}
