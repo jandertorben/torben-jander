@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:locale" content="{{ .Site.Language.LanguageCode | replaceRE "-" "_" }}">
-<meta property="og:image" content="{{ "og-image.png" | absURL }}">
+<meta property="og:image" content="{{ "og-bremen-ist-flach.jpg" | absURL }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,7 +29,7 @@
   "@type" "Person"
   "name" .Site.Params.name
   "url" site.Sites.Default.Home.Permalink
-  "image" ("og-image.png" | absURL)
+  "image" ("og-bremen-ist-flach.jpg" | absURL)
   "email" (printf "mailto:%s" .Site.Params.email)
   "address" (dict "@type" "PostalAddress" "addressLocality" .Site.Params.ort "addressCountry" "DE")
   "sameAs" (slice .Site.Params.strava .Site.Params.github .Site.Params.linkedin .Site.Params.youtube .Site.Params.tiktok)
