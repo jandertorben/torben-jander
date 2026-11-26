@@ -1278,3 +1278,61 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
   .grav-photo{margin-bottom:calc(-1 * (clamp(5rem,10vw,8rem) + var(--wave)))}
   .grav-photo img{aspect-ratio:4/5;object-position:50% 80%}
 }
+
+/* ===== Ausrüstung im Magazin-Stil ===== */
+.hero-page{min-height:min(70svh,720px)}
+.hero-page .eyebrow{color:var(--accent);margin-bottom:1.6rem}
+.hero-page .hero-h{font-size:clamp(3rem,8.5vw,7.5rem)}
+.eq-total{margin-top:2rem;font-size:.78rem;letter-spacing:.04em;color:rgba(244,238,227,.55)}
+.eq-brand{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 .5rem}
+.sec-light .eq-brand{color:var(--accent-ink)}
+.eq-both{letter-spacing:.08em;opacity:.75}
+.eq-name{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.02em;line-height:1.05;margin:0 0 .6rem;font-size:clamp(1.35rem,2vw,1.7rem)}
+.eq-spec{font-size:.74rem;letter-spacing:.03em;opacity:.65;margin:0 0 1rem}
+.eq-note{line-height:1.65;margin:0 0 1.2rem;font-size:.95rem}
+.eq-km{display:flex;align-items:baseline;gap:.6rem;margin:0}
+.eq-km strong{font-family:var(--display,inherit);font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--accent-ink)}
+.eq-km span{font-size:.8rem;opacity:.7}
+.eq-km-s strong{font-size:1.9rem;color:var(--accent)}
+.sec-light .eq-km-s strong{color:var(--accent-ink)}
+/* Räder */
+.eq-feature{display:grid;gap:2rem;align-items:center;margin-top:clamp(2.5rem,6vw,5rem)}
+.eq-feature .eq-name{font-size:clamp(2.4rem,5vw,4.2rem)}
+.eq-feature .eq-note{font-size:1.02rem;max-width:32rem}
+.eq-feature-img img{display:block;width:100%;height:auto;filter:drop-shadow(0 24px 30px rgba(28,27,25,.18))}
+.eq-feature-photo .eq-feature-img img{filter:none;aspect-ratio:3/2;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 75% 75% at 55% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 75% 75% at 55% 50%,#000 55%,transparent 100%)}
+@media (min-width:900px){
+  .eq-feature{grid-template-columns:1.25fr .75fr;gap:4.5rem}
+  .eq-flip{grid-template-columns:.75fr 1.25fr}
+  .eq-flip .eq-feature-img{order:2}
+}
+/* Raster */
+.eq-grid{display:grid;gap:2.6rem 2.4rem;margin-top:clamp(2rem,5vw,3.5rem);grid-template-columns:1fr}
+@media (min-width:640px){.eq-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.eq-grid{grid-template-columns:repeat(3,1fr)}}
+.eq-card{display:grid;grid-template-rows:auto 1fr;gap:1.2rem;border-top:1px solid rgba(244,238,227,.14);padding-top:1.4rem}
+.sec-light .eq-card{border-top-color:rgba(28,27,25,.14)}
+.eq-card-img{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative}
+.eq-card-img::before{content:"";position:absolute;inset:12% 18%;border-radius:50%;background:radial-gradient(closest-side,rgba(184,146,79,.16),transparent);pointer-events:none}
+.sec-light .eq-card-img::before{background:radial-gradient(closest-side,rgba(184,146,79,.14),transparent)}
+.eq-card-img img{position:relative;max-width:88%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.35))}
+.sec-light .eq-card-img img{filter:drop-shadow(0 12px 16px rgba(28,27,25,.16))}
+.eq-card-small .eq-card-img img{max-width:60%;max-height:75%}
+.eq-card-photo .eq-card-img img{max-width:100%;border-radius:4px;filter:none}
+.eq-fallback{font-family:var(--serif);font-size:1.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(184,146,79,.35);padding:1.2rem 1.6rem}
+.eq-card .eq-note{font-size:.9rem;opacity:.85}
+.eq-card .meter{margin-top:.8rem}
+@media (max-width:639px){
+  .eq-card{grid-template-columns:38% 1fr;grid-template-rows:auto;gap:1.1rem;align-items:start}
+  .eq-card-img{aspect-ratio:1/1}
+  .eq-card .eq-name{font-size:1.2rem}
+  .eq-card .eq-note{font-size:.86rem;margin-bottom:.8rem}
+}
+.eq-card .meter{height:3px;border:0;border-radius:2px;background:rgba(28,27,25,.1);max-width:240px}
+.sec:not(.sec-light) .eq-card .meter{background:rgba(244,238,227,.12)}
+.eq-card .meter i{background:var(--accent)}
+.eq-card .equip-life{font-size:.7rem;margin:.5rem 0 0;color:inherit;opacity:.6}
+.sec-apps .app-name{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.5rem,2.4vw,2rem)}
+.eq-card-body{min-width:0}
+.eq-name{overflow-wrap:anywhere;hyphens:auto}

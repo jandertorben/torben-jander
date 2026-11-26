@@ -664,3 +664,18 @@ other = "Gravel rider on a gravel track along a dyke, the river in morning mist 
 
 [grav_alt]
 other = "Gravel bike leaning on an oak at the edge of a field, autumn forest behind"
+
+[equip_tag]
+other = "Little kit. Lots of road."
+[equip_bikes_eyebrow]
+other = "The bikes"
+[equip_bikes_title]
+other = "Two for everything."
+[equip_rad_eyebrow]
+other = "On the bike"
+[equip_rad_title]
+other = "What hangs on and rides along."
+[equip_lauf_eyebrow]
+other = "Running"
+[equip_lauf_title]
+other = "On foot and for both."

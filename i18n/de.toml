@@ -664,3 +664,18 @@ other = "Gravelbiker auf einem Schotterweg am Deich, links der Fluss im Morgenne
 
 [grav_alt]
 other = "Gravelbike an einer Eiche am Feldrand, dahinter Wald im Herbst"
+
+[equip_tag]
+other = "Wenig Zeug. Viel Strecke."
+[equip_bikes_eyebrow]
+other = "Die Räder"
+[equip_bikes_title]
+other = "Zwei für alles."
+[equip_rad_eyebrow]
+other = "Am Rad"
+[equip_rad_title]
+other = "Was dranhängt und mitfährt."
+[equip_lauf_eyebrow]
+other = "Laufen"
+[equip_lauf_title]
+other = "Zu Fuß und für beides."

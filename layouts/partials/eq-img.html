@@ -1,0 +1,5 @@
+{{- $g := .g }}{{ $alt := .alt }}{{ $big := .big }}
+{{- with $g.image }}{{ with resources.Get (printf "img/%s" .) }}
+{{- $w1 := .Resize (printf "%dx webp q85" (math.Min .Width (cond $big 900 480) | int)) }}{{ $w2 := .Resize (printf "%dx webp q85" (math.Min .Width (cond $big 1600 900) | int)) }}
+<img src="{{ $w1.RelPermalink }}" srcset="{{ $w1.RelPermalink }} {{ $w1.Width }}w, {{ $w2.RelPermalink }} {{ $w2.Width }}w" sizes="{{ cond $big "(min-width:900px) 55vw, 100vw" "(min-width:900px) 30vw, 45vw" }}" width="{{ $w2.Width }}" height="{{ $w2.Height }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+{{- end }}{{ else }}<span class="eq-fallback" aria-hidden="true">{{ $g.brand }}</span>{{ end }}
