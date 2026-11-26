@@ -1512,3 +1512,35 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .repair-toggle{margin-top:2rem;appearance:none;background:none;border:1px solid var(--accent-ink);color:var(--accent-ink);border-radius:2px;padding:.75rem 1.1rem;font:500 .74rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
 .repair-toggle:hover{background:var(--accent);border-color:var(--accent);color:#1A1A18}
 .repair .sec-h{hyphens:manual;-webkit-hyphens:manual}
+
+/* ===== Unterwegs ===== */
+.road-jump{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:2rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase}
+.road-jump a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(184,146,79,.4);padding-bottom:.15rem}
+.road-jump a:hover{color:var(--accent-hover)}
+.ferries .ferry-today{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .5rem;border-radius:2px}
+.ferry-today.is-yes{background:var(--accent);color:#1A1A18}
+.ferry-today.is-no{border:1px dashed rgba(244,238,227,.3);color:rgba(244,238,227,.55)}
+/* Startseite */
+.road-home{padding-top:clamp(2rem,5vw,3.5rem)}
+.road-grid{display:grid;gap:2.5rem 4rem;margin-top:clamp(1.5rem,4vw,2.5rem)}
+@media (min-width:900px){.road-grid{grid-template-columns:1.4fr 1fr}}
+.road-home .repair-search{margin:0;max-width:none}
+.road-home .repair-q-l{color:var(--accent)}
+.road-home .repair-search input{background:rgba(244,238,227,.06);color:var(--text-on-dark);border-color:rgba(244,238,227,.25)}
+.road-home .repair-search input::placeholder{color:rgba(244,238,227,.45)}
+.road-home .repair-msg{color:rgba(244,238,227,.75)}
+.road-home .repair-item{border-top-color:rgba(244,238,227,.12)}
+.road-home .repair-name{color:rgba(244,238,227,.6)}
+.road-home .repair-tags span{border-color:rgba(184,146,79,.5);color:var(--accent)}
+.road-home .repair-tags .is-unknown{color:rgba(244,238,227,.5);border-color:rgba(244,238,227,.25)}
+.road-home .repair-map,.road-home .repair-km{color:var(--accent)}
+.road-more{display:inline-block;margin-top:1.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+.road-more:hover{color:var(--accent-hover)}
+.road-ferry-list{list-style:none;margin:0;padding:0}
+.road-ferry-list .ferry{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.75rem 0;border-top:1px solid rgba(244,238,227,.12)}
+.road-ferry-n{font-family:var(--serif);font-size:1.15rem}
+.road-ferry-list .ferry-today{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .45rem;border-radius:2px;white-space:nowrap}
+/* Touren: Hinweis auf Unterwegs */
+.tours-help .btn{margin-top:.5rem}
+.ts-road{display:inline-block;margin:.9rem 0 0 0;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);text-decoration:none}
+.ts-wind .ts-road{display:block}

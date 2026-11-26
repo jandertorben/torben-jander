@@ -2,8 +2,10 @@
    Läuft komplett im Browser, es wird nichts übertragen. Ohne JavaScript bleibt die volle Liste sichtbar. */
 (function () {
   'use strict';
-  var sec = document.getElementById('reparatur');
+  ferriesToday();
+  var sec = document.querySelector('[data-repair]');
   if (!sec) return;
+  var limit = parseInt(sec.dataset.limit, 10) || 5;
   var form = sec.querySelector('.repair-search'), input = sec.querySelector('#repair-q');
   var out = sec.querySelector('.repair-results'), list = sec.querySelector('.repair-list');
   var toggle = sec.querySelector('.repair-toggle');
@@ -64,7 +66,7 @@
     }
     var best = items.map(function (li) {
       return { li: li, d: km(f.ll[0], f.ll[1], parseFloat(li.dataset.lat), parseFloat(li.dataset.lon)) };
-    }).sort(function (a, b) { return a.d - b.d; }).slice(0, 5);
+    }).sort(function (a, b) { return a.d - b.d; }).slice(0, limit);
     var h = document.createElement('p'); h.className = 'repair-msg';
     h.textContent = form.dataset.near.replace('%s', f.label);
     var ul = document.createElement('ul'); ul.className = 'repair-hits';
@@ -80,4 +82,22 @@
   input.addEventListener('input', function () { clearTimeout(t); t = setTimeout(render, 120); });
   input.addEventListener('change', render);
   form.addEventListener('submit', function (e) { e.preventDefault(); render(); input.blur(); });
+
+  /* Fähren: „fährt heute“ aus den Saisonregeln (Feiertage nicht berücksichtigt) */
+  function ferriesToday() {
+    var now = new Date(), md = ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+    var wd = now.getDay() || 7;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ferries] .ferry'), function (li) {
+      var chip = li.querySelector('.ferry-today'); if (!chip) return;
+      var yes = li.dataset.year === 'true';
+      if (!yes) {
+        var rules = []; try { rules = JSON.parse(li.dataset.rules || '[]') || []; } catch (e) {}
+        yes = rules.some(function (r) { return md >= r.von && md <= r.bis && (r.tage || []).indexOf(wd) > -1; });
+      }
+      chip.textContent = yes ? chip.dataset.yes : chip.dataset.no;
+      chip.classList.add(yes ? 'is-yes' : 'is-no');
+      chip.hidden = false;
+      li.classList.toggle('runs-today', yes);
+    });
+  }
 })();

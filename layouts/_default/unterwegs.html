@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="hero hero-page" aria-labelledby="road-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <div class="wrap hero-in hero-mag">
+    <p class="eyebrow">{{ T "road_eyebrow" }}</p>
+    <h1 id="road-h" class="hero-h">{{ .Title }}</h1>
+    <p class="hero-tag">{{ T "road_tag" }}</p>
+    <p class="hero-text">{{ T "road_text" }}</p>
+    <p class="road-jump mono"><a href="#reparatur">{{ T "road_jump_repair" }}</a><a href="#faehren">{{ T "road_jump_ferry" }}</a>{{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}">{{ T "nav_weather" }}</a>{{ end }}</p>
+  </div>
+</section>
+{{ partial "repair.html" (dict "limit" 5 "compact" false) }}
+{{ partial "ferries.html" (dict "compact" false) }}
+{{ end }}

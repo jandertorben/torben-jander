@@ -761,3 +761,34 @@ other = "That postcode is not in or around Bremen. Try a place name."
 other = "Show all %d stations"
 [repair_all_close]
 other = "Collapse list"
+
+[nav_road]
+other = "On the road"
+[road_eyebrow]
+other = "On the road"
+[road_tag]
+other = "Air, tools, ferries. For your ride."
+[road_text]
+other = "What you need quickly on a bike in Bremen: the nearest pump when a tyre goes soft, and the ferries that turn a path along the Weser into a loop."
+[road_jump_repair]
+other = "Find a pump"
+[road_jump_ferry]
+other = "Ferries"
+[road_home_title]
+other = "Flat tyre? Ferry? Here."
+[ferry_today_k]
+other = "Weser ferries today"
+[ferry_today_yes]
+other = "runs today"
+[ferry_today_no]
+other = "not today"
+[ferry_all]
+other = "All ferries with seasons"
+[tours_help_title]
+other = "Pump or ferry on the way?"
+[tours_help_text]
+other = "Public repair stations with search by place or postcode and all Weser ferries for cyclists are now together under “On the road”."
+[tours_help_go]
+other = "Go to On the road"
+[tour_road_go]
+other = "Pump or ferry on the way?"

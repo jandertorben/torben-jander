@@ -45,67 +45,14 @@
     <p class="tour-privacy">{{ T "gpx_note" }}</p>
   </div>
 </section>
-{{- with .Site.Data.faehren }}
-{{- $en := eq site.Language.Lang "en" }}
-<section class="sec ferries" id="faehren" aria-labelledby="ferries-h">
+{{- with site.GetPage "/unterwegs" }}
+<section class="sec tours-help" aria-label="{{ T "nav_road" }}">
   <div class="wrap">
-    <p class="eyebrow">{{ T "ferry_eyebrow" }}</p>
-    <h2 id="ferries-h" class="sec-h reveal">{{ T "ferry_title" }}</h2>
-    <p class="lead reveal">{{ T "ferry_lead" }}</p>
-    <ul class="ferry-list">
-      {{- range .items }}
-      <li class="ferry reveal">
-        <div class="ferry-head">
-          <h3 class="ferry-name">{{ .name }}</h3>
-          <span class="ferry-season{{ if .ganzjaehrig }} is-year{{ end }}">{{ cond $en .saison_en .saison_de }}</span>
-        </div>
-        <p class="ferry-route mono">{{ .von }} <span aria-hidden="true">⇄</span><span class="sr"> – </span> {{ .nach }}</p>
-        <p class="ferry-note">{{ cond $en .note_en .note_de }}</p>
-        <a class="ferry-link" href="{{ .link }}" target="_blank" rel="noopener">{{ printf (T "ferry_times") .betreiber }} <span aria-hidden="true">↗︎</span></a>
-      </li>
-      {{- end }}
-    </ul>
-    <p class="ferry-stand mono">{{ printf (T "ferry_stand") (cond $en .stand_en .stand) }}</p>
+    <p class="eyebrow">{{ T "road_eyebrow" }}</p>
+    <h2 class="sec-h">{{ T "tours_help_title" }}</h2>
+    <p class="lead">{{ T "tours_help_text" }}</p>
+    <a class="btn" href="{{ .RelPermalink }}">{{ T "tours_help_go" }} <span aria-hidden="true">→</span></a>
   </div>
 </section>
-{{- end }}{{- with .Site.Data.reparatur }}{{ if .stations }}
-{{- $en := eq site.Language.Lang "en" }}
-<section class="sec sec-light repair" id="reparatur" aria-labelledby="repair-h">
-  <div class="wrap">
-    <p class="eyebrow">{{ T "repair_eyebrow" }}</p>
-    <h2 id="repair-h" class="sec-h reveal">{{ T "repair_title" }}</h2>
-    <p class="lead reveal">{{ printf (T "repair_lead") (len .stations) }}</p>
-    <script type="application/json" id="repair-data">{{ dict "orte" .orte "plz" .plz | jsonify | safeJS }}</script>
-    <form class="repair-search" role="search" hidden data-none="{{ T "repair_none" }}" data-near="{{ T "repair_near" }}" data-plz-unknown="{{ T "repair_plz_unknown" }}">
-      <label for="repair-q" class="repair-q-l">{{ T "repair_q_label" }}</label>
-      <div class="repair-q-row">
-        <input id="repair-q" type="search" inputmode="search" autocomplete="off" list="repair-orte" placeholder="{{ T "repair_q_ph" }}" enterkeyhint="search">
-      </div>
-      <datalist id="repair-orte">{{ range $k, $v := .orte }}<option value="{{ $k }}">{{ end }}</datalist>
-      <div class="repair-results" aria-live="polite"></div>
-    </form>
-    <button type="button" class="repair-toggle" hidden aria-expanded="false" data-open="{{ printf (T "repair_all") (len .stations) }}" data-close="{{ T "repair_all_close" }}">{{ printf (T "repair_all") (len .stations) }}</button>
-    <ul class="repair-list">
-      {{- range .stations }}
-      <li class="repair-item" data-lat="{{ .lat }}" data-lon="{{ .lon }}">
-        <div class="repair-main">
-          <p class="repair-place">{{ with .teil }}{{ . }}{{ else }}{{ T "repair_unknown_place" }}{{ end }}</p>
-          {{- $label := .name }}{{ if or (eq $label "") (in (slice "Luft-Tankstelle" "nur Luftpumpe" "Service Station") $label) }}{{ $label = "" }}{{ end }}
-          {{- with $label }}<p class="repair-name">{{ . }}</p>{{ end }}
-          <p class="repair-tags">
-            {{- if .pump }}<span>{{ T "repair_pump" }}</span>{{ end }}
-            {{- if .tools }}<span>{{ T "repair_tools" }}</span>{{ end }}
-            {{- if .stand }}<span>{{ T "repair_stand" }}</span>{{ end }}
-            {{- if not (or .pump .tools .stand) }}<span class="is-unknown">{{ T "repair_unknown" }}</span>{{ end }}
-            {{- if eq .hours "24/7" }}<span class="is-247">{{ T "repair_247" }}</span>{{ end }}
-          </p>
-        </div>
-        <a class="repair-map" href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=18/{{ .lat }}/{{ .lon }}" target="_blank" rel="noopener" aria-label="{{ T "repair_map" }}: {{ .teil }}">{{ T "repair_map" }} <span aria-hidden="true">↗︎</span></a>
-      </li>
-      {{- end }}
-    </ul>
-    <p class="repair-src mono">{{ printf (T "repair_src") (time.Format ":date_long" (time .generated)) | safeHTML }}</p>
-  </div>
-</section>
-{{- end }}{{ end }}
+{{- end }}
 {{ end }}
