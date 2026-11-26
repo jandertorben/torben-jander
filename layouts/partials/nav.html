@@ -18,7 +18,6 @@
       {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_weather" }}</a>{{ end }}
       {{ with site.GetPage "/unterwegs" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_road" }}</a>{{ end }}
       {{ with site.GetPage "/ausruestung" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_gear" }}</a>{{ end }}
-      {{ with site.GetPage "/zahlen" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_numbers" }}</a>{{ end }}
       <a href="{{ $home }}#community">{{ T "nav_community" }}</a>
       <a href="{{ $home }}#ueber">{{ T "nav_about" }}</a>
     </nav>
