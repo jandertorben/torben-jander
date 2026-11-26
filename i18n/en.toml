@@ -792,3 +792,6 @@ other = "Public repair stations with search by place or postcode and all Weser f
 other = "Go to On the road"
 [tour_road_go]
 other = "Pump or ferry on the way?"
+
+[nav_home]
+other = "Home"

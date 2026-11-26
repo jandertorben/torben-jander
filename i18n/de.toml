@@ -792,3 +792,6 @@ other = "Öffentliche Reparaturstationen mit Suche nach Ort oder PLZ und alle We
 other = "Zu Unterwegs"
 [tour_road_go]
 other = "Pumpe oder Fähre unterwegs?"
+
+[nav_home]
+other = "Start"
