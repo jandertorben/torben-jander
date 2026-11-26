@@ -652,3 +652,51 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .partner-url{margin-top:.6rem;font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;color:var(--gravel-2)}
 .partner-link:hover .partner-name{color:var(--gravel-2)}
 .partner-link:hover .partner-url{text-decoration:underline}
+
+/* ─── Gegenwind-Radar ──────────────────────────────────────────────── */
+.wind{border-top:1px solid var(--line);--wc:var(--ink)}
+.wind[data-level="3"]{--wc:var(--gravel-2)}
+.wind[data-level="4"],.wind[data-level="5"]{--wc:var(--gravel)}
+.wind-say{max-width:22ch}
+.wind-grid{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr) minmax(0,1.3fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+@media (max-width:960px){.wind-grid{grid-template-columns:minmax(0,180px) 1fr}.wind-hours{grid-column:1/-1}}
+@media (max-width:560px){.wind-grid{grid-template-columns:1fr}.wind-rose{max-width:180px}}
+.wind-rose{margin:0}
+.wind-rose svg{display:block;width:100%;height:auto;overflow:visible}
+.wr-ring{fill:none;stroke:var(--line-2);stroke-width:1}
+.wr-ring-2{stroke:var(--line);stroke-dasharray:2 4}
+.wr-tick{stroke:var(--muted);stroke-width:1.2}
+.wr-l{fill:var(--muted);font-family:var(--mono);font-size:12px;text-anchor:middle;dominant-baseline:middle}
+.wr-arrow{transform-box:view-box;transform-origin:100px 100px;transition:transform 1.4s var(--ease)}
+.wr-arrow line{stroke:var(--wc);stroke-width:3;stroke-linecap:round}
+.wr-arrow path{fill:var(--wc)}
+@media (prefers-reduced-motion:reduce){.wr-arrow{transition:none}}
+.wind-now{display:grid;gap:.35rem}
+.wind-speed{display:flex;align-items:baseline;gap:.6rem}
+.wind-speed .num{font-size:clamp(4rem,9vw,7rem);line-height:.9;color:var(--wc)}
+.wind-speed span{font-family:var(--mono);font-size:1rem;color:var(--muted)}
+.wind-dir{font-family:var(--display);font-weight:600;font-size:1.6rem;line-height:1.1}
+.wind-gust{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.wind-level{display:flex;align-items:center;gap:.8rem;margin-top:.9rem}
+.wind-dots{display:flex;gap:.35rem}
+.wind-dots i{width:.85rem;height:.85rem;border-radius:50%;border:1px solid var(--line-2)}
+.wind-dots i.on{background:var(--wc);border-color:var(--wc)}
+.wind-level-t{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--ink-2)}
+.wind-hours{margin:0;display:grid;gap:.8rem}
+.wind-hours figcaption{font-family:var(--mono);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.wh-bars{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;height:150px;align-items:end}
+.wh-bar{display:grid;grid-template-rows:auto 1fr auto;height:100%;gap:4px;justify-items:center}
+.wh-bar b{font-weight:400;font-size:.8rem;color:var(--muted);line-height:1;display:block}
+.wh-bar i{align-self:end;width:100%;border-radius:2px;background:var(--line-2)}
+.wh-bar.wl-3 i{background:rgba(240,192,122,.55)}
+.wh-bar.wl-4 i,.wh-bar.wl-5 i{background:var(--gravel)}
+.wh-bar span{font-family:var(--mono);font-size:.72rem;color:var(--muted);height:1em}
+.wh-note{font-size:.95rem;color:var(--ink-2)}
+.wind-tip{margin-top:clamp(3rem,6vw,4.5rem);padding-top:1.6rem;border-top:1px solid var(--line);max-width:52rem;display:grid;gap:.6rem}
+.wind-tip-k{font-family:var(--mono);font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.wind-tip-t{font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.45;color:var(--ink);text-wrap:pretty}
+.wind-tip-t a{color:var(--gravel-2);text-decoration-color:var(--gravel)}
+.wind-tip-avoid{color:var(--muted);font-size:.95rem}
+.wind-tip-avoid a{color:var(--ink-2)}
+.wind-src{margin-top:2.2rem;font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+.wind-src a{color:var(--ink-2)}

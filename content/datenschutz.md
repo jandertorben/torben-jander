@@ -33,7 +33,11 @@ Diese Website verwendet **keine** Cookies, keine Tracking-Dienste (z. B. Google 
 
 Die auf dieser Website gezeigten Kilometer, Zeiten und Routen sind **ausschließlich eigene Trainingsdaten des Seitenbetreibers**. Sie werden vorab aus dem Strava-Konto des Betreibers exportiert und als statische Datei mit der Website ausgeliefert. Beim Besuch dieser Website wird **keine Verbindung zu Strava** aufgebaut und es werden keine Besucherdaten an Strava übertragen. Links zu Strava führen auf die Website von Strava, Inc.; dort gilt deren Datenschutzerklärung.
 
-## 6. Ihre Rechte
+## 6. Windanzeige (Gegenwind-Radar)
+
+Die Windanzeige auf der Startseite zeigt Wetterdaten von **Open-Meteo** (open-meteo.com). Ihr Browser fragt diese Daten **nur bei dieser Website** ab (Adresse /api/wind). Die Website holt die Daten selbst serverseitig bei Open-Meteo ab und hält sie einige Minuten zwischengespeichert. Dabei wird **keine IP-Adresse und keine sonstige Information über Besucher** an Open-Meteo übertragen. Es werden keine Cookies gesetzt.
+
+## 7. Ihre Rechte
 
 Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Wenden Sie sich dazu an: torbenjander@icloud.com
 
