@@ -1565,3 +1565,6 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .nav-main a[aria-current]::after{content:"";display:block;height:1px;background:var(--accent);margin-top:.35rem}
 .nav-links a[aria-current]{color:var(--accent)}
 @media (min-width:1000px) and (max-width:1240px){.nav-main{gap:1.6rem}.nav-main a{letter-spacing:.12em}}
+/* Sprunglinks: Überschrift landet knapp unter dem Kopf statt der Welle oben im Abschnitt */
+.sec-light[id]{scroll-margin-top:calc(6.5rem - clamp(5rem,10vw,8rem) - var(--wave))}
+.sec[id]:not(.sec-light){scroll-margin-top:1.5rem}
