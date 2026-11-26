@@ -933,3 +933,5 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 /* Marken zwischen zwei Ockerflächen: oben und unten Platz für die Schrägen, damit das Band mittig sitzt
    und von „Über mich“ nicht angeschnitten wird. Keine Trennlinien. */
 .marken{border-block:0;padding-top:calc(clamp(2.5rem,5vw,4rem) + var(--slant));padding-bottom:calc(clamp(2.5rem,5vw,4rem) + var(--slant))}
+/* Oben braucht Marken keinen Extra-Platz: die Schräge der Community liegt schon darüber */
+.marken{padding-top:clamp(1rem,2vw,2rem)}
