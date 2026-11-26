@@ -10,13 +10,13 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "reparatur.json")
-ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
+ENDPOINTS = ["https://overpass.private.coffee/api/interpreter", "https://overpass-api.de/api/interpreter",
+             "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
 
 # Land Bremen (ISO DE-HB), Bremerhaven wird unten über die Breite aussortiert; darin Stadtteile
 QUERY = """
 [out:json][timeout:60];
-area["ISO3166-2"="DE-HB"]->.land;
-node["amenity"="bicycle_repair_station"](area.land);
+node["amenity"="bicycle_repair_station"](52.98,8.48,53.24,9.00);
 out body;
 """
 # Stadtteil je Station: kleine Einzelabfrage über is_in
@@ -32,13 +32,14 @@ def fetch(q=QUERY):
     body = urllib.parse.urlencode({"data": q}).encode()
     last = None
     for ep in ENDPOINTS:
-        for _ in range(2):
+        for _ in range(1):
             try:
                 req = urllib.request.Request(ep, data=body, headers={"User-Agent": "torben-jander.me (Hugo-Seite, wöchentlich)"})
-                with urllib.request.urlopen(req, timeout=120) as r:
+                with urllib.request.urlopen(req, timeout=60) as r:
                     return json.load(r)
             except Exception as e:  # nächster Versuch/Endpunkt
                 last = e
+                print(f"{ep}: {e}")
                 time.sleep(5)
     sys.exit(f"Overpass nicht erreichbar: {last}")
 
@@ -68,8 +69,6 @@ def main():
             continue
         tg = n.get("tags", {})
         if tg.get("access") in ("private", "no", "customers"):
-            continue
-        if n["lat"] > 53.3:   # Bremerhaven gehört zum Land, aber nicht zu „rund um Bremen“
             continue
         time.sleep(1)
         out.append({
