@@ -698,3 +698,6 @@ other = "All from Strava. Nothing guessed."
 other = "Before you set off"
 [tour_wind_t]
 other = "Where is the wind coming from? The bike weather page shows wind, rain and the best time window for your ride."
+
+[tour_wind_go]
+other = "Check the bike weather"

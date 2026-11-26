@@ -1433,3 +1433,11 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ts-wind-t span{color:var(--accent-ink);transition:margin .2s}
 .ts-wind:hover .ts-wind-t span{margin-left:.3rem}
 .ts-wind:hover .ts-wind-t{color:var(--accent-ink)}
+.ts-wind .ts-k{margin:0 0 .6rem}
+.ts-wind-t{margin:0 0 1.1rem}
+.ts-wind:hover .ts-wind-t{color:inherit}
+.ts-wind-go{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.2rem;border:1px solid var(--accent-ink);border-radius:2px;color:var(--accent-ink);text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:background .2s,color .2s}
+.ts-wind-go span{transition:transform .2s}
+.ts-wind-go:hover{background:var(--accent);border-color:var(--accent);color:#1A1A18}
+.ts-wind-go:hover span{transform:translateX(3px)}
+.tour .ts-wind .ts-k{color:var(--accent-ink)}
