@@ -1052,3 +1052,137 @@ html,body,.footer{background:var(--bg-dark)}
 .sec-light .portrait{border-color:rgba(28,27,25,.15);background:var(--bg-dark)}
 .sec-light .about-copy,.sec-light .about-collab{color:#3a3732}
 .sec-light .about-collab a{color:var(--text-on-light);text-decoration-color:var(--accent)}
+
+/* ═══ Design „Magazin“: Anthrazit, Creme, Gold · Serif-Überschriften · Wellen ═══════════ */
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(/fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(/fonts/cormorant-garamond-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(/fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(/fonts/cormorant-garamond-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Allura";font-weight:400;font-display:swap;src:url(/fonts/allura-latin-400-normal.woff2) format("woff2")}
+
+:root{
+  --bg-dark:#1A1A18;--bg-light:#F4EEE3;--text-on-dark:#F4EEE3;--text-on-light:#1E1D1A;
+  --accent:#B8924F;--accent-hover:#C9A464;--accent-ink:#8A6A35;--border-subtle:rgba(184,146,79,.28);
+  --bg:var(--bg-dark);--bg-2:#201F1C;--bg-3:#252421;--ink:var(--text-on-dark);--ink-2:#d6cfc2;--muted:#a69d8e;
+  --line:rgba(184,146,79,.16);--line-2:var(--border-subtle);
+  --gravel:var(--accent);--gravel-2:var(--accent-hover);--gravel-dim:rgba(184,146,79,.16);--focus:var(--accent-hover);
+  --serif:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --hand:"Allura","Snell Roundhand",cursive;
+  --wave:clamp(48px,7vw,120px)
+}
+html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
+
+/* Überschriften: Serif, Versalien, leicht gesperrt */
+.hero-h,.sec-h,.wind-say,.pl-say,.tip-name,.partner-name,.page-head .sec-h,.legal .sec-h{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.01em}
+.hero-h{font-size:clamp(3.2rem,10vw,9rem);line-height:.92}
+.hero-l2{color:var(--accent)}
+.sec-h{font-size:clamp(2.3rem,5vw,4rem);line-height:1.02}
+.sec:not(.sec-light) .sec-h,.page-head .sec-h,.legal .sec-h,.wind-say{color:var(--text-on-dark)}
+.wind-say,.pl-say{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.05}
+.tip-name,.partner-name{font-weight:600}
+
+/* Kleine Beschriftungen: Sans, gesperrt, goldene Linie darunter */
+.eyebrow{flex-direction:column;align-items:flex-start;gap:.75rem;font-family:var(--body);font-weight:500;font-size:.8rem;letter-spacing:.18em;color:var(--ink-2)}
+.eyebrow::before{order:2;width:2.4rem;height:2px;background:var(--accent)}
+.sec-light .eyebrow{color:var(--text-on-light)}
+.more-link,.gpx-more{font-family:var(--body);font-weight:500;letter-spacing:.16em}
+.more-link a,.gpx-more a{color:var(--accent)}
+
+/* Buttons: Gold mit dunkler Schrift */
+.btn{background:var(--accent);border-color:var(--accent);color:var(--bg-dark);font-family:var(--body);font-weight:500;letter-spacing:.14em;font-size:.85rem;padding:.85rem 1.3rem}
+.btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--bg-dark)}
+.btn-ghost{background:transparent;border-color:var(--border-subtle);color:var(--ink)}
+.btn-ghost:hover{background:rgba(184,146,79,.08);border-color:var(--accent);color:var(--ink)}
+
+/* Hero: Höhenlinien als feine Textur, Koordinaten-Marke */
+.hero{background:var(--bg-dark)}
+.hero-topo{position:absolute;inset:0;z-index:-2;background:url(/img/hoehenlinien.svg) right center/cover no-repeat;opacity:.16;pointer-events:none}
+.hero-map{opacity:.75}
+.hero-coord{position:absolute;right:max(var(--pad),calc((100% - var(--wrap))/2 + 4rem));top:38%;display:grid;justify-items:center;gap:.35rem;font-family:var(--body);font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);z-index:1}
+.hero-x{font-size:2rem;line-height:1;font-weight:400}
+@media (max-width:900px){.hero-coord{display:none}}
+
+/* ─── Helle Bereiche mit Wellen statt Schrägen ─── */
+.sec-light,.sec-light + .sec-light,.sec-light:has(+ .sec-light),.sec-community,.sec-light + .sec-community,.sec-light-page,#zuletzt + .sec-gravel{clip-path:none;margin-top:0}
+.sec-light{position:relative;background:var(--bg-light);color:var(--text-on-light);
+  padding-top:calc(clamp(5rem,10vw,8rem) + var(--wave));padding-bottom:calc(clamp(5rem,10vw,8rem) + var(--wave))}
+.sec-light::before,.sec-light::after{content:"";position:absolute;left:0;right:0;height:var(--wave);pointer-events:none;background-repeat:no-repeat;background-size:100% 100%}
+/* oben: Dunkel läuft rechts tiefer in die Fläche (wie im Entwurf) */
+.sec-light::before{top:-1px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V120C1000 118 520 92 0 0Z' fill='%231A1A18'/%3E%3C/svg%3E")}
+/* unten: Dunkel steigt links weiter in die Fläche */
+.sec-light::after{bottom:-1px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 0C520 20 1000 70 1440 120H0Z' fill='%231A1A18'/%3E%3C/svg%3E")}
+.sec-light>.wrap{position:relative;z-index:1}
+/* Community endet gerade im dunklen Balken; Ausrüstung beginnt gerade unter der Leiste */
+.sec-community{padding-bottom:0}
+.sec-community::after{display:none}
+.sec-light-page{padding-top:clamp(3rem,6vw,5rem)}
+.sec-light-page::before{display:none}
+.marken{padding-top:clamp(2.5rem,5vw,4rem);padding-bottom:clamp(3rem,6vw,5rem)}
+.sec-community + .marken{padding-top:clamp(.5rem,1.5vw,1.5rem)}
+
+/* Text- und Datenfarben auf Hell */
+.sec-light .sec-h{color:var(--text-on-light)}
+.sec-light .lead,.sec-light p,.sec-light .about-copy,.sec-light .community-copy p{color:#45413a}
+.sec-light .num,.sec-light .led-ride .num,.sec-light .mini-ledger .num{color:var(--accent-ink)}
+.sec-light .led .num{color:var(--text-on-light)}
+.sec-light .led-ride .num{color:var(--accent-ink)}
+.sec-light .led-run .num{color:#2f7f6f}
+.sec-light .cd-ride.cd-l1 rect{fill:rgba(184,146,79,.42)}
+.sec-light .cd-ride.cd-l2 rect{fill:#B8924F}
+.sec-light .cd-ride.cd-l3 rect{fill:#8A6A35}
+.sec-light .cal-l1{background:rgba(184,146,79,.42)}.sec-light .cal-l2{background:#B8924F}.sec-light .cal-l3{background:#8A6A35}
+.sec-light .more-link a,.sec-light .gpx-more a,.sec-light .gpx-name:hover{color:var(--accent-ink)}
+.sec-light .partner{background:var(--bg-dark)}
+.sec-light .partner p,.sec-light .partner-claim{color:var(--ink-2)}
+
+/* „Flach hilft weit.“ */
+.hand{display:inline-block;margin-top:.9rem;font-family:var(--hand);font-size:clamp(1.9rem,3vw,2.5rem);line-height:1;color:var(--accent-ink);transform:rotate(-4deg);transform-origin:left;position:relative;padding-bottom:.35rem}
+.hand::after{content:"";position:absolute;left:.2em;right:-.3em;bottom:0;height:2px;border-radius:2px;background:var(--accent);transform:rotate(-1.5deg)}
+.sec:not(.sec-light) .hand{color:var(--accent)}
+.led .hand{font-family:var(--hand);font-size:clamp(1.9rem,3vw,2.5rem);justify-self:start;color:var(--accent-ink)}
+.sec:not(.sec-light) .led .hand{color:var(--accent)}
+.sec-h,.wind-say,.pl-say,.hero-h{overflow-wrap:break-word;hyphens:auto}
+@media (max-width:560px){.sec-h{font-size:clamp(1.75rem,8vw,2.4rem)}.wind-say,.pl-say{font-size:clamp(1.6rem,7vw,2.2rem)}}
+
+/* ─── Kopf nach Entwurf: Rad-Marke, BREMEN / IST FLACH, Navigation als Textzeile ─── */
+.nav,.nav.on{background:linear-gradient(to bottom,rgba(26,26,24,.85),rgba(26,26,24,0));border-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav::after{display:none}
+.nav.on{background:rgba(26,26,24,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav-in{height:5rem}
+.brand{gap:.8rem;color:var(--accent);text-shadow:none}
+.brand-wheel{width:2.4rem;height:2.4rem;color:var(--accent)}
+.brand-text{gap:.25rem}
+.brand-main{font-family:var(--serif);font-weight:500;font-size:1.55rem;letter-spacing:.2em;line-height:1;color:var(--accent);text-transform:uppercase}
+.brand-sub{font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.brand:hover .brand-main{color:var(--accent-hover)}
+.nav-main{display:none}
+@media (min-width:1000px){
+  .nav-main{display:flex;gap:2.6rem;margin-left:auto}
+  .nav-main a{font-family:var(--body);font-weight:500;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:.3rem 0;border-bottom:1px solid transparent;text-shadow:none}
+  .nav-main a:hover{color:var(--accent);border-color:var(--accent)}
+  .js .burger,.nav-links{display:none!important}
+  .js .lang{margin-left:2.6rem}
+  .lang{border:0;padding:.3rem 0;font-family:var(--body);font-weight:500;letter-spacing:.18em;color:var(--ink-2);text-shadow:none}
+  .lang:hover{color:var(--accent)}
+}
+
+/* ─── Hero nach Entwurf ─── */
+.hero-map{display:none}
+.hero-topo{opacity:.28;background-position:right center}
+.hero{min-height:min(88svh,900px);align-content:center;padding-top:7rem;padding-bottom:4rem}
+.hero-mag{gap:0}
+.hero-mag .hero-h{display:grid;font-size:clamp(3.6rem,10.5vw,9.5rem);line-height:.9;letter-spacing:.005em;color:var(--text-on-dark)}
+.hero-mag .hero-l2,.hero-mag .hero-l{color:var(--text-on-dark)}
+.hero-tag{margin-top:1.6rem;font-family:var(--body);font-weight:500;font-size:clamp(1rem,1.6vw,1.25rem);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:grid;gap:1.1rem}
+.hero-tag::after{content:"";width:3rem;height:2px;background:var(--accent)}
+.hero-text{margin-top:2rem;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.6;color:var(--ink)}
+.hero-link{margin-top:2.2rem;display:inline-flex;gap:.9rem;align-items:center;font-family:var(--body);font-weight:500;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+.hero-link span{font-size:1.2rem;transition:transform .25s var(--ease)}
+.hero-link:hover{color:var(--accent-hover)}
+.hero-link:hover span{transform:translate(3px,-3px)}
+.hero-coord{top:42%}
+@media (prefers-reduced-motion:no-preference){
+  .js .hero-tag,.js .hero-text,.js .hero-link{opacity:0;animation:fade 1s var(--ease) forwards}
+  .js .hero-tag{animation-delay:.4s}.js .hero-text{animation-delay:.6s}.js .hero-link{animation-delay:.8s}
+}
+.hero-topo{-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%)}

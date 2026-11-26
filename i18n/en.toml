@@ -625,3 +625,22 @@ other = "dry"
 other = "rain from %s:00"
 [wb_day_level]
 other = "Headwind level %d of 5"
+
+[hand_flat]
+other = "Flat goes far."
+
+# Hero after the "magazine" design
+[hero_mag_l1]
+other = "Bremen"
+[hero_mag_l2]
+other = "ist flach"
+[hero_mag_tag]
+other = "Gravel. Further. Closer."
+[hero_mag_text1]
+other = "Gravel bike rides from Bremen."
+[hero_mag_text2]
+other = "Flat land, fine tracks, plenty of freedom."
+[hero_mag_link]
+other = "Explore the rides"
+[nav_brand_sub]
+other = "ist flach"

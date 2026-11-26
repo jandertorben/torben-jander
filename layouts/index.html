@@ -4,6 +4,8 @@
 {{- $y := int $t.year }}
 
 <section class="hero" aria-labelledby="hero-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <p class="hero-coord" aria-hidden="true"><span class="hero-x">×</span><span>Bremen</span><span>53.0793° N</span></p>
   <div class="hero-map" aria-hidden="true">
     <svg viewBox="0 0 {{ $d.map.width }} {{ $d.map.height }}" preserveAspectRatio="xMidYMid slice">
       {{- range $i, $p := $d.map.paths }}
@@ -11,15 +13,11 @@
       {{- end }}
     </svg>
   </div>
-  <div class="wrap hero-in">
-    <p class="eyebrow eyebrow-hero">{{ T "hero_eyebrow" }}</p>
-    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_line1" }}</span></span><span class="hero-l hero-l2"><span>{{ T "hero_line2" }}</span></span></h1>
-    <p class="hero-sub">{{ printf (T "hero_sub") (lang.FormatNumber 0 $t.all.km) $y (lang.FormatNumber 0 $t.all.elevation) }}</p>
-    <div class="hero-actions">
-      <a class="btn" href="#zahlen">{{ T "hero_cta" }} <span aria-hidden="true">↓</span></a>
-      <a class="btn btn-ghost" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">Strava</a>
-    </div>
-    <p class="hero-cap">{{ T "hero_map_caption" }}</p>
+  <div class="wrap hero-in hero-mag">
+    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_mag_l1" }}</span></span><span class="hero-l"><span>{{ T "hero_mag_l2" }}</span></span></h1>
+    <p class="hero-tag">{{ T "hero_mag_tag" }}</p>
+    <p class="hero-text">{{ T "hero_mag_text1" }}<br>{{ T "hero_mag_text2" }}</p>
+    {{- with site.GetPage "/touren" }}<a class="hero-link" href="{{ .RelPermalink }}">{{ T "hero_mag_link" }} <span aria-hidden="true">↗</span></a>{{ end }}
   </div>
 </section>
 
@@ -33,7 +31,7 @@
     <div class="ledger ledger-calm reveal">
       <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
       <div class="led led-run"><strong class="num" data-count="{{ $t.run.km }}">{{ lang.FormatNumber 0 $t.run.km }}</strong><span>{{ T "stat_run_km" }}</span></div>
-      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small></div>
+      <div class="led"><strong class="num" data-count="{{ $t.all.elevation }}">{{ lang.FormatNumber 0 $t.all.elevation }}</strong><span>{{ T "stat_elev" }}</span><small>{{ printf (T "stat_elev_note") (lang.FormatNumber 1 (div (float $t.all.elevation) (float $t.all.km))) }}</small><span class="hand" aria-hidden="true">{{ T "hand_flat" }}</span></div>
     </div>
 
     {{ partial "calendar.html" . }}
