@@ -1,0 +1,5 @@
+{{- /* Titelbild eines Journal-Beitrags: Datei im Beitragsordner, Name in "cover" (sonst cover.*) */ -}}
+{{- $c := false }}
+{{- with .Params.cover }}{{ $c = $.Resources.Get . }}{{ end }}
+{{- if not $c }}{{ $c = .Resources.GetMatch "cover.*" }}{{ end }}
+{{- return $c }}

@@ -7,6 +7,7 @@
     <nav class="nav-main" aria-label="Main">
       <a href="{{ $home }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ T "nav_home" }}</a>
       {{- with site.GetPage "/touren" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ else if eq $.Section "touren" }} aria-current="page"{{ end }}>{{ T "nav_tours" }}</a>{{ end }}
+      {{- with site.GetPage "/journal" }}{{ if .RegularPages }}<a href="{{ .RelPermalink }}"{{ if eq $.Section "journal" }} aria-current="page"{{ end }}>{{ T "nav_journal" }}</a>{{ end }}{{ end }}
       {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_weather" }}</a>{{ end }}
       {{ with site.GetPage "/unterwegs" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_road" }}</a>{{ end }}
       {{ with site.GetPage "/ausruestung" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_gear" }}</a>{{ end }}
@@ -15,6 +16,7 @@
     <nav class="nav-links" id="menu" aria-label="Sections">
       <a href="{{ $home }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ T "nav_home" }}</a>
       {{ with site.GetPage "/touren" }}<a href="{{ .RelPermalink }}"{{ if eq $.Section "touren" }} aria-current="page"{{ end }}>{{ T "nav_tours" }}</a>{{ end }}
+      {{- with site.GetPage "/journal" }}{{ if .RegularPages }}<a href="{{ .RelPermalink }}"{{ if eq $.Section "journal" }} aria-current="page"{{ end }}>{{ T "nav_journal" }}</a>{{ end }}{{ end }}
       {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_weather" }}</a>{{ end }}
       {{ with site.GetPage "/unterwegs" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_road" }}</a>{{ end }}
       {{ with site.GetPage "/ausruestung" }}<a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ T "nav_gear" }}</a>{{ end }}

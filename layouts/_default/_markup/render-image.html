@@ -1,0 +1,9 @@
+{{- /* Bilder im Text: liegen sie im Beitragsordner, werden sie verkleinert und als WebP ausgeliefert. Titel = Bildunterschrift. */ -}}
+{{- $r := .Page.Resources.Get .Destination }}
+<figure class="post-fig">
+{{- if $r }}{{ $a := $r.Process "resize 900x webp q80" }}{{ $b := $r.Process "resize 1500x webp q80" }}
+<img src="{{ $a.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1500w" sizes="(max-width:800px) 100vw, 760px" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="{{ .Text }}" loading="lazy" decoding="async">
+{{- else }}<img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" decoding="async">{{ end }}
+{{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- /**/ -}}

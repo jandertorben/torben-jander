@@ -2,15 +2,31 @@
 {{- $tour := false }}
 {{- with site.GetPage "/touren" }}{{ range .Pages.ByDate.Reverse }}{{ if and (not $tour) .Params.photo (ne .Params.photo_kind "plakat") }}{{ $tour = . }}{{ end }}{{ end }}{{ end }}
 {{- $gear := site.GetPage "/ausruestung" }}
+{{- $posts := slice }}{{ with site.GetPage "/journal" }}{{ $posts = first 2 .RegularPages.ByDate.Reverse }}{{ end }}
+{{- $jp := site.GetPage "/journal" }}
 <section class="sec journal" id="journal" aria-labelledby="journal-h">
   <div class="wrap journal-grid">
     <div class="journal-text">
       <p class="eyebrow">{{ T "journal_eyebrow" }}</p>
       <h2 id="journal-h" class="sec-h reveal">{{ T "journal_title1" }}<br>{{ T "journal_title2" }}</h2>
       <p class="lead reveal">{{ T "journal_text" }}</p>
-      {{- with site.GetPage "/touren" }}<a class="road-more journal-all" href="{{ .RelPermalink }}">{{ T "journal_all" }} <span aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}
+      {{- if $posts }}<a class="road-more journal-all" href="{{ $jp.RelPermalink }}">{{ T "journal_all_posts" }} <span aria-hidden="true">↗&#xFE0E;</span></a>
+      {{- else }}{{ with site.GetPage "/touren" }}<a class="road-more journal-all" href="{{ .RelPermalink }}">{{ T "journal_all" }} <span aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}{{ end }}
     </div>
     <div class="journal-cards">
+      {{- range $posts }}
+      {{- $img := false }}{{ with partial "journal-cover.html" . }}{{ $img = .Process "fill 720x720 Center webp q78" }}{{ end }}
+      <a class="jcard reveal" href="{{ .RelPermalink }}">
+        {{- with $img }}<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy" decoding="async">{{ end }}
+        <span class="jcard-body">
+          <span class="jcard-k">{{ .Params.kategorie | default (T "journal_eyebrow") }}</span>
+          <span class="jcard-t">{{ .Title }}</span>
+          {{- with .Params.summary }}<span class="jcard-s">{{ . }}</span>{{ end }}
+          <span class="jcard-a" aria-hidden="true">→</span>
+        </span>
+      </a>
+      {{- end }}
+      {{- if lt (len $posts) 2 }}
       {{- with $tour }}
       {{- $img := false }}{{ with resources.Get (printf "img/touren/%s" .Params.photo) }}{{ $img = .Process "fill 720x720 Center webp q78" }}{{ end }}
       <a class="jcard reveal" href="{{ .RelPermalink }}">
@@ -23,6 +39,8 @@
         </span>
       </a>
       {{- end }}
+      {{- end }}
+      {{- if eq (len $posts) 0 }}
       {{- with $gear }}
       {{- $img := false }}{{ with resources.Get "img/storck-grix-2-foto.jpg" }}{{ $img = .Process "fill 720x720 Center webp q78" }}{{ end }}
       <a class="jcard reveal" href="{{ .RelPermalink }}">
@@ -34,6 +52,7 @@
           <span class="jcard-a" aria-hidden="true">→</span>
         </span>
       </a>
+      {{- end }}
       {{- end }}
     </div>
   </div>

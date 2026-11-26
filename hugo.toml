@@ -51,6 +51,8 @@ timeZone               = "Europe/Berlin"
 
 [markup.goldmark.renderer]
   unsafe = true
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
 
 [minify]
   minifyOutput = true
