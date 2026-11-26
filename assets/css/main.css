@@ -1403,7 +1403,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 /* ===== Fahrradwetter & Zahlen im Magazin-Stil ===== */
 .hero-page + .wind-full{padding-top:1rem}
 /* helle Abschnitte mit Inhalten aus dem dunklen Design: Variablen umstellen */
-.planer.sec-light,.zahlen-main{
+.planer.sec-light,.zahlen-main,.wind-full.sec-light{
   --ink:#1c1b19;--ink-2:rgba(28,27,25,.82);--muted:rgba(28,27,25,.58);
   --line:rgba(28,27,25,.14);--line-2:rgba(28,27,25,.24);--border-subtle:rgba(28,27,25,.14);
   --bg-2:rgba(28,27,25,.04);--bg-3:rgba(28,27,25,.035);--text-on-dark:#1c1b19;
@@ -1544,3 +1544,19 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .tours-help .btn{margin-top:.5rem}
 .ts-road{display:inline-block;margin:.9rem 0 0 0;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);text-decoration:none}
 .ts-wind .ts-road{display:block}
+/* Fahrradwetter: Live-Wind hell, Planer dunkel */
+.wind-full.sec-light .wind-say,.wind-full.sec-light .wind-v{color:var(--text-on-light)}
+.wind-full.sec-light .wr-hub{fill:var(--bg-light)}
+.wind-full.sec-light .wind-dots i{border-color:rgba(28,27,25,.35)}
+.wind-full.sec-light .wind-dots i.on{background:var(--accent-ink);border-color:var(--accent-ink)}
+.wind-full.sec-light .tip-card{background:rgba(28,27,25,.035);border-color:rgba(28,27,25,.12)}
+.wind-full.sec-light .tip-card *{color:inherit}
+.wind-full.sec-light .tip-card .tip-meta{color:var(--accent-ink)}
+.wind-full.sec-light .tip-card .btn:not(.btn-ghost){color:#1A1A18}
+.wind-full.sec-light .wind-src a{color:var(--accent-ink)}
+.wind-full.sec-light .wr-live{border-color:var(--accent-ink);color:var(--accent-ink)}
+.wind-full.sec-light .wr-live[aria-pressed="true"]{background:var(--accent);color:#1A1A18}
+.hero-page + .wind-full.sec-light{padding-top:calc(clamp(3rem,6vw,5rem) + var(--wave))}
+.wind-full.sec-light .wh-bar i{background:rgba(184,146,79,.55)}
+.wind-full.sec-light .wr-ring{stroke-opacity:.7}
+.wind-full.sec-light .wr-tick{stroke-opacity:.55}

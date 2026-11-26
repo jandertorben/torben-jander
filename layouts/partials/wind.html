@@ -56,7 +56,7 @@
   "toursAll" (T "tip_all_tours")
   "toursUrl" (cond (ne (site.GetPage "/touren") nil) (site.GetPage "/touren").RelPermalink "")
 }}
-<section class="sec wind{{ if $full }} wind-full{{ end }}" id="wind" aria-labelledby="wind-h" hidden>
+<section class="sec wind{{ if $full }} wind-full sec-light{{ end }}" id="wind" aria-labelledby="wind-h" hidden>
   <script type="application/json" id="wind-cfg">{{ $cfg | jsonify | safeJS }}</script>
   <canvas class="wind-anim" aria-hidden="true"></canvas>
   <div class="wrap">
