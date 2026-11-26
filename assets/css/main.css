@@ -1426,3 +1426,10 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .tour-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0 0 2rem}
 .tour-gallery figure{margin:0}
 .tour-gallery img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
+/* Tour: Hinweis aufs Fahrradwetter */
+.ts-wind{display:block;text-decoration:none;color:var(--text-on-light);border-top:1px solid rgba(28,27,25,.14);padding-top:1.2rem}
+.ts-wind .ts-k{display:block}
+.ts-wind-t{display:block;font-size:.95rem;line-height:1.6}
+.ts-wind-t span{color:var(--accent-ink);transition:margin .2s}
+.ts-wind:hover .ts-wind-t span{margin-left:.3rem}
+.ts-wind:hover .ts-wind-t{color:var(--accent-ink)}

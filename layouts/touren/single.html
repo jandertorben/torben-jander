@@ -78,6 +78,9 @@
       </div>
       <aside class="tour-side">
         {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
+        {{- with site.GetPage "/wetter" }}
+        <a class="ts-wind" href="{{ .RelPermalink }}#planer"><span class="ts-k">{{ T "tour_wind_k" }}</span><span class="ts-wind-t">{{ T "tour_wind_t" }} <span aria-hidden="true">→</span></span></a>
+        {{- end }}
         {{- with $t.flat }}
         <figure class="ts-prof">
           <figcaption class="ts-k">{{ T "tour_profile_k" }} <span class="mono">0–{{ .ymax }} m</span></figcaption>
