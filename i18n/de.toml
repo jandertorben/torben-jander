@@ -465,3 +465,75 @@ other = "Wetterdaten:"
 
 [nav_wind]
 other = "Gegenwind"
+
+# Fahrradwetter (Startseite kompakt, Seite /wetter/)
+[wx_more]
+other = "Alles zum Fahrradwetter"
+[wx_rain_now]
+other = "Es regnet gerade."
+[wx_rain_from]
+other = "Ab %s Uhr wird’s nass."
+[wx_rain_dry_from]
+other = "Nass, aber ab %s Uhr trocken."
+[wx_rain_dry]
+other = "Die nächsten 12 Stunden trocken."
+[wx_rain_stays]
+other = "Nass, und das bleibt erst mal so."
+[wx_wear_1]
+other = "Winterjacke, lange Hose, dicke Handschuhe, Mütze unterm Helm. Ehrlich jetzt."
+[wx_wear_2]
+other = "Lange Hose, warme Jacke, lange Handschuhe."
+[wx_wear_3]
+other = "Lange Hose oder Knielinge, Windjacke, dünne Handschuhe."
+[wx_wear_4]
+other = "Armlinge und Weste reichen."
+[wx_wear_5]
+other = "Kurz, die Weste in die Trikottasche."
+[wx_wear_6]
+other = "Kurz. Und Sonnencreme, auch in Bremen."
+[wx_wear_s1]
+other = "Anziehen: alles, was du hast."
+[wx_wear_s2]
+other = "Anziehen: lang und warm."
+[wx_wear_s3]
+other = "Anziehen: lang, mit Windjacke."
+[wx_wear_s4]
+other = "Anziehen: Armlinge und Weste."
+[wx_wear_s5]
+other = "Anziehen: kurz, Weste dabei."
+[wx_wear_s6]
+other = "Anziehen: kurz."
+[wx_wear_rain]
+other = "Regenjacke einpacken."
+[wx_wear_shoes]
+other = "Überschuhe. Nasse kalte Füße sind das Schlimmste."
+[wx_wear_wind]
+other = "Windweste, der Wind kühlt mehr, als das Thermometer sagt."
+[wx_wear_k]
+other = "Was ziehe ich an?"
+[wx_rain_k]
+other = "Regen"
+[wx_rain_note]
+other = "Balken: Regenwahrscheinlichkeit der nächsten 12 Stunden."
+[wx_temp_k]
+other = "Temperatur"
+[wx_feels]
+other = "Gefühlt %d °C"
+[wx_temp_range]
+other = "Nächste 12 Stunden: %d bis %d °C"
+[wx_light_k]
+other = "Licht"
+[wx_light_before]
+other = "Sonnenuntergang %s Uhr. Ab da Licht an."
+[wx_light_after]
+other = "Dunkel. Licht an. Sonnenaufgang morgen %s Uhr."
+[wx_light_morning]
+other = "Noch dunkel. Sonnenaufgang %s Uhr."
+[wx_light_note]
+other = "Licht schon in der Dämmerung einschalten, nicht erst, wenn es ganz dunkel ist."
+[wx_page_lead]
+other = "Wind, Regen, Temperatur und Licht für Bremen. Dazu, was du anziehst und welche Runde heute passt. Alle paar Minuten neu."
+[nav_weather]
+other = "Fahrradwetter"
+[wx_eyebrow]
+other = "Bremen · live"

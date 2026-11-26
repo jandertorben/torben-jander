@@ -6,7 +6,7 @@
       <span class="brand-text"><span class="brand-main">{{ .Site.Params.marke }}</span><span class="brand-sub">{{ .Site.Params.name }}</span></span>
     </a>
     <nav class="nav-links" id="menu" aria-label="Sections">
-      <a href="{{ $home }}#wind">{{ T "nav_wind" }}</a>
+      {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}">{{ T "nav_weather" }}</a>{{ end }}
       <a href="{{ $home }}#zahlen">{{ T "nav_numbers" }}</a>
       <a href="{{ $home }}#zuletzt">{{ T "nav_recent" }}</a>
       <a href="{{ $home }}#gravel">{{ T "nav_gravel" }}</a>
