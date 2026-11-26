@@ -714,6 +714,28 @@ other = "Dein Handy oder Browser liefert leider keine Kompassdaten. Der Kompass 
 [wr_live_denied]
 other = "Ohne Zugriff auf den Bewegungssensor kann sich der Kompass nicht ausrichten. Erlauben lässt sich das beim nächsten Antippen."
 
+[repair_eyebrow]
+other = "Platten? Kette trocken?"
+[repair_title]
+other = "Luft und Werkzeug für alle."
+[repair_lead]
+other = "%d öffentliche Reparaturstationen mit Luftpumpe oder Werkzeug in Bremen und drumherum, frei zugänglich und kostenlos. Sortiert nach dem nächsten Ortsteil."
+[repair_pump]
+other = "Pumpe"
+[repair_tools]
+other = "Werkzeug"
+[repair_stand]
+other = "Montageständer"
+[repair_unknown]
+other = "Ausstattung unbekannt"
+[repair_247]
+other = "rund um die Uhr"
+[repair_unknown_place]
+other = "Ohne Ortsangabe"
+[repair_map]
+other = "Auf der Karte"
+[repair_src]
+other = "Daten: <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">© OpenStreetMap-Mitwirkende</a>, ODbL. Wöchentlich aktualisiert, zuletzt am %s. Fehlt eine Station oder ist sie weg? In OpenStreetMap eintragen hilft allen."
 [ferry_eyebrow]
 other = "Über die Weser"
 [ferry_title]

@@ -714,6 +714,28 @@ other = "Your phone or browser does not provide compass data. The compass keeps 
 [wr_live_denied]
 other = "Without access to the motion sensor the compass cannot align. You can allow it next time you tap."
 
+[repair_eyebrow]
+other = "Flat tyre? Dry chain?"
+[repair_title]
+other = "Air and tools for everyone."
+[repair_lead]
+other = "%d public repair stations with a pump or tools in and around Bremen, open to everyone and free. Sorted by the nearest district."
+[repair_pump]
+other = "Pump"
+[repair_tools]
+other = "Tools"
+[repair_stand]
+other = "Work stand"
+[repair_unknown]
+other = "Equipment unknown"
+[repair_247]
+other = "24/7"
+[repair_unknown_place]
+other = "No place name"
+[repair_map]
+other = "On the map"
+[repair_src]
+other = "Data: <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">© OpenStreetMap contributors</a>, ODbL. Updated weekly, last on %s. Missing or gone? Fixing it in OpenStreetMap helps everyone."
 [ferry_eyebrow]
 other = "Across the Weser"
 [ferry_title]
