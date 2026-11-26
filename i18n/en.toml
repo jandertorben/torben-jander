@@ -601,3 +601,13 @@ other = "Proper wind. Bremen's version of hills."
 other = "The dyke will feel long."
 [pl_l5]
 other = "The wind rides. You are just along for it."
+
+# Ride tip card
+[tip_gpx]
+other = "Download GPX"
+[tip_open]
+other = "View ride"
+[tip_why_good]
+other = "Heads out into the wind. It pushes you home."
+[tip_why_meh]
+other = "No loop really heads into the wind. This one fits best."

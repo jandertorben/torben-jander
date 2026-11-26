@@ -201,10 +201,10 @@
       // Tour-Tipp
       var tipEl = $('.pl-tip'), tipBox = $('.pl-tip-b');
       var ranked = s.dir !== null ? W.rankTours(wc.tours || [], s.dir) : [];
-      if (ranked.length) {
+      if (ranked.length && W.tipCard) {
         tipBox.hidden = false;
-        if (lv <= 1) tipEl.textContent = wc.tipNone;
-        else linkInto(tipEl, ranked[0].fit >= 0.5 ? wc.tipGood : wc.tipMeh, ranked[0].t, ranked[0].t.km);
+        if (lv <= 1) W.tipCard(tipEl, null, wc.tipNone, wc);
+        else W.tipCard(tipEl, ranked[0].t, ranked[0].fit >= 0.5 ? wc.tipWhyGood : wc.tipWhyMeh, wc);
       } else tipBox.hidden = true;
     }
 

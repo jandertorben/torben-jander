@@ -111,6 +111,36 @@
 
   /* ── Darstellung ──────────────────────────────────────────────────────────── */
 
+  // Tour-Tipp als Karte: kleine Route, Name groß, Begründung, GPX und Link zur Tour
+  function tipCard(el, tour, why, c) {
+    el.textContent = '';
+    if (!tour) { var p0 = document.createElement('p'); p0.className = 'tip-why'; p0.textContent = why; el.appendChild(p0); el.classList.add('is-plain'); return; }
+    el.classList.remove('is-plain');
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '-40 -40 ' + ((tour.w || 1000) + 80) + ' ' + ((tour.h || 610) + 80));
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('class', 'tip-route');
+    var path = document.createElementNS(NS, 'path'); path.setAttribute('d', tour.d); svg.appendChild(path);
+    var body = document.createElement('div'); body.className = 'tip-body';
+    var h = document.createElement('h3'); h.className = 'tip-name';
+    var a = document.createElement('a'); a.href = tour.url; a.textContent = tour.title;
+    if (/^https?:/.test(tour.url)) { a.target = '_blank'; a.rel = 'noopener'; }
+    h.appendChild(a);
+    var meta = document.createElement('p'); meta.className = 'tip-meta'; meta.textContent = tour.km + ' km';
+    var w = document.createElement('p'); w.className = 'tip-why'; w.textContent = why;
+    var act = document.createElement('div'); act.className = 'tip-actions';
+    if (tour.id) {
+      var g = document.createElement('a'); g.className = 'btn'; g.href = '/gpx/' + tour.id + '.gpx';
+      g.setAttribute('download', 'torben-jander-' + tour.id + '.gpx'); g.textContent = '↓ ' + c.tipGpx; act.appendChild(g);
+    }
+    var o = document.createElement('a'); o.className = 'btn btn-ghost'; o.href = tour.url; o.textContent = c.tipOpen;
+    if (/^https?:/.test(tour.url)) { o.target = '_blank'; o.rel = 'noopener'; }
+    act.appendChild(o);
+    body.appendChild(h); body.appendChild(meta); body.appendChild(w); body.appendChild(act);
+    el.appendChild(svg); el.appendChild(body);
+  }
+  global.TJWind.tipCard = tipCard;
+
   var sec = document.getElementById('wind');
   var cfgEl = document.getElementById('wind-cfg');
   if (!sec || !cfgEl || !global.fetch) return;
@@ -246,12 +276,11 @@
     if (tip) {
       var ranked = rankTours(cfg.tours || [], w.dir);
       if (ranked.length) {
-        var t = $('.wind-tip-t'), av = $('.wind-tip-avoid');
+        var card = $('.tip-card'), av = $('.wind-tip-avoid');
         av.textContent = '';
-        if (lv <= 1) {
-          t.textContent = cfg.tipNone;
-        } else {
-          linkInto(t, ranked[0].fit >= 0.5 ? cfg.tipGood : cfg.tipMeh, ranked[0].t, ranked[0].t.km);
+        if (lv <= 1) tipCard(card, null, cfg.tipNone, cfg);
+        else {
+          tipCard(card, ranked[0].t, ranked[0].fit >= 0.5 ? cfg.tipWhyGood : cfg.tipWhyMeh, cfg);
           var worst = ranked[ranked.length - 1];
           if (ranked.length > 1 && worst.fit <= -0.5 && worst.t.url !== ranked[0].t.url) linkInto(av, cfg.avoid, worst.t);
         }
