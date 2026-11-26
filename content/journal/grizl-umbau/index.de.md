@@ -3,13 +3,13 @@ title: "Das Grizl, angepasst"
 date: 2026-11-26T12:00:00+01:00
 kategorie: "Umbau"
 summary: "Kürzerer Vorbau, schmalerer Lenker, schnellere Reifen, neuer Sattel. Vier Änderungen am Pendelrad."
-cover_alt: "Canyon Grizl, freigestellt"
+cover_alt: "Weißes Canyon Grizl mit Rahmentasche und Schutzblechen, an eine Schutzhütte im herbstlichen Wald gelehnt"
 fakten_titel: "Was sich geändert hat"
 fakten:
   - {k: "Rad", v: "Canyon Grizl 5, Aluminium, Größe XL, Shimano CUES"}
   - {k: "Vorbau", v: "90 mm → 70 mm"}
   - {k: "Lenker", v: "460 mm → 420 mm"}
-  - {k: "Reifen", v: "Serienreifen → Continental Terra Competition, 45 mm, tubeless"}
+  - {k: "Reifen", v: "Schwalbe G-One → Continental Terra Competition, 45 mm, tubeless"}
   - {k: "Sattel", v: "Selle Italia Novus"}
 ---
 Das Grizl ist mein Alltagsrad. Fast jeden Tag zur Arbeit und zurück, knapp 20 Kilometer, mit Packtasche. Ein Rad, das so oft fährt, muss nicht schön sein. Es muss passen. So wie es aus dem Karton kam, hat es das nicht ganz. Deshalb habe ich an vier Stellen nachgelegt.
@@ -18,11 +18,11 @@ Das Grizl ist mein Alltagsrad. Fast jeden Tag zur Arbeit und zurück, knapp 20 K
 
 Als Erstes kam der Lenker. Ab Werk waren 460 Millimeter verbaut, jetzt sind es 420. Danach der Vorbau: von 90 auf 70 Millimeter.
 
-Beides zusammen holt den Lenker ein Stück näher an den Körper. Man sitzt etwas aufrechter, die Arme sind weniger gestreckt, und die Hände liegen eher dort, wo die Schultern sind. Gerade auf dem Weg zur Arbeit, wo man oft an der Ampel steht und viel um sich schaut, ist das angenehm. Ein schmalerer Lenker passt außerdem leichter zwischen Pollern und Radwegbügeln durch.
+Der Grund war ganz unromantisch: Schmerzen in der linken Hand und in der linken Schulter. Beides zusammen holt den Lenker ein Stück näher an den Körper, und die Hände liegen eher dort, wo die Schultern sind. Weniger Strecken, weniger Druck auf Hand und Schulter. So jedenfalls die Idee.
 
 ## Reifen: Terra Competition, tubeless
 
-Die Serienreifen sind runter, drauf sind jetzt Continental Terra Competition in 45 Millimetern, tubeless. Conti hat den Reifen im Februar 2026 vorgestellt und bezeichnet ihn als den schnellsten Gravelreifen der Terra-Reihe. Er ist für Asphalt und festen Schotter gedacht, also genau für den Mix, den man in Bremen zwischen Haustür und Werkstor hat.
+Die Schwalbe G-One sind runter, drauf sind jetzt Continental Terra Competition in 45 Millimetern, tubeless. Conti hat den Reifen im Februar 2026 vorgestellt und bezeichnet ihn als den schnellsten Gravelreifen der Terra-Reihe. Er ist für Asphalt und festen Schotter gedacht, also genau für den Mix, den man in Bremen zwischen Haustür und Werkstor hat.
 
 Tubeless heißt: kein Schlauch, dafür Dichtmilch im Reifen. Kleine Löcher dichten sich meist selbst ab, und man kann mit etwas weniger Luftdruck fahren. Auf Kopfsteinpflaster merkt man das.
 
