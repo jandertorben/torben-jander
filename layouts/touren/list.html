@@ -45,4 +45,28 @@
     <p class="tour-privacy">{{ T "gpx_note" }}</p>
   </div>
 </section>
+{{- with .Site.Data.faehren }}
+{{- $en := eq site.Language.Lang "en" }}
+<section class="sec ferries" id="faehren" aria-labelledby="ferries-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "ferry_eyebrow" }}</p>
+    <h2 id="ferries-h" class="sec-h reveal">{{ T "ferry_title" }}</h2>
+    <p class="lead reveal">{{ T "ferry_lead" }}</p>
+    <ul class="ferry-list">
+      {{- range .items }}
+      <li class="ferry reveal">
+        <div class="ferry-head">
+          <h3 class="ferry-name">{{ .name }}</h3>
+          <span class="ferry-season{{ if .ganzjaehrig }} is-year{{ end }}">{{ cond $en .saison_en .saison_de }}</span>
+        </div>
+        <p class="ferry-route mono">{{ .von }} <span aria-hidden="true">⇄</span><span class="sr"> – </span> {{ .nach }}</p>
+        <p class="ferry-note">{{ cond $en .note_en .note_de }}</p>
+        <a class="ferry-link" href="{{ .link }}" target="_blank" rel="noopener">{{ printf (T "ferry_times") .betreiber }} <span aria-hidden="true">↗︎</span></a>
+      </li>
+      {{- end }}
+    </ul>
+    <p class="ferry-stand mono">{{ printf (T "ferry_stand") (cond $en .stand_en .stand) }}</p>
+  </div>
+</section>
+{{- end }}
 {{ end }}
