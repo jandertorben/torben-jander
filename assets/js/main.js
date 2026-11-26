@@ -260,3 +260,45 @@
     });
   }, 2000);
 })();
+
+/* Navigation: Strich wandert mit. Auf der Startseite markieren Sprunglinks (z. B. „Über mich“)
+   ihren Abschnitt, sobald man dort ist – sonst bleibt „Start“ markiert. */
+(function () {
+  'use strict';
+  var path = location.pathname;
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-main a, .nav-links a'));
+  var home = links.filter(function (a) { return a.getAttribute('aria-current') === 'page' && !a.hash; });
+  var spots = [];
+  links.forEach(function (a) {
+    if (!a.hash || a.pathname !== path) return;
+    var el = document.getElementById(a.hash.slice(1));
+    if (el) spots.push({ a: a, el: el });
+  });
+  if (!spots.length || !home.length) return;
+  var current = null, ticking = false;
+  function mark(spot) {
+    if (spot === current) return;
+    current = spot;
+    home.forEach(function (h) { if (spot) h.removeAttribute('aria-current'); else h.setAttribute('aria-current', 'page'); });
+    spots.forEach(function (s) {
+      if (spot && s.el === spot.el) s.a.setAttribute('aria-current', 'location'); else s.a.removeAttribute('aria-current');
+    });
+  }
+  function check() {
+    ticking = false;
+    var line = window.innerHeight * 0.35, hit = null;
+    spots.forEach(function (s) {
+      var r = s.el.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) hit = s;
+    });
+    // ganz unten angekommen: letzter Abschnitt zählt, auch wenn er kurz ist
+    if (!hit && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      spots.forEach(function (s) { if (!hit || s.el.getBoundingClientRect().top > hit.el.getBoundingClientRect().top) hit = s; });
+    }
+    mark(hit);
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(check); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('hashchange', onScroll);
+  check();
+})();
