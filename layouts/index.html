@@ -117,10 +117,17 @@
     {{- with .Site.Params.partner }}
     <aside class="partner reveal" aria-label="{{ T "partner_k" }}">
       <p class="partner-k">{{ T "partner_k" }}</p>
-      <a class="partner-link" href="{{ .url }}" target="_blank" rel="noopener">
+      <a class="partner-link{{ if .logo }} has-logo{{ end }}" href="{{ .url }}" target="_blank" rel="noopener">
+        {{- $p := . }}
+        {{- with .logo }}{{ with resources.Get (printf "img/partner/%s" .) }}
+        {{- $l1 := .Resize "160x webp q90" }}{{ $l2 := .Resize "320x webp q90" }}
+        <img class="partner-logo" src="{{ $l1.RelPermalink }}" srcset="{{ $l1.RelPermalink }} 1x, {{ $l2.RelPermalink }} 2x" width="{{ $l1.Width }}" height="{{ $l1.Height }}" alt="Logo {{ $p.name }}" loading="lazy" decoding="async">
+        {{- end }}{{ end }}
+        <span class="partner-text">
         <span class="partner-name">{{ .name }}</span>
         <span class="partner-claim">{{ .claim }}</span>
         <span class="partner-url">{{ replace .url "https://" "" }} <span aria-hidden="true">→</span></span>
+        </span>
       </a>
     </aside>
     {{- end }}
