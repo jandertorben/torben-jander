@@ -1561,8 +1561,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .wind-full.sec-light .wr-ring{stroke-opacity:.7}
 .wind-full.sec-light .wr-tick{stroke-opacity:.55}
 /* Navigation: Start-Link und aktuelle Seite */
-.nav-main a[aria-current]{color:var(--accent)}
-.nav-main a[aria-current]::after{content:"";display:block;height:1px;background:var(--accent);margin-top:.35rem}
+.nav-main a[aria-current]{color:var(--accent);border-color:var(--accent)}
 .nav-links a[aria-current]{color:var(--accent)}
 @media (min-width:1000px) and (max-width:1240px){.nav-main{gap:1.6rem}.nav-main a{letter-spacing:.12em}}
 /* Sprunglinks: Überschrift landet knapp unter dem Kopf statt der Welle oben im Abschnitt */
