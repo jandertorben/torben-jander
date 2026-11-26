@@ -829,3 +829,19 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   .community-grid .partner-link.has-logo{grid-template-columns:1fr;justify-items:start}
   .community-grid .partner-logo{width:150px}
 }
+
+/* ─── Community als helle Ockerfläche (dunkle Schrift), Partner-Karte bleibt dunkel ─── */
+.sec-community{background:var(--gravel-2);color:#0b0a08;border-color:#d39b5a}
+.sec-community .eyebrow{color:#3d2f1c}
+.sec-community .eyebrow::before{background:#0b0a08}
+.sec-community .sec-h{color:#0b0a08}
+.sec-community .community-copy p{color:#2b2217}
+.sec-community .btn{background:#0b0a08;border-color:#0b0a08;color:var(--gravel-2)}
+.sec-community .btn:hover{background:#2b2217;border-color:#2b2217;color:var(--gravel-2)}
+.sec-community .btn-ghost{background:transparent;border-color:rgba(11,10,8,.45);color:#0b0a08}
+.sec-community .btn-ghost:hover{background:rgba(11,10,8,.08);border-color:#0b0a08;color:#0b0a08}
+.sec-community a:focus-visible{outline-color:#0b0a08}
+.sec-community .partner{background:#0b0a08;color:var(--ink);border:0;border-radius:6px;padding:2rem 2.2rem}
+.sec-community .partner-k{color:var(--muted)}
+@media (max-width:1099px){.sec-community .partner{margin-top:3rem}}
+@media (max-width:560px){.partner-link.has-logo{grid-template-columns:1fr;justify-items:start}.partner-logo{width:110px}}
