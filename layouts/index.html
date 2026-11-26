@@ -105,6 +105,8 @@
   <div class="wrap">
     <p class="eyebrow">{{ T "community_eyebrow" }}</p>
     <h2 id="community-h" class="sec-h reveal">{{ T "community_title" }}</h2>
+    <div class="community-grid">
+    <div class="community-main">
     <div class="community-copy reveal">
       <p>{{ T "community_lead" }}</p>
       <p>{{ T "community_text" }}</p>
@@ -115,6 +117,7 @@
       <a class="btn" href="{{ .Site.Params.whatsapp_community }}" rel="noopener" target="_blank">{{ partial "icon-chat.html" . -}}{{ T "community_whatsapp" }}</a>
       {{- with .Site.Params.strava_club }}<a class="btn btn-ghost" href="{{ . }}" rel="noopener" target="_blank">{{ T "community_strava" }}</a>{{ end }}
       <a class="btn btn-ghost" href="{{ .Site.Params.tiktok }}" rel="me noopener" target="_blank">{{ partial "icon-tiktok.html" . -}}TikTok</a>
+    </div>
     </div>
     {{- with .Site.Params.partner }}
     <aside class="partner reveal" aria-label="{{ T "partner_k" }}">
@@ -133,6 +136,7 @@
       </a>
     </aside>
     {{- end }}
+    </div>
   </div>
 </section>
 

@@ -814,3 +814,18 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .wb-more{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);text-decoration:none}
 .wb-more:hover{color:var(--gravel-2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ─── Wichtige Bereiche farblich absetzen (Gegenwind-Radar, Community) ───
+   Ruhige, warme Flächen statt Verläufe; feine Linie oben und unten. */
+:root{--bg-warm:#15110b;--line-warm:#3a2e1d}
+.wind:not(.wind-full),.sec-community{background:var(--bg-warm);border-top:1px solid var(--line-warm);border-bottom:1px solid var(--line-warm)}
+.sec-community .eyebrow,.wind:not(.wind-full) .eyebrow{color:var(--gravel-2)}
+
+/* Community: auf breiten Bildschirmen Text links, Partner rechts */
+.community-grid{display:grid;gap:0}
+@media (min-width:1100px){
+  .community-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(3rem,6vw,6rem);align-items:start}
+  .community-grid .partner{margin-top:0;padding:2rem 2.2rem;border:1px solid var(--line-warm);border-radius:6px;background:rgba(11,10,8,.45);max-width:none}
+  .community-grid .partner-link.has-logo{grid-template-columns:1fr;justify-items:start}
+  .community-grid .partner-logo{width:150px}
+}
