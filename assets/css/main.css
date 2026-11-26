@@ -1403,7 +1403,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 /* ===== Fahrradwetter & Zahlen im Magazin-Stil ===== */
 .hero-page + .wind-full{padding-top:1rem}
 /* helle Abschnitte mit Inhalten aus dem dunklen Design: Variablen umstellen */
-.planer.sec-light,.zahlen-main,.wind-full.sec-light{
+.planer.sec-light,.zahlen-main,.wind-full.sec-light,.road-home.sec-light{
   --ink:#1c1b19;--ink-2:rgba(28,27,25,.82);--muted:rgba(28,27,25,.58);
   --line:rgba(28,27,25,.14);--line-2:rgba(28,27,25,.24);--border-subtle:rgba(28,27,25,.14);
   --bg-2:rgba(28,27,25,.04);--bg-3:rgba(28,27,25,.035);--text-on-dark:#1c1b19;
@@ -1570,3 +1570,17 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 
 .about-stats{font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--muted,inherit);margin:1.4rem 0 0}
 .about-stats a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;margin-left:.4rem;white-space:nowrap}
+/* Unterwegs auf der Startseite: hell */
+.road-home.sec-light .repair-q-l,.road-home.sec-light .road-more,.road-home.sec-light .repair-map,.road-home.sec-light .repair-km{color:var(--accent-ink)}
+.road-home.sec-light .road-more:hover{color:var(--text-on-light)}
+.road-home.sec-light .repair-search input{background:#fff;color:var(--text-on-light);border:1px solid rgba(28,27,25,.3)}
+.road-home.sec-light .repair-search input::placeholder{color:rgba(28,27,25,.45)}
+.road-home.sec-light .repair-search input:focus{border-color:var(--accent-ink);outline:none}
+.road-home.sec-light .repair-msg{color:#3a3732}
+.road-home.sec-light .repair-item{border-top-color:rgba(28,27,25,.12)}
+.road-home.sec-light .repair-name{color:rgba(28,27,25,.6)}
+.road-home.sec-light .repair-tags span{border-color:rgba(122,92,40,.45);color:var(--accent-ink)}
+.road-home.sec-light .repair-tags .is-unknown{color:rgba(28,27,25,.5);border-color:rgba(28,27,25,.25)}
+.road-home.sec-light .road-ferry-list .ferry{border-top-color:rgba(28,27,25,.12)}
+.road-home.sec-light .road-ferry-n{color:var(--text-on-light)}
+.road-home.sec-light .ferry-today.is-no{border-color:rgba(28,27,25,.3);color:rgba(28,27,25,.55)}
