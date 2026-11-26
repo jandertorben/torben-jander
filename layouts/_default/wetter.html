@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{ partial "back-bar.html" (dict "href" (printf "%s#wind" .Site.Home.RelPermalink) "label" (T "back_home")) }}
+<section class="sec page-head" aria-labelledby="wetter-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "wx_eyebrow" }}</p>
+    <h1 id="wetter-h" class="sec-h">{{ .Title }}</h1>
+    <p class="lead">{{ T "wx_page_lead" }}</p>
+  </div>
+</section>
+{{ partial "wind.html" (dict "page" . "full" true) }}
+<noscript><section class="sec page-sec"><div class="wrap"><p class="lead">{{ T "wx_page_lead" }}</p></div></section></noscript>
+{{ end }}

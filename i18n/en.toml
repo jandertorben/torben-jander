@@ -465,3 +465,75 @@ other = "Weather data:"
 
 [nav_wind]
 other = "Headwind"
+
+# Riding weather (home page compact, /en/weather/)
+[wx_more]
+other = "All the riding weather"
+[wx_rain_now]
+other = "It is raining right now."
+[wx_rain_from]
+other = "Wet from %s:00."
+[wx_rain_dry_from]
+other = "Wet, but dry from %s:00."
+[wx_rain_dry]
+other = "Dry for the next 12 hours."
+[wx_rain_stays]
+other = "Wet, and it is staying that way for now."
+[wx_wear_1]
+other = "Winter jacket, long tights, thick gloves, cap under the helmet. Seriously."
+[wx_wear_2]
+other = "Long tights, warm jacket, long gloves."
+[wx_wear_3]
+other = "Long tights or knee warmers, wind jacket, thin gloves."
+[wx_wear_4]
+other = "Arm warmers and a gilet will do."
+[wx_wear_5]
+other = "Short sleeves, gilet in the jersey pocket."
+[wx_wear_6]
+other = "Short sleeves. And sunscreen, even in Bremen."
+[wx_wear_s1]
+other = "Wear: everything you own."
+[wx_wear_s2]
+other = "Wear: long and warm."
+[wx_wear_s3]
+other = "Wear: long, with a wind jacket."
+[wx_wear_s4]
+other = "Wear: arm warmers and a gilet."
+[wx_wear_s5]
+other = "Wear: short, bring a gilet."
+[wx_wear_s6]
+other = "Wear: short."
+[wx_wear_rain]
+other = "Pack a rain jacket."
+[wx_wear_shoes]
+other = "Overshoes. Cold wet feet are the worst."
+[wx_wear_wind]
+other = "Wind gilet, the wind cools more than the thermometer says."
+[wx_wear_k]
+other = "What to wear?"
+[wx_rain_k]
+other = "Rain"
+[wx_rain_note]
+other = "Bars: chance of rain over the next 12 hours."
+[wx_temp_k]
+other = "Temperature"
+[wx_feels]
+other = "Feels like %d °C"
+[wx_temp_range]
+other = "Next 12 hours: %d to %d °C"
+[wx_light_k]
+other = "Light"
+[wx_light_before]
+other = "Sunset at %s. Lights on from then."
+[wx_light_after]
+other = "Dark. Lights on. Sunrise tomorrow at %s."
+[wx_light_morning]
+other = "Still dark. Sunrise at %s."
+[wx_light_note]
+other = "Switch your lights on at dusk, not only once it is fully dark."
+[wx_page_lead]
+other = "Wind, rain, temperature and light for Bremen. Plus what to wear and which loop suits today. Updated every few minutes."
+[nav_weather]
+other = "Riding weather"
+[wx_eyebrow]
+other = "Bremen · live"

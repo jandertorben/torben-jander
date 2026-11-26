@@ -1,13 +1,19 @@
-{{- /* Gegenwind-Radar: Wind in Bremen, Gegenwind-Stufe, Verlauf der nächsten Stunden und Tour-Tipp.
-     Die Wetterdaten holt assets/js/main.js von /api/wind (functions/api/wind.js, serverseitig, mit Cache).
+{{- /* Gegenwind-Radar. Aufruf: partial "wind.html" (dict "page" . "full" false|true)
+     full=false: kompakt für die Startseite (Wind, Stufe, eine Zeile Regen + Kleidung, Link zu /wetter/).
+     full=true:  alles für /wetter/ (zusätzlich 12 Stunden, Regen, Temperatur, Kleidung, Licht, Tour-Tipp).
+     Die Daten holt assets/js/wind.js von /api/wind (functions/api/wind.js, serverseitig, mit Cache).
      Ohne JavaScript oder ohne Daten bleibt der ganze Abschnitt verborgen. */ -}}
+{{- $p := .page }}
+{{- $full := .full }}
 {{- $tours := slice }}
-{{- range first 10 (.Site.Data.gpx.tours | default slice) }}
+{{- if $full }}
+{{- range first 10 ($p.Site.Data.gpx.tours | default slice) }}
   {{- $id := .id }}{{ $km := .km }}{{ $url := printf "https://www.strava.com/activities/%s" .id }}{{ $title := .name }}
   {{- with site.GetPage "/touren" }}{{ range .RegularPages }}{{ if eq .Params.tour.id $id }}{{ $url = .RelPermalink }}{{ $title = .Title }}{{ end }}{{ end }}{{ end }}
   {{- with .route }}{{ with .d }}
   {{- $tours = $tours | append (dict "title" $title "url" $url "km" (lang.FormatNumber 0 (float $km)) "d" .) }}
   {{- end }}{{ end }}
+{{- end }}
 {{- end }}
 {{- $cfg := dict
   "dirs" (slice (T "wind_n") (T "wind_ne") (T "wind_e") (T "wind_se") (T "wind_s") (T "wind_sw") (T "wind_w") (T "wind_nw"))
@@ -22,12 +28,29 @@
   "tipNone" (T "wind_tip_none")
   "avoid" (T "wind_tip_avoid")
   "stand" (T "wind_stand")
+  "rainNow" (T "wx_rain_now")
+  "rainFrom" (T "wx_rain_from")
+  "rainDryFrom" (T "wx_rain_dry_from")
+  "rainDry" (T "wx_rain_dry")
+  "rainStays" (T "wx_rain_stays")
+  "wear" (slice (T "wx_wear_1") (T "wx_wear_2") (T "wx_wear_3") (T "wx_wear_4") (T "wx_wear_5") (T "wx_wear_6"))
+  "wearShort" (slice (T "wx_wear_s1") (T "wx_wear_s2") (T "wx_wear_s3") (T "wx_wear_s4") (T "wx_wear_s5") (T "wx_wear_s6"))
+  "wearRain" (T "wx_wear_rain")
+  "wearShoes" (T "wx_wear_shoes")
+  "wearWind" (T "wx_wear_wind")
+  "feels" (T "wx_feels")
+  "tempRange" (T "wx_temp_range")
+  "lightBefore" (T "wx_light_before")
+  "lightAfter" (T "wx_light_after")
+  "lightMorning" (T "wx_light_morning")
   "tours" $tours
 }}
-<section class="sec wind" id="wind" aria-labelledby="wind-h" hidden>
+<section class="sec wind{{ if $full }} wind-full{{ end }}" id="wind" aria-labelledby="wind-h" hidden>
   <script type="application/json" id="wind-cfg">{{ $cfg | jsonify | safeJS }}</script>
   <div class="wrap">
+    {{- if not $full }}
     <p class="eyebrow">{{ T "wind_eyebrow" }}</p>
+    {{- end }}
     <h2 id="wind-h" class="sec-h wind-say" aria-live="polite">&nbsp;</h2>
 
     <div class="wind-grid">
@@ -59,11 +82,46 @@
         </div>
       </div>
 
+      {{- if $full }}
       <figure class="wind-hours">
         <figcaption>{{ T "wind_next" }}</figcaption>
         <div class="wh-bars" aria-hidden="true"></div>
         <p class="wh-note">&nbsp;</p>
       </figure>
+      {{- else }}
+      <div class="wind-brief">
+        <p class="wb-rain">&nbsp;</p>
+        <p class="wb-wear">&nbsp;</p>
+        {{- with site.GetPage "/wetter" }}<p class="more-link"><a href="{{ .RelPermalink }}">{{ T "wx_more" }} <span aria-hidden="true">→</span></a></p>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+
+    {{- if $full }}
+    <div class="wx-grid">
+      <div class="wx-block">
+        <p class="wx-k">{{ T "wx_wear_k" }}</p>
+        <p class="wx-big wx-wear">&nbsp;</p>
+        <ul class="wx-extras"></ul>
+      </div>
+      <div class="wx-block">
+        <p class="wx-k">{{ T "wx_rain_k" }}</p>
+        <p class="wx-big wx-rain">&nbsp;</p>
+        <div class="wx-rbars" aria-hidden="true"></div>
+        <p class="wx-note">{{ T "wx_rain_note" }}</p>
+      </div>
+      <div class="wx-block">
+        <p class="wx-k">{{ T "wx_temp_k" }}</p>
+        <p class="wx-temp"><strong class="num wx-t">–</strong><span>°C</span></p>
+        <p class="wx-feels">&nbsp;</p>
+        <p class="wx-range">&nbsp;</p>
+      </div>
+      <div class="wx-block">
+        <p class="wx-k">{{ T "wx_light_k" }}</p>
+        <p class="wx-big wx-light">&nbsp;</p>
+        <p class="wx-sun">&nbsp;</p>
+        <p class="wx-note">{{ T "wx_light_note" }}</p>
+      </div>
     </div>
 
     <div class="wind-tip" hidden>
@@ -71,6 +129,7 @@
       <p class="wind-tip-t"></p>
       <p class="wind-tip-avoid"></p>
     </div>
+    {{- end }}
 
     <p class="wind-src"><span class="wind-stand"></span> · {{ T "wind_source" }} <a href="https://open-meteo.com" rel="noopener" target="_blank">Open-Meteo.com</a></p>
   </div>

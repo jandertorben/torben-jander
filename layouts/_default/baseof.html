@@ -16,7 +16,7 @@
 </button>
 {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-{{- if .IsHome }}
+{{- if or .IsHome (eq .Layout "wetter") }}
 {{ $wjs := resources.Get "js/wind.js" | minify | fingerprint }}
 <script src="{{ $wjs.RelPermalink }}" integrity="{{ $wjs.Data.Integrity }}" defer></script>
 {{- end }}

@@ -707,3 +707,29 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .brand-sub{font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.14em;text-transform:lowercase;color:var(--muted)}
 .brand:hover .brand-main{color:var(--gravel-2)}
 @media (max-width:380px){.brand-main{font-size:1.05rem}.brand-sub{font-size:.6rem}}
+
+/* ─── Fahrradwetter: Startseite kompakt, Seite /wetter/ ausführlich ───── */
+.wind-brief{display:grid;gap:.7rem;align-content:center}
+.wind-brief p{font-size:clamp(1.1rem,1.8vw,1.3rem);line-height:1.4;color:var(--ink);text-wrap:pretty}
+.wind-brief .wb-wear{color:var(--ink-2)}
+.wind-brief .more-link{margin-top:1rem}
+.wind-full{border-top:0;padding-top:clamp(2.5rem,5vw,4rem)}
+.wx-grid{margin-top:clamp(3.5rem,7vw,5.5rem);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4.5rem)}
+@media (max-width:760px){.wx-grid{grid-template-columns:1fr}}
+.wx-block{display:grid;gap:.7rem;align-content:start;padding-top:1.4rem;border-top:1px solid var(--line)}
+.wx-k{font-family:var(--mono);font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.wx-big{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.1;text-wrap:balance}
+.wx-extras{margin:0;padding:0;list-style:none;display:grid;gap:.4rem;color:var(--ink-2)}
+.wx-extras li::before{content:"+ ";color:var(--gravel-2);font-family:var(--mono)}
+.wx-note{font-size:.9rem;color:var(--muted)}
+.wx-rbars{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;height:90px;align-items:end;margin-top:.4rem}
+.rb-bar{display:grid;grid-template-rows:1fr auto;height:100%;gap:4px}
+.rb-bar i{align-self:end;width:100%;border-radius:2px;background:var(--line-2)}
+.rb-bar.is-wet i{background:var(--run)}
+.rb-bar span{font-family:var(--mono);font-size:.72rem;color:var(--muted);height:1em}
+.wx-temp{display:flex;align-items:baseline;gap:.5rem}
+.wx-temp .num{font-size:clamp(3.4rem,7vw,5rem);line-height:.9}
+.wx-temp span{font-family:var(--mono);color:var(--muted)}
+.wx-feels{font-family:var(--display);font-weight:600;font-size:1.4rem}
+.wx-range,.wx-sun{font-family:var(--mono);font-size:.85rem;color:var(--muted);white-space:pre}
+.wind-brief .more-link{font-size:.85rem}
