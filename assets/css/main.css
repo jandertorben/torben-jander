@@ -1236,3 +1236,9 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 }
 .sec-why .sec-h{font-size:clamp(2.2rem,4vw,3.3rem)}
 @media (max-width:799px){.why-x span:last-child{transform:none}.why-grid{gap:1.2rem}.why-body p{margin-bottom:1.4rem}}
+
+/* ===== Logo BF ===== */
+.brand-logo{width:auto;height:2.5rem;display:block}
+@media (max-width:599px){.brand-logo{height:2.1rem}}
+.foot-logo{display:block;width:min(200px,50vw);height:auto;margin:0 0 1.6rem}
+.foot-logo{flex-basis:100%;max-width:200px}
