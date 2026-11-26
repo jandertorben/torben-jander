@@ -28,8 +28,7 @@ items:
   - name: Grix.2
     brand: Storck
     category: bike
-    image: storck-grix-2-foto.jpg
-    photo: true
+    image: storck-grix-2-studio.png
     strava_gear: "19023709"
     spec: "Gravel · Carbon · Tourenrad"
     spec_en: "Gravel · carbon · touring bike"
@@ -116,8 +115,8 @@ items:
     brand: Selle Italia
     category: bike
     image: selle-italia-novus.png
-    spec: "Sattel · Gravel"
-    spec_en: "Saddle · gravel"
+    spec: "Sattel · Gravel · am Canyon Grizl"
+    spec_en: "Saddle · gravel · on the Canyon Grizl"
     note_de: "Kurze Nase, breiter Ausschnitt, für lange Tage auf Schotter gemacht. Nach hundert Kilometern merkt man den Unterschied."
     note_en: "Short nose, wide cut-out, built for long days on gravel. After a hundred kilometres you notice the difference."
   - name: Icon Gravel Bibshorts
