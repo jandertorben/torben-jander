@@ -795,3 +795,8 @@ other = "Pumpe oder Fähre unterwegs?"
 
 [nav_home]
 other = "Start"
+
+[about_stats]
+other = "%d bisher: %s km auf dem Rad, %s km gelaufen. Alles aus Strava."
+[about_stats_more]
+other = "Mehr Zahlen →"
