@@ -929,3 +929,7 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .sec-run .lead{color:var(--ink-2)}
 .sec-run .mini-ledger{border-color:var(--line-2)}
 .footer{background:var(--bg)}
+
+/* Marken zwischen zwei Ockerflächen: oben und unten Platz für die Schrägen, damit das Band mittig sitzt
+   und von „Über mich“ nicht angeschnitten wird. Keine Trennlinien. */
+.marken{border-block:0;padding-top:calc(clamp(2.5rem,5vw,4rem) + var(--slant));padding-bottom:calc(clamp(2.5rem,5vw,4rem) + var(--slant))}
