@@ -1422,3 +1422,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .zahlen-main .goal-run .goal-nums strong,.zahlen-main .goal-diff.is-ahead{color:#2F7F6D}
 /* lange Produktnamen: normale Schreibung statt Versalien, liest sich leichter */
 .eq-card .eq-name{text-transform:none;letter-spacing:0;font-size:clamp(1.4rem,2vw,1.7rem);line-height:1.12}
+/* Tour: kleine Bildreihe */
+.tour-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0 0 2rem}
+.tour-gallery figure{margin:0}
+.tour-gallery img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:3px}

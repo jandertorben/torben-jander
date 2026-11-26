@@ -67,6 +67,14 @@
           </div></div>
         </figure>
         {{- end }}
+        {{- with .Params.gallery }}
+        <div class="tour-gallery">
+          {{- range $it := . }}{{ with resources.Get (printf "img/touren/%s" $it.file) }}
+          {{- $g1 := .Process "resize 700x webp q80" }}{{ $g2 := .Process "resize 1100x webp q80" }}
+          <figure><img src="{{ $g1.RelPermalink }}" srcset="{{ $g1.RelPermalink }} 700w, {{ $g2.RelPermalink }} 1100w" sizes="(max-width:900px) 50vw, 30vw" width="{{ $g2.Width }}" height="{{ $g2.Height }}" alt="{{ $it.alt }}" loading="lazy" decoding="async"></figure>
+          {{- end }}{{ end }}
+        </div>
+        {{- end }}
       </div>
       <aside class="tour-side">
         {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
