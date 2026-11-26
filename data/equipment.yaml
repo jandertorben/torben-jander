@@ -34,22 +34,23 @@ items:
     spec_en: "Gravel · carbon · touring bike"
     note_de: "Das Rad für die langen Tage abseits vom Pendeln. Kupferfarbener Verlauf, Carbonlaufräder, Schwalbe G-One. Nach Bremen-flach sieht es fast zu schön für den Deich aus."
     note_en: "The bike for the long days away from the commute. Copper fade, carbon wheels, Schwalbe G-One. For Bremen's flat land it looks almost too good for the dyke."
-  - name: Edge 1040
-    brand: Garmin
+  - name: Karoo 3
+    brand: Hammerhead
     category: bike
-    image: garmin-edge-1040.png
-    spec: "Radcomputer"
-    spec_en: "Bike computer"
-    note_de: "Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
-    note_en: "Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
+    image: hammerhead-karoo-3.png
+    size: small
+    spec: "Radcomputer · Touchscreen"
+    spec_en: "Bike computer · touchscreen"
+    note_de: "Hat den Garmin Edge abgelöst. Zeigt unterwegs Strecke und Tempo und schickt jede Fahrt direkt zu Strava. Daher stimmen die Zahlen auf dieser Seite."
+    note_en: "Replaced the Garmin Edge. Shows route and pace on the go and sends every ride straight to Strava. That is why the numbers on this page add up."
   - name: Fenix 8
     brand: Garmin
     category: both
     image: garmin-fenix-8.png
     spec: "Sportuhr"
     spec_en: "Sports watch"
-    note_de: "Läuft beim Laufen mit, zeichnet auf dem Rad parallel zum Edge auf und zählt dazwischen die Tage. Puls, Schlaf, Erholung, alles an einem Ort."
-    note_en: "Comes along on every run, records alongside the Edge on the bike and counts the days in between. Heart rate, sleep, recovery, all in one place."
+    note_de: "Läuft beim Laufen mit, zeichnet auf dem Rad parallel zum Karoo auf und zählt dazwischen die Tage. Puls, Schlaf, Erholung, alles an einem Ort."
+    note_en: "Comes along on every run, records alongside the Karoo on the bike and counts the days in between. Heart rate, sleep, recovery, all in one place."
   - name: Speed Sensor 2 & Trittfrequenzsensor 2
     name_en: Speed Sensor 2 & Cadence Sensor 2
     brand: Garmin
@@ -58,8 +59,8 @@ items:
     photo: true
     spec: "Sensoren · Nabe & Kurbel"
     spec_en: "Sensors · hub & crank"
-    note_de: "Sitzen an Nabe und Kurbel und liefern dem Edge Geschwindigkeit und Trittfrequenz, auch wenn das GPS unter Bäumen schwächelt."
-    note_en: "Sit on the hub and the crank and feed speed and cadence to the Edge, even when GPS struggles under trees."
+    note_de: "Sitzen an Nabe und Kurbel und liefern dem Karoo Geschwindigkeit und Trittfrequenz, auch wenn das GPS unter Bäumen schwächelt."
+    note_en: "Sit on the hub and the crank and feed speed and cadence to the Karoo, even when GPS struggles under trees."
   - name: SL Grano
     brand: Lupine
     category: bike
