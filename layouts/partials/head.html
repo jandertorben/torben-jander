@@ -7,7 +7,7 @@
 <meta name="author" content="{{ .Site.Params.name }}">
 <meta name="robots" content="{{ if or .IsHome (eq .Section "touren") }}index, follow{{ else }}noindex, follow{{ end }}">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0b0a08">
+<meta name="theme-color" content="#1A1A18">
 <link rel="canonical" href="{{ .Permalink }}">
 {{- range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
@@ -37,7 +37,7 @@
 }}
 <script type="application/ld+json">{{ $person | jsonify (dict "noHTMLEscape" true) | safeJS }}</script>
 {{- end }}
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
