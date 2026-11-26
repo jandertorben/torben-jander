@@ -1470,3 +1470,19 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .wr-live[aria-pressed="true"]{background:var(--accent);color:#1A1A18}
 .wind-rose-wrap:has(.wr-live[aria-pressed="true"]) .wr-lubber{opacity:1}
 .wr-live-hint{margin:0;max-width:16rem;font-size:.78rem;line-height:1.5;color:var(--muted)}
+
+/* ===== Reparaturstationen ===== */
+.repair-list{list-style:none;margin:clamp(2rem,5vw,3rem) 0 0;padding:0;display:grid;grid-template-columns:1fr;column-gap:3rem}
+@media (min-width:800px){.repair-list{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1150px){.repair-list{grid-template-columns:repeat(3,1fr)}}
+.repair-item{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-top:1px solid rgba(28,27,25,.14);padding:1rem 0 1.1rem}
+.repair-place{font-family:var(--serif);font-weight:500;font-size:1.25rem;line-height:1.15;margin:0}
+.repair-name{margin:.15rem 0 0;font-size:.82rem;color:rgba(28,27,25,.6)}
+.repair-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.55rem 0 0}
+.repair-tags span{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .45rem;border:1px solid rgba(138,106,53,.45);color:var(--accent-ink);border-radius:2px}
+.repair-tags .is-247{background:rgba(184,146,79,.16)}
+.repair-tags .is-unknown{border-style:dashed;color:rgba(28,27,25,.5);border-color:rgba(28,27,25,.25)}
+.repair-map{flex:none;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);text-decoration:none;white-space:nowrap;padding-top:.3rem}
+.repair-map:hover{color:var(--accent)}
+.repair-src{margin-top:2rem;font-size:.72rem;line-height:1.6;color:rgba(28,27,25,.55)}
+.repair-src a{color:var(--accent-ink)}

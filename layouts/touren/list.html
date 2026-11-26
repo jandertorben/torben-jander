@@ -45,4 +45,34 @@
     <p class="tour-privacy">{{ T "gpx_note" }}</p>
   </div>
 </section>
+{{- with .Site.Data.reparatur }}{{ if .stations }}
+{{- $en := eq site.Language.Lang "en" }}
+<section class="sec sec-light repair" id="reparatur" aria-labelledby="repair-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ T "repair_eyebrow" }}</p>
+    <h2 id="repair-h" class="sec-h reveal">{{ T "repair_title" }}</h2>
+    <p class="lead reveal">{{ printf (T "repair_lead") (len .stations) }}</p>
+    <ul class="repair-list">
+      {{- range .stations }}
+      <li class="repair-item">
+        <div class="repair-main">
+          <p class="repair-place">{{ with .teil }}{{ . }}{{ else }}{{ T "repair_unknown_place" }}{{ end }}</p>
+          {{- $label := .name }}{{ if or (eq $label "") (in (slice "Luft-Tankstelle" "nur Luftpumpe" "Service Station") $label) }}{{ $label = "" }}{{ end }}
+          {{- with $label }}<p class="repair-name">{{ . }}</p>{{ end }}
+          <p class="repair-tags">
+            {{- if .pump }}<span>{{ T "repair_pump" }}</span>{{ end }}
+            {{- if .tools }}<span>{{ T "repair_tools" }}</span>{{ end }}
+            {{- if .stand }}<span>{{ T "repair_stand" }}</span>{{ end }}
+            {{- if not (or .pump .tools .stand) }}<span class="is-unknown">{{ T "repair_unknown" }}</span>{{ end }}
+            {{- if eq .hours "24/7" }}<span class="is-247">{{ T "repair_247" }}</span>{{ end }}
+          </p>
+        </div>
+        <a class="repair-map" href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=18/{{ .lat }}/{{ .lon }}" target="_blank" rel="noopener" aria-label="{{ T "repair_map" }}: {{ .teil }}">{{ T "repair_map" }} <span aria-hidden="true">↗︎</span></a>
+      </li>
+      {{- end }}
+    </ul>
+    <p class="repair-src mono">{{ printf (T "repair_src") (time.Format ":date_long" (time .generated)) | safeHTML }}</p>
+  </div>
+</section>
+{{- end }}{{ end }}
 {{ end }}
