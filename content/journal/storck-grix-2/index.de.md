@@ -30,7 +30,7 @@ Bevor es richtig losging, war ich beim professionellen Bikefitting. Die Empfehlu
 
 ## Storck und Grizl: zwei Räder, zwei Jobs
 
-Das Grizl ist ein Canyon Grizl aus Aluminium, Rahmengröße XL, rund 11 Kilo. Mit ihm pendle ich fast jeden Tag zur Arbeit, knapp 20 Kilometer hin und zurück, mit Packtasche. Den Vorbau habe ich von 90 auf 70 Millimeter gekürzt. Drauf sind Continental Terra mit 45 Millimetern.
+Das Grizl ist ein Canyon Grizl aus Aluminium, Rahmengröße XL, rund 11 Kilo. Mit ihm pendle ich fast jeden Tag zur Arbeit, knapp 20 Kilometer hin und zurück, mit Packtasche. Den Vorbau habe ich von 90 auf 70 Millimeter gekürzt. Drauf sind Continental Terra Competition mit 45 Millimetern.
 
 **Was das Grizl gut kann**
 
