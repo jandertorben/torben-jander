@@ -1470,3 +1470,18 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .wr-live[aria-pressed="true"]{background:var(--accent);color:#1A1A18}
 .wind-rose-wrap:has(.wr-live[aria-pressed="true"]) .wr-lubber{opacity:1}
 .wr-live-hint{margin:0;max-width:16rem;font-size:.78rem;line-height:1.5;color:var(--muted)}
+
+/* ===== Weserfähren auf der Tourenseite ===== */
+.ferry-list{list-style:none;margin:clamp(2rem,5vw,3rem) 0 0;padding:0;display:grid;gap:0;grid-template-columns:1fr}
+@media (min-width:900px){.ferry-list{grid-template-columns:repeat(2,1fr);column-gap:4rem}}
+.ferry{border-top:1px solid rgba(244,238,227,.12);padding:1.5rem 0 1.7rem;display:grid;gap:.5rem}
+.ferry-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 1rem}
+.ferry-name{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(1.35rem,2.2vw,1.7rem);margin:0;line-height:1.1}
+.ferry-season{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(184,146,79,.45);padding:.3rem .55rem;border-radius:2px}
+.ferry-season.is-year{background:rgba(184,146,79,.14)}
+.ferry-route{margin:0;font-size:.82rem;color:rgba(244,238,227,.75)}
+.ferry-route span{color:var(--accent);margin:0 .3rem}
+.ferry-note{margin:0;font-size:.95rem;line-height:1.6;color:rgba(244,238,227,.8)}
+.ferry-link{justify-self:start;margin-top:.3rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+.ferry-link:hover{color:var(--accent-hover)}
+.ferry-stand{margin-top:2rem;font-size:.72rem;color:rgba(244,238,227,.5)}

@@ -713,3 +713,14 @@ other = "Handy flach halten. N zeigt jetzt nach Norden, die Nadel zeigt den Wind
 other = "Dein Handy oder Browser liefert leider keine Kompassdaten. Der Kompass zeigt den Wind weiter mit Norden oben."
 [wr_live_denied]
 other = "Ohne Zugriff auf den Bewegungssensor kann sich der Kompass nicht ausrichten. Erlauben lässt sich das beim nächsten Antippen."
+
+[ferry_eyebrow]
+other = "Über die Weser"
+[ferry_title]
+other = "Fähren für Runden mit Rad."
+[ferry_lead]
+other = "Fünf Fähren nehmen in und um Bremen das Rad mit. Drei fahren das ganze Jahr, zwei nur in der Saison. Damit werden aus einem Ufer zwei, und aus einer Strecke eine Runde."
+[ferry_times]
+other = "Zeiten und Preise bei %s"
+[ferry_stand]
+other = "Stand: %s. Zeiten ändern sich, vor der Tour kurz beim Betreiber nachsehen."
