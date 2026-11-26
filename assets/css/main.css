@@ -868,3 +868,10 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .sec-run .eyebrow{color:var(--run-2)}
 .sec-run .lead{color:#b7c9c3}
 .sec-run .mini-ledger{border-color:#1d3a33}
+
+/* Community: schräge Kanten wie bei Battlefield, oben links→rechts abfallend, unten parallel.
+   Die Fläche schiebt sich über den Laufen-Bereich, damit im Schrägstück dessen Farbe durchscheint. */
+.sec-community{--slant:clamp(28px,4.5vw,80px);position:relative;z-index:1;border:0;
+  clip-path:polygon(0 0,100% var(--slant),100% 100%,0 calc(100% - var(--slant)));
+  margin-top:calc(-1 * var(--slant));
+  padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));padding-bottom:calc(clamp(6rem,13vw,11rem) + var(--slant))}
