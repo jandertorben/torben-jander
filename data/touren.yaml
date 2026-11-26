@@ -13,6 +13,20 @@
 #   photo: "20254852185.jpg"                # liegt in assets/img/touren/
 #   photo_alt: "Gravelbike am Deich"
 #   slug: "ochtum-weserdeich"               # optional, sonst Datum-ID
+"21083485183":
+  title: "Erste Runde mit dem Storck"
+  title_en: "First ride on the Storck"
+  summary: "52 km zum Kennenlernen: die erste Ausfahrt mit dem neuen Storck Grix.2."
+  slug: "erste-runde-storck"
+  text: |
+    Die erste Ausfahrt mit dem neuen Storck Grix.2. Ein Novembermorgen, 52 Kilometer, 158 Höhenmeter, also Bremer Normalprogramm.
+
+    Genau richtig für den Anfang: Nichts lenkt ab, kein Berg verlangt etwas. Man merkt nur, wie das Rad rollt, wie es lenkt und wie es sich auf Schotter anfühlt. Viel Zeit zum Hinhören, wenig Grund zum Absteigen.
+  text_en: |
+    The first ride on the new Storck Grix.2. A November morning, 52 kilometres, 158 metres of climbing, so the usual Bremen programme.
+
+    Just right for a start: nothing distracts, no hill asks for anything. You only notice how the bike rolls, how it steers and how it feels on gravel. Plenty of time to listen, little reason to get off.
+
 "20909029808":
   title: "Südschleife über Syke"
   summary: "60 km Feldwege und ruhige Nebenstraßen südlich von Bremen. Wendepunkt ist Syke."
