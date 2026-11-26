@@ -2,15 +2,16 @@
 {{- $d := .Site.Data.strava }}
 {{- $t := $d.totals }}
 {{- $y := int $t.year }}
-{{ partial "back-bar.html" (dict "href" (printf "%s#zahlen" .Site.Home.RelPermalink) "label" (T "back_home")) }}
-<section class="sec page-head" aria-labelledby="zahlen-h">
-  <div class="wrap">
+<section class="hero hero-page" aria-labelledby="zahlen-h">
+  <div class="hero-topo" aria-hidden="true"></div>
+  <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "numbers_eyebrow" }} · {{ $y }}</p>
-    <h1 id="zahlen-h" class="sec-h">{{ .Title }}</h1>
-    <p class="lead">{{ T "numbers_page_lead" }}</p>
+    <h1 id="zahlen-h" class="hero-h">{{ .Title }}</h1>
+    <p class="hero-tag">{{ T "numbers_tag" }}</p>
+    <p class="hero-text">{{ T "numbers_page_lead" }}</p>
   </div>
 </section>
-<section class="sec page-sec">
+<section class="sec sec-light page-sec zahlen-main">
   <div class="wrap">
       <div class="ledger reveal">
         <div class="led led-ride"><strong class="num" data-count="{{ $t.ride.km }}">{{ lang.FormatNumber 0 $t.ride.km }}</strong><span>{{ T "stat_ride_km" }}</span></div>
