@@ -66,6 +66,7 @@
     <h2 id="wind-h" class="sec-h wind-say" aria-live="polite">&nbsp;</h2>
 
     <div class="wind-grid">
+      <div class="wind-rose-wrap">
       <figure class="wind-rose" aria-hidden="true">
         <svg viewBox="0 0 200 200">
           <defs>
@@ -73,6 +74,7 @@
             <radialGradient id="wr-fade-g" cx="50%" cy="50%" r="50%"><stop offset="55%" stop-color="#fff"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
             <mask id="wr-fade"><circle cx="100" cy="100" r="70" fill="url(#wr-fade-g)"/></mask>
           </defs>
+          <g class="wr-dial">
           <circle cx="100" cy="100" r="88" class="wr-ring"/>
           {{- range $i := seq 0 71 }}{{ $deg := mul $i 5 }}
           <line x1="100" y1="12" x2="100" y2="{{ if eq (mod $i 18) 0 }}24{{ else if eq (mod $i 6) 0 }}19{{ else }}16{{ end }}" class="wr-tick{{ if eq (mod $i 18) 0 }} wr-tick-c{{ end }}" transform="rotate({{ $deg }} 100 100)"/>
@@ -96,8 +98,13 @@
             </g>
           </g>
           <circle cx="100" cy="100" r="5" class="wr-hub"/>
+          </g>
+          <path class="wr-lubber" d="M100 2 L104 9 L96 9 Z"/>
         </svg>
       </figure>
+      <button type="button" class="wr-live" hidden data-on="{{ T "wr_live_on" }}" data-off="{{ T "wr_live_off" }}" aria-pressed="false">{{ T "wr_live_on" }}</button>
+      <p class="wr-live-hint" hidden>{{ T "wr_live_hint" }}</p>
+      </div>
 
       <div class="wind-now">
         <p class="wind-speed"><strong class="num wind-v">–</strong><span>km/h</span></p>

@@ -701,3 +701,10 @@ other = "Where is the wind coming from? The bike weather page shows wind, rain a
 
 [tour_wind_go]
 other = "Check the bike weather"
+
+[wr_live_on]
+other = "Align compass"
+[wr_live_off]
+other = "Stop aligning"
+[wr_live_hint]
+other = "Hold your phone flat. N now points north, and the needle shows the wind as it blows around you."

@@ -37,6 +37,8 @@ Die auf dieser Website gezeigten Kilometer, Zeiten und Routen sind **ausschließ
 
 Die Wetteranzeige auf der Startseite und auf der Seite „Fahrradwetter“ (einschließlich Planer) zeigt Wetterdaten von **Open-Meteo** (open-meteo.com). Ihr Browser fragt diese Daten **nur bei dieser Website** ab (Adressen /api/wind und /api/forecast für den Planer). Die Website holt die Daten selbst serverseitig bei Open-Meteo ab und hält sie einige Minuten zwischengespeichert. Dabei wird **keine IP-Adresse und keine sonstige Information über Besucher** an Open-Meteo übertragen. Es werden keine Cookies gesetzt.
 
+Auf dem Handy lässt sich der Windkompass mit „Kompass ausrichten“ nach Norden drehen. Dafür liest Ihr Browser nach Ihrer Zustimmung den Lagesensor (Kompass) Ihres Geräts aus. Diese Werte werden nur im Browser verwendet und **nicht übertragen oder gespeichert**.
+
 ## 7. Ihre Rechte
 
 Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Wenden Sie sich dazu an: torbenjander@icloud.com
