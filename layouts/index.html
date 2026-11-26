@@ -114,19 +114,7 @@
   </picture>
 </section>
 
-<section class="sec sec-sport sec-run" id="laufen" aria-labelledby="laufen-h">
-  <div class="wrap sport-grid">
-    <div class="sport-text">
-      <p class="eyebrow">{{ T "run_eyebrow" }}</p>
-      <h2 id="laufen-h" class="sec-h reveal">{{ T "run_title" }}</h2>
-      <p class="lead reveal">{{ T "run_text" }}</p>
-      <div class="mini-ledger reveal">
-        <div><strong class="num" data-count="{{ $t.run.count }}">{{ $t.run.count }}</strong><span>{{ printf (T "run_count") $y }}</span></div>
-        <div><strong class="num" data-count="{{ $t.run.hours }}">{{ $t.run.hours }}</strong><span>{{ T "stat_hours" }}</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+{{ partial "journal.html" . }}
 
 <section class="sec sec-community sec-light" id="community" aria-labelledby="community-h">
   <div class="wrap">
