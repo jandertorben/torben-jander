@@ -708,3 +708,8 @@ other = "Kompass ausrichten"
 other = "Ausrichten beenden"
 [wr_live_hint]
 other = "Handy flach halten. N zeigt jetzt nach Norden, die Nadel zeigt den Wind, wie er gerade um dich herum weht."
+
+[wr_live_none]
+other = "Dein Handy oder Browser liefert leider keine Kompassdaten. Der Kompass zeigt den Wind weiter mit Norden oben."
+[wr_live_denied]
+other = "Ohne Zugriff auf den Bewegungssensor kann sich der Kompass nicht ausrichten. Erlauben lässt sich das beim nächsten Antippen."

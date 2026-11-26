@@ -708,3 +708,8 @@ other = "Align compass"
 other = "Stop aligning"
 [wr_live_hint]
 other = "Hold your phone flat. N now points north, and the needle shows the wind as it blows around you."
+
+[wr_live_none]
+other = "Your phone or browser does not provide compass data. The compass keeps showing the wind with north at the top."
+[wr_live_denied]
+other = "Without access to the motion sensor the compass cannot align. You can allow it next time you tap."

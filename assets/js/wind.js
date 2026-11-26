@@ -383,8 +383,10 @@
       if (e.absolute === true || evName === 'deviceorientationabsolute') { if (typeof e.alpha === 'number') return (360 - e.alpha) % 360; }
       return null;
     }
+    var got = false, timer = 0;
     function onOri(e) {
       var h = heading(e); if (h === null) return;
+      got = true;
       var so = (global.screen && global.screen.orientation && global.screen.orientation.angle) || global.orientation || 0;
       target = (h + so + 360) % 360;
       if (!raf) raf = global.requestAnimationFrame(step);
@@ -400,15 +402,28 @@
     function setOn(v) {
       on = v; btn.setAttribute('aria-pressed', v ? 'true' : 'false');
       btn.textContent = v ? btn.dataset.off : btn.dataset.on;
-      if (hint) hint.hidden = !v;
-      if (v) global.addEventListener(evName, onOri, true);
-      else { global.removeEventListener(evName, onOri, true); cur = target = null; dial.style.transform = ''; }
+      if (hint) { if (v) hint.textContent = btn.dataset.hint; hint.hidden = !v; }
+      if (v) {
+        global.addEventListener(evName, onOri, true);
+        got = false; clearTimeout(timer);
+        // Kommen nach 3 s keine Kompassdaten (Firefox, Geräte ohne Sensor), freundlich aufgeben
+        timer = setTimeout(function () {
+          if (got || !on) return;
+          setOn(false);
+          btn.hidden = true;
+          if (hint) { hint.textContent = btn.dataset.none; hint.hidden = false; }
+        }, 3000);
+      }
+      else { clearTimeout(timer); global.removeEventListener(evName, onOri, true); cur = target = null; dial.style.transform = ''; }
     }
     btn.addEventListener('click', function () {
       if (on) return setOn(false);
       var D = global.DeviceOrientationEvent;
       if (typeof D.requestPermission === 'function') {
-        D.requestPermission().then(function (r) { if (r === 'granted') setOn(true); }).catch(function () {});
+        D.requestPermission().then(function (r) {
+          if (r === 'granted') setOn(true);
+          else if (hint) { hint.textContent = btn.dataset.denied; hint.hidden = false; }
+        }).catch(function () {});
       } else setOn(true);
     });
   })();
