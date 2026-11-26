@@ -1441,3 +1441,23 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ts-wind-go:hover{background:var(--accent);border-color:var(--accent);color:#1A1A18}
 .ts-wind-go:hover span{transform:translateX(3px)}
 .tour .ts-wind .ts-k{color:var(--accent-ink)}
+
+/* ===== Kompass: ruhig, mit Bewegung ===== */
+.wind-rose .wr-ring{fill:none;stroke:var(--accent);stroke-opacity:.45;stroke-width:1}
+.wind-rose .wr-tick{stroke:var(--accent);stroke-opacity:.35;stroke-width:.8}
+.wind-rose .wr-tick-c{stroke-opacity:.9;stroke-width:1.4}
+.wind-rose .wr-l{font-family:var(--serif);font-size:15px;font-weight:500;fill:var(--accent);fill-opacity:.75;letter-spacing:.05em}
+.wind-rose .wr-l-n{fill-opacity:1}
+.wr-flow{transform-box:view-box;transform-origin:100px 100px;transition:transform 1.4s var(--ease)}
+.wr-flow path{fill:none;stroke:var(--text-on-dark,#F4EEE3);stroke-opacity:.3;stroke-width:1;stroke-linecap:round;stroke-dasharray:10 26;
+  animation:wr-flow var(--flow-dur,8s) linear infinite;animation-delay:calc(var(--d) * var(--flow-dur,8s) / -10)}
+@keyframes wr-flow{to{stroke-dashoffset:-72}}
+.wr-arrow{transform-box:view-box;transform-origin:100px 100px;transition:transform 1.6s var(--ease)}
+.wr-arrow line{display:none}
+.wr-sway{transform-box:view-box;transform-origin:100px 100px;animation:wr-sway var(--sway-dur,5s) ease-in-out infinite alternate}
+@keyframes wr-sway{from{transform:rotate(calc(var(--sway,3deg) * -1))}to{transform:rotate(var(--sway,3deg))}}
+.wind-rose .wr-tip{fill:var(--accent)}
+.wind-rose .wr-tail{fill:var(--text-on-dark,#F4EEE3);fill-opacity:.55}
+.wr-tail-dot{fill:none;stroke:var(--text-on-dark,#F4EEE3);stroke-opacity:.55;stroke-width:1.2}
+.wr-hub{fill:#1A1A18;stroke:var(--accent);stroke-width:1.4}
+@media (prefers-reduced-motion:reduce){.wr-flow path,.wr-sway{animation:none}}

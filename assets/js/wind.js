@@ -217,6 +217,15 @@
     sec.querySelectorAll('.wind-dots i').forEach(function (d, i) { d.classList.toggle('on', i < lv); });
     // Pfeil zeigt, wohin der Wind weht (aus West → nach Ost). Ungedreht zeigt er nach Süden, also Wind aus Nord.
     var arrow = $('.wr-arrow'); if (arrow) arrow.style.transform = 'rotate(' + (w.dir % 360) + 'deg)';
+    // Windlinien im Kompass laufen in dieselbe Richtung, Tempo und Pendeln je nach Wind und Böen
+    var flow = $('.wr-flow'); if (flow) flow.style.transform = 'rotate(' + (w.dir % 360) + 'deg)';
+    var rose = $('.wind-rose');
+    if (rose) {
+      var sp = Math.max(0, w.speed || 0), gu = Math.max(sp, w.gusts || sp);
+      rose.style.setProperty('--flow-dur', Math.max(2.2, Math.min(14, 16 - sp * 0.45)).toFixed(1) + 's');
+      rose.style.setProperty('--sway', Math.min(9, 1.5 + (gu - sp) * 0.35).toFixed(1) + 'deg');
+      rose.style.setProperty('--sway-dur', Math.max(2.4, 6 - (gu - sp) * 0.15).toFixed(1) + 's');
+    }
 
     var hours = (w.hours || []).slice(0, 12);
     var wi = wearIndex(has(w.feels) ? w.feels : w.temp);
