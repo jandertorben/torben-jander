@@ -66,23 +66,45 @@
     <h2 id="wind-h" class="sec-h wind-say" aria-live="polite">&nbsp;</h2>
 
     <div class="wind-grid">
+      <div class="wind-rose-wrap">
       <figure class="wind-rose" aria-hidden="true">
         <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="86" class="wr-ring"/>
-          <circle cx="100" cy="100" r="58" class="wr-ring wr-ring-2"/>
-          {{- range $i, $a := seq 0 11 }}{{ $deg := mul $i 30 }}
-          <line x1="100" y1="10" x2="100" y2="{{ if eq (mod $i 3) 0 }}22{{ else }}17{{ end }}" class="wr-tick" transform="rotate({{ $deg }} 100 100)"/>
+          <defs>
+            <clipPath id="wr-clip"><circle cx="100" cy="100" r="70"/></clipPath>
+            <radialGradient id="wr-fade-g" cx="50%" cy="50%" r="50%"><stop offset="55%" stop-color="#fff"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <mask id="wr-fade"><circle cx="100" cy="100" r="70" fill="url(#wr-fade-g)"/></mask>
+          </defs>
+          <g class="wr-dial">
+          <circle cx="100" cy="100" r="88" class="wr-ring"/>
+          {{- range $i := seq 0 71 }}{{ $deg := mul $i 5 }}
+          <line x1="100" y1="12" x2="100" y2="{{ if eq (mod $i 18) 0 }}24{{ else if eq (mod $i 6) 0 }}19{{ else }}16{{ end }}" class="wr-tick{{ if eq (mod $i 18) 0 }} wr-tick-c{{ end }}" transform="rotate({{ $deg }} 100 100)"/>
           {{- end }}
-          <text x="100" y="40" class="wr-l">{{ T "wind_n_short" }}</text>
-          <text x="164" y="104" class="wr-l">{{ T "wind_e_short" }}</text>
-          <text x="100" y="168" class="wr-l">{{ T "wind_s_short" }}</text>
-          <text x="36" y="104" class="wr-l">{{ T "wind_w_short" }}</text>
-          <g class="wr-arrow">
-            <line x1="100" y1="34" x2="100" y2="160" />
-            <path d="M88 144 L100 166 L112 144 Z"/>
+          <text x="100" y="35" class="wr-l wr-l-n">{{ T "wind_n_short" }}</text>
+          <text x="166" y="101" class="wr-l">{{ T "wind_e_short" }}</text>
+          <text x="100" y="167" class="wr-l">{{ T "wind_s_short" }}</text>
+          <text x="34" y="101" class="wr-l">{{ T "wind_w_short" }}</text>
+          <g clip-path="url(#wr-clip)" mask="url(#wr-fade)">
+            <g class="wr-flow">
+              {{- range $k, $x := slice 46 60 74 88 102 116 130 144 158 }}
+              <path d="M{{ $x }} -10 C{{ add $x 5 }} 40 {{ sub $x 5 }} 80 {{ $x }} 110 S{{ sub $x 5 }} 180 {{ $x }} 214" style="--d:{{ mod (mul $k 7) 10 }}"/>
+              {{- end }}
+            </g>
           </g>
+          <g class="wr-arrow">
+            <g class="wr-sway">
+              <path class="wr-tail" d="M100 54 L104 100 L96 100 Z"/>
+              <path class="wr-tip" d="M96 100 L104 100 L100 148 Z"/>
+              <circle cx="100" cy="54" r="3" class="wr-tail-dot"/>
+            </g>
+          </g>
+          <circle cx="100" cy="100" r="5" class="wr-hub"/>
+          </g>
+          <path class="wr-lubber" d="M100 2 L104 9 L96 9 Z"/>
         </svg>
       </figure>
+      <button type="button" class="wr-live" hidden data-on="{{ T "wr_live_on" }}" data-off="{{ T "wr_live_off" }}" aria-pressed="false">{{ T "wr_live_on" }}</button>
+      <p class="wr-live-hint" hidden>{{ T "wr_live_hint" }}</p>
+      </div>
 
       <div class="wind-now">
         <p class="wind-speed"><strong class="num wind-v">–</strong><span>km/h</span></p>

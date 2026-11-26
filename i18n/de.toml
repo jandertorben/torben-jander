@@ -701,3 +701,10 @@ other = "Woher weht der Wind? Im Fahrradwetter siehst du Wind, Regen und das bes
 
 [tour_wind_go]
 other = "Zum Fahrradwetter"
+
+[wr_live_on]
+other = "Kompass ausrichten"
+[wr_live_off]
+other = "Ausrichten beenden"
+[wr_live_hint]
+other = "Handy flach halten. N zeigt jetzt nach Norden, die Nadel zeigt den Wind, wie er gerade um dich herum weht."

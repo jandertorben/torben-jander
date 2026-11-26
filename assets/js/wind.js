@@ -217,6 +217,15 @@
     sec.querySelectorAll('.wind-dots i').forEach(function (d, i) { d.classList.toggle('on', i < lv); });
     // Pfeil zeigt, wohin der Wind weht (aus West → nach Ost). Ungedreht zeigt er nach Süden, also Wind aus Nord.
     var arrow = $('.wr-arrow'); if (arrow) arrow.style.transform = 'rotate(' + (w.dir % 360) + 'deg)';
+    // Windlinien im Kompass laufen in dieselbe Richtung, Tempo und Pendeln je nach Wind und Böen
+    var flow = $('.wr-flow'); if (flow) flow.style.transform = 'rotate(' + (w.dir % 360) + 'deg)';
+    var rose = $('.wind-rose');
+    if (rose) {
+      var sp = Math.max(0, w.speed || 0), gu = Math.max(sp, w.gusts || sp);
+      rose.style.setProperty('--flow-dur', Math.max(2.2, Math.min(14, 16 - sp * 0.45)).toFixed(1) + 's');
+      rose.style.setProperty('--sway', Math.min(9, 1.5 + (gu - sp) * 0.35).toFixed(1) + 'deg');
+      rose.style.setProperty('--sway-dur', Math.max(2.4, 6 - (gu - sp) * 0.15).toFixed(1) + 's');
+    }
 
     var hours = (w.hours || []).slice(0, 12);
     var wi = wearIndex(has(w.feels) ? w.feels : w.temp);
@@ -361,6 +370,48 @@
     }
     ul.hidden = shown === 0;
   }
+
+  /* ── Live-Kompass: dreht die Windrose mit dem Handy, N zeigt nach Norden ── */
+  (function liveCompass() {
+    var btn = $('.wr-live'), dial = $('.wr-dial'), hint = $('.wr-live-hint');
+    if (!btn || !dial || !('DeviceOrientationEvent' in global)) return;
+    if (!(global.matchMedia && global.matchMedia('(pointer: coarse)').matches)) return;
+    btn.hidden = false;
+    var on = false, target = null, cur = null, raf = 0, evName = ('ondeviceorientationabsolute' in global) ? 'deviceorientationabsolute' : 'deviceorientation';
+    function heading(e) {
+      if (typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)) return e.webkitCompassHeading;
+      if (e.absolute === true || evName === 'deviceorientationabsolute') { if (typeof e.alpha === 'number') return (360 - e.alpha) % 360; }
+      return null;
+    }
+    function onOri(e) {
+      var h = heading(e); if (h === null) return;
+      var so = (global.screen && global.screen.orientation && global.screen.orientation.angle) || global.orientation || 0;
+      target = (h + so + 360) % 360;
+      if (!raf) raf = global.requestAnimationFrame(step);
+    }
+    function step() {
+      raf = 0; if (!on || target === null) return;
+      if (cur === null) cur = target;
+      var d = ((target - cur + 540) % 360) - 180;      // kürzester Weg
+      cur = (cur + d * (reduceMotion ? 1 : 0.15) + 360) % 360;
+      dial.style.transform = 'rotate(' + (-cur).toFixed(1) + 'deg)';
+      if (Math.abs(d) > 0.2) raf = global.requestAnimationFrame(step);
+    }
+    function setOn(v) {
+      on = v; btn.setAttribute('aria-pressed', v ? 'true' : 'false');
+      btn.textContent = v ? btn.dataset.off : btn.dataset.on;
+      if (hint) hint.hidden = !v;
+      if (v) global.addEventListener(evName, onOri, true);
+      else { global.removeEventListener(evName, onOri, true); cur = target = null; dial.style.transform = ''; }
+    }
+    btn.addEventListener('click', function () {
+      if (on) return setOn(false);
+      var D = global.DeviceOrientationEvent;
+      if (typeof D.requestPermission === 'function') {
+        D.requestPermission().then(function (r) { if (r === 'granted') setOn(true); }).catch(function () {});
+      } else setOn(true);
+    });
+  })();
 
   /* ── Wetteranimation: feine Windlinien in Windrichtung, bei Regen schräge Striche ── */
   var anim = { w: null, raf: 0, parts: [], visible: true };
