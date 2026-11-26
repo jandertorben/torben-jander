@@ -2,7 +2,7 @@
 {{- $en := eq site.Language.Lang "en" }}
 {{- $page := site.GetPage "/unterwegs" }}
 {{- with site.Data.reparatur }}{{ if .stations }}
-<section class="sec road-home" id="unterwegs" aria-labelledby="roadh-h">
+<section class="sec road-home sec-light" id="unterwegs" aria-labelledby="roadh-h">
   <div class="wrap">
     <p class="eyebrow">{{ T "road_eyebrow" }}</p>
     <h2 id="roadh-h" class="sec-h reveal">{{ T "road_home_title" }}</h2>
