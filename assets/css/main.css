@@ -922,3 +922,10 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 /* Unter der Schräge von „Zuletzt“ soll das Braun von Gravel durchscheinen, nicht Schwarz */
 :root{--slant:clamp(28px,4.5vw,80px)}
 #zuletzt + .sec-gravel{margin-top:calc(-1 * var(--slant));padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));border-top:0}
+
+/* ─── Nur zwei Flächen: Schwarz (#0b0a08) und Ocker. Ocker und Mint bleiben Akzente in Daten. ─── */
+.wind:not(.wind-full),.sec-gravel,.sec-run{background:var(--bg);border-top:0;border-bottom:0}
+.wind:not(.wind-full) .eyebrow,.sec-gravel .eyebrow,.sec-run .eyebrow{color:var(--muted)}
+.sec-run .lead{color:var(--ink-2)}
+.sec-run .mini-ledger{border-color:var(--line-2)}
+.footer{background:var(--bg)}
