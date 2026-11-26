@@ -717,9 +717,9 @@ other = "Without access to the motion sensor the compass cannot align. You can a
 [repair_eyebrow]
 other = "Flat tyre? Dry chain?"
 [repair_title]
-other = "Public repair stations."
+other = "Air and tools for everyone."
 [repair_lead]
-other = "%d stands with a pump or tools in and around Bremen, open to everyone and free. Sorted by the nearest district."
+other = "%d public repair stations with a pump or tools in and around Bremen, open to everyone and free. Sorted by the nearest district."
 [repair_pump]
 other = "Pump"
 [repair_tools]

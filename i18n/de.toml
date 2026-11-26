@@ -717,9 +717,9 @@ other = "Ohne Zugriff auf den Bewegungssensor kann sich der Kompass nicht ausric
 [repair_eyebrow]
 other = "Platten? Kette trocken?"
 [repair_title]
-other = "Öffentliche Reparaturstationen."
+other = "Luft und Werkzeug für alle."
 [repair_lead]
-other = "%d Säulen mit Luftpumpe oder Werkzeug in Bremen und drumherum, frei zugänglich und kostenlos. Sortiert nach dem nächsten Ortsteil."
+other = "%d öffentliche Reparaturstationen mit Luftpumpe oder Werkzeug in Bremen und drumherum, frei zugänglich und kostenlos. Sortiert nach dem nächsten Ortsteil."
 [repair_pump]
 other = "Pumpe"
 [repair_tools]
