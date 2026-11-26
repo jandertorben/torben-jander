@@ -875,3 +875,14 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   clip-path:polygon(0 0,100% var(--slant),100% 100%,0 calc(100% - var(--slant)));
   margin-top:calc(-1 * var(--slant));
   padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));padding-bottom:calc(clamp(6rem,13vw,11rem) + var(--slant))}
+
+/* Battlefield-Karte über die volle Inhaltsbreite, Inhalt in einer Reihe */
+.sec-community .partner,.community-grid .partner{max-width:none;width:100%}
+@media (min-width:900px){
+  .sec-community .partner{padding:2.2rem 2.6rem}
+  .sec-community .partner-link.has-logo{grid-template-columns:auto 1fr;gap:2.4rem;align-items:center}
+  .sec-community .partner-text{grid-template-columns:1fr auto;grid-template-areas:"name url" "claim url";column-gap:2rem;align-items:center}
+  .sec-community .partner-name{grid-area:name}
+  .sec-community .partner-claim{grid-area:claim}
+  .sec-community .partner-url{grid-area:url;margin-top:0;align-self:center;font-size:1rem}
+}
