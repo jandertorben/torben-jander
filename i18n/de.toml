@@ -679,3 +679,12 @@ other = "Was dranhängt und mitfährt."
 other = "Laufen"
 [equip_lauf_title]
 other = "Zu Fuß und für beides."
+
+[tours_tag]
+other = "Flach. Weit. Zum Nachfahren."
+[tours_total]
+other = "%d Touren, zusammen %s km. Alle Zahlen aus Strava."
+[tour_open]
+other = "Zur Tour"
+[tour_profile_k]
+other = "Höhenprofil"
