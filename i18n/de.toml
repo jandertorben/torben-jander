@@ -688,3 +688,8 @@ other = "%d Touren, zusammen %s km. Alle Zahlen aus Strava."
 other = "Zur Tour"
 [tour_profile_k]
 other = "Höhenprofil"
+
+[wx_tag]
+other = "Wind. Regen. Licht. Live für Bremen."
+[numbers_tag]
+other = "Alles aus Strava. Nichts geschätzt."

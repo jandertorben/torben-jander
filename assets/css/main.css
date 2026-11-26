@@ -1399,3 +1399,26 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 /* Zurück-Leiste passend zum höheren Kopf (5rem) */
 .back-bar{top:5rem;margin-top:5rem;background:rgba(26,26,24,.94);border-bottom:1px solid rgba(244,238,227,.08)}
 .back-bar .wrap{min-height:2.6rem}
+
+/* ===== Fahrradwetter & Zahlen im Magazin-Stil ===== */
+.hero-page + .wind-full{padding-top:1rem}
+/* helle Abschnitte mit Inhalten aus dem dunklen Design: Variablen umstellen */
+.planer.sec-light,.zahlen-main{
+  --ink:#1c1b19;--ink-2:rgba(28,27,25,.82);--muted:rgba(28,27,25,.58);
+  --line:rgba(28,27,25,.14);--line-2:rgba(28,27,25,.24);--border-subtle:rgba(28,27,25,.14);
+  --bg-2:rgba(28,27,25,.04);--bg-3:rgba(28,27,25,.035);--text-on-dark:#1c1b19;
+  --gravel:var(--accent-ink);--gravel-2:var(--accent-ink);--gravel-dim:rgba(184,146,79,.18);
+  color:var(--text-on-light)}
+.planer.sec-light .tip-card{background:rgba(28,27,25,.035);border-color:rgba(28,27,25,.12)}
+.planer.sec-light .tip-card *{color:inherit}
+.planer.sec-light .tip-card .tip-meta{color:var(--accent-ink)}
+.planer.sec-light .tip-card .btn:not(.btn-ghost){color:#1A1A18}
+.planer.sec-light select{background:transparent;color:var(--text-on-light);border:1px solid rgba(28,27,25,.3)}
+.planer.sec-light .pl-day{color:var(--text-on-light);border-color:rgba(28,27,25,.2);background:transparent}
+.planer.sec-light .pl-day.is-on{background:var(--accent);color:#1A1A18;border-color:var(--accent)}
+.planer.sec-light .pl-day:disabled,.planer.sec-light .pl-day[aria-disabled="true"]{opacity:.4}
+.planer.sec-light .wind-src a{color:var(--accent-ink)}
+.planer.sec-light .tip-route,.planer.sec-light .tip-card svg{background:none}
+.zahlen-main .goal-run .goal-nums strong,.zahlen-main .goal-diff.is-ahead{color:#2F7F6D}
+/* lange Produktnamen: normale Schreibung statt Versalien, liest sich leichter */
+.eq-card .eq-name{text-transform:none;letter-spacing:0;font-size:clamp(1.4rem,2vw,1.7rem);line-height:1.12}
