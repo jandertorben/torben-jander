@@ -1242,3 +1242,6 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 @media (max-width:599px){.brand-logo{height:2.1rem}}
 .foot-logo{display:block;width:min(200px,50vw);height:auto;margin:0 0 1.6rem}
 .foot-logo{flex-basis:100%;max-width:200px}
+/* Logo allein im Kopf */
+.brand-logo{height:3.2rem}
+@media (max-width:599px){.brand-logo{height:2.8rem}}
