@@ -398,3 +398,70 @@ other = "Rekorde, gewissermaßen"
 other = "Die längsten Runden des Jahres."
 [partner_k]
 other = "Ich unterstütze"
+
+# Gegenwind-Radar (layouts/partials/wind.html, assets/js/main.js)
+[wind_eyebrow]
+other = "Gegenwind heute · Bremen"
+[wind_n]
+other = "Nord"
+[wind_ne]
+other = "Nordost"
+[wind_e]
+other = "Ost"
+[wind_se]
+other = "Südost"
+[wind_s]
+other = "Süd"
+[wind_sw]
+other = "Südwest"
+[wind_w]
+other = "West"
+[wind_nw]
+other = "Nordwest"
+[wind_n_short]
+other = "N"
+[wind_e_short]
+other = "O"
+[wind_s_short]
+other = "S"
+[wind_w_short]
+other = "W"
+[wind_from]
+other = "aus %s"
+[wind_l1]
+other = "Fast windstill. Verdächtig."
+[wind_l2]
+other = "Leichte Brise. Zählt nicht als Ausrede."
+[wind_l3]
+other = "Ordentlich Wind. Bremer Bergwetter."
+[wind_l4]
+other = "Der Deich wird heute lang."
+[wind_l5]
+other = "Heute fährt der Wind. Du fährst nur mit."
+[wind_level]
+other = "Gegenwind-Stufe %d von 5"
+[wind_gusts]
+other = "Böen bis %d km/h"
+[wind_next]
+other = "Die nächsten 12 Stunden"
+[wind_calm_at]
+other = "Am ruhigsten gegen %s Uhr, %d km/h."
+[wind_calm_now]
+other = "Ruhiger als jetzt wird es heute nicht mehr."
+[wind_tip_k]
+other = "Tour-Tipp für heute"
+[wind_tip_good]
+other = "%s (%s km). Die Runde führt in den Wind hinaus, auf dem Rückweg schiebt er."
+[wind_tip_meh]
+other = "Keine Tour führt richtig in den Wind. Am besten passt noch %s (%s km)."
+[wind_tip_none]
+other = "Bei dem bisschen Wind ist die Richtung egal. Nimm einfach die schönste Runde."
+[wind_tip_avoid]
+other = "Lieber nicht: %s. Da kommt er dir auf dem Heimweg entgegen."
+[wind_stand]
+other = "Stand %s Uhr"
+[wind_source]
+other = "Wetterdaten:"
+
+[nav_wind]
+other = "Gegenwind"

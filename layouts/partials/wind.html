@@ -1,0 +1,77 @@
+{{- /* Gegenwind-Radar: Wind in Bremen, Gegenwind-Stufe, Verlauf der nächsten Stunden und Tour-Tipp.
+     Die Wetterdaten holt assets/js/main.js von /api/wind (functions/api/wind.js, serverseitig, mit Cache).
+     Ohne JavaScript oder ohne Daten bleibt der ganze Abschnitt verborgen. */ -}}
+{{- $tours := slice }}
+{{- range first 10 (.Site.Data.gpx.tours | default slice) }}
+  {{- $id := .id }}{{ $km := .km }}{{ $url := printf "https://www.strava.com/activities/%s" .id }}{{ $title := .name }}
+  {{- with site.GetPage "/touren" }}{{ range .RegularPages }}{{ if eq .Params.tour.id $id }}{{ $url = .RelPermalink }}{{ $title = .Title }}{{ end }}{{ end }}{{ end }}
+  {{- with .route }}{{ with .d }}
+  {{- $tours = $tours | append (dict "title" $title "url" $url "km" (lang.FormatNumber 0 (float $km)) "d" .) }}
+  {{- end }}{{ end }}
+{{- end }}
+{{- $cfg := dict
+  "dirs" (slice (T "wind_n") (T "wind_ne") (T "wind_e") (T "wind_se") (T "wind_s") (T "wind_sw") (T "wind_w") (T "wind_nw"))
+  "from" (T "wind_from")
+  "levels" (slice (T "wind_l1") (T "wind_l2") (T "wind_l3") (T "wind_l4") (T "wind_l5"))
+  "level" (T "wind_level")
+  "gusts" (T "wind_gusts")
+  "calm" (T "wind_calm_at")
+  "calmNow" (T "wind_calm_now")
+  "tipGood" (T "wind_tip_good")
+  "tipMeh" (T "wind_tip_meh")
+  "tipNone" (T "wind_tip_none")
+  "avoid" (T "wind_tip_avoid")
+  "stand" (T "wind_stand")
+  "tours" $tours
+}}
+<section class="sec wind" id="wind" aria-labelledby="wind-h" hidden>
+  <script type="application/json" id="wind-cfg">{{ $cfg | jsonify | safeJS }}</script>
+  <div class="wrap">
+    <p class="eyebrow">{{ T "wind_eyebrow" }}</p>
+    <h2 id="wind-h" class="sec-h wind-say" aria-live="polite">&nbsp;</h2>
+
+    <div class="wind-grid">
+      <figure class="wind-rose" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="86" class="wr-ring"/>
+          <circle cx="100" cy="100" r="58" class="wr-ring wr-ring-2"/>
+          {{- range $i, $a := seq 0 11 }}{{ $deg := mul $i 30 }}
+          <line x1="100" y1="10" x2="100" y2="{{ if eq (mod $i 3) 0 }}22{{ else }}17{{ end }}" class="wr-tick" transform="rotate({{ $deg }} 100 100)"/>
+          {{- end }}
+          <text x="100" y="40" class="wr-l">{{ T "wind_n_short" }}</text>
+          <text x="164" y="104" class="wr-l">{{ T "wind_e_short" }}</text>
+          <text x="100" y="168" class="wr-l">{{ T "wind_s_short" }}</text>
+          <text x="36" y="104" class="wr-l">{{ T "wind_w_short" }}</text>
+          <g class="wr-arrow">
+            <line x1="100" y1="34" x2="100" y2="160" />
+            <path d="M88 144 L100 166 L112 144 Z"/>
+          </g>
+        </svg>
+      </figure>
+
+      <div class="wind-now">
+        <p class="wind-speed"><strong class="num wind-v">–</strong><span>km/h</span></p>
+        <p class="wind-dir">&nbsp;</p>
+        <p class="wind-gust">&nbsp;</p>
+        <div class="wind-level">
+          <span class="wind-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="wind-level-t">&nbsp;</span>
+        </div>
+      </div>
+
+      <figure class="wind-hours">
+        <figcaption>{{ T "wind_next" }}</figcaption>
+        <div class="wh-bars" aria-hidden="true"></div>
+        <p class="wh-note">&nbsp;</p>
+      </figure>
+    </div>
+
+    <div class="wind-tip" hidden>
+      <p class="wind-tip-k">{{ T "wind_tip_k" }}</p>
+      <p class="wind-tip-t"></p>
+      <p class="wind-tip-avoid"></p>
+    </div>
+
+    <p class="wind-src"><span class="wind-stand"></span> · {{ T "wind_source" }} <a href="https://open-meteo.com" rel="noopener" target="_blank">Open-Meteo.com</a></p>
+  </div>
+</section>

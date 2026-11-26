@@ -398,3 +398,70 @@ other = "Records, sort of"
 other = "The longest rides of the year."
 [partner_k]
 other = "I support"
+
+# Headwind radar (layouts/partials/wind.html, assets/js/main.js)
+[wind_eyebrow]
+other = "Headwind today · Bremen"
+[wind_n]
+other = "north"
+[wind_ne]
+other = "north-east"
+[wind_e]
+other = "east"
+[wind_se]
+other = "south-east"
+[wind_s]
+other = "south"
+[wind_sw]
+other = "south-west"
+[wind_w]
+other = "west"
+[wind_nw]
+other = "north-west"
+[wind_n_short]
+other = "N"
+[wind_e_short]
+other = "E"
+[wind_s_short]
+other = "S"
+[wind_w_short]
+other = "W"
+[wind_from]
+other = "from the %s"
+[wind_l1]
+other = "Almost no wind. Suspicious."
+[wind_l2]
+other = "A light breeze. Not an excuse."
+[wind_l3]
+other = "Proper wind. Bremen's version of hills."
+[wind_l4]
+other = "The dyke will feel long today."
+[wind_l5]
+other = "The wind is riding today. You are just along for it."
+[wind_level]
+other = "Headwind level %d of 5"
+[wind_gusts]
+other = "Gusts up to %d km/h"
+[wind_next]
+other = "The next 12 hours"
+[wind_calm_at]
+other = "Calmest around %s:00, %d km/h."
+[wind_calm_now]
+other = "It will not get calmer than now today."
+[wind_tip_k]
+other = "Ride tip for today"
+[wind_tip_good]
+other = "%s (%s km). The loop heads out into the wind, and it pushes you home."
+[wind_tip_meh]
+other = "No loop really heads into the wind. The best fit is %s (%s km)."
+[wind_tip_none]
+other = "With this little wind, direction does not matter. Just pick the nicest loop."
+[wind_tip_avoid]
+other = "Better not: %s. The wind meets you on the way home."
+[wind_stand]
+other = "As of %s"
+[wind_source]
+other = "Weather data:"
+
+[nav_wind]
+other = "Headwind"
