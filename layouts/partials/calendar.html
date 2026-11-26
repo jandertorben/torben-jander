@@ -1,0 +1,31 @@
+{{- /* Aktivitätskalender: Wochen als Spalten, Mo–So als Zeilen. Ruhetage bleiben leer und dunkel. */ -}}
+{{- $cal := .Site.Data.strava.calendar }}
+    {{- $nw := len $cal.weeks }}{{ $cs := 14 }}{{ $gap := 3 }}{{ $left := 30 }}{{ $top := 18 }}
+    {{- $W := add $left (mul $nw (add $cs $gap)) }}{{ $H := add $top (mul 7 (add $cs $gap)) }}
+    <figure class="cal reveal">
+      <figcaption><span>{{ T "cal_title" }}</span><span class="legend"><span class="cal-less">{{ T "cal_legend_less" }}</span><i class="sw cal-l1"></i><i class="sw cal-l2"></i><i class="sw cal-l3"></i><span>{{ T "cal_legend_more" }}</span></span></figcaption>
+      <div class="chart-scroll">
+      <svg viewBox="0 0 {{ $W }} {{ $H }}" class="cal-svg" role="img" aria-label="{{ T "cal_title" }}" style="min-width:{{ $W }}px">
+        <defs><linearGradient id="calboth" x1="0" y1="0" x2="1" y2="1"><stop offset="0.5" stop-color="#f0c07a"/><stop offset="0.5" stop-color="#b9ece0"/></linearGradient></defs>
+        {{- range $cal.month_starts }}<text x="{{ add $left (mul .week (add $cs $gap)) }}" y="11" class="tick">{{ T (printf "month_%d" (int .month)) }}</text>{{ end }}
+        <text x="0" y="{{ add $top 11 }}" class="tick">{{ T "wd_mo" }}</text>
+        <text x="0" y="{{ add $top (add 11 (mul 2 (add $cs $gap))) }}" class="tick">{{ T "wd_mi" }}</text>
+        <text x="0" y="{{ add $top (add 11 (mul 4 (add $cs $gap))) }}" class="tick">{{ T "wd_fr" }}</text>
+        {{- $i := 0 }}
+        {{- range $wi, $wk := $cal.weeks }}{{ range $di, $day := $wk }}
+        {{- if $day }}
+        {{- $x := add $left (mul $wi (add $cs $gap)) }}{{ $yy := add $top (mul $di (add $cs $gap)) }}
+        {{- $tot := add $day.r $day.k }}
+        {{- $lvl := 0 }}{{ if gt $tot 0.0 }}{{ $lvl = 1 }}{{ end }}{{ if ge $tot 15.0 }}{{ $lvl = 2 }}{{ end }}{{ if ge $tot 30.0 }}{{ $lvl = 3 }}{{ end }}
+        {{- $kind := "rest" }}{{ if and (gt $day.r 0.0) (gt $day.k 0.0) }}{{ $kind = "both" }}{{ else if gt $day.r 0.0 }}{{ $kind = "ride" }}{{ else if gt $day.k 0.0 }}{{ $kind = "run" }}{{ else if gt $day.f 0.0 }}{{ $kind = "foot" }}{{ end }}
+        <g class="cd cd-{{ $kind }} cd-l{{ $lvl }}" style="--i:{{ $i }}">
+          <rect x="{{ $x }}" y="{{ $yy }}" width="{{ $cs }}" height="{{ $cs }}" rx="2"/>
+          <title>{{ time.Format ":date_medium" (time $day.d) }}{{ if gt $day.r 0.0 }} · {{ lang.FormatNumber 1 $day.r }} km {{ T "weekly_legend_ride" }}{{ end }}{{ if gt $day.k 0.0 }} · {{ lang.FormatNumber 1 $day.k }} km {{ T "weekly_legend_run" }}{{ end }}{{ if eq $kind "rest" }} · {{ T "cal_rest" }}{{ end }}</title>
+        </g>
+        {{- $i = add $i 1 }}
+        {{- end }}
+        {{- end }}{{ end }}
+      </svg>
+      </div>
+      <p class="chart-note">{{ printf (T "cal_note") (int $cal.active_days) }}</p>
+    </figure>
