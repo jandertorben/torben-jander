@@ -28,7 +28,8 @@ items:
   - name: Grix.2
     brand: Storck
     category: bike
-    image: storck-grix-2.png
+    image: storck-grix-2-foto.jpg
+    photo: true
     strava_gear: "19023709"
     spec: "Gravel · Carbon · Tourenrad"
     spec_en: "Gravel · carbon · touring bike"
