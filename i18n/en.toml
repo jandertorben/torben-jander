@@ -795,3 +795,8 @@ other = "Pump or ferry on the way?"
 
 [nav_home]
 other = "Home"
+
+[about_stats]
+other = "%d so far: %s km on the bike, %s km on foot. All from Strava."
+[about_stats_more]
+other = "More numbers →"
