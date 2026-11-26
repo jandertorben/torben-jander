@@ -18,6 +18,13 @@
   title_en: "First ride on the Storck"
   summary: "52 km zum Kennenlernen: die erste Ausfahrt mit dem neuen Storck Grix.2."
   slug: "erste-runde-storck"
+  photo: "erste-runde-storck.jpg"
+  photo_alt: "Lenker und Oberrohr des Storck Grix.2, dahinter die Weser im Sonnenlicht"
+  gallery:
+    - file: "erste-runde-storck-hafen.jpg"
+      alt: "Kleiner Bootshafen mit Steganlagen hinter dem Deich, Herbstbäume"
+    - file: "erste-runde-storck-deich.jpg"
+      alt: "Blick über den Lenker auf einen Weg am Deichfuß, links Bäume im Herbstlaub"
   text: |
     Die erste Ausfahrt mit dem neuen Storck Grix.2. Ein Novembermorgen, 52 Kilometer, 158 Höhenmeter, also Bremer Normalprogramm.
 
