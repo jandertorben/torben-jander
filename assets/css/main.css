@@ -814,3 +814,64 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .wb-more{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);text-decoration:none}
 .wb-more:hover{color:var(--gravel-2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ─── Wichtige Bereiche farblich absetzen (Gegenwind-Radar, Community) ───
+   Ruhige, warme Flächen statt Verläufe; feine Linie oben und unten. */
+:root{--bg-warm:#15110b;--line-warm:#3a2e1d}
+.wind:not(.wind-full),.sec-community{background:var(--bg-warm);border-top:1px solid var(--line-warm);border-bottom:1px solid var(--line-warm)}
+.sec-community .eyebrow,.wind:not(.wind-full) .eyebrow{color:var(--gravel-2)}
+
+/* Community: auf breiten Bildschirmen Text links, Partner rechts */
+.community-grid{display:grid;gap:0}
+@media (min-width:1100px){
+  .community-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(3rem,6vw,6rem);align-items:start}
+  .community-grid .partner{margin-top:0;padding:2rem 2.2rem;border:1px solid var(--line-warm);border-radius:6px;background:rgba(11,10,8,.45);max-width:none}
+  .community-grid .partner-link.has-logo{grid-template-columns:1fr;justify-items:start}
+  .community-grid .partner-logo{width:150px}
+}
+
+/* ─── Community als helle Ockerfläche (dunkle Schrift), Partner-Karte bleibt dunkel ─── */
+.sec-community{background:var(--gravel-2);color:#0b0a08;border-color:#d39b5a}
+.sec-community .eyebrow{color:#3d2f1c}
+.sec-community .eyebrow::before{background:#0b0a08}
+.sec-community .sec-h{color:#0b0a08}
+.sec-community .community-copy p{color:#2b2217}
+.sec-community .btn{background:#0b0a08;border-color:#0b0a08;color:var(--gravel-2)}
+.sec-community .btn:hover{background:#2b2217;border-color:#2b2217;color:var(--gravel-2)}
+.sec-community .btn-ghost{background:transparent;border-color:rgba(11,10,8,.45);color:#0b0a08}
+.sec-community .btn-ghost:hover{background:rgba(11,10,8,.08);border-color:#0b0a08;color:#0b0a08}
+.sec-community a:focus-visible{outline-color:#0b0a08}
+.sec-community .partner{background:#0b0a08;color:var(--ink);border:0;border-radius:6px;padding:2rem 2.2rem}
+.sec-community .partner-k{color:var(--muted)}
+@media (max-width:1099px){.sec-community .partner{margin-top:3rem}}
+@media (max-width:560px){.partner-link.has-logo{grid-template-columns:1fr;justify-items:start}.partner-logo{width:110px}}
+
+/* Community: Farbe wie „Ich fahr trotzdem.“ (#d39b5a), Partner-Karte immer darunter */
+.sec-community{background:var(--gravel);border-color:#b8834a}
+.sec-community .community-copy p{color:#1f170e}
+.sec-community .eyebrow{color:#2b2013}
+.sec-community .btn{color:var(--gravel-2)}
+.sec-community .btn-ghost{border-color:rgba(11,10,8,.55)}
+@media (min-width:1100px){
+  .community-grid{grid-template-columns:1fr;gap:0}
+  .community-grid .partner{margin-top:clamp(3.5rem,7vw,5rem);max-width:46rem}
+  .community-grid .partner-link.has-logo{grid-template-columns:auto 1fr;justify-items:stretch}
+  .community-grid .partner-logo{width:clamp(96px,14vw,140px)}
+}
+.sec-community .btn-ghost,.sec-community .btn-ghost:hover{color:#0b0a08}
+
+/* ─── Farbrhythmus: jeder Bereich in seiner Farbe, ruhig, ohne Verläufe ───
+   Rad/Gravel = Ocker, Laufen = Mint, Community = Bremen-ist-flach-Ocker als helle Fläche. */
+.sec-gravel{background:#17110a;border-top:1px solid #3a2a17}
+.sec-gravel .eyebrow{color:var(--gravel-2)}
+.sec-run{background:#0a1513;border-top:1px solid #1d3a33}
+.sec-run .eyebrow{color:var(--run-2)}
+.sec-run .lead{color:#b7c9c3}
+.sec-run .mini-ledger{border-color:#1d3a33}
+
+/* Community: schräge Kanten wie bei Battlefield, oben links→rechts abfallend, unten parallel.
+   Die Fläche schiebt sich über den Laufen-Bereich, damit im Schrägstück dessen Farbe durchscheint. */
+.sec-community{--slant:clamp(28px,4.5vw,80px);position:relative;z-index:1;border:0;
+  clip-path:polygon(0 0,100% var(--slant),100% 100%,0 calc(100% - var(--slant)));
+  margin-top:calc(-1 * var(--slant));
+  padding-top:calc(clamp(6rem,13vw,11rem) + var(--slant));padding-bottom:calc(clamp(6rem,13vw,11rem) + var(--slant))}
