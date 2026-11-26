@@ -859,3 +859,12 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   .community-grid .partner-logo{width:clamp(96px,14vw,140px)}
 }
 .sec-community .btn-ghost,.sec-community .btn-ghost:hover{color:#0b0a08}
+
+/* ─── Farbrhythmus: jeder Bereich in seiner Farbe, ruhig, ohne Verläufe ───
+   Rad/Gravel = Ocker, Laufen = Mint, Community = Bremen-ist-flach-Ocker als helle Fläche. */
+.sec-gravel{background:#17110a;border-top:1px solid #3a2a17}
+.sec-gravel .eyebrow{color:var(--gravel-2)}
+.sec-run{background:#0a1513;border-top:1px solid #1d3a33}
+.sec-run .eyebrow{color:var(--run-2)}
+.sec-run .lead{color:#b7c9c3}
+.sec-run .mini-ledger{border-color:#1d3a33}
