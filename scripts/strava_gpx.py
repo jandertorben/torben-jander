@@ -136,8 +136,8 @@ def route_svg(path):
     return {"route": {"w": W, "h": H, "d": big}, "path": small}
 
 
-def elevation_profile(path, W=1000, H=150):
-    """Höhenprofil der (gekürzten) Spur als SVG-Pfade für das Tourplakat, geglättet über ~400 m."""
+def _smoothed(path):
+    """Höhenpunkte (Distanz in m, Höhe in m) der gekürzten Spur, geglättet über ~400 m."""
     ns = "{http://www.topografix.com/GPX/1/1}"
     pts, dist = [], 0.0
     for seg in ET.parse(path).getroot().iter(ns + "trkseg"):
@@ -147,16 +147,36 @@ def elevation_profile(path, W=1000, H=150):
             if last: dist += haversine(last, q)
             last = q
             if e is not None: pts.append((dist, float(e.text)))
-    if len(pts) < 10 or dist <= 0: return {}
+    if len(pts) < 10 or dist <= 0: return [], 0.0
     sm, j, k, s = [], 0, 0, 0.0
     for d, _ in pts:
         while pts[j][0] < d - 200: s -= pts[j][1]; j += 1
         while k < len(pts) and pts[k][0] <= d + 200: s += pts[k][1]; k += 1
         sm.append((d, s / (k - j)))
+    return sm, dist
+
+
+def elevation_profile(path, W=1000, H=150):
+    """Höhenprofil der (gekürzten) Spur als SVG-Pfade für das Tourplakat (Achse an die Tour angepasst)."""
+    sm, dist = _smoothed(path)
+    if not sm: return {}
     lo = min(e for _, e in sm); rng = max(max(e for _, e in sm) - lo, 25)
     step = max(1, len(sm) // 400)
     pl = [f"{d / dist * W:.1f},{H - (e - lo) / rng * (H - 14) - 4:.1f}" for d, e in sm[::step]]
     return {"profile": {"w": W, "h": H, "line": "M" + " L".join(pl), "area": f"M0,{H} L" + " L".join(pl) + f" L{W},{H} Z"}}
+
+
+def flat_profile(path, W=600, H=160):
+    """Dasselbe Profil mit fester Achse ab 0 m (mindestens 0–60 m) für die Startseite:
+    so sieht man, wie flach Bremen wirklich ist."""
+    sm, dist = _smoothed(path)
+    if not sm: return {}
+    hi = max(e for _, e in sm)
+    ymax = max(60, -(-int(hi) // 10) * 10)
+    step = max(1, len(sm) // 200)
+    pl = [f"{d / dist * W:.1f},{H - max(e, 0) / ymax * H:.1f}" for d, e in sm[::step]]
+    return {"flat": {"w": W, "h": H, "ymax": ymax, "line": "M" + " L".join(pl),
+                     "area": f"M0,{H} L" + " L".join(pl) + f" L{W},{H} Z", "start": pl[0].split(",")[1], "end": pl[-1].split(",")[1]}}
 
 
 def current(path):
@@ -215,6 +235,7 @@ def main():
                  "tempo": pace(sm["moving_time"], sm["distance"]) if g == "run" else f"{speed(sm['distance'], sm['moving_time'])} km/h"}
         entry.update(route_svg(os.path.join(OUT_DIR, f"{i}.gpx")))
         entry.update(elevation_profile(os.path.join(OUT_DIR, f"{i}.gpx")))
+        entry.update(flat_profile(os.path.join(OUT_DIR, f"{i}.gpx")))
         listing.append(entry)
     json.dump({"tours": listing}, open(LIST_OUT, "w"), ensure_ascii=False, separators=(",", ":"))
 

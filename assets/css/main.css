@@ -1186,3 +1186,53 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
   .js .hero-tag{animation-delay:.4s}.js .hero-text{animation-delay:.6s}.js .hero-link{animation-delay:.8s}
 }
 .hero-topo{-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%)}
+
+/* ===== Warum Gravel (unter dem Kopf, nach Entwurf) ===== */
+.sec-why{overflow:hidden;padding-bottom:calc(clamp(4rem,8vw,6rem) + var(--wave))}
+.sec-why .wrap{position:relative;z-index:2}
+.sec-why::after{z-index:3}
+.why-prof{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem 3rem;align-items:center;margin:0 0 clamp(3.5rem,8vw,6rem)}
+@media (min-width:800px){.why-prof{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}.why-cap{grid-column:1}.why-hand{grid-column:2;grid-row:1}}
+.why-chart{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:end}
+.why-ylab{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;line-height:2.2;color:var(--text-on-light);padding-bottom:2.2rem}
+.why-ylab .mono{letter-spacing:.04em;text-transform:none}
+.why-plot{position:relative;height:clamp(110px,14vw,160px);border-bottom:1px solid rgba(28,27,25,.35);margin-bottom:2.2rem}
+.why-plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.why-line{fill:none;stroke:var(--accent-ink);stroke-width:1.6}
+.why-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent-ink);transform:translate(-50%,-50%)}
+.why-dot-a{left:0;top:calc(var(--y0)*100%)}
+.why-dot-b{left:100%;top:calc(var(--y1)*100%)}
+.why-x{position:absolute;left:0;right:0;top:100%;display:flex;justify-content:space-between;padding-top:.7rem;font-size:.7rem;letter-spacing:.06em;color:var(--text-on-light)}
+.why-x span:first-child{transform:translateX(-30%)}.why-x span:last-child{transform:translateX(30%)}
+.why-cap{font-size:.72rem;color:rgba(28,27,25,.6);margin:0}
+.why-hand{font-family:var(--hand);font-size:clamp(2.2rem,4vw,3.2rem);color:var(--accent-ink);margin:0;transform:rotate(-4deg);justify-self:start;line-height:1}
+.why-hand svg{display:block;width:100%;height:.35em;margin-top:.05em}
+.why-hand path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.why-grid{display:grid;gap:2rem 4rem;align-items:start}
+@media (min-width:800px){.why-grid{grid-template-columns:1fr 1fr}}
+.why-body p{max-width:34rem;line-height:1.75;margin:0 0 1.8rem}
+.sec-why .hero-link{color:var(--text-on-light)}
+.sec-why .hero-link span{color:var(--accent-ink)}
+.why-photo{display:block;position:relative;z-index:1;margin:clamp(2rem,5vw,3rem) 0 calc(-1 * (clamp(4rem,8vw,6rem) + var(--wave)))}
+.why-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%)}
+@media (min-width:800px){
+  .sec-why{padding-bottom:calc(clamp(9rem,16vw,14rem) + var(--wave))}
+  .why-photo{position:absolute;right:0;bottom:0;width:58%;margin:0}
+  .why-photo img{aspect-ratio:16/10;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 35%),linear-gradient(to bottom,transparent 0,#000 40%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to right,transparent 0,#000 35%),linear-gradient(to bottom,transparent 0,#000 40%);mask-composite:intersect}
+  .why-body{position:relative;z-index:2}
+}
+.sec-why{padding-top:calc(clamp(2.5rem,5vw,4rem) + var(--wave))}
+.sec-why .sec-h{font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.05}
+.why-hand{color:var(--accent)}
+.sec-why{padding-top:calc(clamp(1rem,2.5vw,2.5rem) + var(--wave))}
+.sec-why .why-hand{color:var(--accent-ink)}
+@media (min-width:800px){
+  .sec-why{padding-bottom:calc(clamp(12rem,21vw,19rem) + var(--wave))}
+  .why-photo{width:54%}
+  .why-grid{grid-template-columns:1.15fr .85fr}
+}
+.sec-why .sec-h{font-size:clamp(2.2rem,4vw,3.3rem)}
+@media (max-width:799px){.why-x span:last-child{transform:none}.why-grid{gap:1.2rem}.why-body p{margin-bottom:1.4rem}}

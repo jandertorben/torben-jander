@@ -644,3 +644,20 @@ other = "Flaches Land, feine Wege, große Freiheit."
 other = "Touren entdecken"
 [nav_brand_sub]
 other = "ist flach"
+
+[why_height]
+other = "Höhe"
+[why_cap]
+other = "Letzte Tour: %s · %s · %s km · %s Hm"
+[why_eyebrow]
+other = "Warum Gravel?"
+[why_title1]
+other = "Weil hier"
+[why_title2]
+other = "alles möglich ist."
+[why_text]
+other = "Kein Drama. Kein Anstieg. Einfach nur Bremen und drumherum. Über Deichlinien, Feldwege und stille Straßen. Für alle, die langsam unterwegs sein wollen – oder einfach nur raus."
+[why_more]
+other = "Mehr erfahren"
+[why_alt]
+other = "Gravelbiker auf einem Schotterweg am Deich, links der Fluss im Morgennebel"
