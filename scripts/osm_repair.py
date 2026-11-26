@@ -5,7 +5,7 @@
 Jede Station bekommt den Stadtteil (admin_level 10) bzw. Stadtbezirk, in dem sie liegt.
 Daten: © OpenStreetMap-Mitwirkende, ODbL – die Quelle steht auf der Seite.
 """
-import json, os, sys, time, urllib.parse, urllib.request
+import json, math, os, sys, time, urllib.parse, urllib.request
 from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +19,11 @@ QUERY = """
 node["amenity"="bicycle_repair_station"](52.98,8.48,53.24,9.00);
 out body;
 """
-# Stadtteil je Station: kleine Einzelabfrage über is_in
-TEIL = """
-[out:json][timeout:25];
-is_in({lat},{lon});
-area._["boundary"="administrative"]["admin_level"~"^(9|10)$"];
-out tags;
+# Ortsteile als Punkte (place=suburb/quarter/village …) – die Station bekommt den nächstgelegenen Namen
+ORTE = """
+[out:json][timeout:60];
+node["place"~"^(suburb|quarter|neighbourhood|village|town)$"](52.98,8.48,53.24,9.00);
+out body;
 """
 
 
@@ -48,21 +47,23 @@ def yes(v):
     return str(v or "").lower() in ("yes", "true", "1")
 
 
-def stadtteil(lat, lon):
-    try:
-        els = fetch(TEIL.format(lat=lat, lon=lon)).get("elements", [])
-    except SystemExit:
-        return ""
-    best = {}
-    for e in els:
-        t = e.get("tags", {})
-        best[t.get("admin_level")] = t.get("name", "")
-    return best.get("10") or best.get("9") or ""
+def naechster_ort(lat, lon, orte):
+    best, bd = "", 1e9
+    k = math.cos(math.radians(lat))
+    for o in orte:
+        d = (o[0] - lat) ** 2 + ((o[1] - lon) * k) ** 2
+        if d < bd:
+            best, bd = o[2], d
+    return best
 
 
 def main():
     data = fetch()
     print("Elemente:", len(data.get("elements", [])), data.get("remark", ""))
+    time.sleep(2)
+    orte = [(e["lat"], e["lon"], e["tags"]["name"]) for e in fetch(ORTE).get("elements", [])
+            if e.get("type") == "node" and e.get("tags", {}).get("name")]
+    print("Orte:", len(orte))
     out = []
     for n in data.get("elements", []):
         if n.get("type") != "node":
@@ -70,11 +71,10 @@ def main():
         tg = n.get("tags", {})
         if tg.get("access") in ("private", "no", "customers"):
             continue
-        time.sleep(1)
         out.append({
             "id": n["id"],
             "lat": round(n["lat"], 6), "lon": round(n["lon"], 6),
-            "teil": stadtteil(n["lat"], n["lon"]),
+            "teil": naechster_ort(n["lat"], n["lon"], orte),
             "name": tg.get("name") or tg.get("description") or "",
             "operator": tg.get("operator", ""),
             "pump": yes(tg.get("service:bicycle:pump")),
