@@ -1143,3 +1143,46 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .sec:not(.sec-light) .led .hand{color:var(--accent)}
 .sec-h,.wind-say,.pl-say,.hero-h{overflow-wrap:break-word;hyphens:auto}
 @media (max-width:560px){.sec-h{font-size:clamp(1.75rem,8vw,2.4rem)}.wind-say,.pl-say{font-size:clamp(1.6rem,7vw,2.2rem)}}
+
+/* ─── Kopf nach Entwurf: Rad-Marke, BREMEN / IST FLACH, Navigation als Textzeile ─── */
+.nav,.nav.on{background:linear-gradient(to bottom,rgba(26,26,24,.85),rgba(26,26,24,0));border-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav::after{display:none}
+.nav.on{background:rgba(26,26,24,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav-in{height:5rem}
+.brand{gap:.8rem;color:var(--accent);text-shadow:none}
+.brand-wheel{width:2.4rem;height:2.4rem;color:var(--accent)}
+.brand-text{gap:.25rem}
+.brand-main{font-family:var(--serif);font-weight:500;font-size:1.55rem;letter-spacing:.2em;line-height:1;color:var(--accent);text-transform:uppercase}
+.brand-sub{font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.brand:hover .brand-main{color:var(--accent-hover)}
+.nav-main{display:none}
+@media (min-width:1000px){
+  .nav-main{display:flex;gap:2.6rem;margin-left:auto}
+  .nav-main a{font-family:var(--body);font-weight:500;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:.3rem 0;border-bottom:1px solid transparent;text-shadow:none}
+  .nav-main a:hover{color:var(--accent);border-color:var(--accent)}
+  .js .burger,.nav-links{display:none!important}
+  .js .lang{margin-left:2.6rem}
+  .lang{border:0;padding:.3rem 0;font-family:var(--body);font-weight:500;letter-spacing:.18em;color:var(--ink-2);text-shadow:none}
+  .lang:hover{color:var(--accent)}
+}
+
+/* ─── Hero nach Entwurf ─── */
+.hero-map{display:none}
+.hero-topo{opacity:.28;background-position:right center}
+.hero{min-height:min(88svh,900px);align-content:center;padding-top:7rem;padding-bottom:4rem}
+.hero-mag{gap:0}
+.hero-mag .hero-h{display:grid;font-size:clamp(3.6rem,10.5vw,9.5rem);line-height:.9;letter-spacing:.005em;color:var(--text-on-dark)}
+.hero-mag .hero-l2,.hero-mag .hero-l{color:var(--text-on-dark)}
+.hero-tag{margin-top:1.6rem;font-family:var(--body);font-weight:500;font-size:clamp(1rem,1.6vw,1.25rem);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:grid;gap:1.1rem}
+.hero-tag::after{content:"";width:3rem;height:2px;background:var(--accent)}
+.hero-text{margin-top:2rem;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.6;color:var(--ink)}
+.hero-link{margin-top:2.2rem;display:inline-flex;gap:.9rem;align-items:center;font-family:var(--body);font-weight:500;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+.hero-link span{font-size:1.2rem;transition:transform .25s var(--ease)}
+.hero-link:hover{color:var(--accent-hover)}
+.hero-link:hover span{transform:translate(3px,-3px)}
+.hero-coord{top:42%}
+@media (prefers-reduced-motion:no-preference){
+  .js .hero-tag,.js .hero-text,.js .hero-link{opacity:0;animation:fade 1s var(--ease) forwards}
+  .js .hero-tag{animation-delay:.4s}.js .hero-text{animation-delay:.6s}.js .hero-link{animation-delay:.8s}
+}
+.hero-topo{-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%)}

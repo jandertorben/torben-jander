@@ -628,3 +628,19 @@ other = "Gegenwind-Stufe %d von 5"
 
 [hand_flat]
 other = "Flach hilft weit."
+
+# Hero nach Entwurf „Magazin“
+[hero_mag_l1]
+other = "Bremen"
+[hero_mag_l2]
+other = "ist flach"
+[hero_mag_tag]
+other = "Gravel. Weiter. Näher."
+[hero_mag_text1]
+other = "Gravel Bike Touren ab Bremen."
+[hero_mag_text2]
+other = "Flaches Land, feine Wege, große Freiheit."
+[hero_mag_link]
+other = "Touren entdecken"
+[nav_brand_sub]
+other = "ist flach"

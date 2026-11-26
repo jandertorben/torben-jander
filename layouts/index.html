@@ -13,15 +13,11 @@
       {{- end }}
     </svg>
   </div>
-  <div class="wrap hero-in">
-    <p class="eyebrow eyebrow-hero">{{ T "hero_eyebrow" }}</p>
-    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_line1" }}</span></span><span class="hero-l hero-l2"><span>{{ T "hero_line2" }}</span></span></h1>
-    <p class="hero-sub">{{ printf (T "hero_sub") (lang.FormatNumber 0 $t.all.km) $y (lang.FormatNumber 0 $t.all.elevation) }}</p>
-    <div class="hero-actions">
-      <a class="btn" href="#zahlen">{{ T "hero_cta" }} <span aria-hidden="true">↓</span></a>
-      <a class="btn btn-ghost" href="{{ .Site.Params.strava }}" rel="me noopener" target="_blank">Strava</a>
-    </div>
-    <p class="hero-cap">{{ T "hero_map_caption" }}</p>
+  <div class="wrap hero-in hero-mag">
+    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_mag_l1" }}</span></span><span class="hero-l"><span>{{ T "hero_mag_l2" }}</span></span></h1>
+    <p class="hero-tag">{{ T "hero_mag_tag" }}</p>
+    <p class="hero-text">{{ T "hero_mag_text1" }}<br>{{ T "hero_mag_text2" }}</p>
+    {{- with site.GetPage "/touren" }}<a class="hero-link" href="{{ .RelPermalink }}">{{ T "hero_mag_link" }} <span aria-hidden="true">↗</span></a>{{ end }}
   </div>
 </section>
 
