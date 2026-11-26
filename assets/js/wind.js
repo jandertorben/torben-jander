@@ -104,7 +104,24 @@
     return { kind: 'after', at: d1 && d1.sunrise ? d1.sunrise : null, set: d0.sunset };
   }
 
-  var api = { level: level, dirIndex: dirIndex, parsePath: parsePath, outBearing: outBearing, windFit: windFit,
+  // Kurzfassung eines Tages für die Vorschau auf der Startseite: Tageslicht-Stunden (8–18 Uhr),
+  // heute erst ab der aktuellen Stunde. Liefert Stufe und erste nasse Stunde (oder null).
+  function daySummary(hours, date, fromHour) {
+    var hs = (hours || []).filter(function (h) {
+      if (String(h.t).slice(0, 10) !== date) return false;
+      var x = parseInt(String(h.t).slice(11, 13), 10);
+      return x >= Math.max(8, fromHour || 0) && x < 18;
+    });
+    if (!hs.length) return null;
+    var sp = hs.map(function (h) { return h.speed || 0; });
+    var gu = hs.map(function (h) { return h.gusts || 0; });
+    var avg = Math.round(sp.reduce(function (a, b) { return a + b; }, 0) / sp.length);
+    var wet = null;
+    for (var i = 0; i < hs.length; i++) if (isWet(hs[i])) { wet = hs[i].t; break; }
+    return { level: level(avg, Math.max.apply(null, gu)), speed: avg, wetFrom: wet };
+  }
+
+  var api = { daySummary: daySummary, level: level, dirIndex: dirIndex, parsePath: parsePath, outBearing: outBearing, windFit: windFit,
               rankTours: rankTours, calmest: calmest, isWet: isWet, rainState: rainState, wearIndex: wearIndex, lightState: lightState };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
   global.TJWind = api;   // für planer.js
@@ -300,6 +317,119 @@
 
     set('.wind-stand', fill(cfg.stand, timeOf(w.time)));
     sec.hidden = false;
+    startAnim(w);
+  }
+
+  /* ── 3-Tage-Vorschau (nur Startseite) ── */
+  function renderDays(fc) {
+    var ul = $('.wb-days');
+    if (!ul || !fc || !Array.isArray(fc.days)) return;
+    var lang = document.documentElement.lang || 'de';
+    var fmt = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
+    var nowH = 0, today = fc.days[0] && fc.days[0].date;
+    try {
+      var n = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hour12: false }).format(new Date());
+      today = n.slice(0, 10); nowH = parseInt(n.slice(11, 13), 10) || 0;
+    } catch (e) {}
+    var tp = today.split('-'), tm = new Date(Date.UTC(+tp[0], +tp[1] - 1, +tp[2] + 1));
+    var tomorrow = tm.toISOString().slice(0, 10);
+    var start = 0;
+    for (var k = 0; k < fc.days.length; k++) if (fc.days[k].date === today) { start = k; break; }
+    // Nach 17 Uhr ist heute vorbei: Vorschau beginnt morgen
+    if (nowH >= 17) start++;
+    ul.textContent = '';
+    var shown = 0;
+    for (var i = start; i < fc.days.length && shown < 3; i++) {
+      var d = fc.days[i];
+      var sm = daySummary(fc.hours, d.date, d.date === today ? nowH : 0);
+      if (!sm) continue;
+      var p = d.date.split('-'), dt = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+      var name = d.date === today ? cfg.dayToday : d.date === tomorrow ? cfg.dayTomorrow : fmt.format(dt);
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = ul.getAttribute('data-href') + '?tag=' + i + '#planer';
+      a.className = 'wb-day lv-' + sm.level;
+      var nm = document.createElement('span'); nm.className = 'wb-day-n'; nm.textContent = name;
+      var dots = document.createElement('span'); dots.className = 'wb-day-dots'; dots.setAttribute('aria-hidden', 'true');
+      for (var j = 1; j <= 5; j++) { var dot = document.createElement('i'); if (j <= sm.level) dot.className = 'on'; dots.appendChild(dot); }
+      var rn = document.createElement('span'); rn.className = 'wb-day-r' + (sm.wetFrom ? ' is-wet' : '');
+      rn.textContent = sm.wetFrom ? fill(cfg.dayRain, sm.wetFrom.slice(11, 13)) : cfg.dayDry;
+      var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = ', ' + fill(cfg.dayLevel, sm.level);
+      a.appendChild(nm); a.appendChild(dots); a.appendChild(sr); a.appendChild(rn);
+      li.appendChild(a); ul.appendChild(li);
+      shown++;
+    }
+    ul.hidden = shown === 0;
+  }
+
+  /* ── Wetteranimation: feine Windlinien in Windrichtung, bei Regen schräge Striche ── */
+  var anim = { w: null, raf: 0, parts: [], visible: true };
+  var reduceMotion = global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function startAnim(w) {
+    var cv = $('.wind-anim');
+    if (!cv || reduceMotion || !cv.getContext) return;
+    anim.w = w;
+    var ctx = cv.getContext('2d');
+    function size() {
+      var r = sec.getBoundingClientRect(), dpr = Math.min(global.devicePixelRatio || 1, 2);
+      cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+      cv.style.width = r.width + 'px'; cv.style.height = r.height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return r;
+    }
+    var box = size();
+    var speed = Math.max(2, w.speed || 0);
+    var wet = isWet((w.hours || [])[0]) || (w.rain || 0) >= 0.1;
+    // Richtung, in die der Wind weht (Bildschirm: x nach rechts = Ost, y nach unten = Süd)
+    var to = ((w.dir || 0) + 180) * Math.PI / 180;
+    var vx = Math.sin(to), vy = -Math.cos(to);
+    var n = Math.round(Math.min(46, 8 + speed * 0.9));
+    function spawn(p, anywhere) {
+      p.x = Math.random() * box.width; p.y = Math.random() * box.height;
+      if (!anywhere) { // am windzugewandten Rand neu starten
+        if (Math.abs(vx) > Math.abs(vy)) p.x = vx > 0 ? -60 : box.width + 60; else p.y = vy > 0 ? -60 : box.height + 60;
+      }
+      p.len = 30 + Math.random() * (40 + speed * 2);
+      p.v = (0.25 + Math.random() * 0.5) * (0.5 + speed / 12);
+      p.a = 0.05 + Math.random() * 0.08;
+      return p;
+    }
+    anim.parts = [];
+    for (var i = 0; i < n; i++) anim.parts.push(spawn({}, true));
+    var drops = [];
+    if (wet) for (var k = 0; k < 60; k++) drops.push({ x: Math.random() * box.width, y: Math.random() * box.height, v: 3 + Math.random() * 3 });
+    var light = getComputedStyle(sec).getPropertyValue('--wc') || '#efe8da';
+    function frame() {
+      anim.raf = 0;
+      if (!anim.visible || document.hidden) return;
+      ctx.clearRect(0, 0, box.width, box.height);
+      ctx.lineCap = 'round';
+      anim.parts.forEach(function (p) {
+        p.x += vx * p.v; p.y += vy * p.v;
+        if (p.x < -120 || p.x > box.width + 120 || p.y < -120 || p.y > box.height + 120) spawn(p, false);
+        ctx.strokeStyle = 'rgba(239,232,218,' + p.a + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - vx * p.len, p.y - vy * p.len); ctx.stroke();
+      });
+      if (drops.length) {
+        ctx.strokeStyle = 'rgba(142,211,195,0.14)';
+        drops.forEach(function (d) {
+          d.y += d.v; d.x += vx * d.v * 0.4;
+          if (d.y > box.height) { d.y = -10; d.x = Math.random() * box.width; }
+          ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d.x - vx * 4, d.y - 10); ctx.stroke();
+        });
+      }
+      anim.raf = global.requestAnimationFrame(frame);
+    }
+    function kick() { if (!anim.raf && anim.visible && !document.hidden) anim.raf = global.requestAnimationFrame(frame); }
+    if (!anim.bound) {
+      anim.bound = true;
+      if ('IntersectionObserver' in global) new IntersectionObserver(function (es) { anim.visible = es[0].isIntersecting; kick(); }).observe(sec);
+      document.addEventListener('visibilitychange', kick);
+      global.addEventListener('resize', function () { box = size(); }, { passive: true });
+    }
+    if (anim.raf) global.cancelAnimationFrame(anim.raf), anim.raf = 0;
+    kick();
   }
 
   var last = 0;
@@ -311,6 +441,12 @@
       .catch(function () { /* kein Wetter, kein Abschnitt; bei späterem Erfolg erscheint er */ });
   }
   load();
+  if ($('.wb-days')) {
+    fetch('/api/forecast', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (fc) { if (fc) renderDays(fc); })
+      .catch(function () {});
+  }
   // Bleibt die Seite offen, alle 10 Minuten nachladen. Kommt man in den Tab zurück, sofort, wenn es älter ist.
   setInterval(function () { if (!document.hidden) load(); }, 10 * 60 * 1000);
   document.addEventListener('visibilitychange', function () {

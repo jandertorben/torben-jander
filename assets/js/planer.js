@@ -235,8 +235,15 @@
       var n = nowIso(), h = n ? parseInt(n.slice(11, 13), 10) : 0;
       if (h >= 9 && h < 21) { fromSel.value = String(h + 1); toSel.value = String(Math.min(h + 4, 22)); }
       else if (h >= 21) { dayIdx = 1; }
+      // Von der Startseite: ?tag=N wählt den Tag direkt aus (Standardfenster 9–13 Uhr, außer heute)
+      var tg = parseInt(new URLSearchParams(location.search).get('tag'), 10);
+      if (isFinite(tg) && tg >= 0 && tg < d.days.length) {
+        dayIdx = tg;
+        if (tg > 0) { fromSel.value = '9'; toSel.value = '13'; }
+      }
       buildDays(); update();
       sec.hidden = false;
+      if (location.hash === '#planer') sec.scrollIntoView();
     })
     .catch(function () { /* ohne Vorhersage kein Planer */ });
 })(typeof window !== 'undefined' ? window : this);
