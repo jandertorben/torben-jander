@@ -83,6 +83,9 @@
           <p class="ts-k">{{ T "tour_wind_k" }}</p>
           <p class="ts-wind-t">{{ T "tour_wind_t" }}</p>
           <a class="ts-wind-go" href="{{ .RelPermalink }}#planer">{{ T "tour_wind_go" }} <span aria-hidden="true">→</span></a>
+          {{- with site.GetPage "/unterwegs" }}
+          <a class="ts-road" href="{{ .RelPermalink }}">{{ T "tour_road_go" }} <span aria-hidden="true">→</span></a>
+          {{- end }}
         </div>
         {{- end }}
         {{- with $t.flat }}

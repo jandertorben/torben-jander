@@ -1,0 +1,9 @@
+    <script type="application/json" id="repair-data">{{ dict "orte" .orte "plz" .plz | jsonify | safeJS }}</script>
+    <form class="repair-search" role="search" hidden data-none="{{ T "repair_none" }}" data-near="{{ T "repair_near" }}" data-plz-unknown="{{ T "repair_plz_unknown" }}">
+      <label for="repair-q" class="repair-q-l">{{ T "repair_q_label" }}</label>
+      <div class="repair-q-row">
+        <input id="repair-q" type="search" inputmode="search" autocomplete="off" list="repair-orte" placeholder="{{ T "repair_q_ph" }}" enterkeyhint="search">
+      </div>
+      <datalist id="repair-orte">{{ range $k, $v := .orte }}<option value="{{ $k }}">{{ end }}</datalist>
+      <div class="repair-results" aria-live="polite"></div>
+    </form>

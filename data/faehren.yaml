@@ -1,5 +1,7 @@
 # Weserfähren rund um Bremen für die Tourenseite.
 # Saisonzeiten ändern sich: einmal im Jahr prüfen (Stand unten anpassen).
+# regeln: wann die Fähre fährt (MM-TT von/bis, tage 1=Mo … 7=So). Daraus zeigt die Seite „fährt heute“.
+# Feiertage sind nicht berücksichtigt. Ganzjährige Fähren brauchen keine Regeln.
 # Quellen: hal-oever.de, faehren-bremen.de, bremen.eu, Landkreis Wesermarsch
 stand: "November 2026"
 stand_en: "November 2026"
@@ -10,6 +12,8 @@ items:
     betreiber: "Hal över"
     link: "https://www.hal-oever.de"
     ganzjaehrig: false
+    regeln:
+      - { von: "03-01", bis: "10-31", tage: [1, 2, 3, 4, 5, 6, 7] }
     saison_de: "März bis Oktober täglich, im Winter nur an einzelnen Tagen"
     saison_en: "Daily March to October, in winter only on selected days"
     note_de: "Bremens kürzeste Schiffsfahrt, wenige Minuten über die Weser."
@@ -20,6 +24,9 @@ items:
     betreiber: "Hal över"
     link: "https://www.hal-oever.de"
     ganzjaehrig: false
+    regeln:
+      - { von: "04-04", bis: "10-04", tage: [6, 7] }
+      - { von: "07-03", bis: "08-30", tage: [5] }
     saison_de: "April bis Anfang Oktober am Wochenende, im Sommer auch freitags"
     saison_en: "April to early October at weekends, Fridays too in summer"
     note_de: "Pendelt alle halbe Stunde zwischen drei Anlegern, Rad kommt mit."

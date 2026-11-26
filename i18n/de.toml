@@ -761,3 +761,34 @@ other = "Diese Postleitzahl liegt nicht in Bremen oder drumherum. Probier einen 
 other = "Alle %d Stationen anzeigen"
 [repair_all_close]
 other = "Liste zuklappen"
+
+[nav_road]
+other = "Unterwegs"
+[road_eyebrow]
+other = "Unterwegs"
+[road_tag]
+other = "Luft, Werkzeug, Fähre. Für die Runde."
+[road_text]
+other = "Was man in Bremen auf dem Rad schnell braucht: die nächste Pumpe, wenn der Reifen schlappmacht, und die Fähren, mit denen aus einem Weg an der Weser eine Runde wird."
+[road_jump_repair]
+other = "Pumpe finden"
+[road_jump_ferry]
+other = "Fähren"
+[road_home_title]
+other = "Platten? Fähre? Hier."
+[ferry_today_k]
+other = "Weserfähren heute"
+[ferry_today_yes]
+other = "fährt heute"
+[ferry_today_no]
+other = "heute nicht"
+[ferry_all]
+other = "Alle Fähren mit Saison"
+[tours_help_title]
+other = "Pumpe oder Fähre unterwegs?"
+[tours_help_text]
+other = "Öffentliche Reparaturstationen mit Suche nach Ort oder PLZ und alle Weserfähren für Radfahrer stehen jetzt gesammelt unter „Unterwegs“."
+[tours_help_go]
+other = "Zu Unterwegs"
+[tour_road_go]
+other = "Pumpe oder Fähre unterwegs?"

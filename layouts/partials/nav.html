@@ -7,12 +7,13 @@
     <nav class="nav-main" aria-label="Main">
       {{- with site.GetPage "/touren" }}<a href="{{ .RelPermalink }}">{{ T "nav_tours" }}</a>{{ end }}
       {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}">{{ T "nav_weather" }}</a>{{ end }}
-      {{ with site.GetPage "/zahlen" }}<a href="{{ .RelPermalink }}">{{ T "nav_numbers" }}</a>{{ end }}
+      {{ with site.GetPage "/unterwegs" }}<a href="{{ .RelPermalink }}">{{ T "nav_road" }}</a>{{ end }}
       {{ with site.GetPage "/ausruestung" }}<a href="{{ .RelPermalink }}">{{ T "nav_gear" }}</a>{{ end }}
       <a href="{{ $home }}#ueber">{{ T "nav_about" }}</a>
     </nav>
     <nav class="nav-links" id="menu" aria-label="Sections">
       {{ with site.GetPage "/wetter" }}<a href="{{ .RelPermalink }}">{{ T "nav_weather" }}</a>{{ end }}
+      {{ with site.GetPage "/unterwegs" }}<a href="{{ .RelPermalink }}">{{ T "nav_road" }}</a>{{ end }}
       <a href="{{ $home }}#zahlen">{{ T "nav_numbers" }}</a>
       <a href="{{ $home }}#zuletzt">{{ T "nav_recent" }}</a>
       <a href="{{ $home }}#gravel">{{ T "nav_gravel" }}</a>

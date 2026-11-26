@@ -1,0 +1,20 @@
+{{- $limit := .limit | default 5 }}{{ $compact := .compact }}
+{{- with site.Data.reparatur }}{{ if .stations }}
+{{- $en := eq site.Language.Lang "en" }}
+<section class="sec sec-light repair" id="reparatur" aria-labelledby="repair-h" data-limit="{{ $limit }}" data-repair>
+  <div class="wrap">
+    <p class="eyebrow">{{ T "repair_eyebrow" }}</p>
+    <h2 id="repair-h" class="sec-h reveal">{{ T "repair_title" }}</h2>
+    <p class="lead reveal">{{ printf (T "repair_lead") (len .stations) }}</p>
+    {{- partial "repair-search.html" . }}
+    {{- if not $compact }}
+    <button type="button" class="repair-toggle" hidden aria-expanded="false" data-open="{{ printf (T "repair_all") (len .stations) }}" data-close="{{ T "repair_all_close" }}">{{ printf (T "repair_all") (len .stations) }}</button>
+    {{- end }}
+    <ul class="repair-list"{{ if $compact }} hidden{{ end }}>
+      {{- partial "repair-items.html" .stations }}
+    </ul>
+    {{- if $compact }}{{ with site.GetPage "/unterwegs" }}<a class="repair-toggle repair-all-link" href="{{ .RelPermalink }}#reparatur">{{ printf (T "repair_all") (len site.Data.reparatur.stations) }} <span aria-hidden="true">→</span></a>{{ end }}{{ end }}
+    <p class="repair-src mono">{{ printf (T "repair_src") (time.Format ":date_long" (time .generated)) | safeHTML }}</p>
+  </div>
+</section>
+{{- end }}{{ end }}
