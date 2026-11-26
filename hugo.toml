@@ -11,16 +11,16 @@ timeZone               = "Europe/Berlin"
     languageCode = "de-DE"
     languageName = "Deutsch"
     weight       = 1
-    title        = "Torben Jander – Laufen & Gravel aus Bremen"
+    title        = "Bremen ist flach"
     [languages.de.params]
-      description = "Torben Jander läuft und fährt Gravel rund um Bremen. Echte Zahlen aus Strava: Kilometer, Höhenmeter, Routen, Ausrüstung."
+      description = "Gravel und Laufen rund um Bremen, von Torben Jander. Echte Zahlen aus Strava: Kilometer, Höhenmeter, Touren zum Nachfahren, Ausrüstung."
   [languages.en]
     languageCode = "en-GB"
     languageName = "English"
     weight       = 2
-    title        = "Torben Jander – Running & Gravel from Bremen"
+    title        = "Bremen ist flach"
     [languages.en.params]
-      description = "Torben Jander runs and rides gravel around Bremen. Real numbers from Strava: kilometres, climbing, routes, gear."
+      description = "Gravel and running around Bremen, by Torben Jander. Real numbers from Strava: kilometres, climbing, rides to follow, gear."
 
 [params]
   name     = "Torben Jander"
