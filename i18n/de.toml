@@ -611,3 +611,5 @@ other = "Zur Tour"
 other = "Führt raus gegen den Wind. Auf dem Heimweg schiebt er."
 [tip_why_meh]
 other = "Keine Runde führt richtig in den Wind. Diese passt noch am besten."
+[tip_all_tours]
+other = "Alle Touren ansehen"
