@@ -736,3 +736,13 @@ other = "No place name"
 other = "On the map"
 [repair_src]
 other = "Data: <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">© OpenStreetMap contributors</a>, ODbL. Updated weekly, last on %s. Missing or gone? Fixing it in OpenStreetMap helps everyone."
+[ferry_eyebrow]
+other = "Across the Weser"
+[ferry_title]
+other = "Ferries for loops by bike."
+[ferry_lead]
+other = "Five ferries in and around Bremen take your bike. Three run all year, two only in season. One bank becomes two, and an out-and-back becomes a loop."
+[ferry_times]
+other = "Times and prices: %s"
+[ferry_stand]
+other = "As of %s. Times change, check with the operator before you ride."

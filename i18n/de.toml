@@ -736,3 +736,13 @@ other = "Ohne Ortsangabe"
 other = "Auf der Karte"
 [repair_src]
 other = "Daten: <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">© OpenStreetMap-Mitwirkende</a>, ODbL. Wöchentlich aktualisiert, zuletzt am %s. Fehlt eine Station oder ist sie weg? In OpenStreetMap eintragen hilft allen."
+[ferry_eyebrow]
+other = "Über die Weser"
+[ferry_title]
+other = "Fähren für Runden mit Rad."
+[ferry_lead]
+other = "Fünf Fähren nehmen in und um Bremen das Rad mit. Drei fahren das ganze Jahr, zwei nur in der Saison. Damit werden aus einem Ufer zwei, und aus einer Strecke eine Runde."
+[ferry_times]
+other = "Zeiten und Preise bei %s"
+[ferry_stand]
+other = "Stand: %s. Zeiten ändern sich, vor der Tour kurz beim Betreiber nachsehen."
