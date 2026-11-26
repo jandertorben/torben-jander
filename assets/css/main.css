@@ -886,3 +886,10 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
   .sec-community .partner-claim{grid-area:claim}
   .sec-community .partner-url{grid-area:url;margin-top:0;align-self:center;font-size:1rem}
 }
+
+/* Battlefield als eigener dunkler Balken von Bildschirmrand zu Bildschirmrand.
+   Der Inhalt bleibt an der Inhaltsbreite ausgerichtet. */
+.sec-community .partner{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-radius:0;
+  padding:clamp(2rem,4vw,3rem) max(var(--pad),calc((100vw - var(--wrap)) / 2))}
+@media (max-width:1099px){.sec-community .partner{margin-top:3.5rem}}
+.sec-community{padding-bottom:calc(clamp(3rem,6vw,5rem) + var(--slant))}
