@@ -1500,3 +1500,15 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ferry-link{justify-self:start;margin-top:.3rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-decoration:none}
 .ferry-link:hover{color:var(--accent-hover)}
 .ferry-stand{margin-top:2rem;font-size:.72rem;color:rgba(244,238,227,.5)}
+/* Reparatur-Suche */
+.repair-search{margin:2rem 0 0;max-width:40rem}
+.repair-q-l{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:.6rem}
+.repair-search input{width:100%;box-sizing:border-box;font:400 1.05rem/1.3 var(--body);color:var(--text-on-light);background:#fff8ee;border:1px solid rgba(28,27,25,.25);border-radius:3px;padding:.95rem 1rem;-webkit-appearance:none;appearance:none}
+.repair-search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.repair-search input::placeholder{color:rgba(28,27,25,.45)}
+.repair-msg{margin:1.2rem 0 0;font-size:.92rem;color:rgba(28,27,25,.75)}
+.repair-hits{list-style:none;margin:.6rem 0 0;padding:0}
+.repair-km{display:inline-block;margin-left:.6rem;font-family:var(--mono);font-size:.75rem;color:var(--accent-ink);vertical-align:middle}
+.repair-toggle{margin-top:2rem;appearance:none;background:none;border:1px solid var(--accent-ink);color:var(--accent-ink);border-radius:2px;padding:.75rem 1.1rem;font:500 .74rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.repair-toggle:hover{background:var(--accent);border-color:var(--accent);color:#1A1A18}
+.repair .sec-h{hyphens:manual;-webkit-hyphens:manual}

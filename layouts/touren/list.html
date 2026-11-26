@@ -75,9 +75,19 @@
     <p class="eyebrow">{{ T "repair_eyebrow" }}</p>
     <h2 id="repair-h" class="sec-h reveal">{{ T "repair_title" }}</h2>
     <p class="lead reveal">{{ printf (T "repair_lead") (len .stations) }}</p>
+    <script type="application/json" id="repair-data">{{ dict "orte" .orte "plz" .plz | jsonify | safeJS }}</script>
+    <form class="repair-search" role="search" hidden data-none="{{ T "repair_none" }}" data-near="{{ T "repair_near" }}" data-plz-unknown="{{ T "repair_plz_unknown" }}">
+      <label for="repair-q" class="repair-q-l">{{ T "repair_q_label" }}</label>
+      <div class="repair-q-row">
+        <input id="repair-q" type="search" inputmode="search" autocomplete="off" list="repair-orte" placeholder="{{ T "repair_q_ph" }}" enterkeyhint="search">
+      </div>
+      <datalist id="repair-orte">{{ range $k, $v := .orte }}<option value="{{ $k }}">{{ end }}</datalist>
+      <div class="repair-results" aria-live="polite"></div>
+    </form>
+    <button type="button" class="repair-toggle" hidden aria-expanded="false" data-open="{{ printf (T "repair_all") (len .stations) }}" data-close="{{ T "repair_all_close" }}">{{ printf (T "repair_all") (len .stations) }}</button>
     <ul class="repair-list">
       {{- range .stations }}
-      <li class="repair-item">
+      <li class="repair-item" data-lat="{{ .lat }}" data-lon="{{ .lon }}">
         <div class="repair-main">
           <p class="repair-place">{{ with .teil }}{{ . }}{{ else }}{{ T "repair_unknown_place" }}{{ end }}</p>
           {{- $label := .name }}{{ if or (eq $label "") (in (slice "Luft-Tankstelle" "nur Luftpumpe" "Service Station") $label) }}{{ $label = "" }}{{ end }}
