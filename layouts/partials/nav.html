@@ -3,7 +3,6 @@
   <div class="wrap nav-in">
     <a class="brand" href="{{ $home }}" aria-label="{{ .Site.Params.marke }} – {{ .Site.Params.name }}">
       <img class="brand-mark brand-logo" src="/img/logo-mark.webp" width="240" height="123" alt="">
-      <span class="brand-text"><span class="brand-main">{{ T "hero_mag_l1" }}</span><span class="brand-sub">{{ T "nav_brand_sub" }}</span></span>
     </a>
     <nav class="nav-main" aria-label="Main">
       {{- with site.GetPage "/touren" }}<a href="{{ .RelPermalink }}">{{ T "nav_tours" }}</a>{{ end }}
