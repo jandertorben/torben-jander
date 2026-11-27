@@ -33,10 +33,13 @@
   // Richtung vom Start zum entferntesten Punkt der Runde, als Kompasswinkel (0 = Nord, 90 = Ost).
   // Bei einer Runde ist das die Richtung, in die man „raus“ fährt. Ob man sie links- oder rechtsherum
   // fährt, ändert daran nichts: Der Gegenwind auf dem Hinweg hängt nur davon ab, wo der äußerste Punkt liegt.
+  // Start und Ziel sind aus Datenschutzgründen gekürzt: Der echte Startpunkt liegt dazwischen,
+  // daher zählt die Mitte zwischen erstem und letztem Punkt.
   function outBearing(pts) {
     if (pts.length < 2) return null;
-    var s = pts[0], far = null, best = -1;
-    for (var i = 1; i < pts.length; i++) {
+    var a = pts[0], z = pts[pts.length - 1];
+    var s = [(a[0] + z[0]) / 2, (a[1] + z[1]) / 2], far = null, best = -1;
+    for (var i = 0; i < pts.length; i++) {
       var dx = pts[i][0] - s[0], dy = pts[i][1] - s[1], dd = dx * dx + dy * dy;
       if (dd > best) { best = dd; far = [dx, dy]; }
     }

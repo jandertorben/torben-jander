@@ -694,8 +694,6 @@ other = "Wind. Rain. Light. Live for Bremen."
 [numbers_tag]
 other = "All from Strava. Nothing guessed."
 
-[tour_wind_k]
-other = "Before you set off"
 [tour_wind_t]
 other = "Where is the wind coming from? The bike weather page shows wind, rain and the best time window for your ride."
 
@@ -849,3 +847,58 @@ other = "Workshops"
 other = "“%s” is my project. That’s why it all runs under my own name: torben-jander.me."
 [footer_owner]
 other = "<strong>%s</strong> is a project by %s."
+
+[tour_wind_k]
+other = "Wind tip"
+[tw_now_k]
+other = "Right now:"
+[tw_to_n]
+other = "north"
+[tw_to_ne]
+other = "north-east"
+[tw_to_e]
+other = "east"
+[tw_to_se]
+other = "south-east"
+[tw_to_s]
+other = "south"
+[tw_to_sw]
+other = "south-west"
+[tw_to_w]
+other = "west"
+[tw_to_nw]
+other = "north-west"
+[tw_w_n]
+other = "a northerly"
+[tw_w_ne]
+other = "a north-easterly"
+[tw_w_e]
+other = "an easterly"
+[tw_w_se]
+other = "a south-easterly"
+[tw_w_s]
+other = "a southerly"
+[tw_w_sw]
+other = "a south-westerly"
+[tw_w_w]
+other = "a westerly"
+[tw_w_nw]
+other = "a north-westerly"
+[tw_loop]
+other = "The loop heads out to the %s. Best with %s: out into the wind, pushed home."
+[tw_line]
+other = "The route heads %s. Best with %s, then it pushes you all the way."
+[tw_now_calm]
+other = "Hardly any wind in Bremen (%s km/h). Direction doesn't matter today."
+[tw_now_loop_good]
+other = "%s at %s km/h. Good fit: headwind on the way out, tailwind home."
+[tw_now_loop_side]
+other = "%s at %s km/h. Mostly from the side, similar both ways."
+[tw_now_loop_bad]
+other = "%s at %s km/h. It pushes you out and meets you on the way home. Pace yourself."
+[tw_now_line_good]
+other = "%s at %s km/h. Good fit: it pushes you along."
+[tw_now_line_side]
+other = "%s at %s km/h. Mostly from the side."
+[tw_now_line_bad]
+other = "%s at %s km/h. Headwind the whole way."

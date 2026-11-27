@@ -79,9 +79,22 @@
       <aside class="tour-side">
         {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
         {{- with site.GetPage "/wetter" }}
-        <div class="ts-wind">
+        <div class="ts-wind"{{ with $t.route }} data-tw{{ end }}>
+          {{- with $t.route }}
+          {{- $tw := dict
+            "d" .d
+            "to" (slice (T "tw_to_n") (T "tw_to_ne") (T "tw_to_e") (T "tw_to_se") (T "tw_to_s") (T "tw_to_sw") (T "tw_to_w") (T "tw_to_nw"))
+            "wind" (slice (T "tw_w_n") (T "tw_w_ne") (T "tw_w_e") (T "tw_w_se") (T "tw_w_s") (T "tw_w_sw") (T "tw_w_w") (T "tw_w_nw"))
+            "loop" (T "tw_loop")
+            "line" (T "tw_line")
+            "stand" (T "wind_stand")
+            "now" (dict "calm" (T "tw_now_calm") "loop_good" (T "tw_now_loop_good") "loop_side" (T "tw_now_loop_side") "loop_bad" (T "tw_now_loop_bad") "line_good" (T "tw_now_line_good") "line_side" (T "tw_now_line_side") "line_bad" (T "tw_now_line_bad"))
+          }}
+          <script type="application/json" id="tw-cfg">{{ $tw | jsonify | safeJS }}</script>
+          {{- end }}
           <p class="ts-k">{{ T "tour_wind_k" }}</p>
-          <p class="ts-wind-t">{{ T "tour_wind_t" }}</p>
+          <p class="ts-wind-t" data-tw-static>{{ T "tour_wind_t" }}</p>
+          <p class="ts-wind-now" data-tw-now hidden><span class="tw-k">{{ T "tw_now_k" }}</span> <span data-tw-txt></span> <span class="tw-stand" data-tw-stand></span></p>
           <a class="ts-wind-go" href="{{ .RelPermalink }}#planer">{{ T "tour_wind_go" }} <span aria-hidden="true">→</span></a>
           {{- with site.GetPage "/unterwegs" }}
           <a class="ts-road" href="{{ .RelPermalink }}">{{ T "tour_road_go" }} <span aria-hidden="true">→</span></a>
