@@ -1723,3 +1723,4 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 @media (max-width:700px){.hero-equip .hp-bg{top:22%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%);mask-image:linear-gradient(to bottom,transparent 0,#000 18%)}}
 .brand-logo{height:2.9rem}@media (max-width:599px){.brand-logo{height:2.5rem}}
 .foot-logo{width:280px}@media (max-width:640px){.foot-logo{width:240px}}
+.brand-signet{height:2.6rem}@media (max-width:599px){.brand-signet{height:2.3rem}}
