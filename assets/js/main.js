@@ -394,7 +394,7 @@
   var data = { orte: {}, plz: {} };
   try { var el = document.getElementById('repair-data'); if (el) data = JSON.parse(el.textContent); } catch (e) {}
   var orte = data.orte || {}, plz = data.plz || {};
-  form.hidden = false;
+  form.hidden = form.hasAttribute('data-few');
   function norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ß/g, 'ss').trim(); }
   function km(a, b, c, d) { var r = Math.PI / 180, x = (d - b) * r * Math.cos((a + c) / 2 * r), y = (c - a) * r; return Math.sqrt(x * x + y * y) * 6371; }
   var names = Object.keys(orte).map(function (k) { return { n: norm(k), name: k, ll: orte[k] }; });

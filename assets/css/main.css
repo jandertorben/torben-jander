@@ -1763,3 +1763,4 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .shop-km{color:#6b655c}
 .shops-more{margin-top:1rem;font:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;min-height:44px;padding:0 1.2rem;background:transparent;border:1px solid rgba(28,27,25,.3);color:var(--text-on-light);cursor:pointer}
 .shops-more[hidden]{display:none}
+.shop-adr{margin:0;font-size:.85rem;color:#6b655c}
