@@ -13,6 +13,16 @@ items:
     text: "War mit meinem Canyon dort. Sehr nett und hilfsbereit."
     getestet: true
     geprueft: "2026-11"
+  - name: "Fahrrad-Studio Jan Bloem"
+    teil: "Habenhausen"
+    adresse: "Karl-Marx-Straße 168c, 28279 Bremen"
+    lat: 53.0525
+    lon: 8.8545
+    web: "https://www.fahrrad-studio.de"
+    staerken: ["Werkstatt", "Beratung", "Inhabergeführt"]
+    text: "War selbst dort. Sehr nett und kompetent."
+    getestet: true
+    geprueft: "2026-11"
   - name: "radschlag"
     teil: "Viertel"
     adresse: "Humboldtstraße 16, 28203 Bremen"
