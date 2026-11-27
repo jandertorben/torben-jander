@@ -93,8 +93,6 @@ p{margin:0}
 /* ─── Eigene Mauszeiger (nur Hero-Karte und Slider) ─────────────── */
 .hero{cursor:url(/img/cursor-bike.png) 16 24,auto;cursor:-webkit-image-set(url(/img/cursor-bike.png) 1x,url(/img/cursor-bike@2x.png) 2x) 16 24,auto;cursor:image-set(url(/img/cursor-bike.png) 1x,url(/img/cursor-bike@2x.png) 2x) 16 24,auto}
 .hero a,.hero button{cursor:pointer}
-.equip-track{cursor:url(/img/cursor-swipe.png) 16 16,grab;cursor:-webkit-image-set(url(/img/cursor-swipe.png) 1x,url(/img/cursor-swipe@2x.png) 2x) 16 16,grab;cursor:image-set(url(/img/cursor-swipe.png) 1x,url(/img/cursor-swipe@2x.png) 2x) 16 16,grab}
-.equip-track a,.equip-track button{cursor:pointer}
 
 /* ─── Hero ──────────────────────────────────────────────────────── */
 .hero{position:relative;min-height:min(92svh,960px);display:grid;align-content:end;padding-top:6rem;padding-bottom:1.5rem;overflow:hidden;isolation:isolate}
@@ -123,19 +121,16 @@ p{margin:0}
 .hero-in{position:relative;display:grid;gap:1.4rem;justify-items:start;padding-bottom:2.5rem}
 .eyebrow{font-family:var(--mono);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
 .eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--gravel);flex:none}
-.eyebrow-hero{margin-bottom:0;color:var(--ink-2)}
+
 .hero-h{font-size:clamp(3.4rem,11.5vw,10.5rem);line-height:.86;font-weight:700;text-transform:uppercase;letter-spacing:-.015em;display:grid}
-.hero-l{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
-.hero-l>span{display:block}
-.hero-l2{color:var(--gravel)}
-.hero-sub{max-width:38ch;font-size:clamp(1.05rem,1.6vw,1.35rem);color:var(--ink-2);text-wrap:pretty}
+
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-top:.4rem}
-.hero-cap{font-family:var(--mono);font-size:.8125rem;color:var(--muted);letter-spacing:.02em;max-width:60ch;margin-top:1.2rem}
+
 @media (prefers-reduced-motion:no-preference){
-  .js .hero-l>span{transform:translateY(110%);animation:rise .7s var(--ease) forwards}
-  .js .hero-l2>span{animation-delay:.06s}
-  .js .eyebrow-hero,.js .hero-sub,.js .hero-actions,.js .hero-cap{opacity:0;animation:fade 1s var(--ease) forwards}
-  .js .eyebrow-hero{animation-delay:.05s}.js .hero-sub{animation-delay:.5s}.js .hero-actions{animation-delay:.7s}.js .hero-cap{animation-delay:1.4s}
+  
+  
+  .js .hero-actions{opacity:0;animation:fade 1s var(--ease) forwards}
+  .js .hero-actions{animation-delay:.7s}
 }
 @keyframes rise{to{transform:none}}
 @keyframes fade{to{opacity:1}}
@@ -305,8 +300,8 @@ p{margin:0}
 .sec-run{background:linear-gradient(180deg,#0b0d0d 0%,var(--bg) 100%)}
 .sec-run .eyebrow::before{background:var(--run)}
 .sport-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-.sport-grid-rev .sport-text{order:2}
-@media (max-width:900px){.sport-grid{grid-template-columns:1fr}.sport-grid-rev .sport-text{order:0}}
+
+@media (max-width:900px){.sport-grid{grid-template-columns:1fr}}
 .sport-text{display:grid;gap:1.6rem;align-content:start}
 .sport-text .sec-h{margin-bottom:0}
 .mini-ledger{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;border-top:1px solid var(--line-2);padding-top:1.2rem}
@@ -327,90 +322,39 @@ p{margin:0}
 .meter i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--run),var(--run-2));transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) .3s}
 .in .meter i{transform:none}
 .no-js .meter i{transform:none}
-.sport-feature{display:grid;gap:1rem}
+
 .feature-k{font-family:var(--mono);font-size:.8125rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
 .feature-k:first-child{margin-top:0}
 
 /* ─── Ausrüstung (Slider) ─────────────────────────────────────── */
 .sec-equip{border-top:1px solid var(--line);background:radial-gradient(70% 50% at 70% 20%,rgba(211,155,90,.07),transparent 70%),var(--bg)}
 .sec-equip .lead{margin-bottom:3rem}
-.equip-slider{position:relative;border:1px solid var(--line);border-radius:6px;background:linear-gradient(160deg,var(--bg-3),var(--bg-2));overflow:clip}
-.equip-slider::before{content:"";position:absolute;inset:auto -10% -40% -10%;height:70%;background:radial-gradient(50% 50% at 50% 50%,rgba(211,155,90,.16),transparent 70%);pointer-events:none;z-index:0}
-.equip-track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;position:relative;z-index:1;outline-offset:-4px}
-.equip-track::-webkit-scrollbar{display:none}
-@media (prefers-reduced-motion:no-preference){.equip-track{scroll-behavior:smooth}}
-.equip-slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;display:grid;grid-template-columns:7fr 5fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;padding:clamp(1.2rem,3vw,2.5rem) clamp(1.2rem,3vw,2.5rem) clamp(1rem,2vw,1.5rem)}
-@media (max-width:900px){.equip-slide{grid-template-columns:1fr;gap:1.2rem}}
-.equip-slide-img{position:relative;display:grid;place-items:center;min-height:clamp(200px,32vw,420px)}
-.equip-slide-img::before{content:"";position:absolute;inset:8% 4%;border-radius:50%;background:radial-gradient(50% 50% at 50% 55%,rgba(211,155,90,.16),rgba(211,155,90,.05) 55%,transparent 75%);pointer-events:none}
-.equip-both .equip-slide-img::before{background:radial-gradient(50% 50% at 50% 55%,rgba(180,185,150,.14),rgba(180,185,150,.04) 55%,transparent 75%)}
-.equip-run .equip-slide-img::before{background:radial-gradient(50% 50% at 50% 55%,rgba(142,211,195,.14),rgba(142,211,195,.04) 55%,transparent 75%)}
-.equip-slide-img img,.equip-fallback{position:relative}
-.equip-small .equip-slide-img img{max-height:clamp(150px,19vw,270px);max-width:72%}
-.equip-photo .equip-slide-img::before{display:none}
-.equip-photo .equip-slide-img img{border-radius:6px;border:1px solid var(--line-2);filter:none;box-shadow:0 24px 40px rgba(0,0,0,.5);max-height:clamp(180px,26vw,360px);background:radial-gradient(80% 90% at 50% 40%,#231e15,#0f0d0a)}
-.equip-slide-img img{display:block;max-width:100%;max-height:clamp(200px,32vw,420px);width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,0,0,.6))}
+
 /* Lichteffekt: Lampen leuchten beim ersten Anschauen kurz auf (glow in data/equipment.yaml) */
-.equip-glow-wrap{position:relative;display:grid;place-items:center;max-width:100%}
-.equip-glow{position:absolute;left:var(--gx);top:var(--gy);width:62%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;mix-blend-mode:screen;background:radial-gradient(closest-side,rgba(255,255,250,1) 0%,rgba(255,250,235,.9) 16%,rgba(255,236,200,.45) 34%,rgba(255,220,170,.14) 58%,transparent 100%)}
-@media (prefers-reduced-motion:no-preference){
-  .js .equip-slide.is-lit .equip-glow{animation:lampon 1.9s ease-out .75s both}
-}
+
 @keyframes lampon{0%{opacity:0}6%{opacity:.85}11%{opacity:.2}17%{opacity:1}45%{opacity:.95}100%{opacity:0}}
-.equip-fallback{display:grid;place-items:center;align-content:center;gap:.75rem;width:100%;min-height:inherit;text-align:center}
-.equip-fallback span{font-family:var(--display);font-weight:700;font-size:clamp(3rem,9vw,8rem);line-height:.9;text-transform:uppercase;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px var(--gravel);opacity:.55}
-.equip-fallback small{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.equip-run .equip-fallback span{-webkit-text-stroke-color:var(--run)}
-.equip-slide-body{display:grid;gap:.9rem;align-content:center}
+
 @media (prefers-reduced-motion:no-preference){
-  .js .equip-slide-img img{opacity:0;transform:translateX(-6%)}
-  .js .equip-slide-body>*{opacity:0;transform:translateY(10px)}
-  .js .equip-slide.is-active .equip-slide-img img{opacity:1;transform:none;transition:opacity .8s var(--ease) .1s,transform 1.2s var(--ease) .1s}
+  
+  
+  
   /* Platzhalter bleibt lesbar. Ein fehlendes Foto darf die Karte nicht leer wirken lassen. */
-  .js .equip-fallback span,.js .equip-fallback small{opacity:1}
-  .js .equip-slide.is-active .equip-fallback span{opacity:.55;transform:none;transition:transform 1.2s var(--ease) .1s}
-  .js .equip-slide.is-active .equip-slide-body>*{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .7s var(--ease)}
-  .js .equip-slide.is-active .equip-slide-body>:nth-child(2){transition-delay:.12s}
-  .js .equip-slide.is-active .equip-slide-body>:nth-child(3){transition-delay:.22s}
-  .js .equip-slide.is-active .equip-slide-body>:nth-child(4){transition-delay:.32s}
-  .js .equip-slide.is-active .equip-slide-body>:nth-child(n+5){transition-delay:.4s}
-  .js .equip-slider.in .equip-road path{animation:roadflow 6s linear infinite,draw 1.6s var(--ease) .6s forwards}
+  
+  
+  
+  
+  
+  
+  
+  
 }
-.equip-road{display:block;width:calc(100% - 2*clamp(1.2rem,3vw,2.5rem));margin:0 auto;height:24px;overflow:visible;position:relative;z-index:1}
-.equip-road path{stroke:var(--gravel);stroke-width:2;stroke-dasharray:.03 .02;stroke-dashoffset:1;opacity:.8}
-@media (prefers-reduced-motion:reduce){.equip-road path{stroke-dashoffset:0}}
+
 @keyframes roadflow{to{stroke-dashoffset:-1}}
-.equip-meta{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;font-family:var(--mono);font-size:.8125rem;letter-spacing:.04em;color:var(--muted)}
-.equip-spec{letter-spacing:.06em}
-.equip-name{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;line-height:1;letter-spacing:-.01em}
-.equip-brand{display:block;font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gravel-2);margin-bottom:.45rem}
-.equip-run .equip-brand{color:var(--run-2)}
-.equip-both .equip-brand{color:var(--ink-2)}
-.equip-note{color:var(--ink-2);max-width:44ch;text-wrap:pretty}
-.equip-km{display:flex;align-items:baseline;gap:.5rem;color:var(--ink-2);font-size:.9rem}
-.equip-km .num{font-size:clamp(2.2rem,3.5vw,3rem);line-height:1;color:var(--ink)}
-.equip-bike .equip-km .num{color:var(--gravel-2)}
-.equip-run .equip-km .num{color:var(--run-2)}
-.equip-slide .meter{max-width:320px}
-.equip-run .meter i{background:linear-gradient(90deg,var(--run),var(--run-2))}
-.equip-bike .meter i{background:linear-gradient(90deg,var(--gravel),var(--gravel-2))}
-.equip-slide.is-active .meter i{transform:none}
+
 .equip-life{font-family:var(--mono);font-size:.8rem;color:var(--muted);letter-spacing:.02em}
-.equip-controls{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem clamp(1.2rem,3vw,2.5rem) clamp(1rem,2.5vw,1.6rem);min-width:0;max-width:100%}
-.no-js .equip-controls{display:none}
+
 /* Punkte laufen in der eigenen Zeile über, sonst schieben sie die Pfeile aus der Karte
    und der Slider selbst scrollt mit. Dann liegt die Folie neben dem sichtbaren Ausschnitt. */
-.equip-dots{display:flex;gap:.5rem;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
-.equip-dot{width:2rem;height:4px;padding:0;border:0;border-radius:2px;background:var(--line-2);cursor:pointer;transition:background .3s,width .3s var(--ease)}
-.equip-dot.is-active{background:var(--gravel-2);width:3rem}
-.equip-dot:hover{background:var(--ink-2)}
-.equip-dots::-webkit-scrollbar{display:none}
-.equip-count{flex:none;font-family:var(--mono);font-size:.8125rem;color:var(--muted);letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.equip-arrows{display:flex;gap:.5rem;flex:none}
-.equip-arrow{width:2.6rem;height:2.6rem;display:grid;place-items:center;padding:0;border:1px solid var(--line-2);border-radius:3px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .2s,color .2s,transform .2s var(--ease)}
-.equip-arrow svg{width:1.1rem;height:1.1rem}
-.equip-arrow:hover{border-color:var(--gravel);color:var(--gravel-2);transform:translateY(-1px)}
-@media (max-width:560px){.equip-dot{width:1.2rem}.equip-dot.is-active{width:2rem}}
 
 /* ─── Apps ─────────────────────────────────────────────────────── */
 .sec-apps .lead{margin-bottom:3rem}
@@ -518,13 +462,7 @@ p{margin:0}
 @media (max-width:600px){.tour-pager{grid-template-columns:1fr 1fr}.tp-all{grid-column:1/-1;grid-row:1;text-align:center}}
 
 /* Zurück-Leiste unter der Navigation (Tourenseiten) */
-.back-bar{position:sticky;top:4rem;z-index:45;margin-top:4rem;background:rgba(11,10,8,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.back-bar .wrap{display:flex;align-items:center;min-height:2.9rem}
-.back-link{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;padding:.4rem 0;transition:color .2s}
-.back-arrow{color:var(--gravel-2);font-size:1rem;line-height:1;letter-spacing:0;transition:transform .25s var(--ease)}
-.back-link:hover{color:var(--ink)}
-.back-link:hover .back-arrow{transform:translateX(-3px)}
-@media (prefers-reduced-motion:reduce){.back-arrow{transition:none}}
+
 /* Reiter Route / Foto auf Tourenseiten (ohne JS: beides untereinander) */
 .tour-tabs{display:inline-flex;gap:0;margin-bottom:1.25rem;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
 .tour-tabs button{appearance:none;background:none;border:0;padding:.55rem 1.1rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
@@ -602,13 +540,9 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
    Weniger auf einmal, mehr Abstand, Farbe nur dort, wo echte Zahlen stehen. */
 .sec{padding-block:clamp(6rem,13vw,11rem)}
 .sec-h{margin-bottom:clamp(2.4rem,4vw,3.4rem)}
-.hero-cap{opacity:.8}
 
 /* Startseite: drei große Zahlen statt acht */
-.ledger-calm{grid-template-columns:repeat(3,1fr);gap:0 clamp(2rem,5vw,5rem);border-top:1px solid var(--line)}
-.ledger-calm .led{border-bottom:0;padding:2rem 0 0}
-.ledger-calm .led .num{font-size:clamp(3.2rem,7vw,6rem)}
-@media (max-width:760px){.ledger-calm{grid-template-columns:1fr;gap:0}.ledger-calm .led{padding:1.6rem 0;border-bottom:1px solid var(--line)}}
+
 #zahlen .cal{margin-top:clamp(4.5rem,9vw,7rem)}
 .more-link{margin-top:2.5rem;font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
 .more-link a{color:var(--gravel-2);text-decoration:none}
@@ -629,7 +563,6 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .band img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
 
 /* Über mich: Kooperationen als ein Satz */
-.about-collab{color:var(--muted);font-size:1rem;max-width:62ch;margin-top:-.5rem}
 
 /* Unterseiten Zahlen und Ausrüstung */
 .page-head{padding-bottom:0;padding-top:clamp(3rem,6vw,5rem)}
@@ -702,11 +635,6 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .wind-src a{color:var(--ink-2)}
 
 /* Marke oben links: „Bremen ist flach“ groß, der Name klein darunter */
-.brand-text{display:grid;gap:.18rem;line-height:1}
-.brand-main{font-weight:700;font-size:1.2rem;letter-spacing:.03em}
-.brand-sub{font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.14em;text-transform:lowercase;color:var(--muted)}
-.brand:hover .brand-main{color:var(--gravel-2)}
-@media (max-width:380px){.brand-main{font-size:1.05rem}.brand-sub{font-size:.6rem}}
 
 /* ─── Fahrradwetter: Startseite kompakt, Seite /wetter/ ausführlich ───── */
 .wind-brief{display:grid;gap:.7rem;align-content:center}
@@ -904,9 +832,9 @@ a.marke-in:hover span,a.marke-in:focus-visible span{text-decoration:underline;te
 .sec-light .eyebrow{color:#2b2013}
 .sec-light .eyebrow::before{background:#0b0a08}
 .sec-light .sec-h{color:#0b0a08}
-.sec-light .lead,.sec-light .note,.sec-light .community-copy p,.sec-light .about-copy,.sec-light .about-collab{color:#1f170e}
+.sec-light .lead,.sec-light .note,.sec-light .community-copy p,.sec-light .about-copy{color:#1f170e}
 .sec-light .note{border-color:rgba(11,10,8,.25)}
-.sec-light .about-collab a,.sec-light .note a{color:#0b0a08;text-decoration-color:rgba(11,10,8,.5)}
+.sec-light .note a{color:#0b0a08;text-decoration-color:rgba(11,10,8,.5)}
 .sec-light .btn{background:#0b0a08;border-color:#0b0a08;color:var(--gravel-2)}
 .sec-light .btn:hover{background:#2b2217;border-color:#2b2217;color:var(--gravel-2)}
 .sec-light .btn-ghost,.sec-light .btn-ghost:hover{background:transparent;border-color:rgba(11,10,8,.55);color:#0b0a08}
@@ -963,7 +891,7 @@ html,body,.footer{background:var(--bg-dark)}
 /* Überschriften auf Dunkel im Akzent */
 .sec:not(.sec-light) .sec-h,.page-head .sec-h,.legal .sec-h{color:var(--accent)}
 .wind-say{color:var(--accent)}
-.hero-l2{color:var(--accent)}
+
 .eyebrow::before{background:var(--accent)}
 /* Buttons: Akzent mit dunkler Schrift, Hover heller */
 .btn{background:var(--accent);border-color:var(--accent);color:var(--bg-dark)}
@@ -971,7 +899,7 @@ html,body,.footer{background:var(--bg-dark)}
 .btn-ghost{background:transparent;border-color:var(--border-subtle);color:var(--ink)}
 .btn-ghost:hover{background:rgba(196,165,116,.08);border-color:var(--accent);color:var(--ink)}
 /* Karten auf Dunkel: leicht aufgehellt, feine Akzent-Border */
-.act,.tip-card,.next-ride,.app,.equip-slider,.tour-card,.tour-side{background:var(--bg-3);border-color:var(--border-subtle)}
+.act,.tip-card,.next-ride,.app,.tour-card,.tour-side{background:var(--bg-3);border-color:var(--border-subtle)}
 .tip-card{background:#1a1813}
 /* Routen und Icons im Akzent */
 .route-ride path,.tour-route path,.tip-route path,.tp-map use{stroke:var(--accent)}
@@ -1018,10 +946,6 @@ html,body,.footer{background:var(--bg-dark)}
 .sec-alt{background:var(--bg-dark);border:0}
 /* Ausrüstung: heller Bereich, Slider-Karte bleibt dunkel, oben ohne Schräge (direkt unter der Leiste) */
 .sec-light-page{clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--slant)));margin-top:0;padding-top:clamp(3rem,6vw,5rem)}
-.sec-light .equip-slider{color:var(--text-on-dark)}
-.sec-light .equip-slider p{color:var(--ink-2)}
-.sec-light .equip-name{color:var(--text-on-dark)}
-.sec-light .equip-controls .equip-count{color:var(--muted)}
 
 /* ─── Besserer Wechsel: Hero D · Wetter D · Zahlen H · Zuletzt D · Gravel H · Laufen D ·
        Community H (+ Balken/Marken D) · Über mich H · Footer D ─── */
@@ -1050,8 +974,7 @@ html,body,.footer{background:var(--bg-dark)}
 .sec-light .more-link a{color:var(--accent-ink)}
 /* Über mich auf Hell */
 .sec-light .portrait{border-color:rgba(28,27,25,.15);background:var(--bg-dark)}
-.sec-light .about-copy,.sec-light .about-collab{color:#3a3732}
-.sec-light .about-collab a{color:var(--text-on-light);text-decoration-color:var(--accent)}
+.sec-light .about-copy{color:#3a3732}
 
 /* ═══ Design „Magazin“: Anthrazit, Creme, Gold · Serif-Überschriften · Wellen ═══════════ */
 @font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(/fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -1075,7 +998,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 /* Überschriften: Serif, Versalien, leicht gesperrt */
 .hero-h,.sec-h,.wind-say,.pl-say,.tip-name,.partner-name,.page-head .sec-h,.legal .sec-h{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.01em}
 .hero-h{font-size:clamp(3.2rem,10vw,9rem);line-height:.92}
-.hero-l2{color:var(--accent)}
+
 .sec-h{font-size:clamp(2.3rem,5vw,4rem);line-height:1.02}
 .sec:not(.sec-light) .sec-h,.page-head .sec-h,.legal .sec-h,.wind-say{color:var(--text-on-dark)}
 .wind-say,.pl-say{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.05}
@@ -1098,9 +1021,6 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero{background:var(--bg-dark)}
 .hero-topo{position:absolute;inset:0;z-index:-2;background:url(/img/hoehenlinien.svg) right center/cover no-repeat;opacity:.16;pointer-events:none}
 .hero-map{opacity:.75}
-.hero-coord{position:absolute;right:max(var(--pad),calc((100% - var(--wrap))/2 + 4rem));top:38%;display:grid;justify-items:center;gap:.35rem;font-family:var(--body);font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);z-index:1}
-.hero-x{font-size:2rem;line-height:1;font-weight:400}
-@media (max-width:900px){.hero-coord{display:none}}
 
 /* ─── Helle Bereiche mit Wellen statt Schrägen ─── */
 .sec-light,.sec-light + .sec-light,.sec-light:has(+ .sec-light),.sec-community,.sec-light + .sec-community,.sec-light-page,#zuletzt + .sec-gravel{clip-path:none;margin-top:0}
@@ -1150,11 +1070,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .nav.on{background:rgba(26,26,24,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .nav-in{height:5rem}
 .brand{gap:.8rem;color:var(--accent);text-shadow:none}
-.brand-wheel{width:2.4rem;height:2.4rem;color:var(--accent)}
-.brand-text{gap:.25rem}
-.brand-main{font-family:var(--serif);font-weight:500;font-size:1.55rem;letter-spacing:.2em;line-height:1;color:var(--accent);text-transform:uppercase}
-.brand-sub{font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
-.brand:hover .brand-main{color:var(--accent-hover)}
+
 .nav-main{display:none}
 @media (min-width:1000px){
   .nav-main{display:flex;gap:2.6rem;margin-left:auto}
@@ -1172,7 +1088,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero{min-height:min(88svh,900px);align-content:center;padding-top:7rem;padding-bottom:4rem}
 .hero-mag{gap:0}
 .hero-mag .hero-h{display:grid;font-size:clamp(3.6rem,10.5vw,9.5rem);line-height:.9;letter-spacing:.005em;color:var(--text-on-dark)}
-.hero-mag .hero-l2,.hero-mag .hero-l{color:var(--text-on-dark)}
+
 .hero-tag{margin-top:1.6rem;font-family:var(--body);font-weight:500;font-size:clamp(1rem,1.6vw,1.25rem);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:grid;gap:1.1rem}
 .hero-tag::after{content:"";width:3rem;height:2px;background:var(--accent)}
 .hero-text{margin-top:2rem;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.6;color:var(--ink)}
@@ -1180,7 +1096,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-link span{font-size:1.2rem;transition:transform .25s var(--ease)}
 .hero-link:hover{color:var(--accent-hover)}
 .hero-link:hover span{transform:translate(3px,-3px)}
-.hero-coord{top:42%}
+
 @media (prefers-reduced-motion:no-preference){
   .js .hero-tag,.js .hero-text,.js .hero-link{opacity:0;animation:fade 1s var(--ease) forwards}
   .js .hero-tag{animation-delay:.4s}.js .hero-text{animation-delay:.6s}.js .hero-link{animation-delay:.8s}
@@ -1191,23 +1107,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .sec-why{overflow:hidden;padding-bottom:calc(clamp(4rem,8vw,6rem) + var(--wave))}
 .sec-why .wrap{position:relative;z-index:2}
 .sec-why::after{z-index:3}
-.why-prof{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem 3rem;align-items:center;margin:0 0 clamp(3.5rem,8vw,6rem)}
-@media (min-width:800px){.why-prof{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}.why-cap{grid-column:1}.why-hand{grid-column:2;grid-row:1}}
-.why-chart{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:end}
-.why-ylab{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;line-height:2.2;color:var(--text-on-light);padding-bottom:2.2rem}
-.why-ylab .mono{letter-spacing:.04em;text-transform:none}
-.why-plot{position:relative;height:clamp(110px,14vw,160px);border-bottom:1px solid rgba(28,27,25,.35);margin-bottom:2.2rem}
-.why-plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.why-line{fill:none;stroke:var(--accent-ink);stroke-width:1.6}
-.why-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent-ink);transform:translate(-50%,-50%)}
-.why-dot-a{left:0;top:calc(var(--y0)*100%)}
-.why-dot-b{left:100%;top:calc(var(--y1)*100%)}
-.why-x{position:absolute;left:0;right:0;top:100%;display:flex;justify-content:space-between;padding-top:.7rem;font-size:.7rem;letter-spacing:.06em;color:var(--text-on-light)}
-.why-x span:first-child{transform:translateX(-30%)}.why-x span:last-child{transform:translateX(30%)}
-.why-cap{font-size:.72rem;color:rgba(28,27,25,.6);margin:0}
-.why-hand{font-family:var(--hand);font-size:clamp(2.2rem,4vw,3.2rem);color:var(--accent-ink);margin:0;transform:rotate(-4deg);justify-self:start;line-height:1}
-.why-hand svg{display:block;width:100%;height:.35em;margin-top:.05em}
-.why-hand path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+
 .why-grid{display:grid;gap:2rem 4rem;align-items:start}
 @media (min-width:800px){.why-grid{grid-template-columns:1fr 1fr}}
 .why-body p{max-width:34rem;line-height:1.75;margin:0 0 1.8rem}
@@ -1226,16 +1126,16 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 }
 .sec-why{padding-top:calc(clamp(2.5rem,5vw,4rem) + var(--wave))}
 .sec-why .sec-h{font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.05}
-.why-hand{color:var(--accent)}
+
 .sec-why{padding-top:calc(clamp(1rem,2.5vw,2.5rem) + var(--wave))}
-.sec-why .why-hand{color:var(--accent-ink)}
+
 @media (min-width:800px){
   .sec-why{padding-bottom:calc(clamp(12rem,21vw,19rem) + var(--wave))}
   .why-photo{width:54%}
   .why-grid{grid-template-columns:1.15fr .85fr}
 }
 .sec-why .sec-h{font-size:clamp(2.2rem,4vw,3.3rem)}
-@media (max-width:799px){.why-x span:last-child{transform:none}.why-grid{gap:1.2rem}.why-body p{margin-bottom:1.4rem}}
+@media (max-width:799px){.why-grid{gap:1.2rem}.why-body p{margin-bottom:1.4rem}}
 
 /* ===== Logo BF ===== */
 .brand-logo{width:auto;height:2.5rem;display:block}
@@ -1397,8 +1297,6 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .tour-grid-2{grid-template-areas:"tabs ." "main side"}
 @media (max-width:900px){.tour-grid-2{grid-template-areas:"tabs" "main" "side"}}
 /* Zurück-Leiste passend zum höheren Kopf (5rem) */
-.back-bar{top:5rem;margin-top:5rem;background:rgba(26,26,24,.94);border-bottom:1px solid rgba(244,238,227,.08)}
-.back-bar .wrap{min-height:2.6rem}
 
 /* ===== Fahrradwetter & Zahlen im Magazin-Stil ===== */
 .hero-page + .wind-full{padding-top:1rem}
@@ -1737,7 +1635,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .eq-feature-img .ride-ov .ride-front{left:0;top:0;width:100%;height:100%}
 
 /* Werkstätten-Verzeichnis */
-.shops-note{display:inline-block;margin-top:1rem;font-size:.75rem;letter-spacing:.06em;color:var(--accent-ink);border:1px dashed rgba(122,92,40,.5);padding:.35rem .7rem}
+
 .shops-filter{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:clamp(1.6rem,4vw,2.4rem)}
 .shops-filter .chip{font:inherit;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;min-height:40px;padding:0 1rem;border:1px solid rgba(28,27,25,.25);background:transparent;color:var(--text-on-light);cursor:pointer;border-radius:2px}
 .shops-filter .chip.is-on{background:var(--text-on-light);color:#F4EEE3;border-color:var(--text-on-light)}
