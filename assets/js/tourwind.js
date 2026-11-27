@@ -65,7 +65,12 @@
 
   var now = box.querySelector('[data-tw-now]');
   if (!now || !global.fetch) return;
-  fetch('/api/wind', { headers: { Accept: 'application/json' } })
+  // Holt den Wind beim Öffnen, bleibt die Seite offen alle 10 Minuten neu,
+  // und sofort, wenn man nach mehr als 10 Minuten in den Tab zurückkommt.
+  var last = 0, EVERY = 10 * 60 * 1000;
+  function load() {
+  last = Date.now();
+  fetch('/api/wind', { headers: { Accept: 'application/json' }, cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (w) {
       if (!w || typeof w.speed !== 'number' || typeof w.dir !== 'number') return;
@@ -81,4 +86,10 @@
       now.hidden = false;
     })
     .catch(function () {});
+  }
+  load();
+  setInterval(function () { if (!document.hidden) load(); }, EVERY);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && Date.now() - last > EVERY) load();
+  });
 })(typeof window !== 'undefined' ? window : this);
