@@ -1,7 +1,13 @@
 {{ define "main" }}
 {{- $posts := .RegularPages.ByDate.Reverse }}
-<section class="hero hero-page" aria-labelledby="journal-list-h">
-  <div class="hero-topo" aria-hidden="true"></div>
+<section class="hero hero-page hero-photo hero-photo-page hero-journal" aria-labelledby="journal-list-h">
+  {{- $q := resources.Get "img/journal-header.jpg" }}{{ $h := resources.Get "img/journal-header-hoch.jpg" }}
+  {{- if and $q $h }}{{ $q1 := $q.Process "resize 900x webp q74" }}{{ $q2 := $q.Process "resize 1792x webp q74" }}{{ $h1 := $h.Process "resize 800x webp q74" }}
+  <picture class="hp-bg" aria-hidden="true">
+    <source media="(max-width:700px)" srcset="{{ $h1.RelPermalink }}" width="{{ $h1.Width }}" height="{{ $h1.Height }}">
+    <img src="{{ $q2.RelPermalink }}" srcset="{{ $q1.RelPermalink }} 900w, {{ $q2.RelPermalink }} 1792w" sizes="100vw" width="{{ $q2.Width }}" height="{{ $q2.Height }}" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  {{- end }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "journal_eyebrow" }}</p>
     <h1 id="journal-list-h" class="hero-h">{{ T "journal_title1" }}<br>{{ T "journal_title2" }}</h1>
