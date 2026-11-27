@@ -1,0 +1,10 @@
+{{- /* Foto-Hintergrund für Seiten-Header: quer (Desktop) + optional hoch (Handy). Aufruf: partial "hero-bild.html" (dict "quer" "img/x.jpg" "hoch" "img/x-hoch.jpg") */ -}}
+{{- $q := resources.Get .quer }}{{ $h := false }}{{ with .hoch }}{{ $h = resources.Get . }}{{ end }}
+{{- with $q }}{{ $q1 := .Process "resize 900x webp q74" }}{{ $q2 := .Process "resize 1792x webp q74" }}
+<picture class="hp-bg" aria-hidden="true">
+  {{- with $h }}{{ $h1 := .Process "resize 800x webp q74" }}
+  <source media="(max-width:700px)" srcset="{{ $h1.RelPermalink }}" width="{{ $h1.Width }}" height="{{ $h1.Height }}">
+  {{- end }}
+  <img src="{{ $q2.RelPermalink }}" srcset="{{ $q1.RelPermalink }} 900w, {{ $q2.RelPermalink }} 1792w" sizes="100vw" width="{{ $q2.Width }}" height="{{ $q2.Height }}" alt="" fetchpriority="high" decoding="async">
+</picture>
+{{- end }}

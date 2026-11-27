@@ -1,9 +1,9 @@
 {{ define "main" }}
-<section class="hero hero-page" aria-labelledby="wetter-h">
-  <div class="hero-topo" aria-hidden="true"></div>
+<section class="hero hero-page hero-photo hero-photo-page hero-hoch hero-wx" aria-labelledby="wetter-h">
+  {{ partial "hero-bild.html" (dict "quer" "img/wetter-header.jpg" "hoch" "img/wetter-header-hoch.jpg") }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "wx_eyebrow" }}</p>
-    <h1 id="wetter-h" class="hero-h">{{ .Title }}</h1>
+    <h1 id="wetter-h" class="hero-h">{{ replace .Title "Fahrradwetter" "Fahrrad&shy;wetter" | safeHTML }}</h1>
     <p class="hero-tag">{{ T "wx_tag" }}</p>
     <p class="hero-text">{{ T "wx_page_lead" }}</p>
   </div>
