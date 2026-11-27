@@ -20,6 +20,12 @@
 {{ $rjs := resources.Get "js/repair.js" | minify | fingerprint }}
 <script src="{{ $rjs.RelPermalink }}" integrity="{{ $rjs.Data.Integrity }}" defer></script>
 {{- end }}
+{{- if and .IsPage (eq .Section "touren") .Params.tour.route }}
+{{ $wjs := resources.Get "js/wind.js" | minify | fingerprint }}
+<script src="{{ $wjs.RelPermalink }}" integrity="{{ $wjs.Data.Integrity }}" defer></script>
+{{ $tjs := resources.Get "js/tourwind.js" | minify | fingerprint }}
+<script src="{{ $tjs.RelPermalink }}" integrity="{{ $tjs.Data.Integrity }}" defer></script>
+{{- end }}
 {{- if or .IsHome (eq .Layout "wetter") }}
 {{ $wjs := resources.Get "js/wind.js" | minify | fingerprint }}
 <script src="{{ $wjs.RelPermalink }}" integrity="{{ $wjs.Data.Integrity }}" defer></script>

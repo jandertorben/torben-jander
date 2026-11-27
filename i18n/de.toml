@@ -694,8 +694,6 @@ other = "Wind. Regen. Licht. Live für Bremen."
 [numbers_tag]
 other = "Alles aus Strava. Nichts geschätzt."
 
-[tour_wind_k]
-other = "Vor dem Losfahren"
 [tour_wind_t]
 other = "Woher weht der Wind? Im Fahrradwetter siehst du Wind, Regen und das beste Zeitfenster für deine Runde."
 
@@ -849,3 +847,58 @@ other = "Werkstätten"
 other = "„%s“ ist mein Projekt. Darum läuft alles unter meinem Namen: torben-jander.me."
 [footer_owner]
 other = "<strong>%s</strong> ist ein Projekt von %s."
+
+[tour_wind_k]
+other = "Wind-Tipp"
+[tw_now_k]
+other = "Gerade:"
+[tw_to_n]
+other = "Norden"
+[tw_to_ne]
+other = "Nordosten"
+[tw_to_e]
+other = "Osten"
+[tw_to_se]
+other = "Südosten"
+[tw_to_s]
+other = "Süden"
+[tw_to_sw]
+other = "Südwesten"
+[tw_to_w]
+other = "Westen"
+[tw_to_nw]
+other = "Nordwesten"
+[tw_w_n]
+other = "Nordwind"
+[tw_w_ne]
+other = "Nordostwind"
+[tw_w_e]
+other = "Ostwind"
+[tw_w_se]
+other = "Südostwind"
+[tw_w_s]
+other = "Südwind"
+[tw_w_sw]
+other = "Südwestwind"
+[tw_w_w]
+other = "Westwind"
+[tw_w_nw]
+other = "Nordwestwind"
+[tw_loop]
+other = "Die Runde führt nach %s raus. Am besten also bei %s: raus gegen den Wind, heimwärts schiebt er."
+[tw_line]
+other = "Die Strecke führt nach %s. Am besten bei %s, dann schiebt er dich den ganzen Weg."
+[tw_now_calm]
+other = "Kaum Wind in Bremen (%s km/h). Die Richtung ist heute egal."
+[tw_now_loop_good]
+other = "%s mit %s km/h. Passt: Gegenwind auf dem Hinweg, Rückenwind nach Hause."
+[tw_now_loop_side]
+other = "%s mit %s km/h. Kommt eher von der Seite, hin und zurück ähnlich."
+[tw_now_loop_bad]
+other = "%s mit %s km/h. Der schiebt dich raus und kommt dir auf dem Heimweg entgegen. Kräfte einteilen."
+[tw_now_line_good]
+other = "%s mit %s km/h. Passt: Er schiebt dich die Strecke entlang."
+[tw_now_line_side]
+other = "%s mit %s km/h. Kommt eher von der Seite."
+[tw_now_line_bad]
+other = "%s mit %s km/h. Der kommt dir die ganze Strecke entgegen."
