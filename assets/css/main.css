@@ -1776,3 +1776,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .foot-owner strong{font-weight:500;color:var(--ink)}
 .about-project{margin:1.2rem 0 0;max-width:62ch;font-size:1rem;color:var(--muted)}
 .sec-light .about-project{color:#3a3732}
+
+/* Portrait nicht auf Texthöhe strecken (sonst leerer Kasten darunter) */
+.about-grid .portrait{align-self:start}
+.about-text .about-project,.about-text .about-stats{margin:0}
