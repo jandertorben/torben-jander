@@ -1,8 +1,12 @@
 {{ define "main" }}
 {{- $tours := .RegularPages.ByDate.Reverse }}
 {{- $km := 0.0 }}{{ range $tours }}{{ $km = add $km (float .Params.tour.km) }}{{ end }}
-<section class="hero hero-page" aria-labelledby="tours-h">
-  <div class="hero-topo" aria-hidden="true"></div>
+<section class="hero hero-page hero-photo hero-photo-page" aria-labelledby="tours-h">
+  {{- with resources.Get "img/touren-header.jpg" }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q74" }}
+  <picture class="hp-bg" aria-hidden="true">
+    <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1792w" sizes="100vw" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  {{- end }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "tours_eyebrow" }}</p>
     <h1 id="tours-h" class="hero-h">{{ .Title }}</h1>

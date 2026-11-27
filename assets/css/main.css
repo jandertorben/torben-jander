@@ -1667,3 +1667,11 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .nav{background-origin:border-box;background-repeat:no-repeat}
 /* Handy: Header-Foto etwas heller, weil dort zusätzlich der Verlauf von unten liegt */
 @media (max-width:700px){.hp-bg img{opacity:var(--hp-op-m,.65)}}
+
+/* Tourenübersicht: Foto-Header wie auf der Startseite, etwas niedriger */
+.hero-photo-page{min-height:min(78svh,820px)}
+.hero-photo-page .hp-bg img{--hp-op:1;--hp-op-m:1;filter:none;object-position:60% 55%}
+.hero-photo-page::before{background:linear-gradient(90deg,rgba(11,10,8,.7) 0%,rgba(11,10,8,.35) 40%,rgba(11,10,8,0) 65%),linear-gradient(0deg,rgba(11,10,8,.5) 0%,rgba(11,10,8,0) 35%)}
+.hero-photo-page .hero-h{font-size:clamp(2.8rem,6.5vw,6rem)}
+@media (max-width:700px){.hero-photo-page::before{background:linear-gradient(0deg,rgba(11,10,8,.7) 0%,rgba(11,10,8,.3) 60%,rgba(11,10,8,.15) 100%)}}
+@media (max-width:700px){.hero-photo-page .hp-bg img{object-position:70% 50%}}
