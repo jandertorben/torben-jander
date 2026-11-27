@@ -26,12 +26,15 @@
     {{- $note := $g.note_de }}{{ if eq $lang "en" }}{{ $note = $g.note_en }}{{ end }}
     {{- $gkm := index $km $g.strava_gear | default 0 }}
     <article class="eq-feature{{ if $g.photo }} eq-feature-photo{{ end }}{{ if modBool $n 2 }}{{ else }} eq-flip{{ end }} reveal">
-      <div class="eq-feature-img"{{ if eq $n 0 }} data-ride{{ end }}>{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}
-        {{- if and (eq $n 0) (eq $g.image "bike.png") }}
-        <div class="ride-ov" aria-hidden="true" data-w="873" data-h="495">
-          <img class="ride-ring" src="/img/ride/canyon-ring-hinten.webp" alt="" style="left:{{ div (sub 190 161) 8.73 }}%;top:{{ div (sub 320 161) 4.95 }}%;width:{{ div 322 8.73 }}%;height:{{ div 322 4.95 }}%">
-          <img class="ride-ring" src="/img/ride/canyon-ring-vorne.webp" alt="" style="left:{{ div (sub 677 161) 8.73 }}%;top:{{ div (sub 321 161) 4.95 }}%;width:{{ div 322 8.73 }}%;height:{{ div 322 4.95 }}%">
-          <img class="ride-front" src="/img/ride/canyon-ring-front.webp" alt="">
+      {{- $rides := dict "bike.png" (dict "k" "canyon" "w" 873 "h" 495 "r" 161 "a" (slice 190 320) "b" (slice 677 321)) "storck-grix-2-studio.png" (dict "k" "storck" "w" 892 "h" 559 "r" 170 "a" (slice 188 360) "b" (slice 702 361)) }}
+      {{- $ride := index $rides $g.image }}
+      <div class="eq-feature-img"{{ with $ride }} data-ride{{ end }}>{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}
+        {{- with $ride }}{{ $W := float .w }}{{ $H := float .h }}{{ $d := mul 2 .r }}
+        <div class="ride-ov" aria-hidden="true">
+          {{- range $i, $c := slice .a .b }}
+          <img class="ride-ring" src="/img/ride/{{ $ride.k }}-ring-{{ cond (eq $i 0) "hinten" "vorne" }}.webp" alt="" style="left:{{ mul (div (sub (index $c 0) $ride.r) $W) 100 }}%;top:{{ mul (div (sub (index $c 1) $ride.r) $H) 100 }}%;width:{{ mul (div $d $W) 100 }}%;height:{{ mul (div $d $H) 100 }}%">
+          {{- end }}
+          <img class="ride-front" src="/img/ride/{{ .k }}-ring-front.webp" alt="">
         </div>
         {{- end }}</div>
       <div class="eq-feature-body">
