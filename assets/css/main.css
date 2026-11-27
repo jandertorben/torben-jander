@@ -1662,3 +1662,4 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hp-line{fill:none;stroke:#F4EEE3;stroke-width:1.5}
 .hp-x{display:flex;justify-content:space-between;margin-top:.35rem;font-size:.7rem;color:rgba(244,238,227,.7)}
 @media (max-width:700px){.hero-photo::before{background:linear-gradient(0deg,rgba(11,10,8,.88) 0%,rgba(11,10,8,.55) 55%,rgba(11,10,8,.25) 100%)}.hp-bg img{object-position:68% 50%}.hp-prof-r{display:none}}
+.hp-bg img{opacity:var(--hp-op,.5);filter:saturate(.75)}
