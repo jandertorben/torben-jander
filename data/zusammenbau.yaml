@@ -31,3 +31,35 @@ bike.png:
     y: 6.263
     w: 17.068
     h: 24.242
+storck-grix-2-studio.png:
+  parts:
+  - part: rad-hinten
+    file: storck-rad-hinten.png
+    x: 1.57
+    y: 33.274
+    w: 39.35
+    h: 62.433
+  - part: rad-vorne
+    file: storck-rad-vorne.png
+    x: 58.857
+    y: 33.095
+    w: 39.798
+    h: 63.327
+  - part: rahmen
+    file: storck-rahmen.png
+    x: 0.897
+    y: 7.692
+    w: 98.094
+    h: 90.698
+  - part: sattel
+    file: storck-sattel.png
+    x: 23.43
+    y: 1.61
+    w: 15.583
+    h: 19.678
+  - part: cockpit
+    file: storck-cockpit.png
+    x: 63.677
+    y: 4.293
+    w: 18.274
+    h: 19.141
