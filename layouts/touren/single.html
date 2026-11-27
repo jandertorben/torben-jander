@@ -41,8 +41,8 @@
         </figure>
         {{- end }}
         {{- with $photo }}
-        {{- $big := .Process "resize 1400x webp q82" }}
-        {{- $small := .Process "resize 800x webp q80" }}
+        {{- $big := .Process "fit 1400x1400 webp q72" }}
+        {{- $small := .Process "fit 800x800 webp q72" }}
         <figure class="tour-photo" id="panel-photo" role="tabpanel" aria-labelledby="tab-photo">
           <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} 800w, {{ $big.RelPermalink }} 1400w" sizes="(max-width: 900px) 100vw, 60vw" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ $.Params.photo_alt }}" loading="lazy" decoding="async">
         </figure>
@@ -70,7 +70,7 @@
         {{- with .Params.gallery }}
         <div class="tour-gallery">
           {{- range $it := . }}{{ with resources.Get (printf "img/touren/%s" $it.file) }}
-          {{- $g1 := .Process "resize 700x webp q80" }}{{ $g2 := .Process "resize 1100x webp q80" }}
+          {{- $g1 := .Process "fit 700x700 webp q72" }}{{ $g2 := .Process "fit 1100x1100 webp q72" }}
           <figure><img src="{{ $g1.RelPermalink }}" srcset="{{ $g1.RelPermalink }} 700w, {{ $g2.RelPermalink }} 1100w" sizes="(max-width:900px) 50vw, 30vw" width="{{ $g2.Width }}" height="{{ $g2.Height }}" alt="{{ $it.alt }}" loading="lazy" decoding="async"></figure>
           {{- end }}{{ end }}
         </div>
