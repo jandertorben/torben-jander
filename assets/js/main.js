@@ -345,6 +345,8 @@
   var els = [].slice.call(document.querySelectorAll('[data-asm]'));
   if (!els.length) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // vorerst nur auf großen Bildschirmen (auf dem iPhone noch Darstellungsfehler)
+  if (window.matchMedia && !matchMedia('(min-width: 900px) and (hover: hover)').matches) return;
   var items = els.map(function (el, i) {
     el.classList.add('asm-ready');
     return { el: el, box: el.querySelector('.asm-parts'), wheels: [].slice.call(el.querySelectorAll('.asm-rad-hinten,.asm-rad-vorne')), out: i === 0 };
