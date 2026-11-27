@@ -4,8 +4,8 @@
 {{- $km := $d.gear.by_id }}
 {{- $lang := .Site.Language.Lang }}
 {{- $total := 0 }}{{ range $eq }}{{ with .strava_gear }}{{ $total = add $total (index $km . | default 0) }}{{ end }}{{ end }}
-<section class="hero hero-page" aria-labelledby="equip-h">
-  <div class="hero-topo" aria-hidden="true"></div>
+<section class="hero hero-page hero-photo hero-photo-page hero-hoch hero-equip" aria-labelledby="equip-h">
+  {{ partial "hero-bild.html" (dict "quer" "img/ausruestung-header.jpg" "hoch" "img/ausruestung-header-hoch.jpg") }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "equip_eyebrow" }}</p>
     <h1 id="equip-h" class="hero-h">{{ T "equip_title" }}</h1>
