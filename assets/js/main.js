@@ -302,3 +302,38 @@
   window.addEventListener('hashchange', onScroll);
   check();
 })();
+
+/* Sprungmarken (#community, #ueber …) festhalten: Wenn oberhalb noch etwas nachlädt
+   (Live-Wetter, Bilder), verschiebt sich das Ziel. Dann kurz nachjustieren,
+   solange man nicht selbst scrollt. */
+(function () {
+  if (!('ResizeObserver' in window)) return;
+  var stop = null;
+  function stick(id) {
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    if (stop) stop();
+    var done = false, last = null;
+    var fix = function () {
+      if (done) return;
+      var top = el.getBoundingClientRect().top;
+      var want = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+      if (last !== null && Math.abs(top - want) > 4) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+      last = top;
+    };
+    var ro = new ResizeObserver(fix);
+    ro.observe(document.body);
+    var quit = function () { done = true; ro.disconnect(); ['wheel', 'touchmove', 'keydown'].forEach(function (t) { window.removeEventListener(t, quit); }); };
+    ['wheel', 'touchmove', 'keydown'].forEach(function (t) { window.addEventListener(t, quit, { passive: true }); });
+    setTimeout(quit, 4000);
+    setTimeout(function () { last = 0; fix(); }, 60);
+    stop = quit;
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || a.pathname !== location.pathname || a.host !== location.host) return;
+    var id = decodeURIComponent(a.hash.slice(1));
+    setTimeout(function () { stick(id); }, 50);
+  });
+  if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
+})();
