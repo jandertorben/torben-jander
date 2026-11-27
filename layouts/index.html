@@ -3,21 +3,31 @@
 {{- $t := $d.totals }}
 {{- $y := int $t.year }}
 
-<section class="hero" aria-labelledby="hero-h">
-  <div class="hero-topo" aria-hidden="true"></div>
-  <p class="hero-coord" aria-hidden="true"><span class="hero-x">×</span><span>Bremen</span><span>53.0793° N</span></p>
-  <div class="hero-map" aria-hidden="true">
-    <svg viewBox="0 0 {{ $d.map.width }} {{ $d.map.height }}" preserveAspectRatio="xMidYMid slice">
-      {{- range $i, $p := $d.map.paths }}
-      <path d="{{ $p.d | safeHTMLAttr }}" class="r r-{{ $p.group }}{{ if ge $p.km 12.0 }} r-long{{ end }}" pathLength="1" style="--i:{{ $i }}"/>
-      {{- end }}
-    </svg>
-  </div>
-  <div class="wrap hero-in hero-mag">
-    <h1 id="hero-h" class="hero-h"><span class="hero-l"><span>{{ T "hero_mag_l1" }}</span></span><span class="hero-l"><span>{{ T "hero_mag_l2" }}</span></span></h1>
-    <p class="hero-tag">{{ T "hero_mag_tag" }}</p>
-    <p class="hero-text">{{ T "hero_mag_text1" }}<br>{{ T "hero_mag_text2" }}</p>
-    {{- with site.GetPage "/touren" }}<a class="hero-link" href="{{ .RelPermalink }}">{{ T "hero_mag_link" }} <span aria-hidden="true">↗︎</span></a>{{ end }}
+{{- $flat := false }}{{ $ft := false }}{{ with index .Site.Data.gpx.tours 0 }}{{ $flat = .flat }}{{ $ft = . }}{{ end }}
+<section class="hero hero-photo" aria-labelledby="hero-h">
+  <picture class="hp-bg" aria-hidden="true">
+    <source type="image/webp" srcset="/img/deich-900.webp 900w, /img/deich-1600.webp 1600w" sizes="100vw">
+    <img src="/img/deich-1600.jpg" srcset="/img/deich-900.jpg 900w, /img/deich-1600.jpg 1600w" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="wrap hp-in">
+    <h1 id="hero-h" class="hp-h"><span>{{ T "hero_mag_l1" }}</span><span>{{ T "hero_mag_l2" }}</span></h1>
+    <p class="hp-tag">{{ T "hero_mag_tag" }}</p>
+    <p class="hp-text">{{ T "hero_mag_text1" }}<br>{{ T "hero_mag_text2" }}</p>
+    {{- with site.GetPage "/touren" }}<a class="hp-btn" href="{{ .RelPermalink }}">{{ T "hero_mag_link" }} <span aria-hidden="true">→</span></a>{{ end }}
+    {{- with $flat }}
+    <figure class="hp-prof">
+      <div class="hp-prof-top">
+        <p class="hp-prof-k">{{ T "why_height" }}<strong class="mono">0–{{ .ymax }}<small> m</small></strong></p>
+        <p class="hp-prof-r">{{ T "hp_flat" }}</p>
+      </div>
+      <svg viewBox="0 0 {{ .w }} {{ .h }}" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="hp-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4EEE3" stop-opacity=".28"/><stop offset="1" stop-color="#F4EEE3" stop-opacity="0"/></linearGradient></defs>
+        <path d="{{ .area | safeHTMLAttr }}" fill="url(#hp-fill)"/>
+        <path d="{{ .line | safeHTMLAttr }}" class="hp-line" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <figcaption class="hp-x mono"><span>0 km</span><span>{{ lang.FormatNumber 0 (div $ft.km 2) }} km</span><span>{{ lang.FormatNumber 1 $ft.km }} km</span></figcaption>
+    </figure>
+    {{- end }}
   </div>
 </section>
 
@@ -25,24 +35,7 @@
 <section class="sec sec-light sec-why" id="warum" aria-labelledby="why-h">
   <div class="wrap">
     {{- $tour := . }}
-    {{- with .flat }}
-    <figure class="why-prof reveal">
-      <div class="why-chart" style="--y0:{{ div (float .start) (float .h) }};--y1:{{ div (float .end) (float .h) }}">
-        <span class="why-ylab">{{ T "why_height" }}<br><span class="mono">0–{{ .ymax }} m</span></span>
-        <div class="why-plot">
-          <svg viewBox="0 0 {{ .w }} {{ .h }}" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="why-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8924F" stop-opacity=".28"/><stop offset="1" stop-color="#B8924F" stop-opacity="0"/></linearGradient></defs>
-            <path d="{{ .area | safeHTMLAttr }}" fill="url(#why-fill)"/>
-            <path d="{{ .line | safeHTMLAttr }}" class="why-line" vector-effect="non-scaling-stroke"/>
-          </svg>
-          <i class="why-dot why-dot-a"></i><i class="why-dot why-dot-b"></i>
-          <span class="why-x mono" aria-hidden="true"><span>0 km</span><span>{{ lang.FormatNumber 0 (div $tour.km 2) }} km</span><span>{{ lang.FormatNumber 1 $tour.km }} km</span></span>
-        </div>
-      </div>
-      <figcaption class="why-cap mono">{{ printf (T "why_cap") $tour.name (time.Format "02.01.2006" $tour.date) (lang.FormatNumber 1 $tour.km) (lang.FormatNumber 0 $tour.elevation) }}</figcaption>
-      <p class="why-hand" aria-hidden="true">{{ T "hand_flat" }}<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 11C60 3 130 2 197 5"/></svg></p>
-    </figure>
-    {{- end }}
+    {{- /* Höhenprofil steht jetzt im Header */}}
     <div class="why-grid">
       <div>
         <p class="eyebrow">{{ T "why_eyebrow" }}</p>
@@ -54,10 +47,11 @@
       </div>
     </div>
   </div>
+  {{- with resources.Get "img/storck-grix-2-foto.jpg" }}{{ $a := .Process "fill 900x506 Center webp q74" }}{{ $b := .Process "fill 1600x900 Center webp q74" }}
   <picture class="why-photo">
-    <source type="image/webp" srcset="/img/deich-900.webp 900w, /img/deich-1600.webp 1600w" sizes="(min-width:800px) 60vw, 100vw">
-    <img src="/img/deich-1600.jpg" srcset="/img/deich-900.jpg 900w, /img/deich-1600.jpg 1600w" sizes="(min-width:800px) 60vw, 100vw" width="1600" height="900" alt="{{ T "why_alt" }}" loading="lazy" decoding="async">
+    <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1600w" sizes="(min-width:800px) 60vw, 100vw" width="1600" height="900" alt="{{ T "why_alt_storck" }}" loading="lazy" decoding="async">
   </picture>
+  {{- end }}
 </section>
 {{- end }}
 
