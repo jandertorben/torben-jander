@@ -178,6 +178,7 @@
         <div class="about-copy">
           {{- range .Params.about }}<p>{{ . }}</p>{{ end }}
         </div>
+        <p class="about-project">{{ printf (T "about_project") .Site.Params.marke }}</p>
         <p class="about-stats">{{ printf (T "about_stats") $y (lang.FormatNumber 0 $t.ride.km) (lang.FormatNumber 0 $t.run.km) }}{{ with site.GetPage "/zahlen" }} <a href="{{ .RelPermalink }}">{{ T "about_stats_more" }}</a>{{ end }}</p>
         <p class="about-collab">{{ T "collab_text_before" }}<a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>{{ T "collab_text_after" }}</p>
         <div class="hero-actions">

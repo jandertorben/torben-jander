@@ -1770,3 +1770,9 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .shop-btn svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .shop-btn:hover{background:var(--accent-ink)}.shop-btn:hover svg{stroke:#F4EEE3}
 .shop-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Absender: Marke + Name */
+.foot-owner{margin:0;font-family:var(--body);font-size:.9375rem;letter-spacing:0;color:var(--ink-2)}
+.foot-owner strong{font-weight:500;color:var(--ink)}
+.about-project{margin:1.2rem 0 0;max-width:62ch;font-size:1rem;color:var(--muted)}
+.sec-light .about-project{color:#3a3732}

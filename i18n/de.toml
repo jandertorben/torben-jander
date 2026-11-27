@@ -844,3 +844,8 @@ other = "Storck Grix.2 am Feldrand, an eine Mauer gelehnt"
 
 [road_jump_shops]
 other = "Werkstätten"
+
+[about_project]
+other = "„%s“ ist mein Projekt. Darum läuft alles unter meinem Namen: torben-jander.me."
+[footer_owner]
+other = "<strong>%s</strong> ist ein Projekt von %s."
