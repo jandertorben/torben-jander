@@ -1721,3 +1721,4 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-equip .hp-bg img{object-position:60% 55%}
 @media (max-width:700px){.hero-equip::before{background:linear-gradient(180deg,rgba(11,10,8,.3) 0%,rgba(11,10,8,.25) 50%,rgba(11,10,8,0) 70%)}.hero-equip .hp-bg img{object-position:70% 0%}}
 @media (max-width:700px){.hero-equip .hp-bg{top:22%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%);mask-image:linear-gradient(to bottom,transparent 0,#000 18%)}}
+.brand-logo{height:3.9rem}@media (max-width:599px){.brand-logo{height:3.3rem}}
