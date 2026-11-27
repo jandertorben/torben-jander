@@ -338,45 +338,42 @@
   if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
 })();
 
-/* Ausrüstung: Räder fahren beim Scrollen. Erstes Rad rollt nach rechts aus dem Bild,
-   die folgenden rollen von links herein. Räder drehen sich passend zur Strecke.
-   Bei „Bewegung reduzieren“ bleibt alles stehen. */
+/* Ausrüstung: erstes Rad fährt beim Weiterscrollen nach rechts aus dem Bild
+   (an das Scrollen gekoppelt, rückwärts scrollen holt es zurück; nichts bei „Bewegung reduzieren“). */
 (function () {
-  var els = [].slice.call(document.querySelectorAll('[data-asm]'));
-  if (!els.length) return;
+  var el = document.querySelector('[data-ride]');
+  if (!el) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  // vorerst nur auf großen Bildschirmen (auf dem iPhone noch Darstellungsfehler)
-  if (window.matchMedia && !matchMedia('(min-width: 900px) and (hover: hover)').matches) return;
-  var items = els.map(function (el, i) {
-    el.classList.add('asm-ready');
-    return { el: el, box: el.querySelector('.asm-parts'), wheels: [].slice.call(el.querySelectorAll('.asm-rad-hinten,.asm-rad-vorne')), out: i === 0 };
-  });
-  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-  var ease = function (t) { return t * t * (3 - 2 * t); };
+  var ov = el.querySelector('.ride-ov'), pic = el.querySelector('img:not(.ride-ring):not(.ride-front)');
+  var rings = ov ? [].slice.call(ov.querySelectorAll('.ride-ring')) : [];
+  function place() {
+    if (!ov || !pic || !pic.complete || !pic.naturalWidth) return false;
+    // Überlagerung exakt auf das angezeigte Foto legen (nicht auf den Kasten)
+    ov.style.left = pic.offsetLeft + 'px'; ov.style.top = pic.offsetTop + 'px';
+    ov.style.width = pic.offsetWidth + 'px'; ov.style.height = pic.offsetHeight + 'px';
+    ov.classList.add('on');
+    return true;
+  }
+  if (pic && !pic.complete) pic.addEventListener('load', function () { place(); req(); });
   var ticking = false;
   function frame() {
     ticking = false;
-    var vh = innerHeight, vw = document.documentElement.clientWidth;
-    items.forEach(function (it) {
-      var r = it.el.getBoundingClientRect(), dx;
-      if (it.out) {
-        // fährt los, wenn die Bildmitte über 45 % der Bildschirmhöhe steigt
-        var p = clamp(((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45));
-        dx = ease(p) * (vw - r.left + 20);
-      } else {
-        // rollt herein, während das Bild vom unteren Rand bis 55 % hochkommt
-        var q = clamp((vh - r.top) / (vh * 0.45 + r.height * 0.5));
-        dx = -(1 - ease(q)) * (r.right + 20);
-      }
-      it.box.style.transform = 'translate3d(' + dx.toFixed(1) + 'px,0,0)';
-      it.wheels.forEach(function (w) {
-        var rad = w.offsetWidth / 2 || 1;
-        w.style.transform = 'rotate(' + (dx / rad * 57.2958).toFixed(1) + 'deg)';
-      });
-    });
+    el.style.transform = 'none';
+    var r = el.getBoundingClientRect(), vh = innerHeight, vw = document.documentElement.clientWidth;
+    var p = ((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45);
+    p = p < 0 ? 0 : p > 1 ? 1 : p;
+    p = p * p * (3 - 2 * p);
+    var dx = p * (vw - r.left + 20);
+    el.style.transform = p ? 'translate3d(' + dx.toFixed(1) + 'px,0,0)' : '';
+    if (rings.length && ov.classList.contains('on')) {
+      var rad = rings[0].offsetWidth / 2 || 1;
+      var ang = (dx / rad * 57.2958).toFixed(1);
+      rings.forEach(function (w) { w.style.transform = 'rotate(' + ang + 'deg)'; });
+    }
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', req);
+  addEventListener('resize', function () { place(); req(); });
+  place();
   frame();
 })();

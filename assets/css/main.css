@@ -1725,12 +1725,13 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .foot-logo{width:280px}@media (max-width:640px){.foot-logo{width:240px}}
 .brand-signet{height:2.6rem}@media (max-width:599px){.brand-signet{height:2.3rem}}
 
-/* Ausrüstung: Räder fahren beim Scrollen – Grizl rollt nach rechts raus, Storck rollt von links rein */
+/* Ausrüstung: erstes Rad fährt beim Weiterscrollen nach rechts aus dem Bild */
 .eq-bikes{overflow-x:clip}
-.asm{position:relative}
-.asm-parts{display:none}
-.asm.asm-ready .asm-full{visibility:hidden}
-.asm.asm-ready .asm-parts{display:block;position:absolute;inset:0;will-change:transform}
-.eq-feature-img .asm-p{position:absolute;max-width:none;filter:none;aspect-ratio:auto;object-fit:fill}
-.asm.asm-ready .asm-parts{filter:drop-shadow(0 24px 30px rgba(28,27,25,.18))}
-.asm-rad-hinten,.asm-rad-vorne{transform-origin:50% 50%;will-change:transform}
+[data-ride]{will-change:transform}
+
+/* Drehende Reifen beim Rausfahren: Ebene liegt exakt über dem angezeigten Foto (Position setzt das Script) */
+[data-ride]{position:relative}
+.ride-ov{position:absolute;display:none;pointer-events:none}
+.ride-ov.on{display:block}
+.eq-feature-img .ride-ov img{position:absolute;display:block;max-width:none;filter:none;aspect-ratio:auto;object-fit:fill}
+.eq-feature-img .ride-ov .ride-front{left:0;top:0;width:100%;height:100%}
