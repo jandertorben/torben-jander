@@ -1789,3 +1789,16 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ts-wind-now.is-side,.ts-wind-now.is-calm{border-left-color:rgba(28,27,25,.3)}
 .ts-wind-now .tw-stand a{color:inherit;text-decoration:underline;text-decoration-color:rgba(28,27,25,.3)}
 .ts-wind-now .tw-stand{line-height:1.55}
+
+/* Warum Gravel: Text links untereinander, Foto rechts daneben (ab 800px) */
+@media (min-width:800px){
+  .sec-why{padding-bottom:calc(clamp(4rem,7vw,6rem) + var(--wave))}
+  .sec-why > .wrap{position:relative;z-index:2}
+  .why-grid{grid-template-columns:minmax(0,1fr);max-width:min(46%,36rem);gap:1.6rem}
+  .why-body p{margin-bottom:1.6rem}
+  .why-photo{top:var(--wave);bottom:0;right:0;width:56%}
+  .sec-why .sec-h{margin-bottom:0}
+  .why-photo img{height:100%;aspect-ratio:auto;object-fit:cover;object-position:65% 75%;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%),linear-gradient(to bottom,transparent 0,#000 18%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to right,transparent 0,#000 30%),linear-gradient(to bottom,transparent 0,#000 18%);mask-composite:intersect}
+}
