@@ -1675,3 +1675,12 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-photo-page .hero-h{font-size:clamp(2.8rem,6.5vw,6rem)}
 @media (max-width:700px){.hero-photo-page::before{background:linear-gradient(0deg,rgba(11,10,8,.7) 0%,rgba(11,10,8,.3) 60%,rgba(11,10,8,.15) 100%)}}
 @media (max-width:700px){.hero-photo-page .hp-bg img{object-position:70% 50%}}
+
+/* Journal: Foto-Header, Querformat am Desktop, Hochformat auf dem Handy */
+.hero-journal .hp-bg img{object-position:100% 70%}
+.hero-journal::before{background:linear-gradient(90deg,rgba(11,10,8,.45) 0%,rgba(11,10,8,0) 55%)}
+@media (max-width:700px){
+  .hero-journal{align-content:start;padding-top:8rem;min-height:min(92svh,900px)}
+  .hero-journal .hp-bg img{object-position:90% 100%}
+  .hero-journal::before{background:linear-gradient(180deg,rgba(11,10,8,.35) 0%,rgba(11,10,8,0) 50%)}
+}
