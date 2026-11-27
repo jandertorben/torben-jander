@@ -1,0 +1,45 @@
+# Kleine, inhabergeführte Fahrradwerkstätten rund um Bremen – kuratiert, keine Ketten.
+# getestet: true = Torben war selbst dort (dann ist "text" sein Tipp), sonst neutrale Beschreibung.
+# geprueft: Monat, in dem die Angaben zuletzt kontrolliert wurden.
+# lat/lon: ungefährer Standort (für „nächste Werkstätten“ bei Suche nach Ort oder PLZ).
+items:
+  - name: "Sønsteby's Radsport & Werkstatt"
+    teil: "Schwachhausen"
+    adresse: "Parkallee 21, 28209 Bremen"
+    lat: 53.0868
+    lon: 8.8160
+    web: "https://sonsteby.de"
+    staerken: ["Werkstatt", "Rennrad", "Gravel", "MTB"]
+    text: "War mit meinem Canyon dort. Sehr nett und hilfsbereit."
+    getestet: true
+    geprueft: "2026-11"
+  - name: "Fahrrad-Studio Jan Bloem"
+    teil: "Habenhausen"
+    adresse: "Karl-Marx-Straße 168c, 28279 Bremen"
+    lat: 53.0525
+    lon: 8.8545
+    web: "https://www.fahrrad-studio.de"
+    staerken: ["Werkstatt", "Beratung", "Inhabergeführt"]
+    text: "War selbst dort. Sehr nett und kompetent."
+    getestet: true
+    geprueft: "2026-11"
+  - name: "radschlag"
+    teil: "Viertel"
+    adresse: "Humboldtstraße 16, 28203 Bremen"
+    lat: 53.0743
+    lon: 8.8222
+    web: "https://www.radschlag-bremen.de"
+    staerken: ["Werkstatt für alle Marken", "Bikefitting", "Gravel"]
+    text: "Unabhängiger Laden im Viertel, seit 1983 mit flachen Hierarchien. Werkstatt und Bikefitting im Haus."
+    getestet: false
+    geprueft: "2026-11"
+  - name: "Cyclyng Bike & Café"
+    teil: "Überseestadt"
+    adresse: "Silbermannstraße 2, 28217 Bremen"
+    lat: 53.0965
+    lon: 8.7755
+    web: "https://cyclyng.de"
+    staerken: ["Rennrad", "Gravel", "Café", "Club Rides"]
+    text: "Radsportladen mit Café in der Überseestadt. Werkstatt, Rennrad und Gravel, dazu regelmäßige gemeinsame Ausfahrten."
+    getestet: false
+    geprueft: "2026-11"

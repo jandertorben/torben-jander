@@ -1,0 +1,33 @@
+{{- with site.Data.werkstaetten }}
+<section class="sec sec-light shops" id="werkstaetten" aria-labelledby="shops-h">
+  <div class="wrap">
+    <p class="eyebrow">Werkstätten</p>
+    <h2 id="shops-h" class="sec-h reveal">Klein. Gut.<br>Um die Ecke.</h2>
+    <p class="lead reveal">Fahrradläden, in denen der Mensch an der Theke auch selbst schraubt. Keine Ketten, keine Großmärkte. Jeder Eintrag ist geprüft, und dabei steht, ob ich selbst schon dort war.</p>
+    <form class="shops-search" role="search" hidden{{ if le (len .items) 4 }} data-few{{ end }}>
+      <label for="shops-q" class="repair-q-l">Werkstatt finden</label>
+      <input id="shops-q" type="search" autocomplete="off" list="repair-orte" placeholder="Ort, PLZ oder z. B. Tubeless" enterkeyhint="search">
+      <p class="shops-status mono" aria-live="polite"></p>
+    </form>
+    <ul class="shops-list">
+      {{- range .items }}
+      <li class="shop" data-teil="{{ .teil }}" data-lat="{{ .lat }}" data-lon="{{ .lon }}" data-text="{{ lower (delimit (slice .name .teil (delimit .staerken " ")) " ") }}">
+        <div class="shop-head">
+          <h3 class="shop-name">{{ .name }}</h3>
+          <span class="shop-teil mono">{{ .teil }}<span class="shop-km"></span></span>
+        </div>
+        <ul class="shop-tags">{{ range .staerken }}<li>{{ . }}</li>{{ end }}</ul>
+        <p class="shop-tipp">{{ .text }}</p>
+        <p class="shop-adr">{{ .adresse }}</p>
+        <p class="shop-meta mono">{{ if .getestet }}Selbst getestet{{ else }}Noch nicht selbst getestet{{ end }} · geprüft {{ time.Format "January 2006" (printf "%s-01" .geprueft) }}<span aria-hidden="true"> · </span><a href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" rel="noopener" target="_blank">Karte</a>{{ with .web }}<span aria-hidden="true"> · </span><a href="{{ . }}" rel="noopener" target="_blank">Website</a>{{ end }}</p>
+      </li>
+      {{- end }}
+    </ul>
+    <button type="button" class="shops-more" hidden></button>
+    <div class="shops-add">
+      <p><strong>Du kennst eine gute kleine Werkstatt?</strong> Schreib sie in die WhatsApp-Community oder per Mail. Sie kommt auf die Liste, sobald jemand aus der Community sie bestätigt.</p>
+      <a class="road-more" href="/#community">Werkstatt vorschlagen <span aria-hidden="true">↗&#xFE0E;</span></a>
+    </div>
+  </div>
+</section>
+{{- end }}

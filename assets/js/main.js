@@ -384,3 +384,49 @@
   addEventListener('resize', function () { items.forEach(place); req(); });
   frame();
 })();
+
+/* Werkstätten: zuerst nur 4 zeigen; Suche nach Ort/PLZ (sortiert nach Entfernung) oder Stichwort */
+(function () {
+  var form = document.querySelector('.shops-search'); if (!form) return;
+  var input = form.querySelector('input'), status = form.querySelector('.shops-status');
+  var list = document.querySelector('.shops-list'), more = document.querySelector('.shops-more');
+  var items = [].slice.call(list.querySelectorAll('.shop')), LIMIT = 4, showAll = false;
+  var data = { orte: {}, plz: {} };
+  try { var el = document.getElementById('repair-data'); if (el) data = JSON.parse(el.textContent); } catch (e) {}
+  var orte = data.orte || {}, plz = data.plz || {};
+  form.hidden = form.hasAttribute('data-few');
+  function norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ß/g, 'ss').trim(); }
+  function km(a, b, c, d) { var r = Math.PI / 180, x = (d - b) * r * Math.cos((a + c) / 2 * r), y = (c - a) * r; return Math.sqrt(x * x + y * y) * 6371; }
+  var names = Object.keys(orte).map(function (k) { return { n: norm(k), name: k, ll: orte[k] }; });
+  items.forEach(function (li) { names.push({ n: norm(li.dataset.teil), name: li.dataset.teil, ll: [+li.dataset.lat, +li.dataset.lon] }); });
+  function place(v) {
+    if (/^\d{5}$/.test(v)) return plz[v] ? { ll: plz[v], label: v } : null;
+    var n = norm(v), hit = null; if (n.length < 2) return null;
+    names.some(function (o) { if (o.n === n || o.n.indexOf(n) === 0) { hit = o; return true; } });
+    return hit ? { ll: hit.ll, label: hit.name } : null;
+  }
+  function fmt(d) { return (d < 10 ? d.toFixed(1).replace('.', ',') : Math.round(d)) + ' km'; }
+  function show(arr, note) {
+    items.forEach(function (li) { li.hidden = true; li.querySelector('.shop-km').textContent = ''; });
+    var vis = showAll ? arr : arr.slice(0, LIMIT);
+    vis.forEach(function (o) { o.li.hidden = false; list.appendChild(o.li); if (o.d != null) o.li.querySelector('.shop-km').textContent = ' · ' + fmt(o.d); });
+    var rest = arr.length - vis.length;
+    more.hidden = rest <= 0; more.textContent = 'Weitere ' + rest + ' anzeigen';
+    status.textContent = note || '';
+  }
+  function render() {
+    var v = input.value.trim();
+    if (!v) { show(items.map(function (li) { return { li: li }; })); return; }
+    var p = place(v);
+    if (p) {
+      show(items.map(function (li) { return { li: li, d: km(p.ll[0], p.ll[1], +li.dataset.lat, +li.dataset.lon) }; }).sort(function (a, b) { return a.d - b.d; }), 'Nächste Werkstätten bei ' + p.label);
+      return;
+    }
+    var n = norm(v), hits = items.filter(function (li) { return norm(li.dataset.text).indexOf(n) > -1; }).map(function (li) { return { li: li }; });
+    show(hits, hits.length ? hits.length + ' Treffer' : 'Nichts gefunden. Versuch es mit einem Ort oder einer PLZ.');
+  }
+  var t; input.addEventListener('input', function () { showAll = false; clearTimeout(t); t = setTimeout(render, 120); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); render(); input.blur(); });
+  more.addEventListener('click', function () { showAll = true; render(); });
+  render();
+})();
