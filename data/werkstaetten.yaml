@@ -1,0 +1,25 @@
+# Kleine, inhabergeführte Fahrradwerkstätten rund um Bremen – kuratiert, keine Ketten.
+# vorschau: true = Platzhalter, nur zum Zeigen des Layouts. Echte Einträge nur nach Torbens Freigabe.
+vorschau: true
+stand: "November 2026"
+items:
+  - name: "Beispiel-Werkstatt Eins"
+    teil: "Viertel"
+    staerken: ["Gravel", "Tubeless", "Laufräder"]
+    tipp: "Platzhalter: Hier steht später, warum Torben die Werkstatt empfiehlt."
+    bestaetigt: "2026-11"
+  - name: "Beispiel-Werkstatt Zwei"
+    teil: "Neustadt"
+    staerken: ["Reparatur am selben Tag", "Gebrauchträder"]
+    tipp: "Platzhalter: kurzer, ehrlicher Satz aus eigener Erfahrung."
+    bestaetigt: "2026-10"
+  - name: "Beispiel-Werkstatt Drei"
+    teil: "Findorff"
+    staerken: ["Bikefitting", "Schaltung & Bremsen"]
+    tipp: "Platzhalter: z. B. „Nimmt sich Zeit, erklärt was er macht.“"
+    bestaetigt: "2026-09"
+  - name: "Beispiel-Werkstatt Vier"
+    teil: "Achim"
+    staerken: ["Gravel", "Ersatzteile vorrätig"]
+    tipp: "Platzhalter: z. B. gut erreichbar vom Weserdeich."
+    bestaetigt: "2026-11"

@@ -384,3 +384,15 @@
   addEventListener('resize', function () { items.forEach(place); req(); });
   frame();
 })();
+
+/* Werkstätten: nach Stadtteil filtern */
+(function () {
+  var box = document.querySelector('.shops-filter'); if (!box) return;
+  var items = document.querySelectorAll('.shop');
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip'); if (!b) return;
+    box.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('is-on', c === b); });
+    var t = b.getAttribute('data-teil');
+    items.forEach(function (li) { li.hidden = !!t && li.getAttribute('data-teil') !== t; });
+  });
+})();
