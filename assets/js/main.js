@@ -338,42 +338,49 @@
   if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
 })();
 
-/* Ausrüstung: erstes Rad fährt beim Weiterscrollen nach rechts aus dem Bild
-   (an das Scrollen gekoppelt, rückwärts scrollen holt es zurück; nichts bei „Bewegung reduzieren“). */
+/* Ausrüstung: die Räder fahren beim Weiterscrollen nach rechts aus dem Bild, die Reifen drehen sich mit
+   (an das Scrollen gekoppelt, rückwärts scrollen holt sie zurück; nichts bei „Bewegung reduzieren“). */
 (function () {
-  var el = document.querySelector('[data-ride]');
-  if (!el) return;
+  var els = [].slice.call(document.querySelectorAll('[data-ride]'));
+  if (!els.length) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var ov = el.querySelector('.ride-ov'), pic = el.querySelector('img:not(.ride-ring):not(.ride-front)');
-  var rings = ov ? [].slice.call(ov.querySelectorAll('.ride-ring')) : [];
-  function place() {
-    if (!ov || !pic || !pic.complete || !pic.naturalWidth) return false;
+  var items = els.map(function (el) {
+    var ov = el.querySelector('.ride-ov');
+    return { el: el, ov: ov, pic: el.querySelector('img:not(.ride-ring):not(.ride-front)'), rings: ov ? [].slice.call(ov.querySelectorAll('.ride-ring')) : [] };
+  });
+  function place(it) {
+    var pic = it.pic, ov = it.ov;
+    if (!ov || !pic || !pic.complete || !pic.naturalWidth) return;
     // Überlagerung exakt auf das angezeigte Foto legen (nicht auf den Kasten)
     ov.style.left = pic.offsetLeft + 'px'; ov.style.top = pic.offsetTop + 'px';
     ov.style.width = pic.offsetWidth + 'px'; ov.style.height = pic.offsetHeight + 'px';
     ov.classList.add('on');
-    return true;
   }
-  if (pic && !pic.complete) pic.addEventListener('load', function () { place(); req(); });
   var ticking = false;
   function frame() {
     ticking = false;
-    el.style.transform = 'none';
-    var r = el.getBoundingClientRect(), vh = innerHeight, vw = document.documentElement.clientWidth;
-    var p = ((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45);
-    p = p < 0 ? 0 : p > 1 ? 1 : p;
-    p = p * p * (3 - 2 * p);
-    var dx = p * (vw - r.left + 20);
-    el.style.transform = p ? 'translate3d(' + dx.toFixed(1) + 'px,0,0)' : '';
-    if (rings.length && ov.classList.contains('on')) {
-      var rad = rings[0].offsetWidth / 2 || 1;
-      var ang = (dx / rad * 57.2958).toFixed(1);
-      rings.forEach(function (w) { w.style.transform = 'rotate(' + ang + 'deg)'; });
-    }
+    var vh = innerHeight, vw = document.documentElement.clientWidth;
+    items.forEach(function (it) {
+      var el = it.el;
+      el.style.transform = 'none';
+      var r = el.getBoundingClientRect();
+      var p = ((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      p = p * p * (3 - 2 * p);
+      var dx = p * (vw - r.left + 20);
+      el.style.transform = p ? 'translate3d(' + dx.toFixed(1) + 'px,0,0)' : '';
+      if (it.rings.length && it.ov.classList.contains('on')) {
+        var ang = (dx / ((it.rings[0].offsetWidth / 2) || 1) * 57.2958).toFixed(1);
+        it.rings.forEach(function (w) { w.style.transform = 'rotate(' + ang + 'deg)'; });
+      }
+    });
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  items.forEach(function (it) {
+    if (it.pic && !it.pic.complete) it.pic.addEventListener('load', function () { place(it); req(); });
+    place(it);
+  });
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', function () { place(); req(); });
-  place();
+  addEventListener('resize', function () { items.forEach(place); req(); });
   frame();
 })();
