@@ -1663,3 +1663,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hp-x{display:flex;justify-content:space-between;margin-top:.35rem;font-size:.7rem;color:rgba(244,238,227,.7)}
 @media (max-width:700px){.hero-photo::before{background:linear-gradient(0deg,rgba(11,10,8,.88) 0%,rgba(11,10,8,.55) 55%,rgba(11,10,8,.25) 100%)}.hp-bg img{object-position:68% 50%}.hp-prof-r{display:none}}
 .hp-bg img{opacity:var(--hp-op,.5);filter:saturate(.75)}
+/* Kein Strich unter der Navigation: Verlauf reicht bis in die (transparente) Rahmenlinie, statt sich dort zu wiederholen */
+.nav{background-origin:border-box;background-repeat:no-repeat}
+/* Handy: Header-Foto etwas heller, weil dort zusätzlich der Verlauf von unten liegt */
+@media (max-width:700px){.hp-bg img{opacity:var(--hp-op-m,.65)}}
