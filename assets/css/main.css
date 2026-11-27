@@ -1724,3 +1724,22 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .brand-logo{height:2.9rem}@media (max-width:599px){.brand-logo{height:2.5rem}}
 .foot-logo{width:280px}@media (max-width:640px){.foot-logo{width:240px}}
 .brand-signet{height:2.6rem}@media (max-width:599px){.brand-signet{height:2.3rem}}
+
+/* Ausrüstung: Rad baut sich beim ersten Anschauen zusammen */
+.asm{position:relative}
+.asm-parts{display:none}
+.asm.asm-ready .asm-full{visibility:hidden}
+.asm.asm-ready .asm-parts{display:block;position:absolute;inset:0}
+.asm.asm-done .asm-full{visibility:visible}
+.asm.asm-done .asm-parts{display:none}
+.asm-p{position:absolute;height:auto;max-width:none;opacity:0}
+.asm.go .asm-p{animation:.6s cubic-bezier(.2,.7,.2,1) both}
+.asm.go .asm-rahmen{animation-name:asm-rise;animation-duration:.55s}
+.asm.go .asm-rad-hinten{animation-name:asm-roll-l;animation-duration:.95s;animation-delay:.2s}
+.asm.go .asm-rad-vorne{animation-name:asm-roll-r;animation-duration:.95s;animation-delay:.3s}
+.asm.go .asm-sattel{animation-name:asm-drop;animation-delay:.95s;animation-duration:.5s}
+.asm.go .asm-cockpit{animation-name:asm-drop;animation-delay:1.08s;animation-duration:.5s}
+@keyframes asm-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes asm-roll-l{from{opacity:0;transform:translateX(-120%) rotate(-300deg)}25%{opacity:1}to{opacity:1;transform:none}}
+@keyframes asm-roll-r{from{opacity:0;transform:translateX(120%) rotate(300deg)}25%{opacity:1}to{opacity:1;transform:none}}
+@keyframes asm-drop{from{opacity:0;transform:translateY(-70%)}60%{opacity:1}to{opacity:1;transform:none}}

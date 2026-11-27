@@ -26,7 +26,18 @@
     {{- $note := $g.note_de }}{{ if eq $lang "en" }}{{ $note = $g.note_en }}{{ end }}
     {{- $gkm := index $km $g.strava_gear | default 0 }}
     <article class="eq-feature{{ if $g.photo }} eq-feature-photo{{ end }}{{ if modBool $n 2 }}{{ else }} eq-flip{{ end }} reveal">
-      <div class="eq-feature-img">{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}</div>
+      <div class="eq-feature-img">
+        {{- with index site.Data.zusammenbau $g.image }}
+        <div class="asm" data-asm>
+          <div class="asm-full">{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}</div>
+          <div class="asm-parts" aria-hidden="true">
+            {{- range $pt := .parts }}{{ with resources.Get (printf "img/zusammenbau/%s" $pt.file) }}{{ $w := .Process "webp q88" }}
+            <img class="asm-p asm-{{ $pt.part }}" src="{{ $w.RelPermalink }}" alt="" width="{{ $w.Width }}" height="{{ $w.Height }}" style="left:{{ $pt.x }}%;top:{{ $pt.y }}%;width:{{ $pt.w }}%" decoding="async">
+            {{- end }}{{ end }}
+          </div>
+        </div>
+        {{- else }}{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}{{ end }}
+      </div>
       <div class="eq-feature-body">
         <p class="eq-brand">{{ $g.brand }}</p>
         <h3 class="eq-name">{{ $ename }}</h3>
