@@ -19,7 +19,11 @@
         <ul class="shop-tags">{{ range .staerken }}<li>{{ . }}</li>{{ end }}</ul>
         <p class="shop-tipp">{{ .text }}</p>
         <p class="shop-adr">{{ .adresse }}</p>
-        <p class="shop-meta mono">{{ if .getestet }}Selbst getestet{{ else }}Noch nicht selbst getestet{{ end }} · geprüft {{ time.Format "January 2006" (printf "%s-01" .geprueft) }}<span aria-hidden="true"> · </span><a href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" rel="noopener" target="_blank">Karte</a>{{ with .web }}<span aria-hidden="true"> · </span><a href="{{ . }}" rel="noopener" target="_blank">Website</a>{{ end }}</p>
+        <div class="shop-links">
+          <a class="shop-btn" href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Karte</a>
+          {{- with .web }}<a class="shop-btn" href="{{ . }}" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg>Website</a>{{ end }}
+        </div>
+        <p class="shop-meta mono">{{ if .getestet }}Selbst getestet{{ else }}Noch nicht selbst getestet{{ end }} · geprüft {{ time.Format "January 2006" (printf "%s-01" .geprueft) }}</p>
       </li>
       {{- end }}
     </ul>

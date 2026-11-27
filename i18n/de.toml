@@ -767,9 +767,9 @@ other = "Unterwegs"
 [road_eyebrow]
 other = "Unterwegs"
 [road_tag]
-other = "Luft, Werkzeug, Fähre. Für die Runde."
+other = "Luft, Werkzeug, Fähre, Werkstatt. Für die Runde."
 [road_text]
-other = "Was man in Bremen auf dem Rad schnell braucht: die nächste Pumpe, wenn der Reifen schlappmacht, und die Fähren, mit denen aus einem Weg an der Weser eine Runde wird."
+other = "Was man in Bremen auf dem Rad schnell braucht: die nächste Pumpe, wenn der Reifen schlappmacht, die Fähren, mit denen aus einem Weg an der Weser eine Runde wird, und eine gute kleine Werkstatt, wenn mehr kaputt ist."
 [road_jump_repair]
 other = "Pumpe finden"
 [road_jump_ferry]
@@ -841,3 +841,6 @@ other = "Alle Einträge"
 other = "Flach. Aber nie langweilig."
 [why_alt_storck]
 other = "Storck Grix.2 am Feldrand, an eine Mauer gelehnt"
+
+[road_jump_shops]
+other = "Werkstätten"
