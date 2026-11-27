@@ -1696,3 +1696,10 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 @media (max-width:700px){.hero-wx .hp-bg img{object-position:50% 100%}}
 .hero-wx::before{background:linear-gradient(90deg,rgba(11,10,8,.6) 0%,rgba(11,10,8,.25) 50%,rgba(11,10,8,0) 75%),linear-gradient(0deg,rgba(11,10,8,.45) 0%,rgba(11,10,8,0) 40%)}
 @media (max-width:700px){.hero-wx::before{background:linear-gradient(180deg,rgba(11,10,8,.35) 0%,rgba(11,10,8,0) 50%)}}
+
+/* Seiten-Header Handy: Text gut lesbar über hellen Bildstellen */
+@media (max-width:700px){
+  .hero-hoch::before,.hero-wx::before{background:linear-gradient(180deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,.6) 45%,rgba(11,10,8,.35) 68%,rgba(11,10,8,0) 85%)}
+  .hero-hoch .hero-h,.hero-hoch .hero-tag,.hero-hoch .hero-text{text-shadow:0 1px 14px rgba(11,10,8,.7)}
+}
+.hero-photo-page .hero-h{hyphens:manual;-webkit-hyphens:manual}
