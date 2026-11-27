@@ -1711,3 +1711,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
   .hero-road::before{background:linear-gradient(180deg,rgba(11,10,8,.7) 0%,rgba(11,10,8,.65) 60%,rgba(11,10,8,.2) 90%)}
   .hero-road .hp-bg img{object-position:50% 50%}
 }
+/* Foto-Header: Bild läuft unter die Welle der folgenden hellen Sektion, statt vorher abgeschnitten zu werden */
+.hero-photo:has(+ .sec-light:not([hidden])){margin-bottom:calc(-1 * var(--wave));padding-bottom:calc(clamp(2rem,5vw,3.5rem) + var(--wave))}
+.hero-photo + .sec-light:not([hidden]){z-index:1;background:linear-gradient(to bottom,transparent calc(var(--wave) - 2px),var(--bg-light) calc(var(--wave) - 2px))}
+.hero-photo + .sec-light:not([hidden])::before{top:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 0C520 92 1000 118 1440 120V121H0Z' fill='%23F4EEE3'/%3E%3C/svg%3E")}
