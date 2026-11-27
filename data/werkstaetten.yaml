@@ -3,6 +3,16 @@
 # geprueft: Monat, in dem die Angaben zuletzt kontrolliert wurden.
 # lat/lon: ungefährer Standort (für „nächste Werkstätten“ bei Suche nach Ort oder PLZ).
 items:
+  - name: "Sønsteby's Radsport & Werkstatt"
+    teil: "Schwachhausen"
+    adresse: "Parkallee 21, 28209 Bremen"
+    lat: 53.0868
+    lon: 8.8160
+    web: "https://sonsteby.de"
+    staerken: ["Werkstatt", "Rennrad", "Gravel", "MTB"]
+    text: "War mit meinem Canyon dort. Sehr nett und hilfsbereit."
+    getestet: true
+    geprueft: "2026-11"
   - name: "radschlag"
     teil: "Viertel"
     adresse: "Humboldtstraße 16, 28203 Bremen"
