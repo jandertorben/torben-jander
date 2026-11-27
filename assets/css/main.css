@@ -1787,3 +1787,5 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .ts-wind-now .tw-stand{display:block;margin-top:.25rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:rgba(28,27,25,.55)}
 .ts-wind-now.is-bad{border-left-color:#8a5a3c}
 .ts-wind-now.is-side,.ts-wind-now.is-calm{border-left-color:rgba(28,27,25,.3)}
+.ts-wind-now .tw-stand a{color:inherit;text-decoration:underline;text-decoration-color:rgba(28,27,25,.3)}
+.ts-wind-now .tw-stand{line-height:1.55}

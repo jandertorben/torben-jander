@@ -94,7 +94,7 @@
           {{- end }}
           <p class="ts-k">{{ T "tour_wind_k" }}</p>
           <p class="ts-wind-t" data-tw-static>{{ T "tour_wind_t" }}</p>
-          <p class="ts-wind-now" data-tw-now hidden><span class="tw-k">{{ T "tw_now_k" }}</span> <span data-tw-txt></span> <span class="tw-stand" data-tw-stand></span></p>
+          <p class="ts-wind-now" data-tw-now hidden><span class="tw-k">{{ T "tw_now_k" }}</span> <span data-tw-txt></span> <span class="tw-stand"><span data-tw-stand></span> · {{ T "wind_place" }} · {{ T "wind_source" }} <a href="https://open-meteo.com" rel="noopener" target="_blank">Open-Meteo.com</a></span></p>
           <a class="ts-wind-go" href="{{ .RelPermalink }}#planer">{{ T "tour_wind_go" }} <span aria-hidden="true">→</span></a>
           {{- with site.GetPage "/unterwegs" }}
           <a class="ts-road" href="{{ .RelPermalink }}">{{ T "tour_road_go" }} <span aria-hidden="true">→</span></a>

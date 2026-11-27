@@ -902,3 +902,6 @@ other = "%s mit %s km/h. Passt: Er schiebt dich die Strecke entlang."
 other = "%s mit %s km/h. Kommt eher von der Seite."
 [tw_now_line_bad]
 other = "%s mit %s km/h. Der kommt dir die ganze Strecke entgegen."
+
+[wind_place]
+other = "Wind in Bremen-Mitte"
