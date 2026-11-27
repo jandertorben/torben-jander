@@ -25,7 +25,7 @@
     {{- $espec := $g.spec }}{{ if and (eq $lang "en") $g.spec_en }}{{ $espec = $g.spec_en }}{{ end }}
     {{- $note := $g.note_de }}{{ if eq $lang "en" }}{{ $note = $g.note_en }}{{ end }}
     {{- $gkm := index $km $g.strava_gear | default 0 }}
-    <article class="eq-feature{{ if $g.photo }} eq-feature-photo{{ end }}{{ if modBool $n 2 }}{{ else }} eq-flip{{ end }} reveal">
+    <article class="eq-feature{{ if $g.photo }} eq-feature-photo{{ end }} eq-flip reveal">
       {{- $rides := dict "bike.png" (dict "k" "canyon" "w" 873 "h" 495 "r" 161 "a" (slice 190 320) "b" (slice 677 321)) "storck-grix-2-studio.png" (dict "k" "storck" "w" 892 "h" 559 "r" 170 "a" (slice 188 360) "b" (slice 702 361)) }}
       {{- $ride := index $rides $g.image }}
       <div class="eq-feature-img"{{ with $ride }} data-ride{{ end }}>{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}
