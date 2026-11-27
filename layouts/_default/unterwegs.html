@@ -1,6 +1,6 @@
 {{ define "main" }}
-<section class="hero hero-page" aria-labelledby="road-h">
-  <div class="hero-topo" aria-hidden="true"></div>
+<section class="hero hero-page hero-photo hero-photo-page hero-hoch hero-road" aria-labelledby="road-h">
+  {{ partial "hero-bild.html" (dict "quer" "img/unterwegs-header.jpg" "hoch" "img/unterwegs-header-hoch.jpg") }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow">{{ T "road_eyebrow" }}</p>
     <h1 id="road-h" class="hero-h">{{ .Title }}</h1>
