@@ -344,6 +344,17 @@
   var el = document.querySelector('[data-ride]');
   if (!el) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ov = el.querySelector('.ride-ov'), pic = el.querySelector('img:not(.ride-ring):not(.ride-front)');
+  var rings = ov ? [].slice.call(ov.querySelectorAll('.ride-ring')) : [];
+  function place() {
+    if (!ov || !pic || !pic.complete || !pic.naturalWidth) return false;
+    // Überlagerung exakt auf das angezeigte Foto legen (nicht auf den Kasten)
+    ov.style.left = pic.offsetLeft + 'px'; ov.style.top = pic.offsetTop + 'px';
+    ov.style.width = pic.offsetWidth + 'px'; ov.style.height = pic.offsetHeight + 'px';
+    ov.classList.add('on');
+    return true;
+  }
+  if (pic && !pic.complete) pic.addEventListener('load', function () { place(); req(); });
   var ticking = false;
   function frame() {
     ticking = false;
@@ -352,10 +363,17 @@
     var p = ((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45);
     p = p < 0 ? 0 : p > 1 ? 1 : p;
     p = p * p * (3 - 2 * p);
-    el.style.transform = p ? 'translate3d(' + (p * (vw - r.left + 20)).toFixed(1) + 'px,0,0)' : '';
+    var dx = p * (vw - r.left + 20);
+    el.style.transform = p ? 'translate3d(' + dx.toFixed(1) + 'px,0,0)' : '';
+    if (rings.length && ov.classList.contains('on')) {
+      var rad = rings[0].offsetWidth / 2 || 1;
+      var ang = (dx / rad * 57.2958).toFixed(1);
+      rings.forEach(function (w) { w.style.transform = 'rotate(' + ang + 'deg)'; });
+    }
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', req);
+  addEventListener('resize', function () { place(); req(); });
+  place();
   frame();
 })();

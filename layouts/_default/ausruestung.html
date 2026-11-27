@@ -26,7 +26,14 @@
     {{- $note := $g.note_de }}{{ if eq $lang "en" }}{{ $note = $g.note_en }}{{ end }}
     {{- $gkm := index $km $g.strava_gear | default 0 }}
     <article class="eq-feature{{ if $g.photo }} eq-feature-photo{{ end }}{{ if modBool $n 2 }}{{ else }} eq-flip{{ end }} reveal">
-      <div class="eq-feature-img"{{ if eq $n 0 }} data-ride{{ end }}>{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}</div>
+      <div class="eq-feature-img"{{ if eq $n 0 }} data-ride{{ end }}>{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}
+        {{- if and (eq $n 0) (eq $g.image "bike.png") }}
+        <div class="ride-ov" aria-hidden="true" data-w="873" data-h="495">
+          <img class="ride-ring" src="/img/ride/canyon-ring-hinten.webp" alt="" style="left:{{ div (sub 190 161) 8.73 }}%;top:{{ div (sub 320 161) 4.95 }}%;width:{{ div 322 8.73 }}%;height:{{ div 322 4.95 }}%">
+          <img class="ride-ring" src="/img/ride/canyon-ring-vorne.webp" alt="" style="left:{{ div (sub 677 161) 8.73 }}%;top:{{ div (sub 321 161) 4.95 }}%;width:{{ div 322 8.73 }}%;height:{{ div 322 4.95 }}%">
+          <img class="ride-front" src="/img/ride/canyon-ring-front.webp" alt="">
+        </div>
+        {{- end }}</div>
       <div class="eq-feature-body">
         <p class="eq-brand">{{ $g.brand }}</p>
         <h3 class="eq-name">{{ $ename }}</h3>
