@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $title := .Site.Title }}{{ if not .IsHome }}{{ $title = printf "%s – %s" .Title .Site.Params.marke }}{{ end }}
+{{- $absender := printf "%s · %s" .Site.Params.marke .Site.Params.name }}
+{{- $title := $absender }}{{ if not .IsHome }}{{ $title = printf "%s – %s" .Title $absender }}{{ end }}
 <title>{{ $title }}</title>
 {{- $desc := .Site.Params.description }}{{ with .Description }}{{ $desc = . }}{{ end }}
 <meta name="description" content="{{ $desc }}">
@@ -36,6 +37,16 @@
   "description" $desc
 }}
 <script type="application/ld+json">{{ $person | jsonify (dict "noHTMLEscape" true) | safeJS }}</script>
+{{- $website := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" .Site.Params.marke
+  "alternateName" (slice $absender "torben-jander.me")
+  "url" site.Sites.Default.Home.Permalink
+  "inLanguage" .Site.Language.LanguageCode
+  "author" (dict "@type" "Person" "name" .Site.Params.name)
+}}
+<script type="application/ld+json">{{ $website | jsonify (dict "noHTMLEscape" true) | safeJS }}</script>
 {{- end }}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
@@ -44,7 +55,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="apple-mobile-web-app-title" content="{{ .Site.Params.marke }}">
-<meta name="application-name" content="{{ .Site.Params.name }}">
+<meta name="application-name" content="{{ .Site.Params.marke }}">
 <link rel="preload" href="/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
