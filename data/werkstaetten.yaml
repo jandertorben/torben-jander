@@ -1,25 +1,14 @@
 # Kleine, inhabergeführte Fahrradwerkstätten rund um Bremen – kuratiert, keine Ketten.
 # vorschau: true = Platzhalter, nur zum Zeigen des Layouts. Echte Einträge nur nach Torbens Freigabe.
+# lat/lon: Standort (für „nächste Werkstätten“ bei Suche nach Ort oder PLZ)
 vorschau: true
 stand: "November 2026"
 items:
-  - name: "Beispiel-Werkstatt Eins"
-    teil: "Viertel"
-    staerken: ["Gravel", "Tubeless", "Laufräder"]
-    tipp: "Platzhalter: Hier steht später, warum Torben die Werkstatt empfiehlt."
-    bestaetigt: "2026-11"
-  - name: "Beispiel-Werkstatt Zwei"
-    teil: "Neustadt"
-    staerken: ["Reparatur am selben Tag", "Gebrauchträder"]
-    tipp: "Platzhalter: kurzer, ehrlicher Satz aus eigener Erfahrung."
-    bestaetigt: "2026-10"
-  - name: "Beispiel-Werkstatt Drei"
-    teil: "Findorff"
-    staerken: ["Bikefitting", "Schaltung & Bremsen"]
-    tipp: "Platzhalter: z. B. „Nimmt sich Zeit, erklärt was er macht.“"
-    bestaetigt: "2026-09"
-  - name: "Beispiel-Werkstatt Vier"
-    teil: "Achim"
-    staerken: ["Gravel", "Ersatzteile vorrätig"]
-    tipp: "Platzhalter: z. B. gut erreichbar vom Weserdeich."
-    bestaetigt: "2026-11"
+  - {name: "Beispiel-Werkstatt Eins", teil: "Viertel", lat: 53.0735, lon: 8.8270, staerken: ["Gravel", "Tubeless", "Laufräder"], tipp: "Platzhalter: Hier steht später, warum Torben die Werkstatt empfiehlt.", bestaetigt: "2026-11"}
+  - {name: "Beispiel-Werkstatt Zwei", teil: "Neustadt", lat: 53.0660, lon: 8.7990, staerken: ["Reparatur am selben Tag", "Gebrauchträder"], tipp: "Platzhalter: kurzer, ehrlicher Satz aus eigener Erfahrung.", bestaetigt: "2026-10"}
+  - {name: "Beispiel-Werkstatt Drei", teil: "Findorff", lat: 53.0920, lon: 8.7950, staerken: ["Bikefitting", "Schaltung & Bremsen"], tipp: "Platzhalter: z. B. „Nimmt sich Zeit, erklärt was er macht.“", bestaetigt: "2026-09"}
+  - {name: "Beispiel-Werkstatt Vier", teil: "Achim", lat: 53.0130, lon: 9.0300, staerken: ["Gravel", "Ersatzteile vorrätig"], tipp: "Platzhalter: z. B. gut erreichbar vom Weserdeich.", bestaetigt: "2026-11"}
+  - {name: "Beispiel-Werkstatt Fünf", teil: "Vegesack", lat: 53.1700, lon: 8.6230, staerken: ["Laufräder", "Tubeless"], tipp: "Platzhalter.", bestaetigt: "2026-08"}
+  - {name: "Beispiel-Werkstatt Sechs", teil: "Schwachhausen", lat: 53.0900, lon: 8.8400, staerken: ["Gravel", "Bikefitting"], tipp: "Platzhalter.", bestaetigt: "2026-11"}
+  - {name: "Beispiel-Werkstatt Sieben", teil: "Delmenhorst", lat: 53.0510, lon: 8.6300, staerken: ["Reparatur am selben Tag"], tipp: "Platzhalter.", bestaetigt: "2026-07"}
+  - {name: "Beispiel-Werkstatt Acht", teil: "Lilienthal", lat: 53.1420, lon: 8.9030, staerken: ["Gravel", "Schaltung & Bremsen"], tipp: "Platzhalter.", bestaetigt: "2026-10"}

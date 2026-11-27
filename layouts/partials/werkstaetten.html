@@ -5,17 +5,17 @@
     <h2 id="shops-h" class="sec-h reveal">Klein. Gut.<br>Um die Ecke.</h2>
     <p class="lead reveal">Fahrradläden, in denen der Mensch an der Theke auch selbst schraubt. Keine Ketten, keine Großmärkte. Jeder Eintrag ist selbst ausprobiert oder kommt aus der Community.</p>
     {{- if .vorschau }}<p class="shops-note mono">Vorschau – alle Einträge sind Platzhalter.</p>{{ end }}
-    {{- $teile := slice }}{{ range .items }}{{ $teile = $teile | append .teil }}{{ end }}
-    <div class="shops-filter" role="group" aria-label="Stadtteil">
-      <button type="button" class="chip is-on" data-teil="">Alle</button>
-      {{- range uniq $teile }}<button type="button" class="chip" data-teil="{{ . }}">{{ . }}</button>{{ end }}
-    </div>
+    <form class="shops-search" role="search" hidden>
+      <label for="shops-q" class="repair-q-l">Werkstatt finden</label>
+      <input id="shops-q" type="search" autocomplete="off" list="repair-orte" placeholder="Ort, PLZ oder z. B. Tubeless" enterkeyhint="search">
+      <p class="shops-status mono" aria-live="polite"></p>
+    </form>
     <ul class="shops-list">
       {{- range .items }}
-      <li class="shop reveal" data-teil="{{ .teil }}">
+      <li class="shop" data-teil="{{ .teil }}" data-lat="{{ .lat }}" data-lon="{{ .lon }}" data-text="{{ lower (delimit (slice .name .teil (delimit .staerken " ")) " ") }}">
         <div class="shop-head">
           <h3 class="shop-name">{{ .name }}</h3>
-          <span class="shop-teil mono">{{ .teil }}</span>
+          <span class="shop-teil mono">{{ .teil }}<span class="shop-km"></span></span>
         </div>
         <ul class="shop-tags">{{ range .staerken }}<li>{{ . }}</li>{{ end }}</ul>
         <p class="shop-tipp">{{ .tipp }}</p>
@@ -23,6 +23,7 @@
       </li>
       {{- end }}
     </ul>
+    <button type="button" class="shops-more" hidden></button>
     <div class="shops-add">
       <p><strong>Du kennst eine gute kleine Werkstatt?</strong> Schreib sie in die WhatsApp-Community oder per Mail. Sie kommt auf die Liste, sobald jemand aus der Community sie bestätigt.</p>
       <a class="road-more" href="/#community">Werkstatt vorschlagen <span aria-hidden="true">↗&#xFE0E;</span></a>
