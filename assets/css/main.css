@@ -1703,3 +1703,11 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
   .hero-hoch .hero-h,.hero-hoch .hero-tag,.hero-hoch .hero-text{text-shadow:0 1px 14px rgba(11,10,8,.7)}
 }
 .hero-photo-page .hero-h{hyphens:manual;-webkit-hyphens:manual}
+
+/* Unterwegs: Höhenlinien-Textur, Text braucht mehr Ruhe dahinter */
+.hero-road::before{background:linear-gradient(90deg,rgba(11,10,8,.72) 0%,rgba(11,10,8,.45) 50%,rgba(11,10,8,.15) 80%)}
+.hero-road .hp-bg img{object-position:50% 50%}
+@media (max-width:700px){
+  .hero-road::before{background:linear-gradient(180deg,rgba(11,10,8,.7) 0%,rgba(11,10,8,.65) 60%,rgba(11,10,8,.2) 90%)}
+  .hero-road .hp-bg img{object-position:50% 50%}
+}
