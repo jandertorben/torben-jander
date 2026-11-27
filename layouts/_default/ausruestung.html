@@ -32,7 +32,7 @@
           <div class="asm-full">{{ partial "eq-img.html" (dict "g" $g "alt" (printf "%s %s" $g.brand $ename) "big" true) }}</div>
           <div class="asm-parts" aria-hidden="true">
             {{- range $pt := .parts }}{{ with resources.Get (printf "img/zusammenbau/%s" $pt.file) }}{{ $w := .Process "webp q88" }}
-            <img class="asm-p asm-{{ $pt.part }}" src="{{ $w.RelPermalink }}" alt="" width="{{ $w.Width }}" height="{{ $w.Height }}" style="left:{{ $pt.x }}%;top:{{ $pt.y }}%;width:{{ $pt.w }}%" decoding="async">
+            <img class="asm-p asm-{{ $pt.part }}" src="{{ $w.RelPermalink }}" alt="" width="{{ $w.Width }}" height="{{ $w.Height }}" style="left:{{ $pt.x }}%;top:{{ $pt.y }}%;width:{{ $pt.w }}%;height:{{ $pt.h }}%" decoding="async">
             {{- end }}{{ end }}
           </div>
         </div>

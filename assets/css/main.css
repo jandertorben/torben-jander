@@ -1731,5 +1731,6 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .asm-parts{display:none}
 .asm.asm-ready .asm-full{visibility:hidden}
 .asm.asm-ready .asm-parts{display:block;position:absolute;inset:0;will-change:transform}
-.asm-p{position:absolute;height:auto;max-width:none}
+.eq-feature-img .asm-p{position:absolute;max-width:none;filter:none;aspect-ratio:auto;object-fit:fill}
+.asm.asm-ready .asm-parts{filter:drop-shadow(0 24px 30px rgba(28,27,25,.18))}
 .asm-rad-hinten,.asm-rad-vorne{transform-origin:50% 50%;will-change:transform}
