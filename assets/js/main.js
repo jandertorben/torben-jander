@@ -338,26 +338,43 @@
   if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
 })();
 
-/* Ausrüstung: Rad beim ersten Anschauen zusammenbauen (einmalig, ohne bei „Bewegung reduzieren“) */
+/* Ausrüstung: Räder fahren beim Scrollen. Erstes Rad rollt nach rechts aus dem Bild,
+   die folgenden rollen von links herein. Räder drehen sich passend zur Strecke.
+   Bei „Bewegung reduzieren“ bleibt alles stehen. */
 (function () {
-  var els = document.querySelectorAll('[data-asm]');
-  if (!els.length || !('IntersectionObserver' in window)) return;
+  var els = [].slice.call(document.querySelectorAll('[data-asm]'));
+  if (!els.length) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  els.forEach(function (el) {
-    var parts = el.querySelectorAll('.asm-p');
+  var items = els.map(function (el, i) {
     el.classList.add('asm-ready');
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        io.disconnect();
-        var left = parts.length;
-        parts.forEach(function (p) {
-          p.addEventListener('animationend', function () { if (--left === 0) el.classList.add('asm-done'); }, { once: true });
-        });
-        el.classList.add('go');
-        setTimeout(function () { el.classList.add('asm-done'); }, 3000);
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
+    return { el: el, box: el.querySelector('.asm-parts'), wheels: [].slice.call(el.querySelectorAll('.asm-rad-hinten,.asm-rad-vorne')), out: i === 0 };
   });
+  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+  var ease = function (t) { return t * t * (3 - 2 * t); };
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = innerHeight, vw = document.documentElement.clientWidth;
+    items.forEach(function (it) {
+      var r = it.el.getBoundingClientRect(), dx;
+      if (it.out) {
+        // fährt los, wenn die Bildmitte über 45 % der Bildschirmhöhe steigt
+        var p = clamp(((vh * 0.45) - (r.top + r.height / 2)) / (vh * 0.45));
+        dx = ease(p) * (vw - r.left + 20);
+      } else {
+        // rollt herein, während das Bild vom unteren Rand bis 55 % hochkommt
+        var q = clamp((vh - r.top) / (vh * 0.45 + r.height * 0.5));
+        dx = -(1 - ease(q)) * (r.right + 20);
+      }
+      it.box.style.transform = 'translate3d(' + dx.toFixed(1) + 'px,0,0)';
+      it.wheels.forEach(function (w) {
+        var rad = w.offsetWidth / 2 || 1;
+        w.style.transform = 'rotate(' + (dx / rad * 57.2958).toFixed(1) + 'deg)';
+      });
+    });
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('resize', req);
+  frame();
 })();
