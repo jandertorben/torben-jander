@@ -785,13 +785,13 @@ other = "heute nicht"
 [ferry_all]
 other = "Alle Fähren mit Saison"
 [tours_help_title]
-other = "Pumpe oder Fähre unterwegs?"
+other = "Pumpe, Fähre oder Werkstatt?"
 [tours_help_text]
-other = "Öffentliche Reparaturstationen mit Suche nach Ort oder PLZ und alle Weserfähren für Radfahrer stehen jetzt gesammelt unter „Unterwegs“."
+other = "Reparaturstationen mit Suche nach Ort oder PLZ, alle Weserfähren für Radfahrer und kleine Werkstätten statt Ketten. Alles gesammelt unter „Unterwegs“."
 [tours_help_go]
 other = "Zu Unterwegs"
 [tour_road_go]
-other = "Pumpe oder Fähre unterwegs?"
+other = "Pumpe, Fähre oder Werkstatt?"
 
 [nav_home]
 other = "Start"

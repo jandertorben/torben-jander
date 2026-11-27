@@ -785,13 +785,13 @@ other = "not today"
 [ferry_all]
 other = "All ferries with seasons"
 [tours_help_title]
-other = "Pump or ferry on the way?"
+other = "Pump, ferry or bike shop?"
 [tours_help_text]
-other = "Public repair stations with search by place or postcode and all Weser ferries for cyclists are now together under “On the road”."
+other = "Repair stations with search by place or postcode, all Weser ferries for cyclists and small local bike shops instead of chains. All together under “On the road”."
 [tours_help_go]
 other = "Go to On the road"
 [tour_road_go]
-other = "Pump or ferry on the way?"
+other = "Pump, ferry or bike shop?"
 
 [nav_home]
 other = "Home"
