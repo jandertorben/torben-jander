@@ -337,3 +337,27 @@
   });
   if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
 })();
+
+/* Ausrüstung: Rad beim ersten Anschauen zusammenbauen (einmalig, ohne bei „Bewegung reduzieren“) */
+(function () {
+  var els = document.querySelectorAll('[data-asm]');
+  if (!els.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  els.forEach(function (el) {
+    var parts = el.querySelectorAll('.asm-p');
+    el.classList.add('asm-ready');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        var left = parts.length;
+        parts.forEach(function (p) {
+          p.addEventListener('animationend', function () { if (--left === 0) el.classList.add('asm-done'); }, { once: true });
+        });
+        el.classList.add('go');
+        setTimeout(function () { el.classList.add('asm-done'); }, 3000);
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+  });
+})();
