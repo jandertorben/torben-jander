@@ -836,3 +836,8 @@ other = "Older"
 other = "Newer"
 [journal_all_posts]
 other = "All posts"
+
+[hp_flat]
+other = "Flat. But never boring."
+[why_alt_storck]
+other = "Storck Grix.2 leaning against a wall at the edge of a field"
