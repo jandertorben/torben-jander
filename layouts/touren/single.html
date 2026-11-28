@@ -78,6 +78,9 @@
       </div>
       <aside class="tour-side">
         {{- with .Content }}<div class="prose tour-text">{{ . }}</div>{{ end }}
+        {{- with .Params.untergrund }}
+        <p class="ts-ground"><span class="ts-k">{{ T "tour_ground_k" }}</span> {{ . }}</p>
+        {{- end }}
         {{- with site.GetPage "/wetter" }}
         <div class="ts-wind"{{ with $t.route }} data-tw{{ end }}>
           {{- with $t.route }}

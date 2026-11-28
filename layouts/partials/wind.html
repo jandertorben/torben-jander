@@ -8,10 +8,10 @@
 {{- $tours := slice }}
 {{- if $full }}
 {{- range first 10 ($p.Site.Data.gpx.tours | default slice) }}
-  {{- $id := .id }}{{ $km := .km }}{{ $url := printf "https://www.strava.com/activities/%s" .id }}{{ $title := .name }}
-  {{- with site.GetPage "/touren" }}{{ range .RegularPages }}{{ if eq .Params.tour.id $id }}{{ $url = .RelPermalink }}{{ $title = .Title }}{{ end }}{{ end }}{{ end }}
+  {{- $id := .id }}{{ $km := .km }}{{ $url := printf "https://www.strava.com/activities/%s" .id }}{{ $title := .name }}{{ $ground := "" }}
+  {{- with site.GetPage "/touren" }}{{ range .RegularPages }}{{ if eq .Params.tour.id $id }}{{ $url = .RelPermalink }}{{ $title = .Title }}{{ $ground = .Params.untergrund }}{{ end }}{{ end }}{{ end }}
   {{- with .route }}{{ $r := . }}{{ with .d }}
-  {{- $tours = $tours | append (dict "id" $id "title" $title "url" $url "km" (lang.FormatNumber 0 (float $km)) "d" . "w" ($r.w | default 1000) "h" ($r.h | default 610)) }}
+  {{- $tours = $tours | append (dict "id" $id "title" $title "url" $url "km" (lang.FormatNumber 0 (float $km)) "untergrund" $ground "d" . "w" ($r.w | default 1000) "h" ($r.h | default 610)) }}
   {{- end }}{{ end }}
 {{- end }}
 {{- end }}
