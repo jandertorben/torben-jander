@@ -1,6 +1,14 @@
 {{ define "main" }}
-<section class="hero hero-page hero-tour" aria-labelledby="post-h">
+{{- /* Optionales Kopfbild: Datei im Beitragsordner, Name in "header" */ -}}
+{{- $hdr := false }}{{ with .Params.header }}{{ $hdr = $.Resources.Get . }}{{ end }}
+<section class="hero hero-page {{ if $hdr }}hero-photo hero-photo-page hero-post{{ else }}hero-tour{{ end }}" aria-labelledby="post-h">
+  {{- with $hdr }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q76" }}
+  <picture class="hp-bg" aria-hidden="true">
+    <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1792w" sizes="100vw" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  {{- else }}
   <div class="hero-topo" aria-hidden="true"></div>
+  {{- end }}
   <div class="wrap hero-in hero-mag">
     <p class="eyebrow"><span>{{ with .Params.kategorie }}{{ . }} · {{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_long" .Date }}</time></span></p>
     <h1 id="post-h" class="hero-h">{{ .Title }}</h1>

@@ -3,6 +3,7 @@ title: "Das Grizl, angepasst"
 date: 2026-11-26T12:00:00+01:00
 kategorie: "Umbau"
 summary: "Kürzerer Vorbau, schmalerer Lenker, schnellere Reifen, neuer Sattel. Vier Änderungen am Pendelrad."
+header: "header.jpg"
 cover_alt: "Weißes Canyon Grizl mit Rahmentasche und Schutzblechen, an eine Schutzhütte im herbstlichen Wald gelehnt"
 fakten_titel: "Was sich geändert hat"
 fakten:
