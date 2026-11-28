@@ -20,6 +20,7 @@
   title_en: "First ride on the Storck"
   summary: "52 km zum Kennenlernen: die erste Ausfahrt mit dem neuen Storck Grix.2."
   slug: "erste-runde-storck"
+  summary_en: "52 km to get to know it: the first ride on the new Storck Grix.2."
   untergrund: "Asphalt und Schotter, gut rollend"
   untergrund_en: "Tarmac and gravel, rolls well"
   photo: "erste-runde-storck.jpg"
@@ -46,6 +47,7 @@
   title: "Südschleife über Syke"
   summary: "60 km Feldwege und ruhige Nebenstraßen südlich von Bremen. Wendepunkt ist Syke."
   slug: "suedschleife-syke"
+  summary_en: "60 km of field tracks and quiet back roads south of Bremen. Syke is the turning point."
   untergrund: "Feldwege und Nebenstraßen, nach Regen weich"
   untergrund_en: "Field tracks and back roads, soft after rain"
   photo: "suedschleife-syke-eiche.jpg"
@@ -66,6 +68,7 @@
   title: "Weserrunde über Thedinghausen"
   summary: "52 km an der Weser entlang bis Thedinghausen und über Achim zurück."
   slug: "weserrunde-thedinghausen"
+  summary_en: "52 km along the Weser to Thedinghausen and back via Achim."
   untergrund: "Weserdeich und Nebenstraßen, meist Asphalt"
   untergrund_en: "Weser dyke and back roads, mostly tarmac"
   text: |
@@ -77,6 +80,7 @@
   title: "Feierabendschleife Weyhe"
   summary: "30 km am Abend: durch Weyhe und am Weserdeich zurück."
   slug: "feierabendschleife-weyhe"
+  summary_en: "30 km in the evening: through Weyhe and back along the Weser dyke."
   untergrund: "Nebenstraßen und Deichweg, fest"
   untergrund_en: "Back roads and dyke path, firm"
   text: |
@@ -88,6 +92,7 @@
   title: "Kleine Runde über Heiligenrode"
   summary: "20 km zwischen Brinkum, Heiligenrode und Weyhe, zum Schluss am Deich."
   slug: "runde-heiligenrode"
+  summary_en: "20 km between Brinkum, Heiligenrode and Weyhe, finishing on the dyke."
   untergrund: "Dorfstraßen und Deichweg, fest"
   untergrund_en: "Village roads and dyke path, firm"
   text: |
@@ -99,6 +104,7 @@
   title: "Deichrunde Weyhe"
   summary: "16 km kurz und flach: durch Weyhe und am Weserdeich zurück."
   slug: "deichrunde-weyhe"
+  summary_en: "16 km, short and flat: through Weyhe and back along the Weser dyke."
   untergrund: "Nebenstraßen und Deichweg, fest"
   untergrund_en: "Back roads and dyke path, firm"
   text: |

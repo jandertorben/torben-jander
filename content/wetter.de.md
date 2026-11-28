@@ -1,6 +1,7 @@
 ---
 title: "Fahrradwetter"
-description: "Wind, Regen, Temperatur und Licht für Bremen. Dazu, was du anziehst und welche Gravel-Runde heute passt."
+seo_title: "Fahrradwetter Bremen: Wind, Regen und die beste Zeit zum Fahren"
+description: "Fahrradwetter für Bremen: Wind live, Regen, Temperatur und Licht, Planer für die nächsten Tage, was du anziehst und welche Gravel-Runde heute passt."
 layout: "wetter"
 url: "/wetter/"
 ---

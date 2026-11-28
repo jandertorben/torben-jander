@@ -941,3 +941,6 @@ other = "Grobe Schätzung aus der Bodenfeuchte, noch im Test. Gilt fürs ganze S
 
 [tour_ground_k]
 other = "Untergrund"
+
+[seo_tour_suffix]
+other = "Gravel-Tour mit GPX"
