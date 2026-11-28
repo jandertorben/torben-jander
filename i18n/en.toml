@@ -944,3 +944,21 @@ other = "Surface"
 
 [seo_tour_suffix]
 other = "gravel ride with GPX"
+
+
+
+
+[journal_archive_link]
+other = "Older posts in the archive"
+
+[journal_archive_text]
+other = "All older posts, sorted by year."
+
+[journal_archive_empty]
+other = "Nothing in the archive yet. All posts are in the journal."
+
+[journal_archive_back]
+other = "Back to the journal"
+
+[journal_minutes]
+other = "%d min read"

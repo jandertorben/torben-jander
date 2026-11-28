@@ -1,0 +1,21 @@
+{{- /* Journal-Übersicht: Bildkarten im Raster, Titel auf dem Foto, darunter eine flache Goldlinie
+     wie ein Horizont. Erwartet eine Liste von Seiten. */ -}}
+<ol class="jg">
+  {{- range $i, $p := . }}
+  <li class="jg-item reveal">
+    <a class="jg-card" href="{{ $p.RelPermalink }}">
+      {{- with partial "journal-cover.html" $p }}
+      {{- $s := .Process "fill 720x540 Center webp q76" }}{{ $l := .Process "fill 1200x900 Center webp q76" }}
+      <img class="jg-img" src="{{ $l.RelPermalink }}" srcset="{{ $s.RelPermalink }} 720w, {{ $l.RelPermalink }} 1200w" sizes="(max-width:760px) 100vw, 50vw" width="{{ $l.Width }}" height="{{ $l.Height }}" alt="" loading="{{ if lt $i 2 }}eager{{ else }}lazy{{ end }}" decoding="async">
+      {{- end }}
+      <span class="jg-top mono"><span class="jg-nr">{{ printf "%02d" (add $i 1) }}</span>{{ with $p.Params.kategorie }}<span class="jg-cat">{{ . }}</span>{{ end }}</span>
+      <span class="jg-body">
+        <span class="jg-meta mono"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" $p.Date }}</time><span>{{ printf (T "journal_minutes") $p.ReadingTime }}</span></span>
+        <span class="jg-name">{{ $p.Title }}</span>
+        <span class="jg-line" aria-hidden="true"></span>
+        {{- with $p.Params.summary }}<span class="jg-sum">{{ . }}</span>{{ end }}
+      </span>
+    </a>
+  </li>
+  {{- end }}
+</ol>

@@ -15,28 +15,18 @@
   </div>
 </section>
 
-<section class="sec sec-light tours-sec" aria-label="{{ T "journal_eyebrow" }}">
+<section class="sec journal-sec journal-dark" aria-label="{{ T "journal_eyebrow" }}">
+  <div class="hero-topo jg-topo" aria-hidden="true"></div>
   <div class="wrap">
     {{- with $posts }}
-    <ul class="tour-list">
-      {{- range $i, $p := . }}
-      <li class="tl-item{{ if eq $i 0 }} tl-first{{ end }} reveal">
-        <a class="tl-card" href="{{ $p.RelPermalink }}">
-          <div class="tl-thumb">
-            {{- with partial "journal-cover.html" $p }}{{ $img := .Process "fill 900x500 Center webp q78" }}
-            <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" decoding="async">
-            {{- end }}
-          </div>
-          <div class="tl-body">
-            <p class="tl-meta mono">{{ with $p.Params.kategorie }}<span>{{ . }}</span>{{ end }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" $p.Date }}</time></p>
-            <h2 class="tl-name">{{ $p.Title }}</h2>
-            {{- with $p.Params.summary }}<p class="tl-sum">{{ . }}</p>{{ end }}
-            <span class="tl-go" aria-hidden="true">{{ T "journal_read" }} →</span>
-          </div>
-        </a>
-      </li>
-      {{- end }}
-    </ul>
+    {{- /* Hier nur die neuesten Beiträge, alles Ältere steht im Archiv (/journal/archiv/) */ -}}
+    {{- $n := 6 }}
+    {{- partial "journal-liste.html" (first $n $posts) }}
+    {{- if gt (len $posts) $n }}
+    {{- with site.GetPage "/journal/archiv" }}
+    <p class="jl-more"><a class="btn btn-ghost" href="{{ .RelPermalink }}">{{ T "journal_archive_link" }} <span class="mono">({{ sub (len $posts) $n }})</span> →</a></p>
+    {{- end }}
+    {{- end }}
     {{- else }}
     <p class="lead">{{ T "journal_empty" }}</p>
     {{- end }}
