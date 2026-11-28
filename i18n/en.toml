@@ -962,3 +962,14 @@ other = "Back to the journal"
 
 [journal_minutes]
 other = "%d min read"
+
+[tour_planned]
+other = "Planned"
+[status_planned]
+other = "not ridden yet"
+[label_status]
+other = "Status"
+[tour_planned_note]
+other = "This route is planned but not ridden yet. Distance and climbing come from the route planner, not from Strava. Riding time and speed follow after the first ride."
+[plan_source_note]
+other = "Planned route, figures from the route planner."

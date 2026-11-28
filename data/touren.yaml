@@ -15,6 +15,28 @@
 #   slug: "ochtum-weserdeich"               # optional, sonst Datum-ID
 #   untergrund: "Feldwege und Nebenstraßen, nach Regen weich"  # kurz, deine Worte
 #   untergrund_en: "Field tracks and back roads, soft after rain"
+"plan-wildeshauser-geest":
+  title: "Wildeshauser Geest-Runde"
+  title_en: "Wildeshausen Geest loop"
+  summary: "124 km von Bremen in die Wildeshauser Geest und über Delmenhorst zurück."
+  summary_en: "124 km from Bremen into the Wildeshausen Geest and back via Delmenhorst."
+  text: |
+    Diese Runde gibt es bisher nur auf der Karte. Geplant, noch nicht gefahren.
+
+    Von Bremen-Süd geht es über Weyhe nach Südwesten in die Wildeshauser Geest. Hinter Wildeshausen führt die Route an der Heinefelder Wassermühle vorbei bis Großenkneten, dem westlichsten Punkt. Zurück geht es über Ganderkesee und Delmenhorst nach Bremen.
+
+    Die Geest ist das, was hier als Hochland durchgeht: Der höchste Punkt liegt laut Planung bei gut 40 Metern.
+
+    Sobald ich sie gefahren bin, steht hier, wie sie wirklich ist: Untergrund, Wind und wo man unterwegs einkehren kann.
+  text_en: |
+    So far this loop only exists on the map. Planned, not ridden yet.
+
+    From the south of Bremen it heads south-west via Weyhe into the Wildeshausen Geest. Beyond Wildeshausen the route passes the Heinefeld water mill and reaches Großenkneten, its westernmost point. The way back runs via Ganderkesee and Delmenhorst to Bremen.
+
+    The Geest is what passes for highlands around here: according to the plan, the highest point is just over 40 metres.
+
+    Once I have ridden it, this page will say what it is really like: surface, wind and where to stop for a break.
+
 "21083485183":
   title: "Erste Runde mit dem Storck"
   title_en: "First ride on the Storck"

@@ -3,7 +3,10 @@
 {{- .EnableAllLanguages -}}
 {{- $lang := .Site.Language.Lang -}}
 {{- $extra := .Site.Data.touren | default dict -}}
-{{- range .Site.Data.gpx.tours -}}
+{{- /* Geplante Routen (data/geplant.json, scripts/plan_route.py) laufen mit: noch nicht gefahren, Zahlen aus der Planung. */ -}}
+{{- $all := .Site.Data.gpx.tours | default slice -}}
+{{- with .Site.Data.geplant }}{{ range .tours }}{{ $all = $all | append . }}{{ end }}{{ end -}}
+{{- range $all -}}
   {{- $info := index $extra .id | default dict -}}
   {{- $title := .name -}}
   {{- with $info.title }}{{ $title = . }}{{ end -}}
@@ -12,7 +15,7 @@
   {{- $ground := $info.untergrund | default "" -}}
   {{- if eq $lang "en" }}{{ with $info.untergrund_en }}{{ $ground = . }}{{ end }}{{ end -}}
   {{- if eq $lang "en" }}{{ with $info.text_en }}{{ $text = . }}{{ end }}{{ end -}}
-  {{- $slug := $info.slug | default (printf "%s-%s" .date .id) -}}
+  {{- $slug := $info.slug | default .slug | default (printf "%s-%s" .date .id) -}}
   {{- $.AddPage (dict
         "kind" "page"
         "path" $slug

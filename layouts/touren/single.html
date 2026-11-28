@@ -1,19 +1,40 @@
 {{ define "main" }}
 {{- $t := .Params.tour }}
-<section class="hero hero-page hero-tour" aria-labelledby="tour-h">
+{{- /* Geplante Routen bekommen ein gemeinsames Kopfbild (assets/img/touren/geplant-header.jpg) */}}
+{{- $planBg := cond (eq $t.planned true) (resources.Get "img/touren/geplant-header.jpg") nil }}
+<section class="hero hero-page hero-tour{{ with $planBg }} hero-photo hero-photo-page hero-plan{{ end }}" aria-labelledby="tour-h">
+  {{- with $planBg }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q74" }}
+  <picture class="hp-bg" aria-hidden="true">
+    <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1792w" sizes="100vw" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  {{- else }}
   <div class="hero-topo" aria-hidden="true"></div>
+  {{- end }}
   <div class="wrap hero-in hero-mag">
+    {{- if $t.planned }}
+    <p class="eyebrow"><span>{{ T (printf "sport_%s" $t.sport) }} · {{ T "tour_planned" }}</span></p>
+    {{- else }}
     <p class="eyebrow"><span>{{ T (printf "sport_%s" $t.sport) }} · <time datetime="{{ $t.date }}">{{ time.Format ":date_long" (time $t.date) }}</time></span></p>
+    {{- end }}
     <h1 id="tour-h" class="hero-h">{{ .Title }}</h1>
     <dl class="th-stats">
       <div><dt>{{ T "label_distance" }}</dt><dd><span class="num">{{ lang.FormatNumber 1 $t.km }}</span> km</dd></div>
       <div><dt>{{ T "label_elev" }}</dt><dd><span class="num">{{ lang.FormatNumber 0 $t.elevation }}</span> m</dd></div>
+      {{- if $t.planned }}
+      <div class="th-status"><dt>{{ T "label_status" }}</dt><dd>{{ T "status_planned" }}</dd></div>
+      {{- else }}
       <div><dt>{{ T "label_time" }}</dt><dd><span class="num">{{ $t.duration }}</span></dd></div>
       <div><dt>{{ T "label_speed" }}</dt><dd>{{ partial "tempo.html" $t.tempo }}</dd></div>
+      {{- end }}
     </dl>
+    {{- if $t.planned }}<p class="th-plan">{{ T "tour_planned_note" }}</p>{{ end }}
     <div class="th-actions">
+      {{- if $t.planned }}
+      <a class="btn" href="{{ $t.gpx }}" download="torben-jander-{{ $t.slug }}.gpx"><span aria-hidden="true">↓</span> {{ T "gpx_download" }}</a>
+      {{- else }}
       <a class="btn" href="/gpx/{{ $t.id }}.gpx" download="torben-jander-{{ $t.date }}-{{ $t.id }}.gpx"><span aria-hidden="true">↓</span> {{ T "gpx_download" }}</a>
       <a class="hero-link" href="https://www.strava.com/activities/{{ $t.id }}" target="_blank" rel="noopener">{{ T "view_on_strava" }} <span aria-hidden="true">↗︎</span></a>
+      {{- end }}
     </div>
   </div>
 </section>
@@ -37,7 +58,7 @@
           <svg viewBox="0 0 {{ .w }} {{ .h }}" role="img" aria-label="{{ T "tour_route_label" }}">
             <path id="tour-path" d="{{ .d | safeHTMLAttr }}" pathLength="1" vector-effect="non-scaling-stroke"/>
           </svg>
-          <figcaption>{{ T "gpx_note" }}</figcaption>
+          <figcaption>{{ T "gpx_note" }}{{ if $t.planned }} {{ T "plan_source_note" }}{{ end }}</figcaption>
         </figure>
         {{- end }}
         {{- with $photo }}
@@ -51,7 +72,7 @@
         {{- $d := time $t.date }}
         <figure class="tour-photo tour-poster" id="panel-photo" role="tabpanel" aria-labelledby="tab-photo">
           <div class="tp" role="img" aria-label="{{ T "tour_poster_label" }}"><div class="tp-in">
-            <p class="tp-k"><span><b>{{ T (printf "sport_%s" $t.sport) }}</b> · {{ time.Format ":date_long" $d }}</span></p>
+            <p class="tp-k"><span><b>{{ T (printf "sport_%s" $t.sport) }}</b> · {{ if $t.planned }}{{ T "tour_planned" }}{{ else }}{{ time.Format ":date_long" $d }}{{ end }}</span></p>
             <p class="tp-h">{{ .Title }}</p>
             <div class="tp-map"><svg viewBox="0 0 {{ $t.route.w }} {{ $t.route.h }}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#tour-path"/></svg></div>
             {{- with $t.profile }}
@@ -60,8 +81,12 @@
             <dl class="tp-stats">
               <div><dt>{{ T "label_distance" }}</dt><dd>{{ lang.FormatNumber 1 $t.km }} km</dd></div>
               <div><dt>{{ T "label_elev" }}</dt><dd>{{ lang.FormatNumber 0 $t.elevation }} m</dd></div>
+              {{- if $t.planned }}
+              <div><dt>{{ T "label_status" }}</dt><dd>{{ T "status_planned" }}</dd></div>
+              {{- else }}
               <div><dt>{{ T "label_time" }}</dt><dd>{{ $t.duration }}</dd></div>
               <div><dt>{{ T "label_speed" }}</dt><dd>{{ partial "tempo.html" $t.tempo }}</dd></div>
+              {{- end }}
             </dl>
             <p class="tp-f"><span>Bremen ist flach</span><span>torben-jander.me</span></p>
           </div></div>
