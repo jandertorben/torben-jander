@@ -12,6 +12,7 @@
 #     Optional, sonst erscheint der deutsche Text.
 #   photo: "20254852185.jpg"                # liegt in assets/img/touren/
 #   photo_alt: "Gravelbike am Deich"
+#   header: "ochtum-kopf.jpg"                # Kopfbild, liegt in assets/img/touren/; sonst Standardbild
 #   slug: "ochtum-weserdeich"               # optional, sonst Datum-ID
 #   untergrund: "Feldwege und Nebenstraßen, nach Regen weich"  # kurz, deine Worte
 #   untergrund_en: "Field tracks and back roads, soft after rain"

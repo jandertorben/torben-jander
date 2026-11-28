@@ -1272,6 +1272,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .th-plan{margin:1.6rem 0 0;max-width:40rem;font-size:.92rem;line-height:1.55;color:rgba(244,239,230,.72);border-left:2px solid var(--accent);padding-left:.9rem}
 .tl-meta .tl-plan{color:var(--accent-ink);letter-spacing:.14em}
 .tl-planned .tl-thumb{opacity:.88}
+.th-actions .hero-link{margin-top:0}
 .hero-plan .hp-bg img{object-position:80% 55%}
 .hero-plan::before{background:linear-gradient(90deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,.2) 45%,rgba(11,10,8,0) 65%),linear-gradient(0deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,0) 40%)}
 @media (max-width:700px){.hero-plan .hp-bg img{object-position:72% 50%}.hero-plan::before{background:linear-gradient(0deg,rgba(11,10,8,.85) 0%,rgba(11,10,8,.45) 55%,rgba(11,10,8,.15) 100%)}}
