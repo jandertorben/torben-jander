@@ -1770,3 +1770,20 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-post::before{background:linear-gradient(90deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,.1) 55%,rgba(11,10,8,0) 100%)}
 @media (max-width:700px){.hero-post .hp-bg img{object-position:88% 50%;opacity:.55}}
 .hero-post .hero-h{max-width:12ch}.hero-post .hero-text{max-width:30rem}
+
+/* Kopfbild als Banner (Motiv mittig): Bild vollständig oben, Titel darunter auf Dunkel */
+.hero-banner{display:block;min-height:0;padding:0 0 clamp(4rem,8vw,7rem)}
+.hero-banner::before{display:none}
+.hero-banner .hp-bg{position:relative;inset:auto;z-index:0;display:block}
+.hero-banner .hp-bg img{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:86svh;object-fit:cover;object-position:50% 60%;opacity:1;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 72%,transparent 100%)}
+.hero-banner .hero-in{position:relative;margin-top:clamp(-5rem,-6vw,-2rem)}
+.hero-banner .hero-h{max-width:none}
+.hero-banner .hero-text{max-width:38rem}
+@media (max-width:700px){.hero-banner{padding-top:4.5rem}.hero-banner .hp-bg img{aspect-ratio:1/1;object-position:52% 55%;opacity:1}.hero-banner .hero-in{margin-top:-1.5rem}}
+
+/* Kopfvideo liegt über dem Standbild; bei reduzierter Bewegung bleibt nur das Bild */
+.hp-bg{overflow:hidden}
+.hp-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.hero-banner .hp-video{-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 72%,transparent 100%)}
+@media (max-width:700px){.hero-banner .hp-video{object-position:52% 55%}}
+@media (prefers-reduced-motion:reduce){.hp-video{display:none}}

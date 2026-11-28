@@ -3,6 +3,9 @@ title: "Das neue Storck Grix.2"
 date: 2026-11-26
 kategorie: "Ausrüstung"
 summary: "Warum neben dem Grizl jetzt ein zweites Gravelbike im Flur steht. Und was die beiden unterscheidet."
+header: "header.jpg"
+header_video: "header"   # header.webm + header.mp4 im Ordner
+header_layout: "banner"   # Rad steht mittig: Bild ganz zeigen, Titel darunter
 cover_alt: "Storck Grix.2 Pro mit kupferfarbenem Verlauf, an eine Mauer am Feldrand gelehnt"
 fakten_titel: "Storck Grix.2 Pro"
 fakten:
