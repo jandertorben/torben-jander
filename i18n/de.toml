@@ -945,11 +945,17 @@ other = "Untergrund"
 [seo_tour_suffix]
 other = "Gravel-Tour mit GPX"
 
-[journal_filter]
-other = "Nach Thema filtern"
 
-[journal_filter_all]
-other = "Alle"
 
-[journal_pages]
-other = "Weitere Beiträge"
+
+[journal_archive_link]
+other = "Ältere Beiträge im Archiv"
+
+[journal_archive_text]
+other = "Alle älteren Beiträge, nach Jahr sortiert."
+
+[journal_archive_empty]
+other = "Noch nichts im Archiv. Alle Beiträge stehen im Journal."
+
+[journal_archive_back]
+other = "Zurück zum Journal"

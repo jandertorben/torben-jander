@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- /* Journal-Archiv: alle Beiträge außer den neuesten auf /journal/, als schlichte Liste nach Jahr */ -}}
+{{- $n := 6 }}
+{{- $all := (site.GetPage "/journal").RegularPages.ByDate.Reverse }}
+{{- $old := after $n $all }}
+<section class="hero hero-page hero-journal-archiv" aria-labelledby="ja-h">
+  <div class="wrap hero-in hero-mag">
+    <p class="eyebrow"><a href="{{ (site.GetPage "/journal").RelPermalink }}">{{ T "journal_eyebrow" }}</a></p>
+    <h1 id="ja-h" class="hero-h">{{ .Title }}</h1>
+    <p class="hero-text">{{ T "journal_archive_text" }}</p>
+  </div>
+</section>
+<section class="sec sec-light journal-sec" aria-label="{{ .Title }}">
+  <div class="wrap">
+    {{- with $old }}
+    {{- range .GroupByDate "2006" }}
+    <h2 class="ja-year mono">{{ .Key }}</h2>
+    <ol class="ja-list">
+      {{- range .Pages }}
+      <li><a href="{{ .RelPermalink }}"><time class="mono" datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" .Date }}</time><span class="ja-t">{{ .Title }}</span>{{ with .Params.kategorie }}<span class="ja-k mono">{{ . }}</span>{{ end }}</a></li>
+      {{- end }}
+    </ol>
+    {{- end }}
+    {{- else }}
+    <p class="lead">{{ T "journal_archive_empty" }}</p>
+    {{- end }}
+    <p class="jl-more"><a class="btn btn-ghost" href="{{ (site.GetPage "/journal").RelPermalink }}">← {{ T "journal_archive_back" }}</a></p>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,20 @@
+{{- /* Zeilenliste für Journal-Beiträge (Übersicht). Erwartet eine Liste von Seiten. */ -}}
+<ol class="jl-list">
+  {{- range . }}{{ $p := . }}
+  <li class="jl-item">
+    <a class="jl-card" href="{{ $p.RelPermalink }}">
+      <div class="jl-thumb">
+        {{- with partial "journal-cover.html" $p }}{{ $img := .Process "fill 480x360 Center webp q76" }}
+        <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" decoding="async">
+        {{- end }}
+      </div>
+      <div class="jl-body">
+        <p class="jl-meta mono">{{ with $p.Params.kategorie }}<span>{{ . }}</span>{{ end }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" $p.Date }}</time></p>
+        <h2 class="jl-name">{{ $p.Title }}</h2>
+        {{- with $p.Params.summary }}<p class="jl-sum">{{ . }}</p>{{ end }}
+      </div>
+      <span class="jl-go" aria-hidden="true">→</span>
+    </a>
+  </li>
+  {{- end }}
+</ol>
