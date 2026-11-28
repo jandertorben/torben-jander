@@ -1764,3 +1764,9 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-journal:has(+ .journal-dark){background:var(--bg)}
 .journal-dark{padding-top:clamp(1.5rem,3vw,2.5rem)}
 .jg-topo{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 40%);mask-image:linear-gradient(to bottom,transparent 0,#000 40%)}
+
+/* Journal-Beitrag mit eigenem Kopfbild: Rad rechts, Text links über den Höhenlinien */
+.hero-post .hp-bg img{object-position:100% 50%}
+.hero-post::before{background:linear-gradient(90deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,.1) 55%,rgba(11,10,8,0) 100%)}
+@media (max-width:700px){.hero-post .hp-bg img{object-position:88% 50%;opacity:.55}}
+.hero-post .hero-h{max-width:12ch}.hero-post .hero-text{max-width:30rem}

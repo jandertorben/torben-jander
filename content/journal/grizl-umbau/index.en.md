@@ -3,6 +3,7 @@ title: "The Grizl, adjusted"
 date: 2026-11-26T12:00:00+01:00
 kategorie: "Upgrade"
 summary: "Shorter stem, narrower bar, faster tyres, new saddle. Four changes to the commuter bike."
+header: "header.jpg"
 cover_alt: "White Canyon Grizl with frame bag and mudguards, leaning against a shelter in an autumn forest"
 fakten_titel: "What has changed"
 fakten:
