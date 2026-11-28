@@ -12,7 +12,7 @@
         <div class="ferry-head">
           <h3 class="ferry-name">{{ .name }}</h3>
           <span class="ferry-season{{ if .ganzjaehrig }} is-year{{ end }}">{{ cond $en .saison_en .saison_de }}</span>
-          <span class="ferry-today" hidden data-yes="{{ T "ferry_today_yes" }}" data-no="{{ T "ferry_today_no" }}"></span>
+          <span class="ferry-today" hidden data-yes="{{ T "ferry_today_yes" }}" data-no="{{ T "ferry_today_no" }}" data-pause="{{ T "ferry_today_pause" }}"></span>
         </div>
         <p class="ferry-route mono">{{ .von }} <span aria-hidden="true">⇄</span><span class="sr"> – </span> {{ .nach }}</p>
         <p class="ferry-note">{{ cond $en .note_en .note_de }}</p>

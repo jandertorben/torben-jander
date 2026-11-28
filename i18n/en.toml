@@ -743,7 +743,7 @@ other = "Five ferries in and around Bremen take your bike. Three run all year, t
 [ferry_times]
 other = "Times and prices: %s"
 [ferry_stand]
-other = "As of %s. Times change, check with the operator before you ride."
+other = "As of %s. Times change, and high water or ice can cancel a crossing – check with the operator before you ride."
 
 [repair_q_label]
 other = "Where are you right now?"
@@ -780,6 +780,8 @@ other = "Weser ferries today"
 other = "runs today"
 [ferry_today_no]
 other = "not today"
+[ferry_today_pause]
+other = "winter break"
 [ferry_all]
 other = "All ferries with seasons"
 [tours_help_title]

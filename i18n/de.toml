@@ -743,7 +743,7 @@ other = "Fünf Fähren nehmen in und um Bremen das Rad mit. Drei fahren das ganz
 [ferry_times]
 other = "Zeiten und Preise bei %s"
 [ferry_stand]
-other = "Stand: %s. Zeiten ändern sich, vor der Tour kurz beim Betreiber nachsehen."
+other = "Stand: %s. Zeiten ändern sich, bei Hochwasser oder Eis kann eine Fähre ausfallen – vor der Tour kurz beim Betreiber nachsehen."
 
 [repair_q_label]
 other = "Wo bist du gerade?"
@@ -780,6 +780,8 @@ other = "Weserfähren heute"
 other = "fährt heute"
 [ferry_today_no]
 other = "heute nicht"
+[ferry_today_pause]
+other = "Winterpause"
 [ferry_all]
 other = "Alle Fähren mit Saison"
 [tours_help_title]

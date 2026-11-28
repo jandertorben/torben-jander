@@ -21,7 +21,7 @@
           {{- range .items }}
           <li class="ferry" data-rules="{{ .regeln | jsonify }}" data-year="{{ .ganzjaehrig }}">
             <span class="road-ferry-n">{{ .name }}</span>
-            <span class="ferry-today" hidden data-yes="{{ T "ferry_today_yes" }}" data-no="{{ T "ferry_today_no" }}"></span>
+            <span class="ferry-today" hidden data-yes="{{ T "ferry_today_yes" }}" data-no="{{ T "ferry_today_no" }}" data-pause="{{ T "ferry_today_pause" }}"></span>
           </li>
           {{- end }}
         </ul>
