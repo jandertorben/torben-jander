@@ -1266,7 +1266,12 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .th-stats dt{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
 .th-stats dd{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--text-on-dark);line-height:1}
 .th-stats dd .num{font-size:inherit}
+.th-stats .th-status{grid-column:span 2}
 .th-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem 2.4rem;margin-top:2.6rem}
+/* Geplante Route (noch nicht gefahren) */
+.th-plan{margin:1.6rem 0 0;max-width:40rem;font-size:.92rem;line-height:1.55;color:rgba(244,239,230,.72);border-left:2px solid var(--accent);padding-left:.9rem}
+.tl-meta .tl-plan{color:var(--accent-ink);letter-spacing:.14em}
+.tl-planned .tl-thumb{opacity:.88}
 .tour .tour-tabs{border-color:rgba(28,27,25,.2)}
 .tour .tour-tabs button{color:rgba(28,27,25,.55)}
 .tour .tour-tabs button+button{border-left-color:rgba(28,27,25,.2)}

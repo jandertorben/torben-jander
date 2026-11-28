@@ -1,6 +1,7 @@
 {{ define "main" }}
 {{- $tours := .RegularPages.ByDate.Reverse }}
-{{- $km := 0.0 }}{{ range $tours }}{{ $km = add $km (float .Params.tour.km) }}{{ end }}
+{{- /* Summe nur über gefahrene Touren (Strava), geplante Routen zählen nicht mit */}}
+{{- $km := 0.0 }}{{ $n := 0 }}{{ range $tours }}{{ if not .Params.tour.planned }}{{ $km = add $km (float .Params.tour.km) }}{{ $n = add $n 1 }}{{ end }}{{ end }}
 <section class="hero hero-page hero-photo hero-photo-page" aria-labelledby="tours-h">
   {{- with resources.Get "img/touren-header.jpg" }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q74" }}
   <picture class="hp-bg" aria-hidden="true">
@@ -12,7 +13,7 @@
     <h1 id="tours-h" class="hero-h">{{ .Title }}</h1>
     <p class="hero-tag">{{ T "tours_tag" }}</p>
     <p class="hero-text">{{ T "tours_lead" }}</p>
-    {{- with $tours }}<p class="eq-total mono">{{ printf (T "tours_total") (len $tours) (lang.FormatNumber 0 $km) }}</p>{{ end }}
+    {{- with $tours }}<p class="eq-total mono">{{ printf (T "tours_total") $n (lang.FormatNumber 0 $km) }}</p>{{ end }}
   </div>
 </section>
 
@@ -22,7 +23,7 @@
     <ul class="tour-list">
       {{- range $i, $p := . }}
       {{- $t := $p.Params.tour }}
-      <li class="tl-item{{ if eq $i 0 }} tl-first{{ end }} reveal">
+      <li class="tl-item{{ if eq $i 0 }} tl-first{{ end }}{{ if $t.planned }} tl-planned{{ end }} reveal">
         <a class="tl-card" href="{{ $p.RelPermalink }}">
           <div class="tl-thumb">
             {{- $img := "" }}
@@ -33,11 +34,11 @@
             {{- end }}
           </div>
           <div class="tl-body">
-            <p class="tl-meta mono"><span>{{ T (printf "sport_%s" $t.sport) }}</span><time datetime="{{ $t.date }}">{{ time.Format ":date_medium" (time $t.date) }}</time></p>
+            <p class="tl-meta mono"><span>{{ T (printf "sport_%s" $t.sport) }}</span>{{ if $t.planned }}<span class="tl-plan">{{ T "tour_planned" }}</span>{{ else }}<time datetime="{{ $t.date }}">{{ time.Format ":date_medium" (time $t.date) }}</time>{{ end }}</p>
             <h2 class="tl-name">{{ $p.Title }}</h2>
             {{- with $p.Summary }}<p class="tl-sum">{{ . | plainify }}</p>{{ end }}
             {{- with $p.Params.untergrund }}<p class="tl-ground mono"><span aria-hidden="true">▚</span> {{ . }}</p>{{ end }}
-            <p class="tl-nums mono"><span><b>{{ lang.FormatNumber 1 $t.km }}</b> km</span><span><b>{{ lang.FormatNumber 0 $t.elevation }}</b> Hm</span><span><b>{{ $t.duration }}</b></span></p>
+            <p class="tl-nums mono"><span><b>{{ lang.FormatNumber 1 $t.km }}</b> km</span><span><b>{{ lang.FormatNumber 0 $t.elevation }}</b> Hm</span>{{ if $t.planned }}<span>{{ T "status_planned" }}</span>{{ else }}<span><b>{{ $t.duration }}</b></span>{{ end }}</p>
             <span class="tl-go" aria-hidden="true">{{ T "tour_open" }} →</span>
           </div>
         </a>

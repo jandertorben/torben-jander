@@ -962,3 +962,14 @@ other = "Zurück zum Journal"
 
 [journal_minutes]
 other = "%d Min. Lesezeit"
+
+[tour_planned]
+other = "Geplant"
+[status_planned]
+other = "noch nicht gefahren"
+[label_status]
+other = "Status"
+[tour_planned_note]
+other = "Diese Route ist geplant, aber noch nicht gefahren. Strecke und Höhenmeter stammen aus der Routenplanung, nicht von Strava. Fahrzeit und Tempo gibt es erst nach der ersten Fahrt."
+[plan_source_note]
+other = "Geplante Route, Zahlen aus der Routenplanung."
