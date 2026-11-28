@@ -175,7 +175,7 @@
 (function () {
   'use strict';
   var path = location.pathname;
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-main a, .nav-links a'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
   var home = links.filter(function (a) { return a.getAttribute('aria-current') === 'page' && !a.hash; });
   var spots = [];
   links.forEach(function (a) {
