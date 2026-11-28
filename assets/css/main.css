@@ -1700,3 +1700,22 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
     -webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%),linear-gradient(to bottom,transparent 0,#000 18%);-webkit-mask-composite:source-in;
     mask-image:linear-gradient(to right,transparent 0,#000 30%),linear-gradient(to bottom,transparent 0,#000 18%);mask-composite:intersect}
 }
+
+/* Matsch-Indikator (/wetter/, Beta) */
+.matsch .matsch-card{max-width:40rem;margin-top:1.4rem;padding:1.4rem 1.6rem;background:#fff;border:1px solid var(--line-warm);border-left:4px solid var(--ink-2);border-radius:3px}
+.matsch-state{margin:0;font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.6rem);line-height:1;color:var(--ink)}
+.matsch-say{margin:.6rem 0 0;font-size:1.02rem;line-height:1.5;color:var(--text-on-light)}
+.matsch-ctx{margin:.9rem 0 0;font-size:.78rem;letter-spacing:.03em;color:rgba(28,27,25,.6)}
+.matsch-ctx:empty{display:none}
+.matsch-note{margin:1rem 0 0;font-size:.82rem;line-height:1.5;color:rgba(28,27,25,.55)}
+.matsch-src{margin:.8rem 0 0;font-size:.72rem;letter-spacing:.03em;color:rgba(28,27,25,.5)}
+.matsch-src a{color:inherit;text-decoration:underline;text-decoration-color:rgba(28,27,25,.3)}
+.matsch.is-firm .matsch-card{border-left-color:var(--accent)}
+.matsch.is-firm .matsch-state{color:var(--accent)}
+.matsch.is-damp .matsch-card{border-left-color:var(--gravel-2)}
+.matsch.is-mud .matsch-card{border-left-color:#8a5a3c}
+.matsch.is-mud .matsch-state{color:#8a5a3c}
+.matsch.is-frozen .matsch-card{border-left-color:var(--run)}
+.matsch.is-frozen .matsch-state{color:var(--run-2)}
+.matsch.is-thaw .matsch-card{border-left-color:#8a5a3c}
+.matsch.is-thaw .matsch-state{color:#8a5a3c}

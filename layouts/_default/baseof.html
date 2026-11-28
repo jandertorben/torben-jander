@@ -32,6 +32,8 @@
 {{- if eq .Layout "wetter" }}
 {{ $pjs := resources.Get "js/planer.js" | minify | fingerprint }}
 <script src="{{ $pjs.RelPermalink }}" integrity="{{ $pjs.Data.Integrity }}" defer></script>
+{{ $mjs := resources.Get "js/matsch.js" | minify | fingerprint }}
+<script src="{{ $mjs.RelPermalink }}" integrity="{{ $mjs.Data.Integrity }}" defer></script>
 {{- end }}
 {{- end }}
 </body>
