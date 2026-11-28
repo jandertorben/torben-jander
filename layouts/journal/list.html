@@ -15,28 +15,47 @@
   </div>
 </section>
 
-<section class="sec sec-light tours-sec" aria-label="{{ T "journal_eyebrow" }}">
+<section class="sec sec-light journal-sec" aria-label="{{ T "journal_eyebrow" }}">
   <div class="wrap">
     {{- with $posts }}
-    <ul class="tour-list">
-      {{- range $i, $p := . }}
-      <li class="tl-item{{ if eq $i 0 }} tl-first{{ end }} reveal">
-        <a class="tl-card" href="{{ $p.RelPermalink }}">
-          <div class="tl-thumb">
-            {{- with partial "journal-cover.html" $p }}{{ $img := .Process "fill 900x500 Center webp q78" }}
+    {{- /* Kategorien-Filter erst, wenn es genug Beiträge und mehr als eine Kategorie gibt */ -}}
+    {{- $cats := slice }}{{ range $posts }}{{ with .Params.kategorie }}{{ $cats = $cats | append . }}{{ end }}{{ end }}
+    {{- $cats = $cats | uniq }}
+    {{- if and (ge (len $posts) 6) (gt (len $cats) 1) }}
+    <div class="jl-filter" role="group" aria-label="{{ T "journal_filter" }}" data-jl-filter hidden>
+      <button type="button" class="is-on" data-cat="" aria-pressed="true">{{ T "journal_filter_all" }} <span class="mono">{{ len $posts }}</span></button>
+      {{- range $cats }}{{ $c := . }}
+      <button type="button" data-cat="{{ $c }}" aria-pressed="false">{{ $c }} <span class="mono">{{ len (where $posts "Params.kategorie" $c) }}</span></button>
+      {{- end }}
+    </div>
+    {{- end }}
+    {{- $pager := $.Paginate $posts 12 }}
+    <ol class="jl-list" data-jl-list>
+      {{- range $pager.Pages }}{{ $p := . }}
+      <li class="jl-item" data-cat="{{ $p.Params.kategorie }}">
+        <a class="jl-card" href="{{ $p.RelPermalink }}">
+          <div class="jl-thumb">
+            {{- with partial "journal-cover.html" $p }}{{ $img := .Process "fill 480x360 Center webp q76" }}
             <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy" decoding="async">
             {{- end }}
           </div>
-          <div class="tl-body">
-            <p class="tl-meta mono">{{ with $p.Params.kategorie }}<span>{{ . }}</span>{{ end }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" $p.Date }}</time></p>
-            <h2 class="tl-name">{{ $p.Title }}</h2>
-            {{- with $p.Params.summary }}<p class="tl-sum">{{ . }}</p>{{ end }}
-            <span class="tl-go" aria-hidden="true">{{ T "journal_read" }} →</span>
+          <div class="jl-body">
+            <p class="jl-meta mono">{{ with $p.Params.kategorie }}<span>{{ . }}</span>{{ end }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" $p.Date }}</time></p>
+            <h2 class="jl-name">{{ $p.Title }}</h2>
+            {{- with $p.Params.summary }}<p class="jl-sum">{{ . }}</p>{{ end }}
           </div>
+          <span class="jl-go" aria-hidden="true">→</span>
         </a>
       </li>
       {{- end }}
-    </ul>
+    </ol>
+    {{- if gt $pager.TotalPages 1 }}
+    <nav class="jl-pager mono" aria-label="{{ T "journal_pages" }}">
+      {{- with $pager.Prev }}<a href="{{ .URL }}">← {{ T "journal_newer" }}</a>{{ else }}<span></span>{{ end }}
+      <span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>
+      {{- with $pager.Next }}<a href="{{ .URL }}">{{ T "journal_older" }} →</a>{{ else }}<span></span>{{ end }}
+    </nav>
+    {{- end }}
     {{- else }}
     <p class="lead">{{ T "journal_empty" }}</p>
     {{- end }}

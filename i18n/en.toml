@@ -944,3 +944,12 @@ other = "Surface"
 
 [seo_tour_suffix]
 other = "gravel ride with GPX"
+
+[journal_filter]
+other = "Filter by topic"
+
+[journal_filter_all]
+other = "All"
+
+[journal_pages]
+other = "More posts"

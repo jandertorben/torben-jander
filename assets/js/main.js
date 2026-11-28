@@ -373,3 +373,22 @@
   more.addEventListener('click', function () { showAll = true; render(); });
   render();
 })();
+
+/* Journal: Themen-Filter (nur sichtbar, wenn es genug Beiträge gibt) */
+(function () {
+  var bar = document.querySelector('[data-jl-filter]');
+  var list = document.querySelector('[data-jl-list]');
+  if (!bar || !list) return;
+  bar.hidden = false;
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-cat]');
+    if (!b) return;
+    var cat = b.getAttribute('data-cat');
+    Array.prototype.forEach.call(bar.querySelectorAll('button'), function (x) {
+      var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(list.children, function (li) {
+      li.hidden = !!cat && li.getAttribute('data-cat') !== cat;
+    });
+  });
+})();
