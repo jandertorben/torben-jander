@@ -212,39 +212,73 @@
   check();
 })();
 
-/* Sprungmarken (#community, #ueber …) festhalten: Wenn oberhalb noch etwas nachlädt
-   (Live-Wetter, Bilder), verschiebt sich das Ziel. Dann kurz nachjustieren,
-   solange man nicht selbst scrollt. */
+/* Sprungmarken (#faehren, #ueber …) sauber anspringen und festhalten.
+   Oberhalb des Ziels klappt sich z. B. die Reparatur-Liste beim Laden ein und iOS Safari
+   blendet die Adressleiste aus – beides verschiebt das Ziel nach dem Absprung.
+   Darum: selbst weich hinscrollen, warten bis die Bewegung steht, exakt setzen und
+   knapp zwei Sekunden halten, solange man nicht selbst scrollt. */
 (function () {
-  if (!('ResizeObserver' in window)) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var stop = null;
-  function stick(id) {
-    var el = id && document.getElementById(id);
+  function marginTop(el) { return parseFloat(getComputedStyle(el).scrollMarginTop) || 0; }
+  function stick(el) {
     if (!el) return;
     if (stop) stop();
-    var done = false, last = null;
-    var fix = function () {
+    var done = false;
+    var pin = function () {
+      if (done) return;
+      if (Math.abs(el.getBoundingClientRect().top - marginTop(el)) > 2) {
+        el.scrollIntoView({ block: 'start', behavior: 'instant' });
+      }
+    };
+    var ro = ('ResizeObserver' in window) ? new ResizeObserver(pin) : null;
+    var vv = window.visualViewport || null;
+    var holding = false;
+    function hold() {
+      if (holding || done) return;
+      holding = true;
+      if (ro) ro.observe(document.body);
+      window.addEventListener('resize', pin);
+      if (vv) vv.addEventListener('resize', pin);
+      [100, 300, 600, 1000].forEach(function (ms) { setTimeout(pin, ms); });
+    }
+    // Erst warten, bis die weiche Bewegung ruht (zwei ruhige Frames), dann exakt setzen.
+    var lastTop = null, calm = 0;
+    (function settle() {
       if (done) return;
       var top = el.getBoundingClientRect().top;
-      var want = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
-      if (last !== null && Math.abs(top - want) > 4) el.scrollIntoView({ block: 'start', behavior: 'instant' });
-      last = top;
+      if (lastTop !== null && Math.abs(top - lastTop) < 1) calm++; else calm = 0;
+      lastTop = top;
+      if (calm >= 2) { pin(); hold(); }
+      else requestAnimationFrame(settle);
+    })();
+    var quit = function () {
+      done = true;
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', pin);
+      if (vv) vv.removeEventListener('resize', pin);
+      ['wheel', 'touchmove', 'keydown'].forEach(function (t) { window.removeEventListener(t, quit); });
     };
-    var ro = new ResizeObserver(fix);
-    ro.observe(document.body);
-    var quit = function () { done = true; ro.disconnect(); ['wheel', 'touchmove', 'keydown'].forEach(function (t) { window.removeEventListener(t, quit); }); };
     ['wheel', 'touchmove', 'keydown'].forEach(function (t) { window.addEventListener(t, quit, { passive: true }); });
-    setTimeout(quit, 4000);
-    setTimeout(function () { last = 0; fix(); }, 60);
+    setTimeout(quit, 2500);
     stop = quit;
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="#"]');
     if (!a || a.pathname !== location.pathname || a.host !== location.host) return;
-    var id = decodeURIComponent(a.hash.slice(1));
-    setTimeout(function () { stick(id); }, 50);
+    var el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    try { history.pushState(null, '', a.hash); } catch (err) {}
+    el.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+    // Fokus aufs Ziel setzen (Skip-Link, Tastatur), ohne dabei erneut zu scrollen.
+    if (el.tabIndex < 0) el.setAttribute('tabindex', '-1');
+    try { el.focus({ preventScroll: true }); } catch (err) { el.focus(); }
+    stick(el);
   });
-  if (location.hash.length > 1) stick(decodeURIComponent(location.hash.slice(1)));
+  if (location.hash.length > 1) {
+    stick(document.getElementById(decodeURIComponent(location.hash.slice(1))));
+  }
 })();
 
 /* Ausrüstung: die Räder fahren beim Weiterscrollen nach rechts aus dem Bild, die Reifen drehen sich mit
