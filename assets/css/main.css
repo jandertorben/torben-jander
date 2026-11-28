@@ -1780,3 +1780,9 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-banner .hero-h{max-width:none}
 .hero-banner .hero-text{max-width:38rem}
 @media (max-width:700px){.hero-banner{padding-top:4.5rem}.hero-banner .hp-bg img{aspect-ratio:1/1;object-position:52% 55%;opacity:1}.hero-banner .hero-in{margin-top:-1.5rem}}
+/* Banner-Kopf: Bild nur so hoch, dass Titel und Text noch auf den ersten Bildschirm passen */
+.hero-banner .hp-bg{display:flex;justify-content:center}
+.hero-banner .hp-bg img{width:auto;max-width:100%;height:min(calc(100svh - 17rem),56.25vw);min-height:min(22rem,56.25vw);max-height:none;aspect-ratio:16/9;object-fit:cover;object-position:50% 50%;
+  -webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to bottom,#000 72%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+@media (max-width:700px){.hero-banner .hp-bg img{height:auto;min-height:0;aspect-ratio:1/1;width:100%;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 72%,transparent 100%)}}
