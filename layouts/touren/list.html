@@ -36,6 +36,7 @@
             <p class="tl-meta mono"><span>{{ T (printf "sport_%s" $t.sport) }}</span><time datetime="{{ $t.date }}">{{ time.Format ":date_medium" (time $t.date) }}</time></p>
             <h2 class="tl-name">{{ $p.Title }}</h2>
             {{- with $p.Summary }}<p class="tl-sum">{{ . | plainify }}</p>{{ end }}
+            {{- with $p.Params.untergrund }}<p class="tl-ground mono"><span aria-hidden="true">▚</span> {{ . }}</p>{{ end }}
             <p class="tl-nums mono"><span><b>{{ lang.FormatNumber 1 $t.km }}</b> km</span><span><b>{{ lang.FormatNumber 0 $t.elevation }}</b> Hm</span><span><b>{{ $t.duration }}</b></span></p>
             <span class="tl-go" aria-hidden="true">{{ T "tour_open" }} →</span>
           </div>

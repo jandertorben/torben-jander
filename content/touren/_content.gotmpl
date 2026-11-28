@@ -9,6 +9,8 @@
   {{- with $info.title }}{{ $title = . }}{{ end -}}
   {{- if eq $lang "en" }}{{ with $info.title_en }}{{ $title = . }}{{ end }}{{ end -}}
   {{- $text := $info.text | default "" -}}
+  {{- $ground := $info.untergrund | default "" -}}
+  {{- if eq $lang "en" }}{{ with $info.untergrund_en }}{{ $ground = . }}{{ end }}{{ end -}}
   {{- if eq $lang "en" }}{{ with $info.text_en }}{{ $text = . }}{{ end }}{{ end -}}
   {{- $slug := $info.slug | default (printf "%s-%s" .date .id) -}}
   {{- $.AddPage (dict
@@ -18,6 +20,6 @@
         "dates" (dict "date" (time .date))
         "summary" ($info.summary | default "")
         "content" (dict "mediaType" "text/markdown" "value" $text)
-        "params" (dict "tour" . "photo" ($info.photo | default "") "photo_kind" ($info.photo_kind | default "") "photo_alt" ($info.photo_alt | default $title) "gallery" ($info.gallery | default slice) "described" (ne $text ""))
+        "params" (dict "tour" . "photo" ($info.photo | default "") "photo_kind" ($info.photo_kind | default "") "photo_alt" ($info.photo_alt | default $title) "gallery" ($info.gallery | default slice) "untergrund" $ground "described" (ne $text ""))
       ) -}}
 {{- end -}}

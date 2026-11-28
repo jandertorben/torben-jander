@@ -1719,3 +1719,10 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .matsch.is-frozen .matsch-state{color:var(--run-2)}
 .matsch.is-thaw .matsch-card{border-left-color:#8a5a3c}
 .matsch.is-thaw .matsch-state{color:#8a5a3c}
+
+/* Untergrund pro Tour */
+.ts-ground{margin:1.1rem 0 0;font-size:.95rem;line-height:1.5;color:var(--text-on-light)}
+.ts-ground .ts-k{display:block;margin-bottom:.15rem}
+.tl-ground{margin:.5rem 0 0;font-size:.8rem;letter-spacing:.02em;color:rgba(28,27,25,.6)}
+.tl-ground span{color:var(--accent);margin-right:.15rem}
+.tip-meta{color:var(--accent)}

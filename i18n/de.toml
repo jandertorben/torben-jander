@@ -938,3 +938,6 @@ other = "Nach dem Frost taut der Boden auf – gerade jetzt besonders weich und 
 other = "%s mm Regen in den letzten Tagen"
 [matsch_note]
 other = "Grobe Schätzung aus der Bodenfeuchte, noch im Test. Gilt fürs ganze Stadtgebiet – Marschwege bleiben länger weich als Sandwege im Wald, und Hochwasser erkennt sie nicht."
+
+[tour_ground_k]
+other = "Untergrund"

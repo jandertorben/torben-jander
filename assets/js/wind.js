@@ -156,7 +156,8 @@
     var a = document.createElement('a'); a.href = tour.url; a.textContent = tour.title;
     if (/^https?:/.test(tour.url)) { a.target = '_blank'; a.rel = 'noopener'; }
     h.appendChild(a);
-    var meta = document.createElement('p'); meta.className = 'tip-meta'; meta.textContent = tour.km + ' km';
+    var meta = document.createElement('p'); meta.className = 'tip-meta';
+    meta.textContent = tour.km + ' km' + (tour.untergrund ? ' · ' + tour.untergrund : '');
     var w = document.createElement('p'); w.className = 'tip-why'; w.textContent = why;
     var act = document.createElement('div'); act.className = 'tip-actions';
     if (tour.id) {
