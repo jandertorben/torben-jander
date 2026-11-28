@@ -1,0 +1,26 @@
+{{- /* Matsch-Indikator (nur /wetter/). Grobe Schätzung des Bodengefühls aus der Bodenfeuchte.
+     Daten von /api/boden, Logik in assets/js/matsch.js. Ohne JS/Daten bleibt die Karte verborgen. */ -}}
+{{- $cfg := dict
+  "states" (dict
+    "firm"   (dict "label" (T "matsch_firm")   "say" (T "matsch_firm_say"))
+    "damp"   (dict "label" (T "matsch_damp")   "say" (T "matsch_damp_say"))
+    "mud"    (dict "label" (T "matsch_mud")    "say" (T "matsch_mud_say"))
+    "frozen" (dict "label" (T "matsch_frozen") "say" (T "matsch_frozen_say"))
+    "thaw"   (dict "label" (T "matsch_thaw")   "say" (T "matsch_thaw_say"))
+  )
+  "ctxRain" (T "matsch_ctx_rain")
+  "stand" (T "wind_stand")
+}}
+<section class="sec matsch sec-light" id="matsch" data-matsch hidden>
+  <script type="application/json" id="matsch-cfg">{{ $cfg | jsonify | safeJS }}</script>
+  <div class="wrap">
+    <p class="eyebrow">{{ T "matsch_eyebrow" }}</p>
+    <div class="matsch-card">
+      <p class="matsch-state" data-matsch-state>&nbsp;</p>
+      <p class="matsch-say" data-matsch-say>&nbsp;</p>
+      <p class="matsch-ctx mono" data-matsch-ctx></p>
+      <p class="matsch-note">{{ T "matsch_note" }}</p>
+      <p class="matsch-src mono"><span data-matsch-stand></span> · {{ T "matsch_place" }} · {{ T "wind_source" }} <a href="https://open-meteo.com" rel="noopener" target="_blank">Open-Meteo.com</a></p>
+    </div>
+  </div>
+</section>

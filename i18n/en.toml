@@ -907,3 +907,34 @@ other = "%s at %s km/h. Headwind the whole way."
 
 [wind_place]
 other = "wind in central Bremen"
+
+[matsch_eyebrow]
+other = "Ground feel · beta"
+[matsch_title]
+other = "How muddy is it right now?"
+[matsch_place]
+other = "ground around Bremen"
+[matsch_firm]
+other = "Likely firm"
+[matsch_firm_say]
+other = "Paths should ride well."
+[matsch_damp]
+other = "Damp"
+[matsch_damp_say]
+other = "Soft in places but rideable. Clay in the Blockland gets muddier."
+[matsch_mud]
+other = "Muddy"
+[matsch_mud_say]
+other = "Lots of moisture in the ground. Expect soft, heavy paths – better avoid the dikes and Blockland."
+[matsch_frozen]
+other = "Frozen"
+[matsch_frozen_say]
+other = "Cold and frozen: often the best gravel surface. Watch for frost and ice."
+[matsch_thaw]
+other = "Thaw"
+[matsch_thaw_say]
+other = "After the frost the ground is thawing – especially soft and greasy right now."
+[matsch_ctx_rain]
+other = "%s mm of rain in the last few days"
+[matsch_note]
+other = "A rough estimate from soil moisture, still being tested. It covers the whole city – marsh paths stay soft longer than sandy forest tracks, and it can’t see flooding."

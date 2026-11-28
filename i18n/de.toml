@@ -907,3 +907,34 @@ other = "%s mit %s km/h. Der kommt dir die ganze Strecke entgegen."
 
 [wind_place]
 other = "Wind in Bremen-Mitte"
+
+[matsch_eyebrow]
+other = "Bodengefühl · Beta"
+[matsch_title]
+other = "Wie matschig ist es gerade?"
+[matsch_place]
+other = "Boden um Bremen"
+[matsch_firm]
+other = "Eher fest"
+[matsch_firm_say]
+other = "Die Wege dürften gut befahrbar sein."
+[matsch_damp]
+other = "Feucht"
+[matsch_damp_say]
+other = "Stellenweise weich, aber fahrbar. Auf Lehm im Blockland wird’s matschiger."
+[matsch_mud]
+other = "Matschig"
+[matsch_mud_say]
+other = "Viel Nässe im Boden. Rechne mit weichen, schweren Wegen – Deiche und Blockland lieber meiden."
+[matsch_frozen]
+other = "Gefroren"
+[matsch_frozen_say]
+other = "Kalt und gefroren: oft der beste Graveluntergrund. Vorsicht bei Reif und Eis."
+[matsch_thaw]
+other = "Tauwetter"
+[matsch_thaw_say]
+other = "Nach dem Frost taut der Boden auf – gerade jetzt besonders weich und schmierig."
+[matsch_ctx_rain]
+other = "%s mm Regen in den letzten Tagen"
+[matsch_note]
+other = "Grobe Schätzung aus der Bodenfeuchte, noch im Test. Gilt fürs ganze Stadtgebiet – Marschwege bleiben länger weich als Sandwege im Wald, und Hochwasser erkennt sie nicht."
