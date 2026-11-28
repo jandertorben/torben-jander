@@ -1,7 +1,15 @@
 {{ define "main" }}
 {{- $t := .Params.tour }}
-<section class="hero hero-page hero-tour" aria-labelledby="tour-h">
+{{- /* Geplante Routen bekommen ein gemeinsames Kopfbild (assets/img/touren/geplant-header.jpg) */}}
+{{- $planBg := cond (eq $t.planned true) (resources.Get "img/touren/geplant-header.jpg") nil }}
+<section class="hero hero-page hero-tour{{ with $planBg }} hero-photo hero-photo-page hero-plan{{ end }}" aria-labelledby="tour-h">
+  {{- with $planBg }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q74" }}
+  <picture class="hp-bg" aria-hidden="true">
+    <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1792w" sizes="100vw" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="" fetchpriority="high" decoding="async">
+  </picture>
+  {{- else }}
   <div class="hero-topo" aria-hidden="true"></div>
+  {{- end }}
   <div class="wrap hero-in hero-mag">
     {{- if $t.planned }}
     <p class="eyebrow"><span>{{ T (printf "sport_%s" $t.sport) }} · {{ T "tour_planned" }}</span></p>
