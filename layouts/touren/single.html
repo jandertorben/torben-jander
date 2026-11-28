@@ -1,7 +1,10 @@
 {{ define "main" }}
 {{- $t := .Params.tour }}
-{{- /* Geplante Routen bekommen ein gemeinsames Kopfbild (assets/img/touren/geplant-header.jpg) */}}
-{{- $planBg := cond (eq $t.planned true) (resources.Get "img/touren/geplant-header.jpg") nil }}
+{{- /* Kopfbild: eigenes aus data/touren.yaml (header: "datei.jpg" in assets/img/touren/),
+     sonst das Standardbild assets/img/touren/standard-header.jpg */}}
+{{- $planBg := "" }}
+{{- with .Params.header }}{{ $planBg = resources.Get (printf "img/touren/%s" .) }}{{ end }}
+{{- if not $planBg }}{{ $planBg = resources.Get "img/touren/standard-header.jpg" }}{{ end }}
 <section class="hero hero-page hero-tour{{ with $planBg }} hero-photo hero-photo-page hero-plan{{ end }}" aria-labelledby="tour-h">
   {{- with $planBg }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q74" }}
   <picture class="hp-bg" aria-hidden="true">
