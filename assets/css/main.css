@@ -1786,3 +1786,11 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
   -webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(to bottom,#000 72%,transparent 100%),linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
 @media (max-width:700px){.hero-banner .hp-bg img{height:auto;min-height:0;aspect-ratio:1/1;width:100%;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 72%,transparent 100%)}}
+/* Ausrüstungs-Karten: Bild sicher in der 4:3-Fläche halten.
+   Safari löst max-height:100% in einer Flex-Fläche mit aspect-ratio nicht auf, hohe Bilder
+   (Karoo, Hose, Trikot) liefen deshalb über Linie und Text. Absolut zentriert passt es überall. */
+.eq-card-img img{position:absolute;inset:0;margin:auto;max-width:88%;max-height:92%;width:auto;height:auto}
+.eq-card-small .eq-card-img img{max-width:60%;max-height:82%}
+.eq-card-photo .eq-card-img img{max-width:100%;max-height:100%}
+/* Foto mit hellem Hintergrund (Sensoren) auf dunkler Fläche ruhiger einbetten */
+.sec:not(.sec-light) .eq-card-photo .eq-card-img img{filter:brightness(.86) saturate(.9);box-shadow:0 0 0 1px rgba(244,238,227,.12),0 18px 30px rgba(0,0,0,.35)}
