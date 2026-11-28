@@ -1,5 +1,7 @@
 ---
 title: "Running & Gravel from Bremen"
+seo_title: "gravel rides and riding weather for Bremen"
+description: "Gravel rides around Bremen with GPX, cycling weather with live wind, repair stations, Weser ferries and small bike shops. By Torben Jander, real numbers from Strava."
 about:
   - "I live in Bremen, work in industry and spend most of my free time outside when I am not sitting on a software idea. I commute by gravel bike, out before six in the morning and back in the evening. Those are the many short strokes on the map above."
   - "At the weekend the loops get longer: out of the city, along the Weser, into the Blockland marshes. Running came later and is now a fixed part of the week. This site shows what adds up. No records, just real numbers."

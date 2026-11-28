@@ -941,3 +941,6 @@ other = "A rough estimate from soil moisture, still being tested. It covers the 
 
 [tour_ground_k]
 other = "Surface"
+
+[seo_tour_suffix]
+other = "gravel ride with GPX"

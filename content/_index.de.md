@@ -1,5 +1,7 @@
 ---
 title: "Laufen & Gravel aus Bremen"
+seo_title: "Gravel-Touren und Fahrradwetter für Bremen"
+description: "Gravel-Touren rund um Bremen mit GPX, Fahrradwetter mit Wind live, Reparaturstationen, Weserfähren und kleine Werkstätten. Von Torben Jander, echte Zahlen aus Strava."
 about:
   - "Ich komme aus Bremen, arbeite in der Industrie und bin die meiste Zeit draußen, wenn ich nicht gerade an einer Software-Idee sitze. Zur Arbeit fahre ich mit dem Gravelbike, morgens vor sechs, abends zurück. Das sind die vielen kurzen Striche auf der Karte oben."
   - "Am Wochenende werden die Runden länger: raus aus der Stadt, an die Weser, ins Blockland. Laufen kam später dazu und ist inzwischen fest im Wochenplan. Diese Seite zeigt, was dabei zusammenkommt. Keine Rekorde, nur echte Zahlen."

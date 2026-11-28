@@ -1,9 +1,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- $absender := printf "%s · %s" .Site.Params.marke .Site.Params.name }}
-{{- $title := $absender }}{{ if not .IsHome }}{{ $title = printf "%s – %s" .Title $absender }}{{ end }}
+{{- /* Suchtitel: vorne die Begriffe, nach denen gesucht wird (seo_title), hinten der Absender.
+     Google kürzt hinten ab, deshalb stehen die wichtigen Wörter am Anfang. */ -}}
+{{- $lead := .Title }}
+{{- with .Params.seo_title }}{{ $lead = . }}{{ end }}
+{{- if and .IsPage (eq .Section "touren") }}{{ $lead = printf "%s – %s" .Title (T "seo_tour_suffix") }}{{ end }}
+{{- $title := $absender }}{{ if .IsHome }}{{ with .Params.seo_title }}{{ $title = printf "%s – %s" $absender . }}{{ end }}{{ else }}{{ $title = printf "%s – %s" $lead $absender }}{{ end }}
 <title>{{ $title }}</title>
 {{- $desc := .Site.Params.description }}{{ with .Description }}{{ $desc = . }}{{ end }}
+{{- /* Touren und Journal-Beiträge: eigene Zusammenfassung statt der allgemeinen Seitenbeschreibung */ -}}
+{{- if and .IsPage (not .Description) (in (slice "touren" "journal") .Section) }}
+  {{- with .Summary }}{{ $desc = . | plainify | strings.TrimSpace }}{{ end }}
+  {{- with .Params.untergrund }}{{ $desc = printf "%s %s: %s." $desc (T "tour_ground_k") . }}{{ end }}
+  {{- $desc = $desc | truncate 170 }}
+{{- end }}
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ .Site.Params.name }}">
 <meta name="robots" content="{{ if or .IsHome (eq .Section "touren") (and (eq .Section "journal") (or .IsPage .RegularPages)) }}index, follow{{ else }}noindex, follow{{ end }}">
