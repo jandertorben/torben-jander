@@ -1780,10 +1780,3 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .hero-banner .hero-h{max-width:none}
 .hero-banner .hero-text{max-width:38rem}
 @media (max-width:700px){.hero-banner{padding-top:4.5rem}.hero-banner .hp-bg img{aspect-ratio:1/1;object-position:52% 55%;opacity:1}.hero-banner .hero-in{margin-top:-1.5rem}}
-
-/* Kopfvideo liegt über dem Standbild; bei reduzierter Bewegung bleibt nur das Bild */
-.hp-bg{overflow:hidden}
-.hp-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
-.hero-banner .hp-video{-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 72%,transparent 100%)}
-@media (max-width:700px){.hero-banner .hp-video{object-position:52% 55%}}
-@media (prefers-reduced-motion:reduce){.hp-video{display:none}}

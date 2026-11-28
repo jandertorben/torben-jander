@@ -4,7 +4,6 @@ date: 2026-11-26
 kategorie: "Gear"
 summary: "Why a second gravel bike now stands in the hallway next to the Grizl. And what sets the two apart."
 header: "header.jpg"
-header_video: "header"   # header.webm + header.mp4 im Ordner
 header_layout: "banner"   # Rad steht mittig: Bild ganz zeigen, Titel darunter
 cover_alt: "Storck Grix.2 Pro with a copper fade, leaning against a wall at the edge of a field"
 fakten_titel: "Storck Grix.2 Pro"

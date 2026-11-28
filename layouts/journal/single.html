@@ -5,15 +5,6 @@
   {{- with $hdr }}{{ $a := .Process "resize 900x webp q74" }}{{ $b := .Process "resize 1792x webp q76" }}
   <picture class="hp-bg" aria-hidden="true">
     <img src="{{ $b.RelPermalink }}" srcset="{{ $a.RelPermalink }} 900w, {{ $b.RelPermalink }} 1792w" sizes="100vw" width="{{ $b.Width }}" height="{{ $b.Height }}" alt="" fetchpriority="high" decoding="async">
-    {{- /* Optionales Kopfvideo (stumm, Schleife). Das Bild bleibt Platzhalter und Ersatz bei „Bewegung reduzieren“. */}}
-    {{- $vw := false }}{{ $vm := false }}
-    {{- with $.Params.header_video }}{{ $vw = $.Resources.Get (printf "%s.webm" .) }}{{ $vm = $.Resources.Get (printf "%s.mp4" .) }}{{ end }}
-    {{- if or $vw $vm }}
-    <video class="hp-video" autoplay muted loop playsinline preload="metadata" poster="{{ $b.RelPermalink }}" aria-hidden="true">
-      {{- with $vw }}<source src="{{ .RelPermalink }}" type="video/webm">{{ end }}
-      {{- with $vm }}<source src="{{ .RelPermalink }}" type="video/mp4">{{ end }}
-    </video>
-    {{- end }}
   </picture>
   {{- else }}
   <div class="hero-topo" aria-hidden="true"></div>
