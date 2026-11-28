@@ -2,7 +2,7 @@
 # Saisonzeiten ändern sich: einmal im Jahr prüfen (Stand unten anpassen).
 # regeln: wann die Fähre fährt (MM-TT von/bis, tage 1=Mo … 7=So). Daraus zeigt die Seite „fährt heute“.
 # Feiertage sind nicht berücksichtigt. Ganzjährige Fähren brauchen keine Regeln.
-# Quellen: hal-oever.de, faehren-bremen.de, bremen.eu, Landkreis Wesermarsch
+# Quellen: hal-oever.de (Sielwall: Mär–Okt täglich, Winter meist Wochenende), faehren-bremen.de/bremen.eu (Bremen-Nord ganzjährig). Zuletzt geprüft 11/2026.
 stand: "November 2026"
 stand_en: "November 2026"
 items:
@@ -14,8 +14,10 @@ items:
     ganzjaehrig: false
     regeln:
       - { von: "03-01", bis: "10-31", tage: [1, 2, 3, 4, 5, 6, 7] }
-    saison_de: "März bis Oktober täglich, im Winter nur an einzelnen Tagen"
-    saison_en: "Daily March to October, in winter only on selected days"
+      - { von: "11-01", bis: "12-31", tage: [6, 7] }
+      - { von: "01-01", bis: "02-28", tage: [6, 7] }
+    saison_de: "März bis Oktober täglich, im Winter meist am Wochenende"
+    saison_en: "Daily March to October, in winter usually at weekends"
     note_de: "Bremens kürzeste Schiffsfahrt, wenige Minuten über die Weser."
     note_en: "Bremen's shortest boat trip, a few minutes across the Weser."
   - name: "Weserfähre Bremen"

@@ -1417,7 +1417,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .road-jump a:hover{color:var(--accent-hover)}
 .ferries .ferry-today{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .5rem;border-radius:2px}
 .ferry-today.is-yes{background:var(--accent);color:#1A1A18}
-.ferry-today.is-no{border:1px dashed rgba(244,238,227,.3);color:rgba(244,238,227,.55)}
+.ferry-today.is-no,.ferry-today.is-pause{border:1px dashed rgba(244,238,227,.3);color:rgba(244,238,227,.55)}
 /* Startseite */
 .road-home{padding-top:clamp(2rem,5vw,3.5rem)}
 .road-grid{display:grid;gap:2.5rem 4rem;margin-top:clamp(1.5rem,4vw,2.5rem)}
@@ -1481,7 +1481,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .road-home.sec-light .repair-tags .is-unknown{color:rgba(28,27,25,.5);border-color:rgba(28,27,25,.25)}
 .road-home.sec-light .road-ferry-list .ferry{border-top-color:rgba(28,27,25,.12)}
 .road-home.sec-light .road-ferry-n{color:var(--text-on-light)}
-.road-home.sec-light .ferry-today.is-no{border-color:rgba(28,27,25,.3);color:rgba(28,27,25,.55)}
+.road-home.sec-light .ferry-today.is-no,.road-home.sec-light .ferry-today.is-pause{border-color:rgba(28,27,25,.3);color:rgba(28,27,25,.55)}
 .road-home.sec-light{padding-top:calc(clamp(5rem,10vw,8rem) + var(--wave))}
 /* Journal auf der Startseite */
 .journal-grid{display:grid;gap:2.5rem;align-items:center}

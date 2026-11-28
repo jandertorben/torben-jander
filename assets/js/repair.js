@@ -89,15 +89,19 @@
     var wd = now.getDay() || 7;
     Array.prototype.forEach.call(document.querySelectorAll('[data-ferries] .ferry'), function (li) {
       var chip = li.querySelector('.ferry-today'); if (!chip) return;
-      var yes = li.dataset.year === 'true';
-      if (!yes) {
+      var state;
+      if (li.dataset.year === 'true') {
+        state = 'yes';
+      } else {
         var rules = []; try { rules = JSON.parse(li.dataset.rules || '[]') || []; } catch (e) {}
-        yes = rules.some(function (r) { return md >= r.von && md <= r.bis && (r.tage || []).indexOf(wd) > -1; });
+        var inSeason = rules.some(function (r) { return md >= r.von && md <= r.bis; });
+        var runs = rules.some(function (r) { return md >= r.von && md <= r.bis && (r.tage || []).indexOf(wd) > -1; });
+        state = runs ? 'yes' : (inSeason ? 'no' : 'pause');  // in der Saison, aber heute nicht, vs. Winterpause
       }
-      chip.textContent = yes ? chip.dataset.yes : chip.dataset.no;
-      chip.classList.add(yes ? 'is-yes' : 'is-no');
+      chip.textContent = state === 'yes' ? chip.dataset.yes : state === 'pause' ? chip.dataset.pause : chip.dataset.no;
+      chip.classList.add('is-' + state);
       chip.hidden = false;
-      li.classList.toggle('runs-today', yes);
+      li.classList.toggle('runs-today', state === 'yes');
     });
   }
 })();
