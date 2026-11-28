@@ -959,3 +959,6 @@ other = "Noch nichts im Archiv. Alle Beiträge stehen im Journal."
 
 [journal_archive_back]
 other = "Zurück zum Journal"
+
+[journal_minutes]
+other = "%d Min. Lesezeit"
