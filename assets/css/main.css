@@ -1726,3 +1726,7 @@ html,body,.footer,.sec-alt,.sec-run{background:var(--bg-dark)}
 .tl-ground{margin:.5rem 0 0;font-size:.8rem;letter-spacing:.02em;color:rgba(28,27,25,.6)}
 .tl-ground span{color:var(--accent);margin-right:.15rem}
 .tip-meta{color:var(--accent)}
+/* Hauptnavigation mit Community: kein Umbruch, enger zwischen 1000 und 1240 px */
+.nav-main a{white-space:nowrap}
+@media (min-width:1000px) and (max-width:1240px){.nav-main{gap:1.15rem}.nav-main a{letter-spacing:.1em;font-size:.76rem}}
+@media (min-width:1241px) and (max-width:1380px){.nav-main{gap:1.9rem}}
